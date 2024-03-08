@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "rainimator:shieldever"
+  },
+  "addition": {
+    "item": "rainimator:bluediamond"
+  },
+  "result": {
+    "item": "rainimator:bluediamondshield"
+  }
+}

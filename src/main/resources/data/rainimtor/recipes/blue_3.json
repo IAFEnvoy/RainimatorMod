@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01",
+    "23",
+    " 5"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:bluediamond"
+    },
+    "1": {
+      "item": "minecraft:diamond"
+    },
+    "2": {
+      "item": "rainimator:bluediamond"
+    },
+    "3": {
+      "item": "rainimator:lower_bound_alloy_bone"
+    },
+    "5": {
+      "item": "rainimator:ruby_pickaxe"
+    }
+  },
+  "result": {
+    "item": "rainimator:diamond_hatchet",
+    "count": 1
+  }
+}

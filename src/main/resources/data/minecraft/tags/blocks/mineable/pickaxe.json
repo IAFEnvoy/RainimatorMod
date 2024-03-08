@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "rainimator:ruby_ore",
+    "rainimator:sappries_ore",
+    "rainimator:deepslate_sappries_ore",
+    "rainimator:deepslate_ruby_ore",
+    "rainimator:darkobsidianblock",
+    "rainimator:mysticore"
+  ]
+}

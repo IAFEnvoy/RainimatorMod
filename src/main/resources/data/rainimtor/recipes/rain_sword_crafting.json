@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_spparies"
+    },
+    "1": {
+      "item": "minecraft:nether_star"
+    },
+    "2": {
+      "item": "rainimator:super_spparies"
+    },
+    "3": {
+      "item": "rainimator:bluediamondblock"
+    },
+    "4": {
+      "item": "rainimator:iceheart"
+    },
+    "5": {
+      "item": "rainimator:bluediamondblock"
+    },
+    "6": {
+      "item": "rainimator:icedheart"
+    },
+    "7": {
+      "item": "rainimator:snow_diamond_sword"
+    },
+    "8": {
+      "item": "rainimator:icedheart"
+    }
+  },
+  "result": {
+    "item": "rainimator:rain_sword",
+    "count": 1
+  }
+}

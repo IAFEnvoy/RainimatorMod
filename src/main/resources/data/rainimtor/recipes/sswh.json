@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:dragon_breath"
+    },
+    "1": {
+      "item": "minecraft:end_crystal"
+    },
+    "2": {
+      "item": "minecraft:dragon_breath"
+    },
+    "3": {
+      "item": "rainimator:bluediamondblock"
+    },
+    "4": {
+      "item": "minecraft:nether_star"
+    },
+    "5": {
+      "item": "rainimator:bluediamondblock"
+    },
+    "6": {
+      "item": "rainimator:enderheart"
+    },
+    "7": {
+      "item": "rainimator:soulraidinghammer"
+    },
+    "8": {
+      "item": "rainimator:enderheart"
+    }
+  },
+  "result": {
+    "item": "rainimator:seizingshadowhalberd",
+    "count": 1
+  }
+}

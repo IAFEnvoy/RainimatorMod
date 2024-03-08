@@ -1,0 +1,9 @@
+{
+  "parent": "rainimator:custom/golden_carrot",
+  "textures": {
+    "ani1": "rainimator:blocks/",
+    "unwrap1": "rainimator:blocks/golden_carrot_unwrap1",
+    "unwrap2": "rainimator:blocks/golden_carrot_unwrap2",
+    "particle": "rainimator:items/golden_carrot_unwrap1"
+  }
+}

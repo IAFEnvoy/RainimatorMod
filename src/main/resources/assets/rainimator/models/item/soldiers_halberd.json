@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/potato",
+  "textures": {
+    "texture": "rainimator:blocks/potato",
+    "particle": "rainimator:items/potato"
+  }
+}

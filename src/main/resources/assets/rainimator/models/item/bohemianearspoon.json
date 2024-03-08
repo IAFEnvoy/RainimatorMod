@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/bohemian_earspoon",
+  "textures": {
+    "0": "rainimator:blocks/spear_ever",
+    "particle": "rainimator:items/spear_ever"
+  }
+}

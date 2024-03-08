@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/da_jin_jian_l",
+  "textures": {
+    "0": "rainimator:blocks/texture",
+    "particle": "rainimator:items/texture"
+  }
+}

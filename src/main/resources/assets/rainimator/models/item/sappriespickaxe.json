@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/sappries_pickaxe",
+  "textures": {
+    "0": "rainimator:blocks/sappries_pickaxe",
+    "particle": "rainimator:items/sappries_pickaxe"
+  }
+}

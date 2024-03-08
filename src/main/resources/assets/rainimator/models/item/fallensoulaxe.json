@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/fallen_soul_axe",
+  "textures": {
+    "0": "rainimator:blocks/fallen_soul_axe",
+    "particle": "rainimator:items/fallen_soul_axe"
+  }
+}

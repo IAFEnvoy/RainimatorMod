@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/deepslate_warhammer",
+  "textures": {
+    "1": "rainimator:blocks/ender_cored_s",
+    "particle": "rainimator:items/deep"
+  }
+}

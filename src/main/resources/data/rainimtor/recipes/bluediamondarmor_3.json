@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "3 5",
+    "6 8"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:bluediamond"
+    },
+    "1": {
+      "item": "rainimator:bluediamond"
+    },
+    "2": {
+      "item": "rainimator:bluediamond"
+    },
+    "3": {
+      "item": "rainimator:bluediamond"
+    },
+    "5": {
+      "item": "rainimator:bluediamond"
+    },
+    "6": {
+      "item": "rainimator:bluediamond"
+    },
+    "8": {
+      "item": "rainimator:bluediamond"
+    }
+  },
+  "result": {
+    "item": "rainimator:bluediamondarmors_leggings",
+    "count": 1
+  }
+}

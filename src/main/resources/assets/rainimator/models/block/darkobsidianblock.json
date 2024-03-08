@@ -1,0 +1,12 @@
+{
+  "parent": "rainimator:custom/jitan",
+  "textures": {
+    "all": "rainimator:blocks/crying_obsidian",
+    "particle": "rainimator:blocks/crying_obsidian",
+    "0": "rainimator:blocks/obsidian",
+    "2": "rainimator:blocks/crying_obsidian",
+    "3": "rainimator:blocks/wither_skeleton_sdd",
+    "4": "rainimator:blocks/redsdd",
+    "5": "rainimator:blocks/redbbb"
+  }
+}

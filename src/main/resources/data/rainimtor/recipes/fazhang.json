@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 12",
+    "345",
+    "67 "
+  ],
+  "key": {
+    "1": {
+      "item": "rainimator:bluediamond"
+    },
+    "2": {
+      "item": "minecraft:end_crystal"
+    },
+    "3": {
+      "item": "minecraft:ender_eye"
+    },
+    "4": {
+      "item": "rainimator:enderheart"
+    },
+    "5": {
+      "item": "rainimator:bluediamond"
+    },
+    "6": {
+      "item": "rainimator:lower_bound_alloy_bone"
+    },
+    "7": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "result": {
+    "item": "rainimator:end_satff",
+    "count": 1
+  }
+}

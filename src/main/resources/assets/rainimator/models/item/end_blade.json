@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/ender_greatsword",
+  "textures": {
+    "0": "rainimator:blocks/end",
+    "particle": "rainimator:items/end"
+  }
+}

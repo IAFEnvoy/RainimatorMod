@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/albldd",
+  "textures": {
+    "0": "rainimator:blocks/alobldd",
+    "particle": "rainimator:items/alobldd"
+  }
+}

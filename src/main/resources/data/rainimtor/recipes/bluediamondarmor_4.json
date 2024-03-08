@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "3 5"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:bluediamond"
+    },
+    "2": {
+      "item": "rainimator:bluediamond"
+    },
+    "3": {
+      "item": "rainimator:bluediamond"
+    },
+    "5": {
+      "item": "rainimator:bluediamond"
+    }
+  },
+  "result": {
+    "item": "rainimator:bluediamondarmors_boots",
+    "count": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rainimator:items/he_jin_diao_lin_gu"
+  }
+}

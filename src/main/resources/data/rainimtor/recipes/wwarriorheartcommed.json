@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:soulpeople"
+    },
+    "1": {
+      "item": "rainimator:ruby"
+    },
+    "2": {
+      "item": "rainimator:soulpeople"
+    },
+    "3": {
+      "item": "rainimator:ruby"
+    },
+    "4": {
+      "item": "rainimator:magic_stard"
+    },
+    "5": {
+      "item": "rainimator:ruby"
+    },
+    "6": {
+      "item": "rainimator:soulpeople"
+    },
+    "7": {
+      "item": "rainimator:ruby"
+    },
+    "8": {
+      "item": "rainimator:soulpeople"
+    }
+  },
+  "result": {
+    "item": "rainimator:warriorheart",
+    "count": 1
+  }
+}

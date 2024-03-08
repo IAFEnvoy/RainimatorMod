@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rainimator:bluediamond"
+    },
+    {
+      "item": "rainimator:bluediamond"
+    },
+    {
+      "item": "rainimator:bluediamond"
+    },
+    {
+      "item": "rainimator:bluediamond"
+    },
+    {
+      "item": "rainimator:bluediamond"
+    },
+    {
+      "item": "rainimator:bluediamond"
+    },
+    {
+      "item": "rainimator:bluediamond"
+    },
+    {
+      "item": "rainimator:bluediamond"
+    },
+    {
+      "item": "rainimator:bluediamond"
+    }
+  ],
+  "result": {
+    "item": "rainimator:bluediamondblock",
+    "count": 1
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/xiajiehejindun",
+  "textures": {
+    "0": "rainimator:blocks/xiajiehejin",
+    "particle": "rainimator:items/xiajiehej"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "rainimator:custom/deepslate_warhammers",
+  "textures": {
+    "0": "rainimator:blocks/end_crystal",
+    "1": "rainimator:blocks/ender_cored_s",
+    "particle": "rainimator:items/soul_rammer"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/dfdfggh.lnk",
+  "textures": {
+    "0": "rainimator:blocks/texture1",
+    "particle": "rainimator:items/texture1"
+  }
+}

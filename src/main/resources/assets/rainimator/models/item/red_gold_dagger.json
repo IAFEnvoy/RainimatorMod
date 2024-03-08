@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/ghastly_glaive",
+  "textures": {
+    "0": "rainimator:blocks/ghastly_glaive",
+    "particle": "rainimator:items/ghastly_glaive"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 12",
+    "345",
+    "67 "
+  ],
+  "key": {
+    "1": {
+      "item": "rainimator:super_ruby"
+    },
+    "2": {
+      "item": "rainimator:bluediamond"
+    },
+    "3": {
+      "item": "rainimator:enderstone"
+    },
+    "4": {
+      "item": "rainimator:enderheart"
+    },
+    "5": {
+      "item": "rainimator:super_spparies"
+    },
+    "6": {
+      "item": "rainimator:ruby_pickaxe"
+    },
+    "7": {
+      "item": "rainimator:enderstone"
+    }
+  },
+  "result": {
+    "item": "rainimator:enderbigsword",
+    "count": 1
+  }
+}

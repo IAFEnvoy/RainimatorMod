@@ -1,0 +1,8 @@
+{
+  "parent": "rainimator:custom/wooden_hoe",
+  "textures": {
+    "texture": "rainimator:blocks/stone_hoe_2",
+    "zweianimation": "rainimator:blocks/zweianimation",
+    "particle": "rainimator:items/stone_hoe_1"
+  }
+}

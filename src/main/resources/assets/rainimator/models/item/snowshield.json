@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/snow_shield",
+  "textures": {
+    "0": "rainimator:blocks/sjlddunpai",
+    "particle": "rainimator:items/sjlddunpai"
+  }
+}

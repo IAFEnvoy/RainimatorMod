@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "345",
+    " 7 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:bluediamond"
+    },
+    "2": {
+      "item": "rainimator:bluediamond"
+    },
+    "3": {
+      "item": "rainimator:super_spparies"
+    },
+    "4": {
+      "item": "rainimator:nightmares"
+    },
+    "5": {
+      "item": "rainimator:super_spparies"
+    },
+    "7": {
+      "item": "rainimator:lower_bound_alloy_bone"
+    }
+  },
+  "result": {
+    "item": "rainimator:herobrine_tomahawk",
+    "count": 1
+  }
+}

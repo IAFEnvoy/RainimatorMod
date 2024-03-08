@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "3 5",
+    "6 8"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:sappries"
+    },
+    "1": {
+      "item": "rainimator:super_spparies"
+    },
+    "2": {
+      "item": "rainimator:sappries"
+    },
+    "3": {
+      "item": "rainimator:super_spparies"
+    },
+    "5": {
+      "item": "rainimator:super_spparies"
+    },
+    "6": {
+      "item": "rainimator:sappries"
+    },
+    "8": {
+      "item": "rainimator:sappries"
+    }
+  },
+  "result": {
+    "item": "rainimator:sappriesarmor_leggings",
+    "count": 1
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rainimator:sappries"
+    },
+    {
+      "item": "rainimator:sappries"
+    },
+    {
+      "item": "rainimator:sappries"
+    },
+    {
+      "item": "rainimator:sappries"
+    },
+    {
+      "item": "rainimator:sappries"
+    },
+    {
+      "item": "rainimator:sappries"
+    },
+    {
+      "item": "rainimator:sappries"
+    },
+    {
+      "item": "rainimator:sappries"
+    },
+    {
+      "item": "rainimator:sappries"
+    }
+  ],
+  "result": {
+    "item": "rainimator:sappriesblock",
+    "count": 1
+  }
+}

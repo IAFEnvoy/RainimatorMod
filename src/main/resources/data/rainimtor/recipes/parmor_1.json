@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:diamond_helmet"
+  },
+  "addition": {
+    "item": "rainimator:super_spparies"
+  },
+  "result": {
+    "item": "rainimator:patrick_armor_helmet"
+  }
+}

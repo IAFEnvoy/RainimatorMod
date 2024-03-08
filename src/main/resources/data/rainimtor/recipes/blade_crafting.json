@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:enderstone"
+    },
+    "1": {
+      "item": "rainimator:super_spparies"
+    },
+    "2": {
+      "item": "rainimator:enderstone"
+    },
+    "3": {
+      "item": "rainimator:super_spparies"
+    },
+    "4": {
+      "item": "rainimator:enderheart"
+    },
+    "5": {
+      "item": "rainimator:super_spparies"
+    },
+    "6": {
+      "item": "rainimator:bluediamond"
+    },
+    "7": {
+      "item": "rainimator:ruby_pickaxe"
+    },
+    "8": {
+      "item": "rainimator:bluediamond"
+    }
+  },
+  "result": {
+    "item": "rainimator:end_blade",
+    "count": 1
+  }
+}

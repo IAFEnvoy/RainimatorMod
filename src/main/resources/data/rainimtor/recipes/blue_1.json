@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 12",
+    " 45",
+    "6  "
+  ],
+  "key": {
+    "1": {
+      "item": "rainimator:bluediamond"
+    },
+    "2": {
+      "item": "rainimator:bluediamond"
+    },
+    "4": {
+      "item": "rainimator:ruby_pickaxe"
+    },
+    "5": {
+      "item": "rainimator:bluediamond"
+    },
+    "6": {
+      "item": "rainimator:lower_bound_alloy_bone"
+    }
+  },
+  "result": {
+    "item": "rainimator:diamond_lance",
+    "count": 1
+  }
+}

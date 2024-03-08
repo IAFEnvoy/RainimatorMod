@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/rotten_flesh",
+  "textures": {
+    "texture": "rainimator:blocks/rotten_flesh_wrap",
+    "particle": "rainimator:items/rotten_flesh_wrap"
+  }
+}

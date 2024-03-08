@@ -1,0 +1,10 @@
+{
+  "parent": "rainimator:custom/cod",
+  "textures": {
+    "icepuffs2": "rainimator:blocks/icepuffs2",
+    "texture": "rainimator:blocks/ice_shard_unwrap1",
+    "particle": "rainimator:items/rainsword",
+    "icepuffs3": "rainimator:blocks/icepuffs3",
+    "icepuffs": "rainimator:blocks/icepuffs"
+  }
+}

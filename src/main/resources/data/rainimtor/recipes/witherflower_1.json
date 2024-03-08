@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:poppy"
+    },
+    "1": {
+      "item": "minecraft:poppy"
+    },
+    "2": {
+      "item": "minecraft:poppy"
+    },
+    "3": {
+      "item": "minecraft:poppy"
+    },
+    "4": {
+      "item": "rainimator:wither_bone"
+    },
+    "5": {
+      "item": "minecraft:poppy"
+    },
+    "6": {
+      "item": "minecraft:poppy"
+    },
+    "7": {
+      "item": "minecraft:poppy"
+    },
+    "8": {
+      "item": "minecraft:poppy"
+    }
+  },
+  "result": {
+    "item": "minecraft:wither_rose",
+    "count": 8
+  }
+}

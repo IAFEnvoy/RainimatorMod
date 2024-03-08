@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  2",
+    " 45",
+    "67 "
+  ],
+  "key": {
+    "2": {
+      "item": "rainimator:super_ruby"
+    },
+    "4": {
+      "item": "rainimator:warriorheart"
+    },
+    "5": {
+      "item": "rainimator:hot_iron"
+    },
+    "6": {
+      "item": "rainimator:wither_bone"
+    },
+    "7": {
+      "item": "rainimator:ruby_pickaxe"
+    }
+  },
+  "result": {
+    "item": "rainimator:red_gold_dagger",
+    "count": 1
+  }
+}

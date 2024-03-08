@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "3 5"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_ruby"
+    },
+    "2": {
+      "item": "rainimator:super_ruby"
+    },
+    "3": {
+      "item": "rainimator:ruby"
+    },
+    "5": {
+      "item": "rainimator:ruby"
+    }
+  },
+  "result": {
+    "item": "rainimator:rubyarmor_boots",
+    "count": 1
+  }
+}

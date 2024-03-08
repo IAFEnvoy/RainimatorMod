@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_spparies"
+    },
+    "1": {
+      "item": "rainimator:iceheart"
+    },
+    "2": {
+      "item": "rainimator:super_spparies"
+    },
+    "3": {
+      "item": "rainimator:iceheart"
+    },
+    "4": {
+      "item": "minecraft:end_crystal"
+    },
+    "5": {
+      "item": "rainimator:iceheart"
+    },
+    "6": {
+      "item": "rainimator:super_spparies"
+    },
+    "7": {
+      "item": "rainimator:iceheart"
+    },
+    "8": {
+      "item": "rainimator:super_spparies"
+    }
+  },
+  "result": {
+    "item": "rainimator:icedheart",
+    "count": 1
+  }
+}

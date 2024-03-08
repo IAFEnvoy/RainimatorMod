@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/paradox_katana",
+  "textures": {
+    "0": "rainimator:blocks/paradox_katana",
+    "particle": "rainimator:items/paradox_katana"
+  }
+}

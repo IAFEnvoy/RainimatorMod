@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_spparies"
+    },
+    "2": {
+      "item": "rainimator:super_spparies"
+    },
+    "3": {
+      "item": "rainimator:sappries"
+    },
+    "4": {
+      "item": "rainimator:super_spparies"
+    },
+    "5": {
+      "item": "rainimator:sappries"
+    },
+    "6": {
+      "item": "rainimator:super_spparies"
+    },
+    "7": {
+      "item": "rainimator:sappries"
+    },
+    "8": {
+      "item": "rainimator:super_spparies"
+    }
+  },
+  "result": {
+    "item": "rainimator:sappriesarmor_chestplate",
+    "count": 1
+  }
+}

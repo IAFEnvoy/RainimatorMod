@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "rainimator:block/mysticore"
+    },
+    "facing=east": {
+      "model": "rainimator:block/mysticore",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "rainimator:block/mysticore",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rainimator:block/mysticore",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/wooden_axe",
+  "textures": {
+    "texture": "rainimator:blocks/wooden_axe_ref",
+    "particle": "rainimator:items/wooden_axe_ref"
+  }
+}

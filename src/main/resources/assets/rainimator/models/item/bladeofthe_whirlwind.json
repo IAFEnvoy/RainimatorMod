@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/greentide",
+  "textures": {
+    "0": "rainimator:blocks/greentide",
+    "particle": "rainimator:items/greentide"
+  }
+}

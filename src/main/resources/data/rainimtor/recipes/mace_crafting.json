@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    " 7 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:rubyblock"
+    },
+    "1": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "2": {
+      "item": "rainimator:rubyblock"
+    },
+    "3": {
+      "item": "rainimator:sappriesblock"
+    },
+    "4": {
+      "item": "rainimator:lower_bound_nuclear_reactor"
+    },
+    "5": {
+      "item": "rainimator:sappriesblock"
+    },
+    "7": {
+      "item": "rainimator:lower_bound_alloy_bone"
+    }
+  },
+  "result": {
+    "item": "rainimator:mace",
+    "count": 1
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/fyrite_katar",
+  "textures": {
+    "0": "rainimator:blocks/fyrite_katar",
+    "particle": "rainimator:items/fyrite_katar"
+  }
+}

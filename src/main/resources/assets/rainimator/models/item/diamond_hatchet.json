@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/jotunn_dragon",
+  "textures": {
+    "0": "rainimator:blocks/jotunn_dragon",
+    "particle": "rainimator:items/jotunn_dragon"
+  }
+}

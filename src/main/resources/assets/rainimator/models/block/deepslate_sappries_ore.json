@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "rainimator:blocks/deepslate_diamond_ore",
+    "up": "rainimator:blocks/deepslate_diamond_ore",
+    "north": "rainimator:blocks/deepslate_diamond_ore",
+    "east": "rainimator:blocks/deepslate_diamond_ore",
+    "south": "rainimator:blocks/deepslate_diamond_ore",
+    "west": "rainimator:blocks/deepslate_diamond_ore",
+    "particle": "rainimator:blocks/deepslate_diamond_ore"
+  }
+}

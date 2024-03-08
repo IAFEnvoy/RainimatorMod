@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/wooden_shovel",
+  "textures": {
+    "texture": "rainimator:blocks/wooden_spade1",
+    "particle": "rainimator:items/wooden_spade2"
+  }
+}

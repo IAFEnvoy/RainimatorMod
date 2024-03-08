@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/ruby_axe",
+  "textures": {
+    "0": "rainimator:blocks/ruby_axe",
+    "particle": "rainimator:items/ruby_axe"
+  }
+}

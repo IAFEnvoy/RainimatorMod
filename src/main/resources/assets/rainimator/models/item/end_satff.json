@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/golden_pickaxe",
+  "textures": {
+    "texture": "rainimator:blocks/golden_pieckaxe1",
+    "particle": "rainimator:items/golden_pieckaxe1"
+  }
+}

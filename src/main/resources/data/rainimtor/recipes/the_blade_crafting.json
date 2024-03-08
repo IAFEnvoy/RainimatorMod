@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:bluediamondblock"
+    },
+    "1": {
+      "item": "minecraft:nether_star"
+    },
+    "2": {
+      "item": "rainimator:bluediamondblock"
+    },
+    "3": {
+      "item": "rainimator:super_spparies"
+    },
+    "4": {
+      "item": "rainimator:enderheart"
+    },
+    "5": {
+      "item": "rainimator:super_spparies"
+    },
+    "6": {
+      "item": "rainimator:enderbigsword"
+    },
+    "7": {
+      "item": "rainimator:end_blade"
+    },
+    "8": {
+      "item": "rainimator:amethystwarhammer"
+    }
+  },
+  "result": {
+    "item": "rainimator:zecanirn_theblade",
+    "count": 1
+  }
+}

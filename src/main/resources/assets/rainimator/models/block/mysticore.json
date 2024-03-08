@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "rainimator:blocks/mystic_ore",
+    "up": "rainimator:blocks/mystic_ore",
+    "north": "rainimator:blocks/mystic_ore",
+    "east": "rainimator:blocks/mystic_ore",
+    "south": "rainimator:blocks/mystic_ore",
+    "west": "rainimator:blocks/mystic_ore",
+    "particle": "rainimator:blocks/mystic_ore"
+  }
+}

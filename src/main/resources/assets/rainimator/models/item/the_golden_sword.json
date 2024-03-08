@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/sword",
+  "textures": {
+    "texture": "rainimator:blocks/pufferfish_unwrap1",
+    "particle": "rainimator:items/pufferfish_unwrap1"
+  }
+}

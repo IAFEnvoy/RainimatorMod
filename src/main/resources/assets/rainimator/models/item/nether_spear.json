@@ -1,0 +1,9 @@
+{
+  "parent": "rainimator:custom/pufferfish",
+  "textures": {
+    "2": "rainimator:blocks/spear",
+    "unwrap1": "rainimator:blocks/1",
+    "unwrap2": "rainimator:blocks/3",
+    "particle": "rainimator:items/spear"
+  }
+}

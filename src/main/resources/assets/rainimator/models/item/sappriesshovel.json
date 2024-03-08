@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/sappries_shovel",
+  "textures": {
+    "0": "rainimator:blocks/sappries_shovel",
+    "particle": "rainimator:items/sappries_shovel"
+  }
+}

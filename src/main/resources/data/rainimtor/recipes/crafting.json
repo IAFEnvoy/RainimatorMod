@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:neaussouls"
+    },
+    "1": {
+      "item": "rainimator:naeus_sword"
+    },
+    "2": {
+      "item": "rainimator:neaussouls"
+    },
+    "3": {
+      "item": "rainimator:abigail_spear"
+    },
+    "4": {
+      "item": "minecraft:nether_star"
+    },
+    "5": {
+      "item": "rainimator:blackdeathsword"
+    },
+    "6": {
+      "item": "rainimator:bluediamondblock"
+    },
+    "7": {
+      "item": "rainimator:blackbone_the_blade_danshou"
+    },
+    "8": {
+      "item": "rainimator:bluediamondblock"
+    }
+  },
+  "result": {
+    "item": "rainimator:nether_spear",
+    "count": 1
+  }
+}

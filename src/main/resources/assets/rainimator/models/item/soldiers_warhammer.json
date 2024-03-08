@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/cooked_rabbit",
+  "textures": {
+    "texture": "rainimator:blocks/cooked_rabbitunwrap",
+    "particle": "rainimator:items/cooked_rabbitunwrap"
+  }
+}

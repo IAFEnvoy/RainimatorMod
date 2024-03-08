@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "rainimator:blocks/sappries_block",
+    "up": "rainimator:blocks/sappries_block",
+    "north": "rainimator:blocks/sappries_block",
+    "east": "rainimator:blocks/sappries_block",
+    "south": "rainimator:blocks/sappries_block",
+    "west": "rainimator:blocks/sappries_block",
+    "particle": "rainimator:blocks/sappries_block"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 2",
+    "3 5"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_spparies"
+    },
+    "2": {
+      "item": "rainimator:super_spparies"
+    },
+    "3": {
+      "item": "rainimator:sappries"
+    },
+    "5": {
+      "item": "rainimator:sappries"
+    }
+  },
+  "result": {
+    "item": "rainimator:sappriesarmor_boots",
+    "count": 1
+  }
+}

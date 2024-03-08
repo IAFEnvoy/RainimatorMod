@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/prismarine_sycthe",
+  "textures": {
+    "0": "rainimator:blocks/prismarine_sycthe",
+    "particle": "rainimator:items/prismarine_sycthe"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/tribal_axe",
+  "textures": {
+    "0": "rainimator:blocks/tribal_axe",
+    "particle": "rainimator:items/tribal_axe"
+  }
+}

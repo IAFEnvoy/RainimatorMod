@@ -1,0 +1,8 @@
+{
+  "parent": "rainimator:custom/poisonous_potato",
+  "textures": {
+    "unwrap1": "rainimator:blocks/poisonous_potato_unwrap1",
+    "unwrap2": "rainimator:blocks/poisonous_potato_unwrap2",
+    "particle": "rainimator:items/poisonous_potato_unwrap1"
+  }
+}

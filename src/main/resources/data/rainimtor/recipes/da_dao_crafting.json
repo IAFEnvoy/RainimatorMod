@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:bluediamondblock"
+    },
+    "1": {
+      "item": "rainimator:super_ruby"
+    },
+    "2": {
+      "item": "rainimator:hot_gloves"
+    },
+    "3": {
+      "item": "rainimator:red_gold_dagger"
+    },
+    "4": {
+      "item": "minecraft:nether_star"
+    },
+    "5": {
+      "item": "rainimator:super_ruby"
+    },
+    "6": {
+      "item": "rainimator:blackbone_the_blade_danshou"
+    },
+    "7": {
+      "item": "rainimator:lower_bound_alloy_flame_saber"
+    },
+    "8": {
+      "item": "rainimator:bluediamondblock"
+    }
+  },
+  "result": {
+    "item": "rainimator:blackbone_the_blade",
+    "count": 1
+  }
+}

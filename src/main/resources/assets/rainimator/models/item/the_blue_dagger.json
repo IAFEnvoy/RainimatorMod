@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/ciaral",
+  "textures": {
+    "0": "rainimator:blocks/wsnb",
+    "particle": "rainimator:items/wcnm"
+  }
+}
