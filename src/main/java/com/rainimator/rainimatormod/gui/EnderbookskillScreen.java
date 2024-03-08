@@ -21,15 +21,16 @@ import java.util.HashMap;
 public class EnderbookskillScreen extends AbstractContainerScreen<EnderbookskillMenu> {
     private static final HashMap<String, Object> guistate = EnderbookskillMenu.guistate;
 
-    private final Level world;
-
     private final int x;
     private final int y;
     private final int z;
-
+    private final Player entity;
+    ImageButton imagebutton_ground;
+    ImageButton imagebutton_nether;
+    ImageButton imagebutton_ender;
     public EnderbookskillScreen(EnderbookskillMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
-        this.world = container.world;
+        Level world = container.world;
         this.x = container.x;
         this.y = container.y;
         this.z = container.z;
@@ -37,11 +38,6 @@ public class EnderbookskillScreen extends AbstractContainerScreen<Enderbookskill
         this.imageWidth = 300;
         this.imageHeight = 100;
     }
-
-    private final Player entity;
-    ImageButton imagebutton_ground;
-    ImageButton imagebutton_nether;
-    ImageButton imagebutton_ender;
 
     public boolean isPauseScreen() {
         return true;
@@ -84,7 +80,7 @@ public class EnderbookskillScreen extends AbstractContainerScreen<Enderbookskill
     @Override
     public void onClose() {
         super.onClose();
-        (Minecraft.getInstance()).keyboardHandler.setSendRepeatsToGui(false);
+        Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(false);
     }
 
     @Override
@@ -92,7 +88,7 @@ public class EnderbookskillScreen extends AbstractContainerScreen<Enderbookskill
         super.init();
         if (this.minecraft != null)
             this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-        this.imagebutton_ground = new ImageButton(this.leftPos + 32, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID,"textures/screens/atlas/imagebutton_ground.png"), 64, 128, e -> {
+        this.imagebutton_ground = new ImageButton(this.leftPos + 32, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID, "textures/screens/atlas/imagebutton_ground.png"), 64, 128, e -> {
             NetworkManager.PACKET_HANDLER.sendToServer(new EnderbookskillButtonMessage(0, this.x, this.y, this.z));
 
             EnderbookskillButtonMessage.handleButtonAction(this.entity, 0, this.x, this.y, this.z);
@@ -100,7 +96,7 @@ public class EnderbookskillScreen extends AbstractContainerScreen<Enderbookskill
 
         guistate.put("button:imagebutton_ground", this.imagebutton_ground);
         this.addRenderableWidget(this.imagebutton_ground);
-        this.imagebutton_nether = new ImageButton(this.leftPos + 118, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID,"textures/screens/atlas/imagebutton_nether.png"), 64, 128, e -> {
+        this.imagebutton_nether = new ImageButton(this.leftPos + 118, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID, "textures/screens/atlas/imagebutton_nether.png"), 64, 128, e -> {
             NetworkManager.PACKET_HANDLER.sendToServer(new EnderbookskillButtonMessage(1, this.x, this.y, this.z));
 
             EnderbookskillButtonMessage.handleButtonAction(this.entity, 1, this.x, this.y, this.z);
@@ -108,7 +104,7 @@ public class EnderbookskillScreen extends AbstractContainerScreen<Enderbookskill
 
         guistate.put("button:imagebutton_nether", this.imagebutton_nether);
         this.addRenderableWidget(this.imagebutton_nether);
-        this.imagebutton_ender = new ImageButton(this.leftPos + 203, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID,"textures/screens/atlas/imagebutton_ender.png"), 64, 128, e -> {
+        this.imagebutton_ender = new ImageButton(this.leftPos + 203, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID, "textures/screens/atlas/imagebutton_ender.png"), 64, 128, e -> {
             NetworkManager.PACKET_HANDLER.sendToServer(new EnderbookskillButtonMessage(2, this.x, this.y, this.z));
 
             EnderbookskillButtonMessage.handleButtonAction(this.entity, 2, this.x, this.y, this.z);

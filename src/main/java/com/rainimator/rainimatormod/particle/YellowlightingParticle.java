@@ -9,23 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class YellowlightingParticle extends TextureSheetParticle {
-    public static YellowlightingParticleProvider provider(SpriteSet spriteSet) {
-        return new YellowlightingParticleProvider(spriteSet);
-    }
-
     private final SpriteSet spriteSet;
-
-    public static class YellowlightingParticleProvider implements ParticleProvider<SimpleParticleType> {
-        private final SpriteSet spriteSet;
-
-        public YellowlightingParticleProvider(SpriteSet spriteSet) {
-            this.spriteSet = spriteSet;
-        }
-
-        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new YellowlightingParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
-        }
-    }
 
     protected YellowlightingParticle(ClientLevel world, double x, double y, double z, double vx, double vy, double vz, SpriteSet spriteSet) {
         super(world, x, y, z);
@@ -39,6 +23,10 @@ public class YellowlightingParticle extends TextureSheetParticle {
         this.yd = vy * 0.0D;
         this.zd = vz * 0.0D;
         this.setSpriteFromAge(spriteSet);
+    }
+
+    public static YellowlightingParticleProvider provider(SpriteSet spriteSet) {
+        return new YellowlightingParticleProvider(spriteSet);
     }
 
     @Override
@@ -56,5 +44,17 @@ public class YellowlightingParticle extends TextureSheetParticle {
         super.tick();
         if (!this.removed)
             this.setSprite(this.spriteSet.get(this.age / 2 % 16 + 1, 16));
+    }
+
+    public static class YellowlightingParticleProvider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet spriteSet;
+
+        public YellowlightingParticleProvider(SpriteSet spriteSet) {
+            this.spriteSet = spriteSet;
+        }
+
+        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            return new YellowlightingParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
+        }
     }
 }

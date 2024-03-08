@@ -4,14 +4,13 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +18,6 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
@@ -48,7 +46,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 
 public class BlackboneEntity extends Monster {
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS);
@@ -62,6 +59,21 @@ public class BlackboneEntity extends Monster {
         this.xpReward = 0;
         this.setNoAi(false);
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLACKBONE_THE_BLADE_DANSHOU.get()));
+    }
+
+    public static void init() {
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
+        builder = builder.add(Attributes.MAX_HEALTH, 130.0D);
+        builder = builder.add(Attributes.ARMOR, 30.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 4.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -125,23 +137,16 @@ public class BlackboneEntity extends Monster {
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         LivingEntity entity = this;
-        if (world instanceof Level _level) {
-            if (!_level.isClientSide()) {
-                _level.playSound(null, new BlockPos(this.position()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_living"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-            } else {
-                _level.playLocalSound(getX(), getY(), getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_living"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-            }
-        }
+        if (world instanceof Level _level)
+            MiscUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_living"), 1.0F, 1.0F);
 
         if (world instanceof ServerLevel) {
             ServerLevel _level = (ServerLevel) world;
-            _level.sendParticles((ParticleOptions) ParticleTypes.ELECTRIC_SPARK, getX(), getY(), getZ(), 50, 1.0D, 1.0D, 1.0D, 1.0D);
+            _level.sendParticles((ParticleOptions) ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 50, 1.0D, 1.0D, 1.0D, 1.0D);
         }
-        if (!(world.getDifficulty() == Difficulty.PEACEFUL)) {
-
-            if (!entity.level.isClientSide() && entity.getServer() != null) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
+            if (!entity.level.isClientSide() && entity.getServer() != null)
                 entity.getServer().getCommands().performCommand(entity.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:blackbone_boss_music neutral @a ~ ~ ~");
-            }
 
             Runnable callback = () -> {
                 if (entity.isAlive())
@@ -168,7 +173,7 @@ public class BlackboneEntity extends Monster {
                 this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 2));
             }
         if (!this.isAlive() && this.level instanceof ServerLevel _level)
-            _level.getServer().getCommands().performCommand((new CommandSourceStack(CommandSource.NULL, new Vec3(getX(), getY(), getZ()), Vec2.ZERO, _level, 4, "", (Component) new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:blackbone_boss_music");
+            _level.getServer().getCommands().performCommand((new CommandSourceStack(CommandSource.NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:blackbone_boss_music");
     }
 
     @Override
@@ -191,28 +196,6 @@ public class BlackboneEntity extends Monster {
     @Override
     public void customServerAiStep() {
         super.customServerAiStep();
-        this.bossInfo.setProgress(getHealth() / getMaxHealth());
-    }
-
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(Attributes.MAX_HEALTH, 130.0D);
-        builder = builder.add(Attributes.ARMOR, 30.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 4.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
+        this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
     }
 }
-
-
-/* Location:              E:\mc\rainimator\.minecraft\mods\rainimator_1.18.2_4.0.2_forge.jar!\net\mcreator\rainimator\entity\BlackboneEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

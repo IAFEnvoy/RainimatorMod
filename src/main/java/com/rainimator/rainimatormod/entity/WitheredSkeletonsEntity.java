@@ -21,7 +21,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -37,12 +36,6 @@ import java.util.Objects;
 
 @Mod.EventBusSubscriber
 public class WitheredSkeletonsEntity extends Monster {
-    @SubscribeEvent
-    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
-        if (Objects.equals(new ResourceLocation("nether_wastes"), event.getName()))
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.WITHERED_SKELETONS.get(), 19, 2, 2));
-    }
-
     public WitheredSkeletonsEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.WITHERED_SKELETONS.get(), world);
     }
@@ -52,6 +45,29 @@ public class WitheredSkeletonsEntity extends Monster {
         this.xpReward = 0;
         this.setNoAi(false);
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.NETHERITE_SWORD));
+    }
+
+    @SubscribeEvent
+    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
+        if (Objects.equals(new ResourceLocation("nether_wastes"), event.getName()))
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.WITHERED_SKELETONS.get(), 19, 2, 2));
+    }
+
+    public static void init() {
+        SpawnPlacements.register(ModEntities.WITHERED_SKELETONS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 30.0D);
+        builder = builder.add(Attributes.ARMOR, 1.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 32.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -101,22 +117,5 @@ public class WitheredSkeletonsEntity extends Monster {
         if (source.getMsgId().equals("witherSkull"))
             return false;
         return super.hurt(source, amount);
-    }
-
-    public static void init() {
-        SpawnPlacements.register(ModEntities.WITHERED_SKELETONS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, (LevelAccessor) world, reason, pos, random)));
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 30.0D);
-        builder = builder.add(Attributes.ARMOR, 1.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 32.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

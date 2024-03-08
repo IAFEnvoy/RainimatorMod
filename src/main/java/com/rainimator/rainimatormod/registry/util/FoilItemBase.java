@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 
-public class FoilItemBase extends ItemBase{
+public class FoilItemBase extends ItemBase {
     public FoilItemBase(Function<Properties, Properties> properties) {
         super(properties);
     }

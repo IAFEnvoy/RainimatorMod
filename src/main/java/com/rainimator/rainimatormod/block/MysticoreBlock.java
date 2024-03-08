@@ -30,12 +30,21 @@ import java.util.Collections;
 import java.util.List;
 
 public class MysticoreBlock extends Block {
-    private static final List<Pair<ItemLike, Double>> lootTable = new ArrayList<>();
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    private static final List<Pair<ItemLike, Double>> lootTable = new ArrayList<>();
 
     public MysticoreBlock() {
         super(Properties.of(Material.STONE).sound(SoundType.STONE).strength(25.0F, 50.0F).requiresCorrectToolForDrops().hasPostProcess((bs, br, bp) -> true).emissiveRendering((bs, br, bp) -> true));
         this.registerDefaultState((this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
+    }
+
+    private static synchronized void initLootTable() {
+        lootTable.add(Pair.of(Items.REDSTONE, 0.6D));
+        lootTable.add(Pair.of(Items.EMERALD, 0.5D));
+        lootTable.add(Pair.of(Items.LAPIS_LAZULI, 0.4D));
+        lootTable.add(Pair.of(Items.DIAMOND, 0.3D));
+        lootTable.add(Pair.of(ModItems.SAPPRIESBLOCKSHIT.get(), 0.2D));
+        lootTable.add(Pair.of(ModItems.RUBYBLOCKSHIT.get(), 0.1D));
     }
 
     @Deprecated
@@ -117,14 +126,5 @@ public class MysticoreBlock extends Block {
             }
         }
         return retval;
-    }
-
-    private static void initLootTable() {
-        lootTable.add(Pair.of(Items.REDSTONE, 0.6D));
-        lootTable.add(Pair.of(Items.EMERALD, 0.5D));
-        lootTable.add(Pair.of(Items.LAPIS_LAZULI, 0.4D));
-        lootTable.add(Pair.of(Items.DIAMOND, 0.3D));
-        lootTable.add(Pair.of(ModItems.SAPPRIESBLOCKSHIT.get(), 0.2D));
-        lootTable.add(Pair.of(ModItems.RUBYBLOCKSHIT.get(), 0.1D));
     }
 }

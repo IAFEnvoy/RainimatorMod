@@ -4,6 +4,7 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.Util;
 import net.minecraft.commands.CommandSourceStack;
@@ -12,7 +13,6 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +20,6 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
@@ -55,7 +54,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 public class HimEntity extends Monster {
@@ -76,9 +74,21 @@ public class HimEntity extends Monster {
         this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.HEROBRINE_ARMOR_CHESTPLATE.get()));
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 200.0D);
+        builder = builder.add(Attributes.ARMOR, 30.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
+    }
+
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket((Entity) this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -108,7 +118,7 @@ public class HimEntity extends Monster {
 
     @Override
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID,"him"));
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "him"));
     }
 
     @Override
@@ -129,14 +139,8 @@ public class HimEntity extends Monster {
         Vec3 _center = new Vec3(x, y, z);
         List<Entity> _entfound = this.level.getEntitiesOfClass(Entity.class, (new AABB(_center, _center)).inflate(4.5D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
         for (Entity entityiterator : _entfound) {
-            if (this.hasEffect( ModEffects.ICEPEOPLE.get())) {
-                if (this.level instanceof Level) {
-                    if (!this.level.isClientSide())
-                        this.level.playSound(null, new BlockPos(this.getX(), this.getY(), this.getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID,"him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                     else
-                        this.level.playLocalSound(this.getX(),this.getY(), this.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID,"him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-                }
-
+            if (this.hasEffect(ModEffects.ICEPEOPLE.get())) {
+                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
                 this.teleportTo(x, y + 4.0D, z);
                 continue;
             }
@@ -152,7 +156,7 @@ public class HimEntity extends Monster {
                 this.removeAllEffects();
                 continue;
             }
-            if (this.hasEffect( ModEffects.STUNNED.get())) {
+            if (this.hasEffect(ModEffects.STUNNED.get())) {
                 if (!this.level.isClientSide()) {
                     this.addEffect(new MobEffectInstance(ModEffects.PURIFICATION.get(), 200, 0));
                     this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 3));
@@ -160,11 +164,7 @@ public class HimEntity extends Monster {
                 continue;
             }
             if (Math.random() < 0.1D) {
-                if (!this.level.isClientSide())
-                    this.level.playSound(null, new BlockPos(this.getX(), this.getY(), this.getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID,"him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                else
-                    this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID,"him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-
+                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
                 if (this.level instanceof ServerLevel _level) {
                     LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
                     if (entityToSpawn != null) {
@@ -173,19 +173,15 @@ public class HimEntity extends Monster {
                         _level.addFreshEntity(entityToSpawn);
                     }
                 }
-
                 this.level.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), Blocks.FIRE.defaultBlockState(), 3);
                 if (entityiterator instanceof LivingEntity _entity) {
                     if (!_entity.level.isClientSide())
                         _entity.addEffect(new MobEffectInstance(MobEffects.WITHER, 1200, 2));
                 }
             } else if (Math.random() < 0.05D) {
+                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
                 if (this.level instanceof ServerLevel _level)
                     _level.sendParticles((ParticleOptions) ParticleTypes.END_ROD, x, y, z, 15, 0.5D, 0.5D, 0.5D, 0.5D);
-                if (!this.level.isClientSide())
-                    this.level.playSound(null, new BlockPos(this.getX(), this.getY(), this.getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                else
-                    this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
                 this.getNavigation().moveTo(x + Mth.nextInt(new Random(), -2, 2), y, z + Mth.nextInt(new Random(), -2, 2), 20.0D);
                 if (!this.level.isClientSide())
                     this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0));
@@ -234,16 +230,13 @@ public class HimEntity extends Monster {
         }
         if (!world.isClientSide() && world.getServer() != null)
             world.getServer().getPlayerList().broadcastMessage(new TextComponent("挡我路者，必诛！"), ChatType.SYSTEM, Util.NIL_UUID);
-        if (!(world.getDifficulty() == Difficulty.PEACEFUL)) {
-
-            Entity _ent = this;
-            if (!_ent.level.isClientSide() && _ent.getServer() != null) {
-                _ent.getServer().getCommands().performCommand(_ent.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");
-            }
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
+            if (!this.level.isClientSide() && this.getServer() != null)
+                this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");
             Runnable callback = () -> {
                 if (this.isAlive())
-                    if (!this.level.isClientSide() && _ent.getServer() != null)
-                        this.getServer().getCommands().performCommand(_ent.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");
+                    if (!this.level.isClientSide() && this.getServer() != null)
+                        this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");
             };
             Timeout.create(5720, callback);
             Timeout.create(11440, callback);
@@ -263,7 +256,7 @@ public class HimEntity extends Monster {
             this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 80, 0));
             this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, 1));
             if (!this.isAlive() && this.level instanceof ServerLevel _level)
-                _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", (Component) new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:him_music_boss");
+                _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:him_music_boss");
         }
     }
 
@@ -289,25 +282,4 @@ public class HimEntity extends Monster {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
     }
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 200.0D);
-        builder = builder.add(Attributes.ARMOR, 30.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
-    }
 }
-
-
-/* Location:              E:\mc\rainimator\.minecraft\mods\rainimator_1.18.2_4.0.2_forge.jar!\net\mcreator\rainimator\entity\HimEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

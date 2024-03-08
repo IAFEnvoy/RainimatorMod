@@ -5,14 +5,13 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
-import net.minecraft.core.BlockPos;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -35,7 +34,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 
 public class RainEntity extends Monster implements RangedAttackMob {
     public RainEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -51,9 +49,21 @@ public class RainEntity extends Monster implements RangedAttackMob {
         this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.RAINARMOR_CHESTPLATE.get()));
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 150.0D);
+        builder = builder.add(Attributes.ARMOR, 30.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
+    }
+
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket((Entity) this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -129,7 +139,7 @@ public class RainEntity extends Monster implements RangedAttackMob {
                 this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 200, 1));
                 this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 1));
             }
-        if (this.hasEffect( ModEffects.STUNNED.get()))
+        if (this.hasEffect(ModEffects.STUNNED.get()))
             if (!this.level.isClientSide()) {
                 this.addEffect(new MobEffectInstance(ModEffects.PURIFICATION.get(), 200, 0));
                 this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 3));
@@ -152,13 +162,8 @@ public class RainEntity extends Monster implements RangedAttackMob {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (world instanceof Level) {
-            Level _level = (Level) world;
-            if (!_level.isClientSide())
-                _level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "blued_diamond_skill_1"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-            else
-                _level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "blued_diamond_skill_1"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-        }
+        if (world instanceof Level _level)
+            MiscUtil.playSound(_level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 1.0F, 1.0F);
         if (world instanceof ServerLevel _level)
             _level.sendParticles((ParticleOptions) ModParticleTypes.SNOW.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         return retval;
@@ -172,21 +177,5 @@ public class RainEntity extends Monster implements RangedAttackMob {
         double d3 = target.getZ() - this.getZ();
         entityarrow.shoot(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
         this.level.addFreshEntity(entityarrow);
-    }
-
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 150.0D);
-        builder = builder.add(Attributes.ARMOR, 30.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

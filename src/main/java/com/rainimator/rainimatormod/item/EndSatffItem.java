@@ -43,6 +43,7 @@ public class EndSatffItem extends ItemBase {
         return 72000;
     }
 
+    @Deprecated
     @Override
     public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot slot) {
         if (slot == EquipmentSlot.MAINHAND) {

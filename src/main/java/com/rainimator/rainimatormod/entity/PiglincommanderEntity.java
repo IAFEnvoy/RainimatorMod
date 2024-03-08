@@ -46,6 +46,18 @@ public class PiglincommanderEntity extends Monster {
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.PORKSHIREKINGCROWN_HELMET.get()));
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 80.0D);
+        builder = builder.add(Attributes.ARMOR, 20.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 4.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
+    }
+
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
@@ -114,20 +126,5 @@ public class PiglincommanderEntity extends Monster {
             }
         }
         return retval;
-    }
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 80.0D);
-        builder = builder.add(Attributes.ARMOR, 20.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 4.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

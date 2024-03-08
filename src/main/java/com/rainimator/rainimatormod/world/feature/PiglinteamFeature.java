@@ -27,9 +27,17 @@ import java.util.List;
 import java.util.Set;
 
 public class PiglinteamFeature extends Feature<NoneFeatureConfiguration> {
+    public static final Set<ResourceLocation> GENERATE_BIOMES = null;
     public static PiglinteamFeature FEATURE = null;
     public static Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> CONFIGURED_FEATURE = null;
     public static Holder<PlacedFeature> PLACED_FEATURE = null;
+    private final Set<ResourceKey<Level>> generate_dimensions = Set.of(Level.OVERWORLD);
+    private final List<Block> base_blocks;
+    private StructureTemplate template = null;
+    public PiglinteamFeature() {
+        super(NoneFeatureConfiguration.CODEC);
+        this.base_blocks = List.of(Blocks.GRASS_BLOCK);
+    }
 
     public static Feature<?> feature() {
         FEATURE = new PiglinteamFeature();
@@ -40,16 +48,6 @@ public class PiglinteamFeature extends Feature<NoneFeatureConfiguration> {
 
     public static Holder<PlacedFeature> placedFeature() {
         return PLACED_FEATURE;
-    }
-
-    public static final Set<ResourceLocation> GENERATE_BIOMES = null;
-    private final Set<ResourceKey<Level>> generate_dimensions = Set.of(Level.OVERWORLD);
-    private final List<Block> base_blocks;
-    private StructureTemplate template = null;
-
-    public PiglinteamFeature() {
-        super(NoneFeatureConfiguration.CODEC);
-        this.base_blocks = List.of(Blocks.GRASS_BLOCK);
     }
 
     @Override

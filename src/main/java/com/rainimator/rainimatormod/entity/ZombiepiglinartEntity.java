@@ -37,9 +37,19 @@ public class ZombiepiglinartEntity extends Monster {
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 30.0D);
+        builder = builder.add(Attributes.ARMOR, 10.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 32.0D);
+        return builder;
+    }
+
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket((Entity) this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -75,18 +85,5 @@ public class ZombiepiglinartEntity extends Monster {
     @Override
     public SoundEvent getDeathSound() {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombified_piglin.death"));
-    }
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 30.0D);
-        builder = builder.add(Attributes.ARMOR, 10.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 32.0D);
-        return builder;
     }
 }

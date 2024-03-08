@@ -11,7 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
-public class Modelmagic_blue_diamond_sword<T extends Entity>        extends EntityModel<T> {
+public class Modelmagic_blue_diamond_sword<T extends Entity> extends EntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("rainimator", "modelmagic_blue_diamond_sword"), "main");
     public final ModelPart group;
 

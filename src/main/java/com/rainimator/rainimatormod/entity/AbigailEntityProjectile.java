@@ -25,10 +25,6 @@ public class AbigailEntityProjectile extends AbstractArrow implements ItemSuppli
         super(type, world);
     }
 
-    public AbigailEntityProjectile(EntityType<? extends AbigailEntityProjectile> type, double x, double y, double z, Level world) {
-        super(type, x, y, z, world);
-    }
-
     public AbigailEntityProjectile(EntityType<? extends AbigailEntityProjectile> type, LivingEntity entity, Level world) {
         super(type, entity, world);
     }

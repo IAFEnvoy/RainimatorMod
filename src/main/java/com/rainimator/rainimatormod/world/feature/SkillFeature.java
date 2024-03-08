@@ -25,9 +25,15 @@ import java.util.List;
 import java.util.Set;
 
 public class SkillFeature extends Feature<NoneFeatureConfiguration> {
+    public static final Set<ResourceLocation> GENERATE_BIOMES = null;
     public static SkillFeature FEATURE = null;
     public static Holder<ConfiguredFeature<NoneFeatureConfiguration, ?>> CONFIGURED_FEATURE = null;
     public static Holder<PlacedFeature> PLACED_FEATURE = null;
+    private final Set<ResourceKey<Level>> generate_dimensions = Set.of(Level.OVERWORLD);
+    private StructureTemplate template = null;
+    public SkillFeature() {
+        super(NoneFeatureConfiguration.CODEC);
+    }
 
     public static Feature<?> feature() {
         FEATURE = new SkillFeature();
@@ -38,14 +44,6 @@ public class SkillFeature extends Feature<NoneFeatureConfiguration> {
 
     public static Holder<PlacedFeature> placedFeature() {
         return PLACED_FEATURE;
-    }
-
-    public static final Set<ResourceLocation> GENERATE_BIOMES = null;
-    private final Set<ResourceKey<Level>> generate_dimensions = Set.of(Level.OVERWORLD);
-    private StructureTemplate template = null;
-
-    public SkillFeature() {
-        super(NoneFeatureConfiguration.CODEC);
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.Util;
 import net.minecraft.commands.CommandSourceStack;
@@ -12,7 +13,6 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -72,6 +72,18 @@ public class HerobrineEntity extends Monster {
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.HEROBRINE_TOMAHAWK.get()));
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 200.0D);
+        builder = builder.add(Attributes.ARMOR, 25.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 10.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
+    }
+
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
@@ -86,10 +98,10 @@ public class HerobrineEntity extends Monster {
                 return (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth());
             }
         });
-        this.targetSelector.addGoal(3, (new HurtByTargetGoal((PathfinderMob) this)).setAlertOthers());
-        this.goalSelector.addGoal(4, new RandomStrollGoal((PathfinderMob) this, 1.0D));
-        this.goalSelector.addGoal(5, new RandomLookAroundGoal((Mob) this));
-        this.goalSelector.addGoal(6, new FloatGoal((Mob) this));
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+        this.goalSelector.addGoal(4, new RandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new FloatGoal(this));
     }
 
     @Override
@@ -127,10 +139,7 @@ public class HerobrineEntity extends Monster {
         for (Entity entityiterator : _entfound) {
             LivingEntity livingEntity = this;
             if (livingEntity.hasEffect(ModEffects.ICEPEOPLE.get())) {
-                if (!this.level.isClientSide())
-                    this.level.playSound(null, new BlockPos(this.getX(), this.getY(), this.getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                else
-                    this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
+                MiscUtil.playSound(this.level,this.getX(), this.getY(), this.getZ(),new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"),1.0F, 1.0F);
                 this.teleportTo(x, y + 4.0D, z);
                 continue;
             }
@@ -154,10 +163,7 @@ public class HerobrineEntity extends Monster {
                 continue;
             }
             if (Math.random() < 0.1D) {
-                if (!this.level.isClientSide())
-                    this.level.playSound(null, new BlockPos(this.getX(), this.getY(), this.getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID,"him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                else
-                    this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID,"him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
+                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
 
                 if (this.level instanceof ServerLevel _level) {
                     LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
@@ -173,29 +179,22 @@ public class HerobrineEntity extends Monster {
                     if (!_entity.level.isClientSide())
                         _entity.addEffect(new MobEffectInstance(MobEffects.WITHER, 1200, 2));
             } else if (Math.random() < 0.05D) {
+                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
                 if (this.level instanceof ServerLevel _level)
                     _level.sendParticles((ParticleOptions) ParticleTypes.END_ROD, x, y, z, 15, 0.5D, 0.5D, 0.5D, 0.5D);
-                if (!this.level.isClientSide()) {
-                    this.level.playSound(null, new BlockPos(this.getX(), this.getY(), this.getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                } else {
-                    this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-                }
                 this.getNavigation().moveTo(x + Mth.nextInt(new Random(), -2, 2), y, z + Mth.nextInt(new Random(), -2, 2), 20.0D);
                 if (!this.level.isClientSide())
                     this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300, 0));
-
             }
-            if (this.hasEffect(MobEffects.MOVEMENT_SPEED)) {
+            if (this.hasEffect(MobEffects.MOVEMENT_SPEED))
                 if (!this.level.isClientSide()) {
                     this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2));
                     this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 0));
                 }
-            }
             if (this.getHealth() <= 100.0F)
                 if (!this.level.isClientSide())
                     this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 2));
         }
-
 
         if (source == DamageSource.FALL)
             return false;
@@ -224,24 +223,24 @@ public class HerobrineEntity extends Monster {
             }
         }
         if (!world.isClientSide() && world.getServer() != null)
-            world.getServer().getPlayerList().broadcastMessage( new TextComponent("挡我路者，必诛！"), ChatType.SYSTEM, Util.NIL_UUID);
-        if (!(world.getDifficulty() == Difficulty.PEACEFUL)) {
+            world.getServer().getPlayerList().broadcastMessage(new TextComponent("挡我路者，必诛！"), ChatType.SYSTEM, Util.NIL_UUID);
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
 
             Entity _ent = this;
             if (!_ent.level.isClientSide() && _ent.getServer() != null) {
                 _ent.getServer().getCommands().performCommand(_ent.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");
             }
-            Runnable callback=()->{
+            Runnable callback = () -> {
                 if (this.isAlive())
                     if (!this.level.isClientSide() && _ent.getServer() != null)
                         this.getServer().getCommands().performCommand(_ent.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");
             };
-            Timeout.create(5720,callback);
-            Timeout.create(11440,callback);
-            Timeout.create(17160,callback);
-            Timeout.create(22880,callback);
-            Timeout.create(28600,callback);
-            Timeout.create(34320,callback);
+            Timeout.create(5720, callback);
+            Timeout.create(11440, callback);
+            Timeout.create(17160, callback);
+            Timeout.create(22880, callback);
+            Timeout.create(28600, callback);
+            Timeout.create(34320, callback);
         }
 
         return retval;
@@ -254,7 +253,7 @@ public class HerobrineEntity extends Monster {
             this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 80, 0));
             this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, 1));
             if (!this.isAlive() && this.level instanceof ServerLevel _level)
-                _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", (Component) new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:him_music_boss");
+                _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:him_music_boss");
         }
     }
 
@@ -279,21 +278,5 @@ public class HerobrineEntity extends Monster {
     public void customServerAiStep() {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
-    }
-
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 200.0D);
-        builder = builder.add(Attributes.ARMOR, 25.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 10.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

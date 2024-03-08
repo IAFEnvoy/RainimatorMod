@@ -26,10 +26,6 @@ public class PatrickEntityProjectile
         super(type, world);
     }
 
-    public PatrickEntityProjectile(EntityType<? extends PatrickEntityProjectile> type, double x, double y, double z, Level world) {
-        super(type, x, y, z, world);
-    }
-
     public PatrickEntityProjectile(EntityType<? extends PatrickEntityProjectile> type, LivingEntity entity, Level world) {
         super(type, entity, world);
     }

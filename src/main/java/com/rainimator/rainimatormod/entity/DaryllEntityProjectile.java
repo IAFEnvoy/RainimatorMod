@@ -26,17 +26,13 @@ public class DaryllEntityProjectile
         super(type, world);
     }
 
-    public DaryllEntityProjectile(EntityType<? extends DaryllEntityProjectile> type, double x, double y, double z, Level world) {
-        super(type, x, y, z, world);
-    }
-
     public DaryllEntityProjectile(EntityType<? extends DaryllEntityProjectile> type, LivingEntity entity, Level world) {
         super(type, entity, world);
     }
 
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket( this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -48,11 +44,11 @@ public class DaryllEntityProjectile
     @Override
     @OnlyIn(Dist.CLIENT)
     public @NotNull ItemStack getItem() {
-        return new ItemStack( Items.ENCHANTED_GOLDEN_APPLE);
+        return new ItemStack(Items.ENCHANTED_GOLDEN_APPLE);
     }
 
     @Override
     protected @NotNull ItemStack getPickupItem() {
-        return new ItemStack( Items.ENCHANTED_GOLDEN_APPLE);
+        return new ItemStack(Items.ENCHANTED_GOLDEN_APPLE);
     }
 }

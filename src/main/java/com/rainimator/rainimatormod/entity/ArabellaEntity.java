@@ -4,12 +4,11 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
+import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.ParticleUtil;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -33,7 +32,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 
 public class ArabellaEntity extends Monster {
     public ArabellaEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -43,9 +41,24 @@ public class ArabellaEntity extends Monster {
     public ArabellaEntity(EntityType<ArabellaEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        setNoAi(false);
-        setPersistenceRequired();
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.ENDERBIGSWORD.get()));
+        this.setNoAi(false);
+        this.setPersistenceRequired();
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.ENDERBIGSWORD.get()));
+    }
+
+    public static void init() {
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 100.0D);
+        builder = builder.add(Attributes.ARMOR, 20.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -93,25 +106,9 @@ public class ArabellaEntity extends Monster {
         Vec3 _center = this.position();
         List<Entity> _entfound = this.level.getEntitiesOfClass(Entity.class, (new AABB(_center, _center)).inflate(3.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
         for (Entity entityiterator : _entfound) {
-            if (entityiterator instanceof net.minecraft.world.entity.player.Player &&
-                    Math.random() < 0.3D) {
-                if (this.level instanceof Level) {
-                    Level _level = this.level;
-                    if (!_level.isClientSide()) {
-                        _level.playSound(null, new BlockPos(_center), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "naeus_sword_1"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                    } else {
-                        _level.playLocalSound(getX(), getY(), getZ(), (SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "naeus_sword_1")), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-                    }
-                }
-
-                this.level.addParticle((ParticleOptions) ModParticleTypes.ENDERDAGGERSS.get(), getX(), getY() + 1.0D, getZ(), 3.0D, 0.0D, 0.0D);
-                this.level.addParticle((ParticleOptions) ModParticleTypes.ENDERDAGGERSS.get(), getX(), getY() + 1.0D, getZ(), -3.0D, 0.0D, 0.0D);
-                this.level.addParticle((ParticleOptions) ModParticleTypes.ENDERDAGGERSS.get(), getX(), getY() + 1.0D, getZ(), 0.0D, 0.0D, 3.0D);
-                this.level.addParticle((ParticleOptions) ModParticleTypes.ENDERDAGGERSS.get(), getX(), getY() + 1.0D, getZ(), 0.0D, 0.0D, -3.0D);
-                this.level.addParticle((ParticleOptions) ModParticleTypes.ENDERDAGGERSS.get(), getX(), getY() + 1.0D, getZ(), 3.0D, 0.0D, 3.0D);
-                this.level.addParticle((ParticleOptions) ModParticleTypes.ENDERDAGGERSS.get(), getX(), getY() + 1.0D, getZ(), -3.0D, 0.0D, -3.0D);
-                this.level.addParticle((ParticleOptions) ModParticleTypes.ENDERDAGGERSS.get(), getX(), getY() + 1.0D, getZ(), 3.0D, 0.0D, -3.0D);
-                this.level.addParticle((ParticleOptions) ModParticleTypes.ENDERDAGGERSS.get(), getX(), getY() + 1.0D, getZ(), -3.0D, 0.0D, 3.0D);
+            if (entityiterator instanceof Player && Math.random() < 0.3D) {
+                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
+                ParticleUtil.spawn3x3Particles(this.level, ModParticleTypes.ENDERDAGGERSS.get(), this.getX(), this.getY(), this.getZ());
                 entityiterator.hurt(DamageSource.MAGIC, 6.0F);
             }
         }
@@ -127,21 +124,5 @@ public class ArabellaEntity extends Monster {
         if (source.getMsgId().equals("witherSkull"))
             return false;
         return super.hurt(source, amount);
-    }
-
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 100.0D);
-        builder = builder.add(Attributes.ARMOR, 20.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

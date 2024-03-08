@@ -22,7 +22,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -35,12 +34,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber
 public class DarkzombieEntity extends Monster {
-    @SubscribeEvent
-    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
-        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.DARKZOMBIE.get(), 10, 1, 1));
-    }
-
     public DarkzombieEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.DARKZOMBIE.get(), world);
     }
@@ -48,10 +41,33 @@ public class DarkzombieEntity extends Monster {
     public DarkzombieEntity(EntityType<DarkzombieEntity> type, Level world) {
         super(type, world);
         this.xpReward = 10;
-        setNoAi(false);
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DIAMOND_LANCE.get()));
-        setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.DIAMOND_HELMET));
-        setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));
+        this.setNoAi(false);
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DIAMOND_LANCE.get()));
+        this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.DIAMOND_HELMET));
+        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));
+    }
+
+    @SubscribeEvent
+    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
+        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.DARKZOMBIE.get(), 10, 1, 1));
+    }
+
+    public static void init() {
+        SpawnPlacements.register(ModEntities.DARKZOMBIE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 40.0D);
+        builder = builder.add(Attributes.ARMOR, 5.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 32.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -102,22 +118,5 @@ public class DarkzombieEntity extends Monster {
         if (source == DamageSource.DRAGON_BREATH)
             return false;
         return super.hurt(source, amount);
-    }
-
-    public static void init() {
-        SpawnPlacements.register(ModEntities.DARKZOMBIE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, (LevelAccessor) world, reason, pos, random)));
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 40.0D);
-        builder = builder.add(Attributes.ARMOR, 5.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 32.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

@@ -3,6 +3,7 @@ package com.rainimator.rainimatormod.item;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
 import com.rainimator.rainimatormod.registry.util.FoilItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -47,13 +48,8 @@ public class MagicenderpealItem extends FoilItemBase {
         if (entity.isSprinting()) {
             Level projectileLevel = entity.level;
             if (!projectileLevel.isClientSide()) {
-                Projectile _entityToSpawn = (new Object() {
-                    public Projectile getProjectile(Level level, Entity shooter) {
-                        ThrownEnderpearl thrownEnderpearl = new ThrownEnderpearl(EntityType.ENDER_PEARL, level);
-                        thrownEnderpearl.setOwner(shooter);
-                        return thrownEnderpearl;
-                    }
-                }).getProjectile(projectileLevel, (Entity) entity);
+                Projectile _entityToSpawn = new ThrownEnderpearl(EntityType.ENDER_PEARL, projectileLevel);
+                _entityToSpawn.setOwner(entity);
                 _entityToSpawn.setPos(entity.getX(), entity.getEyeY() - 0.1D, entity.getZ());
                 _entityToSpawn.shoot((entity.getLookAngle()).x, (entity.getLookAngle()).y, (entity.getLookAngle()).z, 2.0F, 0.0F);
                 projectileLevel.addFreshEntity(_entityToSpawn);
@@ -69,13 +65,8 @@ public class MagicenderpealItem extends FoilItemBase {
         } else {
             Level projectileLevel = entity.level;
             if (!projectileLevel.isClientSide()) {
-                Projectile _entityToSpawn = (new Object() {
-                    public Projectile getProjectile(Level level, Entity shooter) {
-                        ThrownEnderpearl thrownEnderpearl = new ThrownEnderpearl(EntityType.ENDER_PEARL, level);
-                        thrownEnderpearl.setOwner(shooter);
-                        return thrownEnderpearl;
-                    }
-                }).getProjectile(projectileLevel, (Entity) entity);
+                Projectile _entityToSpawn = new ThrownEnderpearl(EntityType.ENDER_PEARL, projectileLevel);
+                _entityToSpawn.setOwner(entity);
                 _entityToSpawn.setPos(entity.getX(), entity.getEyeY() - 0.1D, entity.getZ());
                 _entityToSpawn.shoot((entity.getLookAngle()).x, (entity.getLookAngle()).y, (entity.getLookAngle()).z, 1.5F, 0.0F);
                 projectileLevel.addFreshEntity(_entityToSpawn);
@@ -93,13 +84,8 @@ public class MagicenderpealItem extends FoilItemBase {
 
             Level projectileLevel = entity.level;
             if (!projectileLevel.isClientSide()) {
-                Projectile _entityToSpawn = (new Object() {
-                    public Projectile getProjectile(Level level, Entity shooter) {
-                        ThrownEnderpearl thrownEnderpearl = new ThrownEnderpearl(EntityType.ENDER_PEARL, level);
-                        thrownEnderpearl.setOwner(shooter);
-                        return thrownEnderpearl;
-                    }
-                }).getProjectile(projectileLevel, (Entity) entity);
+                Projectile _entityToSpawn = new ThrownEnderpearl(EntityType.ENDER_PEARL, projectileLevel);
+                _entityToSpawn.setOwner(entity);
                 _entityToSpawn.setPos(entity.getX(), entity.getEyeY() - 0.1D, entity.getZ());
                 _entityToSpawn.shoot((entity.getLookAngle()).x, (entity.getLookAngle()).y, (entity.getLookAngle()).z, 1.5F, 0.0F);
                 projectileLevel.addFreshEntity(_entityToSpawn);
@@ -116,12 +102,7 @@ public class MagicenderpealItem extends FoilItemBase {
                 entity.teleportTo(x, y, z);
                 if ((Entity) entity instanceof ServerPlayer _serverPlayer)
                     _serverPlayer.connection.teleport(x, y, z, entity.getYRot(), entity.getXRot());
-                if (world instanceof Level) {
-                    if (!world.isClientSide())
-                        world.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.enderman.teleport"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                    else
-                        world.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.enderman.teleport"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-                }
+                MiscUtil.playSound(world, x, y, z, new ResourceLocation("entity.enderman.teleport"), 1.0F, 1.0F);
                 if (world instanceof ServerLevel) {
                     ((ServerLevel) world).sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.02D);
                 }

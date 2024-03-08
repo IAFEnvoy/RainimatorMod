@@ -3,9 +3,9 @@ package com.rainimator.rainimatormod.item;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.util.FoilItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -14,10 +14,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public class UnderflowerItem extends FoilItemBase {
     public UnderflowerItem() {
@@ -34,27 +31,15 @@ public class UnderflowerItem extends FoilItemBase {
         Player entity = context.getPlayer();
         ItemStack itemstack = context.getItemInHand();
         if (entity != null) {
-            if (entity.isShiftKeyDown()) {
-                if (!world.isClientSide())
-                    world.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "underflower_1"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                else
-                    world.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "underflower_1"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-
-                BlockPos _bp = new BlockPos(x, y + 1.0D, z);
-                BlockState _bs = Blocks.SOUL_FIRE.defaultBlockState();
-                world.setBlock(_bp, _bs, 3);
-                entity.getCooldowns().addCooldown(itemstack.getItem(), 400);
-            } else {
-                if (!world.isClientSide())
-                    world.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "underflower_1"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                else
-                    world.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "underflower_1"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-
-                BlockPos _bp = new BlockPos(x, y + 1.0D, z);
-                BlockState _bs = Blocks.FIRE.defaultBlockState();
-                world.setBlock(_bp, _bs, 3);
-                entity.getCooldowns().addCooldown(itemstack.getItem(), 200);
-            }
+            BlockState _bs;
+            if (entity.isShiftKeyDown())
+                _bs = Blocks.SOUL_FIRE.defaultBlockState();
+            else
+                _bs = Blocks.FIRE.defaultBlockState();
+            MiscUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "underflower_1"), 1.0F, 1.0F);
+            BlockPos _bp = new BlockPos(x, y + 1.0D, z);
+            world.setBlock(_bp, _bs, 3);
+            entity.getCooldowns().addCooldown(itemstack.getItem(), 400);
         }
         return InteractionResult.SUCCESS;
     }

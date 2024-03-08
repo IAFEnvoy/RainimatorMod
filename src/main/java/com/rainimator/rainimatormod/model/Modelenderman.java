@@ -63,9 +63,3 @@ public class Modelenderman<T extends Entity> extends EntityModel<T> {
         this.left_leg.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 }
-
-
-/* Location:              E:\mc\rainimator\.minecraft\mods\rainimator_1.18.2_4.0.2_forge.jar!\net\mcreator\rainimator\client\model\Modelenderman.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

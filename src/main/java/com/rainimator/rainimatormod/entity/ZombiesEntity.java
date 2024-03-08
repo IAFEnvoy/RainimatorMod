@@ -19,7 +19,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.DungeonHooks;
@@ -34,12 +33,6 @@ import org.jetbrains.annotations.NotNull;
 @Mod.EventBusSubscriber
 public class ZombiesEntity extends Monster {
 
-    @SubscribeEvent
-    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
-        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.ZOMBIES.get(), 10, 1, 1));
-    }
-
     public ZombiesEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.ZOMBIES.get(), world);
     }
@@ -52,6 +45,30 @@ public class ZombiesEntity extends Monster {
         this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.DIAMOND_HELMET));
         this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));
+    }
+
+    @SubscribeEvent
+    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
+        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.ZOMBIES.get(), 10, 1, 1));
+    }
+
+    public static void init() {
+        SpawnPlacements.register(ModEntities.ZOMBIES.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+        DungeonHooks.addDungeonMob(ModEntities.ZOMBIES.get(), 180);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 30.0D);
+        builder = builder.add(Attributes.ARMOR, 0.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 32.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -96,28 +113,4 @@ public class ZombiesEntity extends Monster {
             return false;
         return super.hurt(source, amount);
     }
-
-    public static void init() {
-        SpawnPlacements.register(ModEntities.ZOMBIES.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, (LevelAccessor) world, reason, pos, random)));
-        DungeonHooks.addDungeonMob(ModEntities.ZOMBIES.get(), 180);
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 30.0D);
-        builder = builder.add(Attributes.ARMOR, 0.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 32.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
-    }
 }
-
-
-/* Location:              E:\mc\rainimator\.minecraft\mods\rainimator_1.18.2_4.0.2_forge.jar!\net\mcreator\rainimator\entity\ZombiesEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

@@ -30,9 +30,21 @@ public class DaryllEntity extends Monster implements RangedAttackMob {
     public DaryllEntity(EntityType<DaryllEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        setNoAi(false);
-        setPersistenceRequired();
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_AXE));
+        this.setNoAi(false);
+        this.setPersistenceRequired();
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_AXE));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 80.0D);
+        builder = builder.add(Attributes.ARMOR, 20.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -57,7 +69,7 @@ public class DaryllEntity extends Monster implements RangedAttackMob {
         this.goalSelector.addGoal(8, new FloatGoal(this));
         this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25D, 20, 10.0F) {
             public boolean canContinueToUse() {
-                return canUse();
+                return this.canUse();
             }
         });
     }
@@ -93,33 +105,11 @@ public class DaryllEntity extends Monster implements RangedAttackMob {
 
     @Override
     public void performRangedAttack(LivingEntity target, float flval) {
-        DaryllEntityProjectile entityarrow = new DaryllEntityProjectile(ModEntities.DARYLL_PROJECTILE.get(), (LivingEntity) this, this.level);
+        DaryllEntityProjectile entityarrow = new DaryllEntityProjectile(ModEntities.DARYLL_PROJECTILE.get(), this, this.level);
         double d0 = target.getY() + target.getEyeHeight() - 1.1D;
-        double d1 = target.getX() - getX();
-        double d3 = target.getZ() - getZ();
+        double d1 = target.getX() - this.getX();
+        double d3 = target.getZ() - this.getZ();
         entityarrow.shoot(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
         this.level.addFreshEntity(entityarrow);
     }
-
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 80.0D);
-        builder = builder.add(Attributes.ARMOR, 20.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
-    }
 }
-
-
-/* Location:              E:\mc\rainimator\.minecraft\mods\rainimator_1.18.2_4.0.2_forge.jar!\net\mcreator\rainimator\entity\DaryllEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

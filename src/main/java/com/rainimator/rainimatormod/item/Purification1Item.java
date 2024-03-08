@@ -43,16 +43,13 @@ public class Purification1Item extends ItemBase {
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemstack, @NotNull Level world, @NotNull LivingEntity entity) {
         ItemStack retval = new ItemStack(Items.GLASS_BOTTLE);
         super.finishUsingItem(itemstack, world, entity);
-
         if (!entity.level.isClientSide())
             entity.addEffect(new MobEffectInstance(ModEffects.PURIFICATION.get(), 3000, 0));
-
         if (itemstack.isEmpty())
             return retval;
         if (entity instanceof Player player)
             if (!(player.getAbilities()).instabuild && !player.getInventory().add(retval))
                 player.drop(retval, false);
-
         return itemstack;
     }
 }

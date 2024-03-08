@@ -18,6 +18,25 @@ public class PurificationMobEffect extends MobEffect {
         super(MobEffectCategory.BENEFICIAL, -10027009);
     }
 
+    public static void initEffectList() {
+        effects.add(ModEffects.FEARDARK.get());
+        effects.add(ModEffects.SOULDEATH.get());
+        effects.add(ModEffects.STUNNED.get());
+        effects.add(ModEffects.ICEPEOPLE.get());
+        effects.add(MobEffects.BAD_OMEN);
+        effects.add(MobEffects.BLINDNESS);
+        effects.add(MobEffects.HUNGER);
+        effects.add(MobEffects.HARM);
+        effects.add(MobEffects.DIG_SLOWDOWN);
+        effects.add(MobEffects.POISON);
+        effects.add(MobEffects.MOVEMENT_SLOWDOWN);
+        effects.add(MobEffects.UNLUCK);
+        effects.add(MobEffects.WEAKNESS);
+        effects.add(MobEffects.WITHER);
+        effects.add(MobEffects.CONFUSION);
+        effects.add(MobEffects.LEVITATION);
+    }
+
     @Override
     public @NotNull String getDescriptionId() {
         return "effect." + RainimatorMod.MOD_ID + ".purification";
@@ -36,24 +55,5 @@ public class PurificationMobEffect extends MobEffect {
     @Override
     public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
-    }
-
-    public static void initEffectList() {
-        effects.add(ModEffects.FEARDARK.get());
-        effects.add(ModEffects.SOULDEATH.get());
-        effects.add(ModEffects.STUNNED.get());
-        effects.add(ModEffects.ICEPEOPLE.get());
-        effects.add(MobEffects.BAD_OMEN);
-        effects.add(MobEffects.BLINDNESS);
-        effects.add(MobEffects.HUNGER);
-        effects.add(MobEffects.HARM);
-        effects.add(MobEffects.DIG_SLOWDOWN);
-        effects.add(MobEffects.POISON);
-        effects.add(MobEffects.MOVEMENT_SLOWDOWN);
-        effects.add(MobEffects.UNLUCK);
-        effects.add(MobEffects.WEAKNESS);
-        effects.add(MobEffects.WITHER);
-        effects.add(MobEffects.CONFUSION);
-        effects.add(MobEffects.LEVITATION);
     }
 }

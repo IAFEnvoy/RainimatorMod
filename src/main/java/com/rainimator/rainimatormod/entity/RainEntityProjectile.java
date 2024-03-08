@@ -8,7 +8,6 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -25,10 +24,6 @@ public class RainEntityProjectile
 
     public RainEntityProjectile(EntityType<? extends RainEntityProjectile> type, Level world) {
         super(type, world);
-    }
-
-    public RainEntityProjectile(EntityType<? extends RainEntityProjectile> type, double x, double y, double z, Level world) {
-        super(type, x, y, z, world);
     }
 
     public RainEntityProjectile(EntityType<? extends RainEntityProjectile> type, LivingEntity entity, Level world) {
@@ -49,11 +44,11 @@ public class RainEntityProjectile
     @Override
     @OnlyIn(Dist.CLIENT)
     public @NotNull ItemStack getItem() {
-        return new ItemStack((ItemLike) Items.ENDER_PEARL);
+        return new ItemStack(Items.ENDER_PEARL);
     }
 
     @Override
     protected @NotNull ItemStack getPickupItem() {
-        return new ItemStack((ItemLike) Items.ENDER_PEARL);
+        return new ItemStack(Items.ENDER_PEARL);
     }
 }

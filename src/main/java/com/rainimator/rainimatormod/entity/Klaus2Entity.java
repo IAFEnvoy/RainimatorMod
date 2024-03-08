@@ -1,15 +1,15 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +17,6 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
@@ -47,7 +46,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 
 public class Klaus2Entity extends Monster {
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS);
@@ -63,6 +61,18 @@ public class Klaus2Entity extends Monster {
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SOULRAIDINGHAMMER.get()));
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.KINGNOMALCROWN_HELMET.get()));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 200.0D);
+        builder = builder.add(Attributes.ARMOR, 20.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 6.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 2.0D);
+        return builder;
     }
 
     @Override
@@ -142,22 +152,15 @@ public class Klaus2Entity extends Monster {
         double z = this.getZ();
         if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, this.getMainHandItem()) == 0) {
             if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.ALL_DAMAGE_PROTECTION, ((LivingEntity) this).getItemBySlot(EquipmentSlot.HEAD)) == 0) {
-                if (world instanceof Level) {
-                    Level _level = (Level) world;
-                    if (!_level.isClientSide()) {
-                        _level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.beacon.activate"))), SoundSource.NEUTRAL, 5.0F, 1.0F);
-                    } else {
-                        _level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.beacon.activate"))), SoundSource.NEUTRAL, 5.0F, 1.0F, false);
-                    }
-                }
-
+                if (world instanceof Level _level)
+                    MiscUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "block.beacon.activate"), 5.0F, 1.0F);
                 if (world instanceof ServerLevel _level)
                     _level.sendParticles((ParticleOptions) ModParticleTypes.LIGHTINGARC.get(), x, y, z, 100, 2.0D, 3.0D, 2.0D, 0.001D);
                 this.getMainHandItem().enchant(Enchantments.SHARPNESS, 4);
-                ((LivingEntity) this).getItemBySlot(EquipmentSlot.HEAD).enchant(Enchantments.ALL_DAMAGE_PROTECTION, 4);
+                this.getItemBySlot(EquipmentSlot.HEAD).enchant(Enchantments.ALL_DAMAGE_PROTECTION, 4);
             }
         }
-        if (!(world.getDifficulty() == Difficulty.PEACEFUL)) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
 
             Entity _ent = this;
             if (!_ent.level.isClientSide() && _ent.getServer() != null) {
@@ -185,8 +188,8 @@ public class Klaus2Entity extends Monster {
     public void baseTick() {
         super.baseTick();
         if (!this.isAlive() && this.level instanceof ServerLevel _level)
-            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", (Component) new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:klaus_boss_music");
-        if (this.getOffhandItem().getItem() == Blocks.AIR.asItem()) {
+            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:klaus_boss_music");
+        if (this.getOffhandItem().getItem() == Blocks.AIR.asItem())
             if (this.getMainHandItem().getItem() == Blocks.AIR.asItem()) {
                 if (!this.level.isClientSide()) {
                     this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 2));
@@ -195,8 +198,7 @@ public class Klaus2Entity extends Monster {
                 }
                 return;
             }
-        }
-        if (this.getOffhandItem().getItem() == Items.EMERALD) {
+        if (this.getOffhandItem().getItem() == Items.EMERALD)
             if (this.getMainHandItem().getItem() == ModItems.SEIZINGSHADOWHALBERD.get()) {
                 if (!this.level.isClientSide()) {
                     this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 1));
@@ -206,8 +208,7 @@ public class Klaus2Entity extends Monster {
                 }
                 return;
             }
-        }
-        if (this.getOffhandItem().getItem() == Blocks.AIR.asItem()) {
+        if (this.getOffhandItem().getItem() == Blocks.AIR.asItem())
             if (this.getMainHandItem().getItem() == ModItems.SEIZINGSHADOWHALBERD.get()) {
                 if (!this.level.isClientSide()) {
                     this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0));
@@ -216,7 +217,6 @@ public class Klaus2Entity extends Monster {
                     this.addEffect(new MobEffectInstance(ModEffects.PURIFICATION.get(), 100, 0));
                 }
             }
-        }
     }
 
     @Override
@@ -240,21 +240,5 @@ public class Klaus2Entity extends Monster {
     public void customServerAiStep() {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
-    }
-
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 200.0D);
-        builder = builder.add(Attributes.ARMOR, 20.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 6.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 2.0D);
-        return builder;
     }
 }

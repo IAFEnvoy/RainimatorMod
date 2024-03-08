@@ -38,44 +38,6 @@ public class HogsworthEntity extends Monster {
         this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.SHIELDEVER.get()));
     }
 
-    @Override
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    @Override
-    protected void registerGoals() {
-        super.registerGoals();
-        this.goalSelector.addGoal(1,  new MeleeAttackGoal( this, 1.2D, false) {
-            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
-                return (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth());
-            }
-        });
-        this.goalSelector.addGoal(2,  new RandomStrollGoal( this, 1.0D));
-        this.targetSelector.addGoal(3,  new HurtByTargetGoal( this));
-        this.targetSelector.addGoal(4,  new NearestAttackableTargetGoal<>( this, Player.class, false, false));
-        this.goalSelector.addGoal(5,  new RandomLookAroundGoal( this));
-        this.goalSelector.addGoal(6,  new FloatGoal( this));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.UNDEAD;
-    }
-
-    @Override
-    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return  ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombified_piglin.hurt"));
-    }
-
-    @Override
-    public SoundEvent getDeathSound() {
-        return  ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.pig.death"));
-    }
-
-    public static void init() {
-    }
-
     public static AttributeSupplier.Builder createAttributes() {
         AttributeSupplier.Builder builder = Mob.createMobAttributes();
         builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
@@ -86,5 +48,40 @@ public class HogsworthEntity extends Monster {
         builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
         builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
         return builder;
+    }
+
+    @Override
+    public @NotNull Packet<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2D, false) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
+                return (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth());
+            }
+        });
+        this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1.0D));
+        this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new FloatGoal(this));
+    }
+
+    @Override
+    public @NotNull MobType getMobType() {
+        return MobType.UNDEAD;
+    }
+
+    @Override
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombified_piglin.hurt"));
+    }
+
+    @Override
+    public SoundEvent getDeathSound() {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.pig.death"));
     }
 }

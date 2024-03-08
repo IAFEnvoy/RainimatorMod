@@ -40,12 +40,6 @@ import java.util.Random;
 @EventBusSubscriber
 public class AgethaEntity extends Monster {
 
-    @SubscribeEvent
-    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
-        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
-            event.getSpawns().getSpawner(MobCategory.UNDERGROUND_WATER_CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.AGETHA.get(), 10, 1, 1));
-    }
-
     public AgethaEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.AGETHA.get(), world);
     }
@@ -53,8 +47,31 @@ public class AgethaEntity extends Monster {
     public AgethaEntity(EntityType<AgethaEntity> type, Level world) {
         super(type, world);
         this.xpReward = 10;
-        setNoAi(false);
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DIAMONDBIGSWORD.get()));
+        this.setNoAi(false);
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DIAMONDBIGSWORD.get()));
+    }
+
+    @SubscribeEvent
+    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
+        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+            event.getSpawns().getSpawner(MobCategory.UNDERGROUND_WATER_CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.AGETHA.get(), 10, 1, 1));
+    }
+
+    public static void init() {
+        SpawnPlacements.register(ModEntities.AGETHA.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                (world.getFluidState(pos.below()).is(FluidTags.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER) && pos.getY() >= world.getSeaLevel() - 13 && pos.getY() <= world.getSeaLevel()));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 40.0D);
+        builder = builder.add(Attributes.ARMOR, 21.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 4.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -109,38 +126,21 @@ public class AgethaEntity extends Monster {
 
         if (Math.random() < 0.1D) {
             SoldiersEntity soldiersEntity = new SoldiersEntity(ModEntities.SOLDIERS.get(), _level);
-            soldiersEntity.moveTo(getX() + Mth.nextInt(new Random(), -2, 2), getY() + 2.0D, getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
+            soldiersEntity.moveTo(this.getX() + Mth.nextInt(new Random(), -2, 2), this.getY() + 2.0D, this.getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
             soldiersEntity.finalizeSpawn(_level, world.getCurrentDifficultyAt(soldiersEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
             world.addFreshEntity(soldiersEntity);
         } else if (Math.random() < 0.1D) {
             AgethaEntity agethaEntity = new AgethaEntity(ModEntities.AGETHA.get(), _level);
-            agethaEntity.moveTo(getX() + Mth.nextInt(new Random(), -2, 2), getY() + 2.0D, getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
+            agethaEntity.moveTo(this.getX() + Mth.nextInt(new Random(), -2, 2), this.getY() + 2.0D, this.getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
             agethaEntity.finalizeSpawn(_level, world.getCurrentDifficultyAt(agethaEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
             world.addFreshEntity(agethaEntity);
         } else if (Math.random() < 0.1D) {
             ArcherEntity archerEntity = new ArcherEntity(ModEntities.ARCHER.get(), _level);
-            archerEntity.moveTo(getX() + Mth.nextInt(new Random(), -2, 2), getY() + 2.0D, getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
+            archerEntity.moveTo(this.getX() + Mth.nextInt(new Random(), -2, 2), this.getY() + 2.0D, this.getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
             archerEntity.finalizeSpawn(_level, world.getCurrentDifficultyAt(archerEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
             world.addFreshEntity(archerEntity);
         }
 
         return ret_val;
-    }
-
-    public static void init() {
-        SpawnPlacements.register(ModEntities.AGETHA.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getFluidState(pos.below()).is(FluidTags.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER) && pos.getY() >= world.getSeaLevel() - 13 && pos.getY() <= world.getSeaLevel()));
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 40.0D);
-        builder = builder.add(Attributes.ARMOR, 21.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 4.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

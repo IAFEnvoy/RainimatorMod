@@ -22,8 +22,8 @@ public class EnderbookskillMenu extends AbstractContainerMenu implements Supplie
 
     public final Level world;
     public final Player entity;
-    public int x;
     private final Map<Integer, Slot> customSlots = new HashMap<>();
+    public int x;
     public int y;
     public int z;
 

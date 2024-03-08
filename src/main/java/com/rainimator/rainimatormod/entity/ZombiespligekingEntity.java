@@ -2,13 +2,12 @@ package com.rainimator.rainimatormod.entity;
 
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -16,7 +15,6 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
@@ -45,7 +43,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 
 public class ZombiespligekingEntity extends Monster {
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS);
@@ -61,6 +58,18 @@ public class ZombiespligekingEntity extends Monster {
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.KING_ZOMBIE_PIG_MAN_SWORD.get()));
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.PIGLINKINGCROWN_HELMET.get()));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
+        builder = builder.add(Attributes.MAX_HEALTH, 120.0D);
+        builder = builder.add(Attributes.ARMOR, 30.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 2.0D);
+        return builder;
     }
 
     @Override
@@ -120,18 +129,13 @@ public class ZombiespligekingEntity extends Monster {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (world instanceof Level _level) {
-            if (!_level.isClientSide())
-                _level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.wither.ambient"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-            else
-                _level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.wither.ambient"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-        }
+        if (world instanceof Level _level)
+            MiscUtil.playSound(_level, x, y, z, new ResourceLocation("entity.wither.ambient"), 1.0F, 1.0F);
         if (world instanceof ServerLevel _level)
             _level.sendParticles((ParticleOptions) ParticleTypes.SOUL, x, y, z, 200, 1.0D, 2.0D, 1.0D, 0.02D);
-        if (!(world.getDifficulty() == Difficulty.PEACEFUL)) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!this.level.isClientSide() && this.getServer() != null)
                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:piglin_king_boss_music neutral @a ~ ~ ~");
-
             Runnable callback = () -> {
                 if (this.isAlive())
                     if (!this.level.isClientSide() && this.getServer() != null)
@@ -153,7 +157,7 @@ public class ZombiespligekingEntity extends Monster {
         if (!this.level.isClientSide())
             this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 0));
         if (!((Entity) this).isAlive() && this.level instanceof ServerLevel _level)
-            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", (Component) new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:piglin_king_boss_music");
+            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:piglin_king_boss_music");
     }
 
     @Override
@@ -177,21 +181,5 @@ public class ZombiespligekingEntity extends Monster {
     public void customServerAiStep() {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
-    }
-
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(Attributes.MAX_HEALTH, 120.0D);
-        builder = builder.add(Attributes.ARMOR, 30.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 2.0D);
-        return builder;
     }
 }

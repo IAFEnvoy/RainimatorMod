@@ -2,14 +2,13 @@ package com.rainimator.rainimatormod.item;
 
 import com.rainimator.rainimatormod.registry.util.FoilItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -20,10 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 public class SoultotemItem extends FoilItemBase {
     public SoultotemItem() {
@@ -41,14 +37,9 @@ public class SoultotemItem extends FoilItemBase {
         if (entity.isOnGround()) {
             if (world.isClientSide())
                 (Minecraft.getInstance()).gameRenderer.displayItemActivation(itemstack);
-            if (!world.isClientSide())
-                world.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.anvil.land"))), SoundSource.NEUTRAL, 5.0F, 1.0F);
-            else
-                world.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.anvil.land"))), SoundSource.NEUTRAL, 5.0F, 1.0F, false);
-
-            if (world instanceof ServerLevel _level) {
+            MiscUtil.playSound(world, x, y, z, new ResourceLocation("block.anvil.land"), 5.0F, 1.0F);
+            if (world instanceof ServerLevel _level)
                 _level.sendParticles((ParticleOptions) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
-            }
             if (!entity.level.isClientSide())
                 entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 140, 4));
             entity.getCooldowns().addCooldown(itemstack.getItem(), 400);
@@ -60,11 +51,7 @@ public class SoultotemItem extends FoilItemBase {
         } else {
             if (((LevelAccessor) world).isClientSide())
                 (Minecraft.getInstance()).gameRenderer.displayItemActivation(itemstack);
-            if (!world.isClientSide())
-                world.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.anvil.land"))), SoundSource.NEUTRAL, 5.0F, 1.0F);
-            else
-                world.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.anvil.land"))), SoundSource.NEUTRAL, 5.0F, 1.0F, false);
-
+            MiscUtil.playSound(world, x, y, z, new ResourceLocation("block.anvil.land"), 5.0F, 1.0F);
             if (world instanceof ServerLevel _level)
                 _level.sendParticles((ParticleOptions) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
             if (!entity.level.isClientSide())

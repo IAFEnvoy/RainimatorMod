@@ -23,17 +23,6 @@ public class ModCreativeTab extends CreativeModeTab {
         this.icon = icon;
     }
 
-    @Override
-    public @NotNull ItemStack makeIcon() {
-        return new ItemStack(this.icon.get());
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public boolean hasSearchBar() {
-        return false;
-    }
-
     public static Item.Properties createProperty() {
         return createProperty(ModCreativeTab.main);
     }
@@ -51,5 +40,16 @@ public class ModCreativeTab extends CreativeModeTab {
     }
 
     public static void load() {
+    }
+
+    @Override
+    public @NotNull ItemStack makeIcon() {
+        return new ItemStack(this.icon.get());
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public boolean hasSearchBar() {
+        return false;
     }
 }

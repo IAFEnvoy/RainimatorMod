@@ -12,8 +12,8 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class NetworkManager {
-    private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation(RainimatorMod.MOD_ID, RainimatorMod.MOD_ID), () -> "1", "1"::equals, "1"::equals);
+    private static final String PROTOCOL_VERSION = "1";
     private static int messageID = 0;
 
     public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder, BiConsumer<T, Supplier<NetworkEvent.Context>> messageConsumer) {

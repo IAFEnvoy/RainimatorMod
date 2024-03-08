@@ -18,9 +18,9 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.DungeonHooks;
@@ -39,12 +39,6 @@ public class DarkshieldEntity extends Monster {
     private static final Set<ResourceLocation> SPAWN_BIOMES = Set.of(new ResourceLocation("small_end_islands"), new ResourceLocation("end_midlands"), new ResourceLocation("the_end"), new ResourceLocation("end_highlands"), new ResourceLocation("end_barrens"));
 
 
-    @SubscribeEvent
-    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
-        if (SPAWN_BIOMES.contains(event.getName()))
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.DARKSHIELD.get(), 1, 1, 1));
-    }
-
     public DarkshieldEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.DARKSHIELD.get(), world);
     }
@@ -52,14 +46,38 @@ public class DarkshieldEntity extends Monster {
     public DarkshieldEntity(EntityType<DarkshieldEntity> type, Level world) {
         super(type, world);
         this.xpReward = 20;
-        setNoAi(false);
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.LIGHTSWORD.get()));
-        setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.LIGHTSWORD.get()));
+        this.setNoAi(false);
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.LIGHTSWORD.get()));
+        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.LIGHTSWORD.get()));
+    }
+
+    @SubscribeEvent
+    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
+        if (SPAWN_BIOMES.contains(event.getName()))
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.DARKSHIELD.get(), 1, 1, 1));
+    }
+
+    public static void init() {
+        SpawnPlacements.register(ModEntities.DARKSHIELD.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+        DungeonHooks.addDungeonMob(ModEntities.DARKSHIELD.get(), 180);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 40.0D);
+        builder = builder.add(Attributes.ARMOR, 10.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 32.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket((Entity) this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -94,7 +112,7 @@ public class DarkshieldEntity extends Monster {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        if (source.getDirectEntity() instanceof net.minecraft.world.entity.projectile.AbstractArrow)
+        if (source.getDirectEntity() instanceof AbstractArrow)
             return false;
         if (source == DamageSource.FALL)
             return false;
@@ -113,23 +131,5 @@ public class DarkshieldEntity extends Monster {
         if (source.getMsgId().equals("witherSkull"))
             return false;
         return super.hurt(source, amount);
-    }
-
-    public static void init() {
-        SpawnPlacements.register(ModEntities.DARKSHIELD.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, (LevelAccessor) world, reason, pos, random)));
-        DungeonHooks.addDungeonMob(ModEntities.DARKSHIELD.get(), 180);
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 40.0D);
-        builder = builder.add(Attributes.ARMOR, 10.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 32.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

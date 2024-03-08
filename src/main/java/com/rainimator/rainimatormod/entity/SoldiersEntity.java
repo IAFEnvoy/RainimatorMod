@@ -23,7 +23,6 @@ import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.Blocks;
@@ -41,12 +40,6 @@ import java.util.Random;
 
 @Mod.EventBusSubscriber
 public class SoldiersEntity extends Monster implements RangedAttackMob {
-    @SubscribeEvent
-    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
-        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
-            event.getSpawns().getSpawner(MobCategory.UNDERGROUND_WATER_CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.SOLDIERS.get(), 10, 1, 1));
-    }
-
     public SoldiersEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.SOLDIERS.get(), world);
     }
@@ -57,6 +50,29 @@ public class SoldiersEntity extends Monster implements RangedAttackMob {
         this.setNoAi(false);
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SOLDIERS_WARHAMMER.get()));
         this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.SNOWSHIELD.get()));
+    }
+
+    @SubscribeEvent
+    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
+        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+            event.getSpawns().getSpawner(MobCategory.UNDERGROUND_WATER_CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.SOLDIERS.get(), 10, 1, 1));
+    }
+
+    public static void init() {
+        SpawnPlacements.register(ModEntities.SOLDIERS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                (world.getFluidState(pos.below()).is(FluidTags.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER) && pos.getY() >= world.getSeaLevel() - 13 && pos.getY() <= world.getSeaLevel()));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 35.0D);
+        builder = builder.add(Attributes.ARMOR, 25.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -109,22 +125,22 @@ public class SoldiersEntity extends Monster implements RangedAttackMob {
         double z = this.getZ();
         if (Math.random() < 0.1D) {
             if (world instanceof ServerLevel _level) {
-                SoldiersEntity soldiersEntity = new SoldiersEntity(ModEntities.SOLDIERS.get(), (Level) _level);
-                soldiersEntity.moveTo(x + Mth.nextInt(new Random(), -2, 2), y + 2.0D, z + Mth.nextInt(new Random(), -2, 2), ((LevelAccessor) world).getRandom().nextFloat() * 360.0F, 0.0F);
+                SoldiersEntity soldiersEntity = new SoldiersEntity(ModEntities.SOLDIERS.get(), _level);
+                soldiersEntity.moveTo(x + Mth.nextInt(new Random(), -2, 2), y + 2.0D, z + Mth.nextInt(new Random(), -2, 2), (world).getRandom().nextFloat() * 360.0F, 0.0F);
                 soldiersEntity.finalizeSpawn(_level, (world).getCurrentDifficultyAt(soldiersEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
                 world.addFreshEntity(soldiersEntity);
             }
         } else if (Math.random() < 0.1D) {
             if (world instanceof ServerLevel _level) {
                 AgethaEntity agethaEntity = new AgethaEntity(ModEntities.AGETHA.get(), _level);
-                agethaEntity.moveTo(x + Mth.nextInt(new Random(), -2, 2), y + 2.0D, z + Mth.nextInt(new Random(), -2, 2), ((LevelAccessor) world).getRandom().nextFloat() * 360.0F, 0.0F);
+                agethaEntity.moveTo(x + Mth.nextInt(new Random(), -2, 2), y + 2.0D, z + Mth.nextInt(new Random(), -2, 2), (world).getRandom().nextFloat() * 360.0F, 0.0F);
                 agethaEntity.finalizeSpawn(_level, world.getCurrentDifficultyAt(agethaEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
                 world.addFreshEntity(agethaEntity);
             }
         } else if (Math.random() < 0.1D && world instanceof ServerLevel) {
             ServerLevel _level = (ServerLevel) world;
             ArcherEntity archerEntity = new ArcherEntity(ModEntities.ARCHER.get(), _level);
-            archerEntity.moveTo(x + Mth.nextInt(new Random(), -2, 2), y + 2.0D, z + Mth.nextInt(new Random(), -2, 2), ((LevelAccessor) world).getRandom().nextFloat() * 360.0F, 0.0F);
+            archerEntity.moveTo(x + Mth.nextInt(new Random(), -2, 2), y + 2.0D, z + Mth.nextInt(new Random(), -2, 2), (world).getRandom().nextFloat() * 360.0F, 0.0F);
             archerEntity.finalizeSpawn(_level, world.getCurrentDifficultyAt(archerEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
             world.addFreshEntity(archerEntity);
         }
@@ -134,35 +150,11 @@ public class SoldiersEntity extends Monster implements RangedAttackMob {
 
     @Override
     public void performRangedAttack(LivingEntity target, float flval) {
-        SoldiersEntityProjectile entityarrow = new SoldiersEntityProjectile(ModEntities.SOLDIERS_PROJECTILE.get(), (LivingEntity) this, this.level);
+        SoldiersEntityProjectile entityarrow = new SoldiersEntityProjectile(ModEntities.SOLDIERS_PROJECTILE.get(), this, this.level);
         double d0 = target.getY() + target.getEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();
         entityarrow.shoot(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
         this.level.addFreshEntity(entityarrow);
     }
-
-    public static void init() {
-        SpawnPlacements.register(ModEntities.SOLDIERS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getFluidState(pos.below()).is(FluidTags.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER) && pos.getY() >= world.getSeaLevel() - 13 && pos.getY() <= world.getSeaLevel()));
-    }
-
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 35.0D);
-        builder = builder.add(Attributes.ARMOR, 25.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
-    }
 }
-
-
-/* Location:              E:\mc\rainimator\.minecraft\mods\rainimator_1.18.2_4.0.2_forge.jar!\net\mcreator\rainimator\entity\SoldiersEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

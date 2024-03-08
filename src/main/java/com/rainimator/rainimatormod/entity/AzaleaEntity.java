@@ -32,30 +32,42 @@ public class AzaleaEntity extends Monster {
     public AzaleaEntity(EntityType<AzaleaEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        setNoAi(false);
-        setPersistenceRequired();
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DEEP_SICKLE.get()));
-        setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.DEEP_SICKLE.get()));
+        this.setNoAi(false);
+        this.setPersistenceRequired();
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DEEP_SICKLE.get()));
+        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.DEEP_SICKLE.get()));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 80.0D);
+        builder = builder.add(Attributes.ARMOR, 20.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket((Entity) this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.targetSelector.addGoal(1,  new NearestAttackableTargetGoal<>( this, Player.class, false, false));
-        this.goalSelector.addGoal(2,  new MeleeAttackGoal( this, 1.2D, false) {
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth());
             }
         });
-        this.goalSelector.addGoal(3,  new RandomStrollGoal( this, 1.0D));
-        this.targetSelector.addGoal(4,  new HurtByTargetGoal( this));
-        this.goalSelector.addGoal(5,  new RandomLookAroundGoal( this));
-        this.goalSelector.addGoal(6,  new FloatGoal( this));
+        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0D));
+        this.targetSelector.addGoal(4, new HurtByTargetGoal(this));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new FloatGoal(this));
     }
 
     @Override
@@ -84,25 +96,4 @@ public class AzaleaEntity extends Monster {
             return false;
         return super.hurt(source, amount);
     }
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 80.0D);
-        builder = builder.add(Attributes.ARMOR, 20.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
-    }
 }
-
-
-/* Location:              E:\mc\rainimator\.minecraft\mods\rainimator_1.18.2_4.0.2_forge.jar!\net\mcreator\rainimator\entity\AzaleaEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

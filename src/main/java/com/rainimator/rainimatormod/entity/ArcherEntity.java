@@ -39,12 +39,6 @@ import java.util.Random;
 
 @EventBusSubscriber
 public class ArcherEntity extends Monster {
-    @SubscribeEvent
-    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
-        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
-            event.getSpawns().getSpawner(MobCategory.UNDERGROUND_WATER_CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.ARCHER.get(), 10, 1, 1));
-    }
-
     public ArcherEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.ARCHER.get(), world);
     }
@@ -52,8 +46,31 @@ public class ArcherEntity extends Monster {
     public ArcherEntity(EntityType<ArcherEntity> type, Level world) {
         super(type, world);
         this.xpReward = 10;
-        setNoAi(false);
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+        this.setNoAi(false);
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+    }
+
+    @SubscribeEvent
+    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
+        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+            event.getSpawns().getSpawner(MobCategory.UNDERGROUND_WATER_CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.ARCHER.get(), 10, 1, 1));
+    }
+
+    public static void init() {
+        SpawnPlacements.register(ModEntities.ARCHER.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                (world.getFluidState(pos.below()).is(FluidTags.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER) && pos.getY() >= world.getSeaLevel() - 13 && pos.getY() <= world.getSeaLevel()));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
+        builder = builder.add(Attributes.MAX_HEALTH, 30.0D);
+        builder = builder.add(Attributes.ARMOR, 20.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -64,19 +81,19 @@ public class ArcherEntity extends Monster {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.targetSelector.addGoal(1,  new NearestAttackableTargetGoal<>( this, Player.class, true, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true, true));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.3D, false) {
             protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth());
             }
         });
-        this.goalSelector.addGoal(3, new RandomStrollGoal( this, 1.0D));
-        this.targetSelector.addGoal(4, new HurtByTargetGoal( this).setAlertOthers());
-        this.goalSelector.addGoal(5, new PanicGoal( this, 1.2D));
-        this.goalSelector.addGoal(6, new OpenDoorGoal( this, false));
-        this.goalSelector.addGoal(7, new OpenDoorGoal( this, true));
-        this.goalSelector.addGoal(8, new RandomLookAroundGoal( this));
-        this.goalSelector.addGoal(9, new FloatGoal( this));
+        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0D));
+        this.targetSelector.addGoal(4, new HurtByTargetGoal(this).setAlertOthers());
+        this.goalSelector.addGoal(5, new PanicGoal(this, 1.2D));
+        this.goalSelector.addGoal(6, new OpenDoorGoal(this, false));
+        this.goalSelector.addGoal(7, new OpenDoorGoal(this, true));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(9, new FloatGoal(this));
     }
 
     @Override
@@ -109,45 +126,21 @@ public class ArcherEntity extends Monster {
 
         if (Math.random() < 0.1D) {
             SoldiersEntity soldiersEntity = new SoldiersEntity(ModEntities.SOLDIERS.get(), _level);
-            soldiersEntity.moveTo(getX() + Mth.nextInt(new Random(), -2, 2), getY() + 2.0D, getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
+            soldiersEntity.moveTo(this.getX() + Mth.nextInt(new Random(), -2, 2), this.getY() + 2.0D, this.getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
             soldiersEntity.finalizeSpawn(_level, world.getCurrentDifficultyAt(soldiersEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
             world.addFreshEntity(soldiersEntity);
         } else if (Math.random() < 0.1D) {
             AgethaEntity agethaEntity = new AgethaEntity(ModEntities.AGETHA.get(), _level);
-            agethaEntity.moveTo(getX() + Mth.nextInt(new Random(), -2, 2), getY() + 2.0D, getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
+            agethaEntity.moveTo(this.getX() + Mth.nextInt(new Random(), -2, 2), this.getY() + 2.0D, this.getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
             agethaEntity.finalizeSpawn(_level, world.getCurrentDifficultyAt(agethaEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
             world.addFreshEntity(agethaEntity);
         } else if (Math.random() < 0.1D) {
             ArcherEntity archerEntity = new ArcherEntity(ModEntities.ARCHER.get(), _level);
-            archerEntity.moveTo(getX() + Mth.nextInt(new Random(), -2, 2), getY() + 2.0D, getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
+            archerEntity.moveTo(this.getX() + Mth.nextInt(new Random(), -2, 2), this.getY() + 2.0D, this.getZ() + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
             archerEntity.finalizeSpawn(_level, world.getCurrentDifficultyAt(archerEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
             world.addFreshEntity(archerEntity);
         }
 
         return ret_val;
     }
-
-    public static void init() {
-        SpawnPlacements.register(ModEntities.ARCHER.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getFluidState(pos.below()).is(FluidTags.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER) && pos.getY() >= world.getSeaLevel() - 13 && pos.getY() <= world.getSeaLevel()));
-    }
-
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(Attributes.MAX_HEALTH, 30.0D);
-        builder = builder.add(Attributes.ARMOR, 20.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
-    }
 }
-
-
-/* Location:              E:\mc\rainimator\.minecraft\mods\rainimator_1.18.2_4.0.2_forge.jar!\net\mcreator\rainimator\entity\ArcherEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

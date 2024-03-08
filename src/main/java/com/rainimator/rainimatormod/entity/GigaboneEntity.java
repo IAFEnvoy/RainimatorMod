@@ -35,8 +35,20 @@ public class GigaboneEntity extends Monster {
     public GigaboneEntity(EntityType<GigaboneEntity> type, Level world) {
         super(type, world);
         this.xpReward = 100;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 600.0D);
+        builder = builder.add(Attributes.ARMOR, 30.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 8.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 100.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 6.0D);
+        return builder;
     }
 
     @Override
@@ -86,12 +98,12 @@ public class GigaboneEntity extends Monster {
             if (this.level instanceof ServerLevel _level)
                 if (Math.random() < 0.2D) {
                     WitherSkeleton witherSkeleton = new WitherSkeleton(EntityType.WITHER_SKELETON, _level);
-                    witherSkeleton.moveTo(getX() + Mth.nextInt(new Random(), -2, 2), getY() + 2.0D, getZ() + Mth.nextInt(new Random(), -2, 2), this.level.getRandom().nextFloat() * 360.0F, 0.0F);
+                    witherSkeleton.moveTo(this.getX() + Mth.nextInt(new Random(), -2, 2), this.getY() + 2.0D, this.getZ() + Mth.nextInt(new Random(), -2, 2), this.level.getRandom().nextFloat() * 360.0F, 0.0F);
                     witherSkeleton.finalizeSpawn(_level, this.level.getCurrentDifficultyAt(witherSkeleton.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
                     this.level.addFreshEntity(witherSkeleton);
                 } else if (Math.random() < 0.2D) {
                     WitheredSkeletonsEntity witheredSkeletonsEntity = new WitheredSkeletonsEntity(ModEntities.WITHERED_SKELETONS.get(), _level);
-                    witheredSkeletonsEntity.moveTo(getX() + Mth.nextInt(new Random(), -2, 2), getY() + 2.0D, getZ() + Mth.nextInt(new Random(), -2, 2), this.level.getRandom().nextFloat() * 360.0F, 0.0F);
+                    witheredSkeletonsEntity.moveTo(this.getX() + Mth.nextInt(new Random(), -2, 2), this.getY() + 2.0D, this.getZ() + Mth.nextInt(new Random(), -2, 2), this.level.getRandom().nextFloat() * 360.0F, 0.0F);
                     witheredSkeletonsEntity.finalizeSpawn(_level, this.level.getCurrentDifficultyAt(witheredSkeletonsEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
                     this.level.addFreshEntity(witheredSkeletonsEntity);
                 }
@@ -104,20 +116,5 @@ public class GigaboneEntity extends Monster {
         if (source.getMsgId().equals("witherSkull"))
             return false;
         return super.hurt(source, amount);
-    }
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 600.0D);
-        builder = builder.add(Attributes.ARMOR, 30.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 8.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 100.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 6.0D);
-        return builder;
     }
 }

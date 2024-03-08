@@ -36,7 +36,7 @@ public class PiglinkingcrownItem extends ArmorItem {
 
             @Override
             public int getDefenseForSlot(@NotNull EquipmentSlot slot) {
-                return new int[]{0,0,0,3}[slot.getIndex()];
+                return new int[]{0, 0, 0, 3}[slot.getIndex()];
             }
 
             @Override

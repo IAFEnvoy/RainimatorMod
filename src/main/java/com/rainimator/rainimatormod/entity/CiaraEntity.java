@@ -32,9 +32,21 @@ public class CiaraEntity extends Monster implements RangedAttackMob {
     public CiaraEntity(EntityType<CiaraEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        setNoAi(false);
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.THE_BLUE_DAGGER.get()));
-        setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.THE_BLUE_DAGGER.get()));
+        this.setNoAi(false);
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.THE_BLUE_DAGGER.get()));
+        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.THE_BLUE_DAGGER.get()));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 100.0D);
+        builder = builder.add(Attributes.ARMOR, 30.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -59,7 +71,7 @@ public class CiaraEntity extends Monster implements RangedAttackMob {
         this.goalSelector.addGoal(8, new FloatGoal(this));
         this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25D, 20, 10.0F) {
             public boolean canContinueToUse() {
-                return canUse();
+                return this.canUse();
             }
         });
     }
@@ -83,7 +95,7 @@ public class CiaraEntity extends Monster implements RangedAttackMob {
     public boolean hurt(@NotNull DamageSource source, float amount) {
         if (Math.random() < 0.2D) {
             LivingEntity _entity = this;
-            ItemStack _setstack = new ItemStack( Blocks.AIR);
+            ItemStack _setstack = new ItemStack(Blocks.AIR);
             _setstack.setCount(1);
             _entity.setItemInHand(InteractionHand.OFF_HAND, _setstack);
 
@@ -103,24 +115,9 @@ public class CiaraEntity extends Monster implements RangedAttackMob {
     public void performRangedAttack(LivingEntity target, float flval) {
         CiaraEntityProjectile entityarrow = new CiaraEntityProjectile(ModEntities.CIARA_PROJECTILE.get(), this, this.level);
         double d0 = target.getY() + target.getEyeHeight() - 1.1D;
-        double d1 = target.getX() - getX();
-        double d3 = target.getZ() - getZ();
+        double d1 = target.getX() - this.getX();
+        double d3 = target.getZ() - this.getZ();
         entityarrow.shoot(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
         this.level.addFreshEntity(entityarrow);
-    }
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 100.0D);
-        builder = builder.add(Attributes.ARMOR, 30.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

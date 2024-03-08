@@ -9,8 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
-public class ModParticles
-{
+public class ModParticles {
     @SubscribeEvent
     public static void registerParticles(ParticleFactoryRegisterEvent event) {
         (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.PURPLELIGHT.get(), PurplelightParticle::provider);

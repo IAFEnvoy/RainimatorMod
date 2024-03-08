@@ -30,7 +30,7 @@ public class ModSounds {
             ResourceLocation location = new ResourceLocation(RainimatorMod.MOD_ID, id);
             SoundEvent soundEvent = new SoundEvent(location);
             event.getRegistry().register(soundEvent.setRegistryName(location));
-            REGISTRY.put(id,soundEvent);
+            REGISTRY.put(id, soundEvent);
         }
     }
 }

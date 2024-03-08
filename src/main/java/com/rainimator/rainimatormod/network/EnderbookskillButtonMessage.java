@@ -30,16 +30,14 @@ import java.util.function.Supplier;
 public class EnderbookskillButtonMessage {
     private final int buttonID;
     private final int x;
-
+    private final int y;
+    private final int z;
     public EnderbookskillButtonMessage(FriendlyByteBuf buffer) {
         this.buttonID = buffer.readInt();
         this.x = buffer.readInt();
         this.y = buffer.readInt();
         this.z = buffer.readInt();
     }
-
-    private final int y;
-    private final int z;
 
     public EnderbookskillButtonMessage(int buttonID, int x, int y, int z) {
         this.buttonID = buttonID;
@@ -63,7 +61,7 @@ public class EnderbookskillButtonMessage {
             int x = message.x;
             int y = message.y;
             int z = message.z;
-            handleButtonAction((Player) serverPlayer, buttonID, x, y, z);
+            handleButtonAction(serverPlayer, buttonID, x, y, z);
         });
         context.setPacketHandled(true);
     }

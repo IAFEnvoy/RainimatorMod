@@ -9,23 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class SnowParticle extends TextureSheetParticle {
-    public static SnowParticleProvider provider(SpriteSet spriteSet) {
-        return new SnowParticleProvider(spriteSet);
-    }
-
     private final SpriteSet spriteSet;
-
-    public static class SnowParticleProvider implements ParticleProvider<SimpleParticleType> {
-        private final SpriteSet spriteSet;
-
-        public SnowParticleProvider(SpriteSet spriteSet) {
-            this.spriteSet = spriteSet;
-        }
-
-        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new SnowParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
-        }
-    }
 
     protected SnowParticle(ClientLevel world, double x, double y, double z, double vx, double vy, double vz, SpriteSet spriteSet) {
         super(world, x, y, z);
@@ -39,6 +23,10 @@ public class SnowParticle extends TextureSheetParticle {
         this.yd = vy * 0.5D;
         this.zd = vz * 0.5D;
         this.setSpriteFromAge(spriteSet);
+    }
+
+    public static SnowParticleProvider provider(SpriteSet spriteSet) {
+        return new SnowParticleProvider(spriteSet);
     }
 
     @Override
@@ -56,5 +44,17 @@ public class SnowParticle extends TextureSheetParticle {
         super.tick();
         if (!this.removed)
             this.setSprite(this.spriteSet.get(this.age % 11 + 1, 11));
+    }
+
+    public static class SnowParticleProvider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet spriteSet;
+
+        public SnowParticleProvider(SpriteSet spriteSet) {
+            this.spriteSet = spriteSet;
+        }
+
+        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            return new SnowParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
+        }
     }
 }

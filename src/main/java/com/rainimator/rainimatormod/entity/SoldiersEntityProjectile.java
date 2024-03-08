@@ -8,7 +8,6 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -24,10 +23,6 @@ public class SoldiersEntityProjectile extends AbstractArrow implements ItemSuppl
 
     public SoldiersEntityProjectile(EntityType<? extends SoldiersEntityProjectile> type, Level world) {
         super(type, world);
-    }
-
-    public SoldiersEntityProjectile(EntityType<? extends SoldiersEntityProjectile> type, double x, double y, double z, Level world) {
-        super(type, x, y, z, world);
     }
 
     public SoldiersEntityProjectile(EntityType<? extends SoldiersEntityProjectile> type, LivingEntity entity, Level world) {
@@ -48,11 +43,11 @@ public class SoldiersEntityProjectile extends AbstractArrow implements ItemSuppl
     @Override
     @OnlyIn(Dist.CLIENT)
     public @NotNull ItemStack getItem() {
-        return new ItemStack((ItemLike) Items.ENDER_PEARL);
+        return new ItemStack(Items.ENDER_PEARL);
     }
 
     @Override
     protected @NotNull ItemStack getPickupItem() {
-        return new ItemStack((ItemLike) Items.ENDER_PEARL);
+        return new ItemStack(Items.ENDER_PEARL);
     }
 }

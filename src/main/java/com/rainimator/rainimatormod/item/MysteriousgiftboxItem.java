@@ -4,11 +4,10 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.ItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import net.minecraft.core.BlockPos;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
@@ -17,13 +16,11 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class MysteriousgiftboxItem extends ItemBase {
     private static final List<Triple<ItemLike, Integer, String>> lootTable = new ArrayList<>();
@@ -32,57 +29,7 @@ public class MysteriousgiftboxItem extends ItemBase {
         super(p -> p.tab(ModCreativeTab.items).stacksTo(16).rarity(Rarity.EPIC).food((new FoodProperties.Builder()).nutrition(0).saturationMod(0.0F).alwaysEat().build()));
     }
 
-    @Override
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
-        return UseAnim.BLOCK;
-    }
-
-    @Override
-    public int getUseDuration(@NotNull ItemStack itemstack) {
-        return 1;
-    }
-
-    @Override
-    public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TextComponent("§5神秘的礼盒，考研你手气的时候到了，有概率获得极品宝物哦！"));
-    }
-
-    @Override
-    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemstack, @NotNull Level world, @NotNull LivingEntity entity) {
-        ItemStack retval = super.finishUsingItem(itemstack, world, entity);
-        double x = entity.getX();
-        double y = entity.getY();
-        double z = entity.getZ();
-
-        if (entity instanceof Player _player) {
-            if (!world.isClientSide())
-                world.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "gift_box"))), SoundSource.NEUTRAL, 15.0F, 1.0F);
-            else
-                world.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "gift_box"))), SoundSource.NEUTRAL, 15.0F, 1.0F, false);
-
-            ItemStack _stktoremove = new ItemStack(ModItems.MYSTERIOUSGIFTBOX.get());
-            _player.getInventory().clearOrCountMatchingItems(p -> (_stktoremove.getItem() == p.getItem()), 0, _player.inventoryMenu.getCraftSlots());
-
-            ItemStack stack = new ItemStack(Items.AIR);
-            if (lootTable.size() == 0) initLootTable();
-            for (Triple<ItemLike, Integer, String> itemLikeIntegerStringTriple : lootTable) {
-                if (Math.random() < 0.1D) {
-                    stack = new ItemStack(itemLikeIntegerStringTriple.getLeft(), itemLikeIntegerStringTriple.getMiddle());
-                    if (!itemLikeIntegerStringTriple.getRight().isBlank() && !_player.level.isClientSide())
-                        _player.displayClientMessage(new TextComponent(itemLikeIntegerStringTriple.getRight()), true);
-                    break;
-                }
-            }
-            if (stack.getItem() == Items.AIR)
-                if (!_player.level.isClientSide())
-                    _player.displayClientMessage(new TextComponent("§a你用力过大撕碎了礼盒！"), true);
-            ItemHandlerHelper.giveItemToPlayer(_player, stack);
-        }
-        return retval;
-    }
-
-    private static void initLootTable() {
+    private static synchronized void initLootTable() {
         lootTable.add(Triple.of(Items.ROTTEN_FLESH, 5, ""));
         lootTable.add(Triple.of(Items.SPIDER_EYE, 3, ""));
         lootTable.add(Triple.of(Items.BONE, 3, ""));
@@ -149,5 +96,50 @@ public class MysteriousgiftboxItem extends ItemBase {
         lootTable.add(Triple.of(Blocks.LAPIS_BLOCK, 1, ""));
         lootTable.add(Triple.of(Blocks.REDSTONE_BLOCK, 1, ""));
         lootTable.add(Triple.of(ModItems.MYSTERIOUSGIFTBOX.get(), 1, "§a套娃？"));
+    }
+
+    @Override
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
+        return UseAnim.BLOCK;
+    }
+
+    @Override
+    public int getUseDuration(@NotNull ItemStack itemstack) {
+        return 1;
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
+        super.appendHoverText(itemstack, world, list, flag);
+        list.add(new TextComponent("§5神秘的礼盒，考研你手气的时候到了，有概率获得极品宝物哦！"));
+    }
+
+    @Override
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemstack, @NotNull Level world, @NotNull LivingEntity entity) {
+        ItemStack retval = super.finishUsingItem(itemstack, world, entity);
+        double x = entity.getX();
+        double y = entity.getY();
+        double z = entity.getZ();
+
+        if (entity instanceof Player _player) {
+            MiscUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "gift_box"), 15.0F, 1.0F);
+            ItemStack _stktoremove = new ItemStack(ModItems.MYSTERIOUSGIFTBOX.get());
+            _player.getInventory().clearOrCountMatchingItems(p -> (_stktoremove.getItem() == p.getItem()), 0, _player.inventoryMenu.getCraftSlots());
+            ItemStack stack = new ItemStack(Items.AIR);
+            if (lootTable.size() == 0) initLootTable();
+            for (Triple<ItemLike, Integer, String> itemLikeIntegerStringTriple : lootTable) {
+                if (Math.random() < 0.1D) {
+                    stack = new ItemStack(itemLikeIntegerStringTriple.getLeft(), itemLikeIntegerStringTriple.getMiddle());
+                    if (!itemLikeIntegerStringTriple.getRight().isBlank() && !_player.level.isClientSide())
+                        _player.displayClientMessage(new TextComponent(itemLikeIntegerStringTriple.getRight()), true);
+                    break;
+                }
+            }
+            if (stack.getItem() == Items.AIR)
+                if (!_player.level.isClientSide())
+                    _player.displayClientMessage(new TextComponent("§a你用力过大撕碎了礼盒！"), true);
+            ItemHandlerHelper.giveItemToPlayer(_player, stack);
+        }
+        return retval;
     }
 }

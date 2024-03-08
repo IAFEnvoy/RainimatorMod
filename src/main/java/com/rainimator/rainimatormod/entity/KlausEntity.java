@@ -5,7 +5,6 @@ import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -53,6 +52,18 @@ public class KlausEntity extends Monster {
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DEEPWARHAMMER.get()));
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.KINGNOMALCROWN_HELMET.get()));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 180.0D);
+        builder = builder.add(Attributes.ARMOR, 20.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -127,7 +138,7 @@ public class KlausEntity extends Monster {
     @Override
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        if (!(world.getDifficulty() == Difficulty.PEACEFUL)) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!this.level.isClientSide() && this.getServer() != null)
                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:klaus_boss_music neutral @a ~ ~ ~");
             Runnable callback = () -> {
@@ -148,8 +159,8 @@ public class KlausEntity extends Monster {
     @Override
     public void baseTick() {
         super.baseTick();
-        if (! this.isAlive() && this.level instanceof ServerLevel _level)
-            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", (Component) new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:klaus_boss_music");
+        if (!this.isAlive() && this.level instanceof ServerLevel _level)
+            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:klaus_boss_music");
         if (!this.level.isClientSide())
             this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 0));
     }
@@ -176,25 +187,4 @@ public class KlausEntity extends Monster {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
     }
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 180.0D);
-        builder = builder.add(Attributes.ARMOR, 20.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
-    }
 }
-
-
-/* Location:              E:\mc\rainimator\.minecraft\mods\rainimator_1.18.2_4.0.2_forge.jar!\net\mcreator\rainimator\entity\KlausEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

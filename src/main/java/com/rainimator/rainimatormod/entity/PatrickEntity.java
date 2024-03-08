@@ -47,6 +47,18 @@ public class PatrickEntity extends Monster implements RangedAttackMob {
         this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.GENERAL_PATRICK_LONG_KNIVES.get()));
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 120.0D);
+        builder = builder.add(Attributes.ARMOR, 30.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
+    }
+
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
@@ -127,7 +139,7 @@ public class PatrickEntity extends Monster implements RangedAttackMob {
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         if (world instanceof ServerLevel _level) {
-            HildaEntity hildaEntity = new HildaEntity(ModEntities.HILDA.get(), (Level) _level);
+            HildaEntity hildaEntity = new HildaEntity(ModEntities.HILDA.get(), _level);
             hildaEntity.moveTo(this.getX() + Mth.nextInt(new Random(), 1, 4), this.getY(), this.getZ() + Mth.nextInt(new Random(), 1, 4), world.getRandom().nextFloat() * 360.0F, 0.0F);
             hildaEntity.finalizeSpawn(_level, world.getCurrentDifficultyAt(hildaEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
             world.addFreshEntity(hildaEntity);
@@ -150,20 +162,5 @@ public class PatrickEntity extends Monster implements RangedAttackMob {
         double d3 = target.getZ() - this.getZ();
         entityarrow.shoot(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
         this.level.addFreshEntity(entityarrow);
-    }
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 120.0D);
-        builder = builder.add(Attributes.ARMOR, 30.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

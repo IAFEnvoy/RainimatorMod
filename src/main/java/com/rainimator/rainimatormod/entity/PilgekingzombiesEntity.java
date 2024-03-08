@@ -54,24 +54,36 @@ public class PilgekingzombiesEntity extends Monster {
         this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.HEROBRINE_ARMOR_CHESTPLATE.get()));
     }
 
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
+        builder = builder.add(Attributes.MAX_HEALTH, 150.0D);
+        builder = builder.add(Attributes.ARMOR, 20.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 2.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 6.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 2.0D);
+        return builder;
+    }
+
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket( this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(1,  new MeleeAttackGoal( this, 1.2D, false) {
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth());
             }
         });
-        this.goalSelector.addGoal(2,  new RandomStrollGoal( this, 1.0D));
-        this.targetSelector.addGoal(3,  new NearestAttackableTargetGoal<>( this, Player.class, false, false));
-        this.targetSelector.addGoal(4,  new HurtByTargetGoal( this));
-        this.goalSelector.addGoal(5,  new RandomLookAroundGoal( this));
-        this.goalSelector.addGoal(6,  new FloatGoal( this));
+        this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1.0D));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
+        this.targetSelector.addGoal(4, new HurtByTargetGoal(this));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new FloatGoal(this));
     }
 
     @Override
@@ -86,12 +98,12 @@ public class PilgekingzombiesEntity extends Monster {
 
     @Override
     public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return  ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombified_piglin.hurt"));
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombified_piglin.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return  ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombified_piglin.death"));
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombified_piglin.death"));
     }
 
     @Override
@@ -148,21 +160,5 @@ public class PilgekingzombiesEntity extends Monster {
     public void customServerAiStep() {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
-    }
-
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(Attributes.MAX_HEALTH, 150.0D);
-        builder = builder.add(Attributes.ARMOR, 20.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 2.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 6.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 2.0D);
-        return builder;
     }
 }

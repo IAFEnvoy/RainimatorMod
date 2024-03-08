@@ -5,6 +5,7 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -68,6 +69,21 @@ public class NaeuskingEntity extends Monster {
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.NETHER_THE_CROWN_HELMET.get()));
     }
 
+    public static void init() {
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
+        builder = builder.add(Attributes.MAX_HEALTH, 250.0D);
+        builder = builder.add(Attributes.ARMOR, 50.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 10.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 5.0D);
+        return builder;
+    }
+
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
@@ -121,10 +137,7 @@ public class NaeuskingEntity extends Monster {
                 this.removeAllEffects();
             else {
                 if (Math.random() < 0.5D) {
-                    if (!this.level.isClientSide())
-                        this.level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"))), SoundSource.NEUTRAL, 5.0F, 1.0F);
-                    else
-                        this.level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"))), SoundSource.NEUTRAL, 5.0F, 1.0F, false);
+                    MiscUtil.playSound(this.level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"), 1.0F, 1.0F);
                     if (this.level instanceof ServerLevel _level)
                         _level.sendParticles((ParticleOptions) ParticleTypes.SOUL_FIRE_FLAME, x, y, z, 100, 1.0D, 2.0D, 1.0D, 2.0E-4D);
                     if (!this.level.isClientSide()) {
@@ -139,15 +152,15 @@ public class NaeuskingEntity extends Monster {
                 }
                 if (Math.random() < 0.1D) {
                     if (!this.level.isClientSide() && this.level.getServer() != null)
-                        if (Math.random() < 0.3D) {
+                        if (Math.random() < 0.3D)
                             (this.level).getServer().getPlayerList().broadcastMessage(new TextComponent("§4我就是这个世界的梦魇，我就是这个世界的末日！"), ChatType.SYSTEM, Util.NIL_UUID);
-                        } else if (Math.random() < 0.4D) {
+                        else if (Math.random() < 0.4D)
                             this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§b雷霆万钧！"), ChatType.SYSTEM, Util.NIL_UUID);
-                        } else if (Math.random() < 0.45D) {
+                        else if (Math.random() < 0.45D)
                             this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§4都是蝼蚁，都给我下地狱！"), ChatType.SYSTEM, Util.NIL_UUID);
-                        } else if (Math.random() < 0.5D) {
+                        else if (Math.random() < 0.5D)
                             this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§4你找死！"), ChatType.SYSTEM, Util.NIL_UUID);
-                        } else
+                        else
                             this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§a愚蠢的人！"), ChatType.SYSTEM, Util.NIL_UUID);
 
                     if (!sourceentity.level.isClientSide() && sourceentity.getServer() != null)
@@ -157,8 +170,7 @@ public class NaeuskingEntity extends Monster {
                     Runnable callback = () -> {
                         LevelAccessor levelAccessor = this.level;
                         BlockPos pos1 = this.level.clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(0.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, NaeuskingEntity.this)).getBlockPos();
-                        if (levelAccessor instanceof ServerLevel) {
-                            ServerLevel _level = (ServerLevel) levelAccessor;
+                        if (levelAccessor instanceof ServerLevel _level) {
                             LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
                             if (entityToSpawn != null) {
                                 entityToSpawn.moveTo(Vec3.atBottomCenterOf(new BlockPos(pos.getX(), y, pos1.getZ())));
@@ -167,8 +179,7 @@ public class NaeuskingEntity extends Monster {
                             }
                         }
                         this.level.setBlock(new BlockPos(pos.getX(), y, pos1.getZ()), Blocks.FIRE.defaultBlockState(), 3);
-                        if (levelAccessor instanceof ServerLevel) {
-                            ServerLevel _level = (ServerLevel) levelAccessor;
+                        if (levelAccessor instanceof ServerLevel _level) {
                             LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
                             if (entityToSpawn != null) {
                                 entityToSpawn.moveTo(Vec3.atBottomCenterOf(new BlockPos(pos1.getX(), y, pos.getZ())));
@@ -179,7 +190,6 @@ public class NaeuskingEntity extends Monster {
                         this.level.setBlock(new BlockPos(pos1.getX(), y, pos.getZ()), Blocks.FIRE.defaultBlockState(), 3);
                     };
                     Timeout.create(50, () -> {
-
                         LevelAccessor levelAccessor = this.level;
                         if (levelAccessor instanceof ServerLevel _level) {
                             LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
@@ -245,7 +255,7 @@ public class NaeuskingEntity extends Monster {
         }
         if (world instanceof ServerLevel _level)
             _level.sendParticles((ParticleOptions) ModParticleTypes.REDFLOWER.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
-        if (!(world.getDifficulty() == Difficulty.PEACEFUL)) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!this.level.isClientSide() && this.getServer() != null)
                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:naeus_boss_music neutral @a ~ ~ ~");
             Runnable callback = () -> {
@@ -292,21 +302,5 @@ public class NaeuskingEntity extends Monster {
     public void customServerAiStep() {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
-    }
-
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(Attributes.MAX_HEALTH, 250.0D);
-        builder = builder.add(Attributes.ARMOR, 50.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 10.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 5.0D);
-        return builder;
     }
 }

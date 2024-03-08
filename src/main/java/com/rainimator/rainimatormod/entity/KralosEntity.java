@@ -3,6 +3,7 @@ package com.rainimator.rainimatormod.entity;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.Util;
 import net.minecraft.commands.CommandSourceStack;
@@ -11,7 +12,6 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +19,6 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
@@ -51,7 +50,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 
 public class KralosEntity extends Monster {
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS);
@@ -66,6 +64,18 @@ public class KralosEntity extends Monster {
         this.setNoAi(false);
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.FALLENSOULAXE.get()));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 100.0D);
+        builder = builder.add(Attributes.ARMOR, 25.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -115,12 +125,11 @@ public class KralosEntity extends Monster {
         double z = this.getZ();
         Entity sourceentity = source.getEntity();
         if (sourceentity != null) {
-            if (sourceentity instanceof LivingEntity)
-                this.setTarget((LivingEntity) sourceentity);
-            if (Math.random() < 0.2D &&
-                    sourceentity instanceof LivingEntity _entity) {
-                if (!_entity.level.isClientSide())
-                    _entity.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 1));
+            if (sourceentity instanceof LivingEntity _entity) {
+                this.setTarget(_entity);
+                if (Math.random() < 0.2D)
+                    if (!_entity.level.isClientSide())
+                        _entity.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 1));
             }
             if (this.getHealth() < 60.0F) {
                 if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, this.getMainHandItem()) == 0) {
@@ -138,18 +147,9 @@ public class KralosEntity extends Monster {
                     }
 
                     this.level.setBlock(new BlockPos(x, y, z), Blocks.FIRE.defaultBlockState(), 3);
-                    if (this.level instanceof Level) {
-                        if (!this.level.isClientSide()) {
-                            this.level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.enderman.scream"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                        } else {
-                            this.level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.enderman.scream"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-                        }
-                    }
-
-                    if (this.level instanceof ServerLevel) {
-                        ServerLevel _level = (ServerLevel) this.level;
+                    MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.enderman.scream"), 1.0F, 1.0F);
+                    if (this.level instanceof ServerLevel _level)
                         _level.sendParticles((ParticleOptions) ParticleTypes.SOUL, x, y, z, 200, 2.0D, 3.0D, 2.0D, 0.001D);
-                    }
                     if (!this.level.isClientSide() && this.level.getServer() != null)
                         this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§7违反将军意志的人都得死！"), ChatType.SYSTEM, Util.NIL_UUID);
                 }
@@ -177,17 +177,11 @@ public class KralosEntity extends Monster {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (world instanceof Level _level) {
-            if (!_level.isClientSide())
-                _level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.wither.ambient"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-            else
-                _level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.wither.ambient"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-        }
-        if (world instanceof ServerLevel) {
-            ServerLevel _level = (ServerLevel) world;
+        if (world instanceof Level _level)
+            MiscUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.ambient"), 1.0F, 1.0F);
+        if (world instanceof ServerLevel _level)
             _level.sendParticles((ParticleOptions) ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.001D);
-        }
-        if (!(world.getDifficulty() == Difficulty.PEACEFUL)) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!this.level.isClientSide() && this.getServer() != null)
                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:kralos_boss_music neutral @a ~ ~ ~");
             Runnable callback = () -> {
@@ -217,7 +211,7 @@ public class KralosEntity extends Monster {
             this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, 0));
         }
         if (!this.isAlive() && this.level instanceof ServerLevel _level)
-            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", (Component) new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:kralos_boss_music");
+            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:kralos_boss_music");
     }
 
     @Override
@@ -242,25 +236,4 @@ public class KralosEntity extends Monster {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
     }
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 100.0D);
-        builder = builder.add(Attributes.ARMOR, 25.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
-    }
 }
-
-
-/* Location:              E:\mc\rainimator\.minecraft\mods\rainimator_1.18.2_4.0.2_forge.jar!\net\mcreator\rainimator\entity\KralosEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

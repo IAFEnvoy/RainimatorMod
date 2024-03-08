@@ -5,13 +5,12 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -19,7 +18,6 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
@@ -38,6 +36,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -50,11 +49,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
 import java.util.Random;
 
 public class CerisEntity extends Monster {
-    private final ServerBossEvent bossInfo = new ServerBossEvent(getDisplayName(), BossEvent.BossBarColor.PURPLE, BossEvent.BossBarOverlay.PROGRESS);
+    private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.PURPLE, BossEvent.BossBarOverlay.PROGRESS);
 
     public CerisEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.CERIS.get(), world);
@@ -66,6 +64,18 @@ public class CerisEntity extends Monster {
         this.setNoAi(false);
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.END_BLADE.get()));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
+        builder = builder.add(Attributes.MAX_HEALTH, 200.0D);
+        builder = builder.add(Attributes.ARMOR, 35.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 5.0D);
+        return builder;
     }
 
     @Override
@@ -125,75 +135,53 @@ public class CerisEntity extends Monster {
                 _entity.addEffect(new MobEffectInstance(ModEffects.PURIFICATION.get(), 100, 0));
 
             if (Math.random() < 0.3D) {
-                if (this.level instanceof Level) {
-                    Level _level = this.level;
-                    if (!_level.isClientSide())
-                        _level.playSound(null, new BlockPos(getX(), getY(), getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.enderman.teleport"))), SoundSource.NEUTRAL, 4.0F, 1.0F);
-                    else
-                        _level.playLocalSound(getX(), getY(), getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.enderman.teleport"))), SoundSource.NEUTRAL, 4.0F, 1.0F, false);
-                }
+                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.enderman.teleport"), 4.0F, 1.0F);
 
                 if (this.level instanceof ServerLevel) {
                     ServerLevel _level = (ServerLevel) this.level;
-                    _level.sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), getX(), getY(), getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
+                    _level.sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
                 }
-                this.getNavigation().moveTo(getX() + Mth.nextInt(new Random(), 3, 9), getY(), getZ() + Mth.nextInt(new Random(), 3, 9), 20.0D);
+                this.getNavigation().moveTo(this.getX() + Mth.nextInt(new Random(), 3, 9), this.getY(), this.getZ() + Mth.nextInt(new Random(), 3, 9), 20.0D);
                 if (!this.level.isClientSide())
                     this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2));
                 if (sourceentity instanceof LivingEntity livingEntity) {
-                    if (livingEntity instanceof LivingEntity)
-                        if (!livingEntity.level.isClientSide())
-                            livingEntity.addEffect(new MobEffectInstance(ModEffects.FEARDARK.get(), 200, 0));
-                    if (!(livingEntity instanceof LivingEntity && livingEntity.hasEffect(MobEffects.GLOWING))) {
-                        if (this.level instanceof Level) {
-                            if (!this.level.isClientSide())
-                                this.level.playSound(null, new BlockPos(getX(), getY(), getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "ceris_f"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                            else
-                                this.level.playLocalSound(getX(), getY(), getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "ceris_f"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-                        }
+                    if (!livingEntity.level.isClientSide())
+                        livingEntity.addEffect(new MobEffectInstance(ModEffects.FEARDARK.get(), 200, 0));
+                    if (!livingEntity.hasEffect(MobEffects.GLOWING)) {
+                        MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "ceris_f"), 1.0F, 1.0F);
                         if (livingEntity instanceof LivingEntity)
                             if (!livingEntity.level.isClientSide())
                                 livingEntity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 100, 0));
                     }
-                    if ((sourceentity instanceof LivingEntity && livingEntity.hasEffect(MobEffects.GLOWING))) {
-                        if (sourceentity instanceof LivingEntity) {
-                            if (!sourceentity.level.isClientSide())
-                                ((LivingEntity) sourceentity).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 3));
-                        }
-                        if (sourceentity instanceof LivingEntity) {
-                            if (!sourceentity.level.isClientSide())
-                                ((LivingEntity) sourceentity).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100, 0));
+                    if (sourceentity instanceof LivingEntity && livingEntity.hasEffect(MobEffects.GLOWING)) {
+                        if (!sourceentity.level.isClientSide()) {
+                            ((LivingEntity) sourceentity).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 3));
+                            ((LivingEntity) sourceentity).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100, 0));
                         }
                         Timeout.create(60, () -> {
                             sourceentity.teleportTo(this.level
-                                    .clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(1.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, (LivingEntity) this)).getBlockPos().getX(), this
-                                    .getY(), this.level.clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(1.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, (LivingEntity) this))
+                                    .clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(1.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, this)).getBlockPos().getX(), this
+                                    .getY(), this.level.clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(1.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, this))
                                     .getBlockPos().getZ());
                             if (sourceentity instanceof ServerPlayer _serverPlayer) {
                                 _serverPlayer.connection.teleport(this.level
-                                        .clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(1.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, (LivingEntity) this)).getBlockPos()
+                                        .clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(1.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, this)).getBlockPos()
                                         .getX(), this
-                                        .getY(), this.level.clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(1.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, (LivingEntity) this))
+                                        .getY(), this.level.clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(1.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, this))
                                         .getBlockPos().getZ(), sourceentity
                                         .getYRot(), sourceentity.getXRot());
                             }
-
                             Level levelAccessor = this.level;
-                            if (levelAccessor instanceof Level) {
-                                if (!levelAccessor.isClientSide())
-                                    levelAccessor.playSound(null, new BlockPos(getX(), getY(), getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "ceris_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                                else
-                                    levelAccessor.playLocalSound(getX(), getY(), getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "ceris_skill"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-                            }
+                            MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "ceris_skill"), 1.0F, 1.0F);
                             if (levelAccessor instanceof ServerLevel _level)
-                                _level.sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), getX(), getY(), getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
+                                _level.sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
                         });
                     }
                 }
             }
         }
 
-        if (source.getDirectEntity() instanceof net.minecraft.world.entity.projectile.AbstractArrow)
+        if (source.getDirectEntity() instanceof AbstractArrow)
             return false;
         if (source == DamageSource.FALL)
             return false;
@@ -217,28 +205,20 @@ public class CerisEntity extends Monster {
     @Override
     public void die(@NotNull DamageSource source) {
         super.die(source);
+        MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "ceris_death"), 1.0F, 1.0F);
         if (this.level instanceof ServerLevel _level)
-            _level.sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), getX(), getY(), getZ(), 60, 0.5D, 1.0D, 0.5D, 0.5D);
-        if (!this.level.isClientSide())
-            this.level.playSound(null, new BlockPos(getX(), getY(), getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "ceris_death"))), SoundSource.NEUTRAL, 2.0F, 1.0F);
-        else
-            this.level.playLocalSound(getX(), getY(), getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "ceris_death"))), SoundSource.NEUTRAL, 2.0F, 1.0F, false);
+            _level.sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), this.getX(), this.getY(), this.getZ(), 60, 0.5D, 1.0D, 0.5D, 0.5D);
     }
 
     @Override
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData ret_val = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         Entity entity = this;
-        if (world instanceof Level _level) {
-            if (!_level.isClientSide())
-                _level.playSound(null, new BlockPos(getX(), getY(), getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "curis_live"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-            else
-                _level.playLocalSound(getX(), getY(), getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "curis_live"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-        }
+        MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "curis_live"), 1.0F, 1.0F);
 
         if (world instanceof ServerLevel _level)
-            _level.sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), getX(), getY(), getZ(), 50, 0.5D, 0.5D, 0.5D, 0.5D);
-        if (!(world.getDifficulty() == Difficulty.PEACEFUL)) {
+            _level.sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.5D, 0.5D, 0.5D);
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!entity.level.isClientSide() && entity.getServer() != null)
                 entity.getServer().getCommands().performCommand(entity.createCommandSourceStack().withSuppressedOutput().withPermission(4), "/playsound rainimator:ceris_boss_music neutral @a ~ ~ ~");
 
@@ -269,7 +249,7 @@ public class CerisEntity extends Monster {
             this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, 1));
         }
         if (!this.isAlive() && this.level instanceof ServerLevel _level)
-            _level.getServer().getCommands().performCommand((new CommandSourceStack(CommandSource.NULL, new Vec3(getX(), getY(), getZ()), Vec2.ZERO, _level, 4, "", (Component) new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:ceris_boss_music");
+            _level.getServer().getCommands().performCommand((new CommandSourceStack(CommandSource.NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:ceris_boss_music");
     }
 
     @Override
@@ -293,20 +273,5 @@ public class CerisEntity extends Monster {
     public void customServerAiStep() {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
-    }
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(Attributes.MAX_HEALTH, 200.0D);
-        builder = builder.add(Attributes.ARMOR, 35.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 5.0D);
-        return builder;
     }
 }

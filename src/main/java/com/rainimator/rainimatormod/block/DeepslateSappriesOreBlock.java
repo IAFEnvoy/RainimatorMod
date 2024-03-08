@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collections;
 import java.util.List;
 
-public class DeepslateSappriesOreBlock        extends Block {
+public class DeepslateSappriesOreBlock extends Block {
     public DeepslateSappriesOreBlock() {
         super(Properties.of(Material.STONE).sound(SoundType.STONE).strength(4.0F, 10.0F).lightLevel(s -> 1).requiresCorrectToolForDrops());
     }
@@ -44,7 +44,7 @@ public class DeepslateSappriesOreBlock        extends Block {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
-        return Collections.singletonList(new ItemStack( ModItems.RUBYBLOCKSHIT.get()));
+        return Collections.singletonList(new ItemStack(ModItems.RUBYBLOCKSHIT.get()));
     }
 
     @Override

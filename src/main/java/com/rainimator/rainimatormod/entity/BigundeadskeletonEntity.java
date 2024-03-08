@@ -35,13 +35,28 @@ public class BigundeadskeletonEntity extends Monster {
     public BigundeadskeletonEntity(EntityType<BigundeadskeletonEntity> type, Level world) {
         super(type, world);
         this.xpReward = 200;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
+    }
+
+    public static void init() {
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 1000.0D);
+        builder = builder.add(Attributes.ARMOR, 30.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 8.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 100.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 6.0D);
+        return builder;
     }
 
     @Override
     public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket((Entity) this);
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -86,12 +101,12 @@ public class BigundeadskeletonEntity extends Monster {
             if (this.level instanceof ServerLevel _level)
                 if (Math.random() < 0.2D) {
                     WitherSkeleton witherSkeleton = new WitherSkeleton(EntityType.WITHER_SKELETON, _level);
-                    witherSkeleton.moveTo(getX() + Mth.nextInt(new Random(), 1, 3), getY() + 2.0D, getZ(), this.level.getRandom().nextFloat() * 360.0F, 0.0F);
+                    witherSkeleton.moveTo(this.getX() + Mth.nextInt(new Random(), 1, 3), this.getY() + 2.0D, this.getZ(), this.level.getRandom().nextFloat() * 360.0F, 0.0F);
                     ((Mob) witherSkeleton).finalizeSpawn(_level, this.level.getCurrentDifficultyAt(witherSkeleton.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
                     this.level.addFreshEntity(witherSkeleton);
                 } else if (Math.random() < 0.2D) {
                     WitheredSkeletonsEntity witheredSkeletonsEntity = new WitheredSkeletonsEntity(ModEntities.WITHERED_SKELETONS.get(), _level);
-                    witheredSkeletonsEntity.moveTo(getX() + Mth.nextInt(new Random(), 1, 3), getY() + 2.0D, getZ(), this.level.getRandom().nextFloat() * 360.0F, 0.0F);
+                    witheredSkeletonsEntity.moveTo(this.getX() + Mth.nextInt(new Random(), 1, 3), this.getY() + 2.0D, this.getZ(), this.level.getRandom().nextFloat() * 360.0F, 0.0F);
                     witheredSkeletonsEntity.finalizeSpawn(_level, this.level.getCurrentDifficultyAt(witheredSkeletonsEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
                     this.level.addFreshEntity(witheredSkeletonsEntity);
                 }
@@ -105,26 +120,4 @@ public class BigundeadskeletonEntity extends Monster {
             return false;
         return super.hurt(source, amount);
     }
-
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 1000.0D);
-        builder = builder.add(Attributes.ARMOR, 30.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 8.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 100.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 6.0D);
-        return builder;
-    }
 }
-
-
-/* Location:              E:\mc\rainimator\.minecraft\mods\rainimator_1.18.2_4.0.2_forge.jar!\net\mcreator\rainimator\entity\BigundeadskeletonEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

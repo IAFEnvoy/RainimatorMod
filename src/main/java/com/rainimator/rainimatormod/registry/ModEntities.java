@@ -16,9 +16,77 @@ import net.minecraftforge.registries.RegistryObject;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntities {
     public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.ENTITIES, RainimatorMod.MOD_ID);
-    public static final RegistryObject<EntityType<HerobrineEntity>> HEROBRINE = register("herobrine", EntityType.Builder.<HerobrineEntity>of(HerobrineEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HerobrineEntity::new).fireImmune().sized(0.6F, 1.8F));
-    public static final RegistryObject<EntityType<CerisEntity>> CERIS = register("ceris", EntityType.Builder.<CerisEntity>of(CerisEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CerisEntity::new).fireImmune().sized(0.6F, 1.8F));
-    public static final RegistryObject<EntityType<ZombiesEntity>> ZOMBIES = register("zombies", EntityType.Builder.<ZombiesEntity>of(ZombiesEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(ZombiesEntity::new).sized(0.6F, 1.8F));
+
+    private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
+        return REGISTRY.register(registryname, () -> entityTypeBuilder.build(registryname));
+    }    public static final RegistryObject<EntityType<HerobrineEntity>> HEROBRINE = register("herobrine", EntityType.Builder.<HerobrineEntity>of(HerobrineEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HerobrineEntity::new).fireImmune().sized(0.6F, 1.8F));
+
+    @SubscribeEvent
+    public static void init(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            ZombiesEntity.init();
+            BlackboneEntity.init();
+            SoldiersEntity.init();
+            HildaEntity.init();
+            WitheredSkeletonsEntity.init();
+            DarkzombieEntity.init();
+            DarkshieldEntity.init();
+            WithershieldEntity.init();
+            SkeletonsnowEntity.init();
+            ArabellaEntity.init();
+            NaeuskingEntity.init();
+            TuskEntity.init();
+            BrotsEntity.init();
+            AgethaEntity.init();
+            BigundeadskeletonEntity.init();
+            ArcherEntity.init();
+        });
+    }    public static final RegistryObject<EntityType<CerisEntity>> CERIS = register("ceris", EntityType.Builder.<CerisEntity>of(CerisEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CerisEntity::new).fireImmune().sized(0.6F, 1.8F));
+
+    @SubscribeEvent
+    public static void registerAttributes(EntityAttributeCreationEvent event) {
+        event.put(HEROBRINE.get(), HerobrineEntity.createAttributes().build());
+        event.put(CERIS.get(), CerisEntity.createAttributes().build());
+        event.put(ZOMBIES.get(), ZombiesEntity.createAttributes().build());
+        event.put(NAEUS.get(), NaeusEntity.createAttributes().build());
+        event.put(RAIN.get(), RainEntity.createAttributes().build());
+        event.put(ABIGAIL.get(), AbigailEntity.createAttributes().build());
+        event.put(PATRICK.get(), PatrickEntity.createAttributes().build());
+        event.put(BLACKBONE.get(), BlackboneEntity.createAttributes().build());
+        event.put(HOGSWORTH.get(), HogsworthEntity.createAttributes().build());
+        event.put(SOLDIERS.get(), SoldiersEntity.createAttributes().build());
+        event.put(CIARA.get(), CiaraEntity.createAttributes().build());
+        event.put(HILDA.get(), HildaEntity.createAttributes().build());
+        event.put(WITHERED_SKELETONS.get(), WitheredSkeletonsEntity.createAttributes().build());
+        event.put(VORDUS.get(), VordusEntity.createAttributes().build());
+        event.put(DARKZOMBIE.get(), DarkzombieEntity.createAttributes().build());
+        event.put(DARKSHIELD.get(), DarkshieldEntity.createAttributes().build());
+        event.put(WITHERSHIELD.get(), WithershieldEntity.createAttributes().build());
+        event.put(SKELETONSNOW.get(), SkeletonsnowEntity.createAttributes().build());
+        event.put(ARABELLA.get(), ArabellaEntity.createAttributes().build());
+        event.put(AZALEA.get(), AzaleaEntity.createAttributes().build());
+        event.put(NULLLIKE.get(), NulllikeEntity.createAttributes().build());
+        event.put(ZOMBIESPLIGEKING.get(), ZombiespligekingEntity.createAttributes().build());
+        event.put(PILGEKINGZOMBIES.get(), PilgekingzombiesEntity.createAttributes().build());
+        event.put(PILGEKINGZOMBIE.get(), PilgekingzombieEntity.createAttributes().build());
+        event.put(PIGLINCOMMANDER.get(), PiglincommanderEntity.createAttributes().build());
+        event.put(DARYLL.get(), DaryllEntity.createAttributes().build());
+        event.put(NAEUSKING.get(), NaeuskingEntity.createAttributes().build());
+        event.put(TUSK.get(), TuskEntity.createAttributes().build());
+        event.put(BROTS.get(), BrotsEntity.createAttributes().build());
+        event.put(ZOMBIEPIGLINART.get(), ZombiepiglinartEntity.createAttributes().build());
+        event.put(MUTATED.get(), MutatedEntity.createAttributes().build());
+        event.put(NAMTAR.get(), NamtarEntity.createAttributes().build());
+        event.put(AGETHA.get(), AgethaEntity.createAttributes().build());
+        event.put(TRICER.get(), TricerEntity.createAttributes().build());
+        event.put(BIGUNDEADSKELETON.get(), BigundeadskeletonEntity.createAttributes().build());
+        event.put(ARCHER.get(), ArcherEntity.createAttributes().build());
+        event.put(HIM.get(), HimEntity.createAttributes().build());
+        event.put(GIGABONE.get(), GigaboneEntity.createAttributes().build());
+        event.put(KLAUS.get(), KlausEntity.createAttributes().build());
+        event.put(KLAUS_2.get(), Klaus2Entity.createAttributes().build());
+        event.put(KRALOS.get(), KralosEntity.createAttributes().build());
+    }    public static final RegistryObject<EntityType<ZombiesEntity>> ZOMBIES = register("zombies", EntityType.Builder.<ZombiesEntity>of(ZombiesEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(ZombiesEntity::new).sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<NaeusEntity>> NAEUS = register("naeus", EntityType.Builder.<NaeusEntity>of(NaeusEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NaeusEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<RainEntity>> RAIN = register("rain", EntityType.Builder.<RainEntity>of(RainEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(RainEntity::new).sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<RainEntityProjectile>> RAIN_PROJECTILE = register("projectile_rain", EntityType.Builder.<RainEntityProjectile>of(RainEntityProjectile::new, MobCategory.MISC).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).setCustomClientFactory(RainEntityProjectile::new).sized(0.5F, 0.5F));
@@ -66,99 +134,9 @@ public class ModEntities {
     public static final RegistryObject<EntityType<Klaus2Entity>> KLAUS_2 = register("klaus_2", EntityType.Builder.<Klaus2Entity>of(Klaus2Entity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(Klaus2Entity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<KralosEntity>> KRALOS = register("kralos", EntityType.Builder.<KralosEntity>of(KralosEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(KralosEntity::new).fireImmune().sized(0.6F, 1.8F));
 
-    private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
-        return REGISTRY.register(registryname, () -> entityTypeBuilder.build(registryname));
-    }
 
-    @SubscribeEvent
-    public static void init(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            HerobrineEntity.init();
-            CerisEntity.init();
-            ZombiesEntity.init();
-            NaeusEntity.init();
-            RainEntity.init();
-            AbigailEntity.init();
-            PatrickEntity.init();
-            BlackboneEntity.init();
-            HogsworthEntity.init();
-            SoldiersEntity.init();
-            CiaraEntity.init();
-            HildaEntity.init();
-            WitheredSkeletonsEntity.init();
-            VordusEntity.init();
-            DarkzombieEntity.init();
-            DarkshieldEntity.init();
-            WithershieldEntity.init();
-            SkeletonsnowEntity.init();
-            ArabellaEntity.init();
-            AzaleaEntity.init();
-            NulllikeEntity.init();
-            ZombiespligekingEntity.init();
-            PilgekingzombiesEntity.init();
-            PilgekingzombieEntity.init();
-            PiglincommanderEntity.init();
-            DaryllEntity.init();
-            NaeuskingEntity.init();
-            TuskEntity.init();
-            BrotsEntity.init();
-            ZombiepiglinartEntity.init();
-            MutatedEntity.init();
-            NamtarEntity.init();
-            AgethaEntity.init();
-            TricerEntity.init();
-            BigundeadskeletonEntity.init();
-            ArcherEntity.init();
-            HimEntity.init();
-            GigaboneEntity.init();
-            KlausEntity.init();
-            Klaus2Entity.init();
-            KralosEntity.init();
-        });
-    }
 
-    @SubscribeEvent
-    public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(HEROBRINE.get(), HerobrineEntity.createAttributes().build());
-        event.put(CERIS.get(), CerisEntity.createAttributes().build());
-        event.put(ZOMBIES.get(), ZombiesEntity.createAttributes().build());
-        event.put(NAEUS.get(), NaeusEntity.createAttributes().build());
-        event.put(RAIN.get(), RainEntity.createAttributes().build());
-        event.put(ABIGAIL.get(), AbigailEntity.createAttributes().build());
-        event.put(PATRICK.get(), PatrickEntity.createAttributes().build());
-        event.put(BLACKBONE.get(), BlackboneEntity.createAttributes().build());
-        event.put(HOGSWORTH.get(), HogsworthEntity.createAttributes().build());
-        event.put(SOLDIERS.get(), SoldiersEntity.createAttributes().build());
-        event.put(CIARA.get(), CiaraEntity.createAttributes().build());
-        event.put(HILDA.get(), HildaEntity.createAttributes().build());
-        event.put(WITHERED_SKELETONS.get(), WitheredSkeletonsEntity.createAttributes().build());
-        event.put(VORDUS.get(), VordusEntity.createAttributes().build());
-        event.put(DARKZOMBIE.get(), DarkzombieEntity.createAttributes().build());
-        event.put(DARKSHIELD.get(), DarkshieldEntity.createAttributes().build());
-        event.put(WITHERSHIELD.get(), WithershieldEntity.createAttributes().build());
-        event.put(SKELETONSNOW.get(), SkeletonsnowEntity.createAttributes().build());
-        event.put(ARABELLA.get(), ArabellaEntity.createAttributes().build());
-        event.put(AZALEA.get(), AzaleaEntity.createAttributes().build());
-        event.put(NULLLIKE.get(), NulllikeEntity.createAttributes().build());
-        event.put(ZOMBIESPLIGEKING.get(), ZombiespligekingEntity.createAttributes().build());
-        event.put(PILGEKINGZOMBIES.get(), PilgekingzombiesEntity.createAttributes().build());
-        event.put(PILGEKINGZOMBIE.get(), PilgekingzombieEntity.createAttributes().build());
-        event.put(PIGLINCOMMANDER.get(), PiglincommanderEntity.createAttributes().build());
-        event.put(DARYLL.get(), DaryllEntity.createAttributes().build());
-        event.put(NAEUSKING.get(), NaeuskingEntity.createAttributes().build());
-        event.put(TUSK.get(), TuskEntity.createAttributes().build());
-        event.put(BROTS.get(), BrotsEntity.createAttributes().build());
-        event.put(ZOMBIEPIGLINART.get(), ZombiepiglinartEntity.createAttributes().build());
-        event.put(MUTATED.get(), MutatedEntity.createAttributes().build());
-        event.put(NAMTAR.get(), NamtarEntity.createAttributes().build());
-        event.put(AGETHA.get(), AgethaEntity.createAttributes().build());
-        event.put(TRICER.get(), TricerEntity.createAttributes().build());
-        event.put(BIGUNDEADSKELETON.get(), BigundeadskeletonEntity.createAttributes().build());
-        event.put(ARCHER.get(), ArcherEntity.createAttributes().build());
-        event.put(HIM.get(), HimEntity.createAttributes().build());
-        event.put(GIGABONE.get(), GigaboneEntity.createAttributes().build());
-        event.put(KLAUS.get(), KlausEntity.createAttributes().build());
-        event.put(KLAUS_2.get(), Klaus2Entity.createAttributes().build());
-        event.put(KRALOS.get(), KralosEntity.createAttributes().build());
-    }
+
+
+
 }

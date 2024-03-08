@@ -21,7 +21,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -34,12 +33,6 @@ import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber
 public class BrotsEntity extends Monster {
-    @SubscribeEvent
-    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
-        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.BROTS.get(), 5, 1, 1));
-    }
-
     public BrotsEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.BROTS.get(), world);
     }
@@ -47,8 +40,31 @@ public class BrotsEntity extends Monster {
     public BrotsEntity(EntityType<BrotsEntity> type, Level world) {
         super(type, world);
         this.xpReward = 20;
-        setNoAi(false);
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+        this.setNoAi(false);
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));
+    }
+
+    @SubscribeEvent
+    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
+        if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.BROTS.get(), 5, 1, 1));
+    }
+
+    public static void init() {
+        SpawnPlacements.register(ModEntities.BROTS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
+        builder = builder.add(Attributes.MAX_HEALTH, 50.0D);
+        builder = builder.add(Attributes.ARMOR, 20.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 4.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -59,16 +75,16 @@ public class BrotsEntity extends Monster {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.targetSelector.addGoal(1,  new NearestAttackableTargetGoal<>( this, Player.class, false, false));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal( this, 1.2D, false) {
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth());
             }
         });
-        this.goalSelector.addGoal(3,  new RandomStrollGoal( this, 1.0D));
-        this.targetSelector.addGoal(4,  new HurtByTargetGoal(this));
-        this.goalSelector.addGoal(5, new RandomLookAroundGoal( this));
-        this.goalSelector.addGoal(6,  new FloatGoal( this));
+        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0D));
+        this.targetSelector.addGoal(4, new HurtByTargetGoal(this));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(6, new FloatGoal(this));
     }
 
     @Override
@@ -84,22 +100,5 @@ public class BrotsEntity extends Monster {
     @Override
     public SoundEvent getDeathSound() {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombified_piglin.death"));
-    }
-
-    public static void init() {
-        SpawnPlacements.register(ModEntities.BROTS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
-                (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, (LevelAccessor) world, reason, pos, random)));
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(Attributes.MAX_HEALTH, 50.0D);
-        builder = builder.add(Attributes.ARMOR, 20.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 4.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

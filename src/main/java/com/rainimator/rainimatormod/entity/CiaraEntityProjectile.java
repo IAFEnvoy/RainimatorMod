@@ -25,10 +25,6 @@ public class CiaraEntityProjectile extends AbstractArrow implements ItemSupplier
         super(type, world);
     }
 
-    public CiaraEntityProjectile(EntityType<? extends CiaraEntityProjectile> type, double x, double y, double z, Level world) {
-        super(type, x, y, z, world);
-    }
-
     public CiaraEntityProjectile(EntityType<? extends CiaraEntityProjectile> type, LivingEntity entity, Level world) {
         super(type, entity, world);
     }

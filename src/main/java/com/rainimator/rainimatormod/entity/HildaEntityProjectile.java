@@ -25,10 +25,6 @@ public class HildaEntityProjectile extends AbstractArrow implements ItemSupplier
         super(type, world);
     }
 
-    public HildaEntityProjectile(EntityType<? extends HildaEntityProjectile> type, double x, double y, double z, Level world) {
-        super(type, x, y, z, world);
-    }
-
     public HildaEntityProjectile(EntityType<? extends HildaEntityProjectile> type, LivingEntity entity, Level world) {
         super(type, entity, world);
     }

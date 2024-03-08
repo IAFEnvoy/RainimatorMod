@@ -3,6 +3,11 @@ package com.rainimator.rainimatormod.registry;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.armor.*;
 import com.rainimator.rainimatormod.item.*;
+import com.rainimator.rainimatormod.item.shield.BluediamondshieldItem;
+import com.rainimator.rainimatormod.item.shield.ShieldeverItem;
+import com.rainimator.rainimatormod.item.shield.SnowshieldItem;
+import com.rainimator.rainimatormod.item.sword.*;
+import com.rainimator.rainimatormod.item.tool.*;
 import com.rainimator.rainimatormod.registry.util.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
@@ -17,19 +22,50 @@ public class ModItems {
 
     //resources
     public static final RegistryObject<Item> SUPER_RUBY = REGISTRY.register("super_ruby", () -> new ItemBase(p -> p.tab(ModCreativeTab.items).fireResistant()));
+    public static final RegistryObject<Item> ABIGAIL_SPEAR = REGISTRY.register("abigail_spear", AbigailSpearItem::new);
+    public static final RegistryObject<Item> GLUTTON_SLEDGEHAMMER = REGISTRY.register("glutton_sledgehammer", () -> new SwordItem(TierBase.of(1000, 2.0F, 8.0F, 0, 15, SUPER_RUBY), 3, -2.2F, ModCreativeTab.createProperty().fireResistant()));
     public static final RegistryObject<Item> RUBY = REGISTRY.register("ruby", () -> new ItemBase(p -> p.tab(ModCreativeTab.items)));
+    public static final RegistryObject<Item> RED_GOLD_DAGGER = REGISTRY.register("red_gold_dagger", RedGoldDaggerItem::new);
+    public static final RegistryObject<Item> BLACKBONE_THE_BLADE = REGISTRY.register("blackbone_the_blade", BlackboneTheBladeItem::new);
+    public static final RegistryObject<Item> BLACKBONE_THE_BLADE_DANSHOU = REGISTRY.register("blackbone_the_blade_danshou", BlackboneTheBladeSingleHandItem::new);
     public static final RegistryObject<Item> RUBY_ORE = block(ModBlocks.RUBY_ORE);
     public static final RegistryObject<Item> DEEPSLATE_RUBY_ORE = block(ModBlocks.DEEPSLATE_RUBY_ORE);
     public static final RegistryObject<Item> RUBYBLOCK = block(ModBlocks.RUBYBLOCK);
     public static final RegistryObject<Item> RUBYBLOCKSHIT = REGISTRY.register("rubyblockshit", () -> new ItemBase(p -> p.tab(ModCreativeTab.items).stacksTo(32)));
     public static final RegistryObject<Item> SUPER_SPPARIES = REGISTRY.register("super_spparies", () -> new ItemBase(p -> p.tab(ModCreativeTab.items).fireResistant()));
+    public static final RegistryObject<Item> PATRICK_ARMOR_HELMET = REGISTRY.register("patrick_armor_helmet", PatrickArmorItem.Helmet::new);
+    public static final RegistryObject<Item> PATRICK_ARMOR_CHESTPLATE = REGISTRY.register("patrick_armor_chestplate", PatrickArmorItem.Chestplate::new);
+    public static final RegistryObject<Item> PATRICK_ARMOR_LEGGINGS = REGISTRY.register("patrick_armor_leggings", PatrickArmorItem.Leggings::new);
+    public static final RegistryObject<Item> PATRICK_ARMOR_BOOTS = REGISTRY.register("patrick_armor_boots", PatrickArmorItem.Boots::new);
+    public static final RegistryObject<Item> RAIN_SWORD = REGISTRY.register("rain_sword", RainSwordItem::new);
+    public static final RegistryObject<Item> HEROBRINE_TOMAHAWK = REGISTRY.register("herobrine_tomahawk", HerobrineTomahawkItem::new);
+    public static final RegistryObject<Item> ZECANIRN_THEBLADE = REGISTRY.register("zecanirn_theblade", ZecanirnThebladeItem::new);
+    public static final RegistryObject<Item> END_BLADE = REGISTRY.register("end_blade", EndBladeItem::new);
+    public static final RegistryObject<Item> LASER_SWORD = REGISTRY.register("laser_sword", () -> new FoilSwordBase(TierBase.of(3000, 4.0F, 13.0F, 1, 18, ModItems.SUPER_SPPARIES.get(), Items.ENDER_EYE), 3, -2.4F, ModCreativeTab.createProperty()));
+    public static final RegistryObject<Item> MACE = REGISTRY.register("mace", () -> new SwordItem(TierBase.of(12000, 4.0F, 10.0F, 0, 10, ModItems.SUPER_SPPARIES), 3, -2.6F, ModCreativeTab.createProperty().fireResistant()));
     public static final RegistryObject<Item> SAPPRIES = REGISTRY.register("sappries", () -> new ItemBase(p -> p.tab(ModCreativeTab.items)));
+    public static final RegistryObject<Item> INTELLIGENCE_TOMAHAWK = REGISTRY.register("intelligence_tomahawk", IntelligenceTomahawkItem::new);
+    //sword
+    public static final RegistryObject<Item> GENERAL_PATRICK_LONG_KNIVES = REGISTRY.register("general_patrick_long_knives", () -> new SwordItem(TierBase.of(2500, 4.0F, 7.0F, 0, 5, SAPPRIES), 3, -2.0F, ModCreativeTab.createProperty().fireResistant()));
+    public static final RegistryObject<Item> SOLDIERS_HALBERD = REGISTRY.register("soldiers_halberd", () -> new SwordItem(TierBase.of(1500, 4.0F, 7.0F, 0, 5, SAPPRIES), 3, -2.0F, ModCreativeTab.createProperty()));
+    public static final RegistryObject<Item> SOLDIERS_WARHAMMER = REGISTRY.register("soldiers_warhammer", () -> new SwordItem(TierBase.of(2000, 4.0F, 6.0F, 0, 5, SAPPRIES), 3, -2.2F, ModCreativeTab.createProperty()));
+    public static final RegistryObject<Item> THE_BLUE_DAGGER = REGISTRY.register("the_blue_dagger", () -> new SwordItem(TierBase.of(2000, 4.0F, 5.0F, 1, 10, ModItems.SAPPRIES), 3, -2.0F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> SAPPRIES_ORE = block(ModBlocks.SAPPRIES_ORE);
     public static final RegistryObject<Item> DEEPSLATE_SAPPRIES_ORE = block(ModBlocks.DEEPSLATE_SAPPRIES_ORE);
-    public static final RegistryObject<Item> SAPPRIESBLOCK = block(ModBlocks.SAPPRIESBLOCK);
+    public static final RegistryObject<Item> SAPPRIESBLOCK = block(ModBlocks.SAPPRIESBLOCK);    //armor
+    public static final RegistryObject<Item> HEROBRINE_ARMOR_CHESTPLATE = REGISTRY.register("herobrine_armor_chestplate", HerobrineArmorItem.Chestplate::new);
     public static final RegistryObject<Item> SAPPRIESBLOCKSHIT = REGISTRY.register("sappriesblockshit", () -> new ItemBase(p -> p.tab(ModCreativeTab.items).stacksTo(32)));
     public static final RegistryObject<Item> HOT_IRON = REGISTRY.register("hot_iron", () -> new ItemBase(p -> p.tab(ModCreativeTab.items)));
+    public static final RegistryObject<Item> HOT_GLOVES = REGISTRY.register("hot_gloves", HotGlovesItem::new);
     public static final RegistryObject<Item> BLUEDIAMOND = REGISTRY.register("bluediamond", BlueDiamondItem::new);
+    public static final RegistryObject<Item> BLUEDIAMONDARMORS_HELMET = REGISTRY.register("bluediamondarmors_helmet", BluediamondarmorsItem.Helmet::new);
+    public static final RegistryObject<Item> BLUEDIAMONDARMORS_CHESTPLATE = REGISTRY.register("bluediamondarmors_chestplate", BluediamondarmorsItem.Chestplate::new);
+    public static final RegistryObject<Item> BLUEDIAMONDARMORS_LEGGINGS = REGISTRY.register("bluediamondarmors_leggings", BluediamondarmorsItem.Leggings::new);
+    public static final RegistryObject<Item> BLUEDIAMONDARMORS_BOOTS = REGISTRY.register("bluediamondarmors_boots", BluediamondarmorsItem.Boots::new);
+    public static final RegistryObject<Item> DIAMOND_LANCE = REGISTRY.register("diamond_lance", DiamondLanceItem::new);
+    public static final RegistryObject<Item> BLUE_DIAMOND_SWORD = REGISTRY.register("blue_diamond_sword", BlueDiamondSwordItem::new);
+    //axe
+    public static final RegistryObject<Item> DIAMOND_HATCHET = REGISTRY.register("diamond_hatchet", () -> new AxeItem(TierBase.of(1500, 4.0F, 5.0F, 2, 2, BLUEDIAMOND), 1.0F, -2.0F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> BLUEDIAMONDBLOCK = block(ModBlocks.BLUEDIAMONDBLOCK);
     public static final RegistryObject<Item> DARKOBSIDIANBLOCK = block(ModBlocks.DARKOBSIDIANBLOCK);
     public static final RegistryObject<Item> ZOMBIE_HEART = REGISTRY.register("zombie_heart", ZombieHeartItem::new);
@@ -45,21 +81,11 @@ public class ModItems {
     public static final RegistryObject<Item> SOULPEOPLE = REGISTRY.register("soulpeople", () -> new FoilItemBase(p -> p.tab(ModCreativeTab.items).stacksTo(32).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> ENDERSTONE = REGISTRY.register("enderstone", () -> new FoilItemBase(p -> p.tab(ModCreativeTab.items).stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> NEAUSSOULS = REGISTRY.register("neaussouls", () -> new FoilItemBase(p -> p.tab(ModCreativeTab.items).stacksTo(32).fireResistant().rarity(Rarity.EPIC)));
-    public static final RegistryObject<Item> ICEDHEART = REGISTRY.register("icedheart", () -> new ItemBase(p -> p.tab(ModCreativeTab.items).stacksTo(1).rarity(Rarity.UNCOMMON)));
-    //armor
-    public static final RegistryObject<Item> HEROBRINE_ARMOR_CHESTPLATE = REGISTRY.register("herobrine_armor_chestplate", HerobrineArmorItem.Chestplate::new);
-    public static final RegistryObject<Item> PATRICK_ARMOR_HELMET = REGISTRY.register("patrick_armor_helmet", PatrickArmorItem.Helmet::new);
-    public static final RegistryObject<Item> PATRICK_ARMOR_CHESTPLATE = REGISTRY.register("patrick_armor_chestplate", PatrickArmorItem.Chestplate::new);
-    public static final RegistryObject<Item> PATRICK_ARMOR_LEGGINGS = REGISTRY.register("patrick_armor_leggings", PatrickArmorItem.Leggings::new);
-    public static final RegistryObject<Item> PATRICK_ARMOR_BOOTS = REGISTRY.register("patrick_armor_boots", PatrickArmorItem.Boots::new);
+    public static final RegistryObject<Item> ICEDHEART = REGISTRY.register("icedheart", () -> new ItemBase(p -> p.tab(ModCreativeTab.items).stacksTo(1).rarity(Rarity.UNCOMMON)));    public static final RegistryObject<Item> RAINARMOR_CHESTPLATE = REGISTRY.register("rainarmor_chestplate", RainarmorItem.Chestplate::new);
     public static final RegistryObject<Item> CHIEF_OF_THE_PIG_PEOPLE_ARAMOR_HELMET = REGISTRY.register("chief_of_the_pig_people_aramor_helmet", ChiefOfThePigPeopleArmorItem.Helmet::new);
     public static final RegistryObject<Item> CHIEF_OF_THE_PIG_PEOPLE_ARAMOR_CHESTPLATE = REGISTRY.register("chief_of_the_pig_people_aramor_chestplate", ChiefOfThePigPeopleArmorItem.Chestplate::new);
     public static final RegistryObject<Item> CHIEF_OF_THE_PIG_PEOPLE_ARAMOR_LEGGINGS = REGISTRY.register("chief_of_the_pig_people_aramor_leggings", ChiefOfThePigPeopleArmorItem.Leggings::new);
     public static final RegistryObject<Item> CHIEF_OF_THE_PIG_PEOPLE_ARAMOR_BOOTS = REGISTRY.register("chief_of_the_pig_people_aramor_boots", ChiefOfThePigPeopleArmorItem.Boots::new);
-    public static final RegistryObject<Item> BLUEDIAMONDARMORS_HELMET = REGISTRY.register("bluediamondarmors_helmet", BluediamondarmorsItem.Helmet::new);
-    public static final RegistryObject<Item> BLUEDIAMONDARMORS_CHESTPLATE = REGISTRY.register("bluediamondarmors_chestplate", BluediamondarmorsItem.Chestplate::new);
-    public static final RegistryObject<Item> BLUEDIAMONDARMORS_LEGGINGS = REGISTRY.register("bluediamondarmors_leggings", BluediamondarmorsItem.Leggings::new);
-    public static final RegistryObject<Item> BLUEDIAMONDARMORS_BOOTS = REGISTRY.register("bluediamondarmors_boots", BluediamondarmorsItem.Boots::new);
     public static final RegistryObject<Item> SOLDIERS_ARMOR_HELMET = REGISTRY.register("soldiers_armor_helmet", SoldiersArmorItem.Helmet::new);
     public static final RegistryObject<Item> SOLDIERS_ARMOR_CHESTPLATE = REGISTRY.register("soldiers_armor_chestplate", SoldiersArmorItem.Chestplate::new);
     public static final RegistryObject<Item> SOLDIERS_ARMOR_LEGGINGS = REGISTRY.register("soldiers_armor_leggings", SoldiersArmorItem.Leggings::new);
@@ -74,7 +100,6 @@ public class ModItems {
     public static final RegistryObject<Item> SAPPRIESARMOR_BOOTS = REGISTRY.register("sappriesarmor_boots", SappriesarmorItem.Boots::new);
     public static final RegistryObject<Item> MAGICHAT_HELMET = REGISTRY.register("magichat_helmet", MagichatItem.Helmet::new);
     public static final RegistryObject<Item> NETHER_THE_CROWN_HELMET = REGISTRY.register("nether_the_crown_helmet", NetherTheCrownItem.Helmet::new);
-    public static final RegistryObject<Item> RAINARMOR_CHESTPLATE = REGISTRY.register("rainarmor_chestplate", RainarmorItem.Chestplate::new);
     public static final RegistryObject<Item> GLUTTONARMOR_1_HELMET = REGISTRY.register("gluttonarmor_1_helmet", Gluttonarmor1Item.Helmet::new);
     public static final RegistryObject<Item> PIGLINKINGCROWN_HELMET = REGISTRY.register("piglinkingcrown_helmet", PiglinkingcrownItem.Helmet::new);
     public static final RegistryObject<Item> KINGNOMALCROWN_HELMET = REGISTRY.register("kingnomalcrown_helmet", KingnomalcrownItem.Helmet::new);
@@ -84,26 +109,13 @@ public class ModItems {
     public static final RegistryObject<Item> HEROBRINE_DIAMOND_PICKAXE = REGISTRY.register("herobrine_diamond_pickaxe", HerobrineDiamondPickaxeItem::new);
     public static final RegistryObject<Item> SUPER_DIAMOND_APPLE = REGISTRY.register("super_diamond_apple", SuperDiamondAppleItem::new);
     public static final RegistryObject<Item> NAEUS_SWORD = REGISTRY.register("naeus_sword", NaeusSwordItem::new);
-    public static final RegistryObject<Item> RAIN_SWORD = REGISTRY.register("rain_sword", RainSwordItem::new);
-    public static final RegistryObject<Item> HEROBRINE_TOMAHAWK = REGISTRY.register("herobrine_tomahawk", HerobrineTomahawkItem::new);
-    public static final RegistryObject<Item> ZECANIRN_THEBLADE = REGISTRY.register("zecanirn_theblade", ZecanirnThebladeItem::new);
-    public static final RegistryObject<Item> ABIGAIL_SPEAR = REGISTRY.register("abigail_spear", AbigailSpearItem::new);
-    public static final RegistryObject<Item> DIAMOND_LANCE = REGISTRY.register("diamond_lance", DiamondLanceItem::new);
-    public static final RegistryObject<Item> HOT_GLOVES = REGISTRY.register("hot_gloves", HotGlovesItem::new);
-    public static final RegistryObject<Item> RED_GOLD_DAGGER = REGISTRY.register("red_gold_dagger", RedGoldDaggerItem::new);
-    public static final RegistryObject<Item> BLUE_DIAMOND_SWORD = REGISTRY.register("blue_diamond_sword", BlueDiamondSwordItem::new);
     public static final RegistryObject<Item> NETHER_SPEAR = REGISTRY.register("nether_spear", NetherSpearItem::new);
     public static final RegistryObject<Item> LOWER_BOUND_ALLOY_FLAME_SABER = REGISTRY.register("lower_bound_alloy_flame_saber", LowerBoundAlloyFlameSaberItem::new);
-    public static final RegistryObject<Item> END_BLADE = REGISTRY.register("end_blade", EndBladeItem::new);
     public static final RegistryObject<Item> LOWER_BOUND_NUCLEAR_REACTOR = REGISTRY.register("lower_bound_nuclear_reactor", LowerBoundNuclearReactorItem::new);
     public static final RegistryObject<Item> NIGHTMARES = REGISTRY.register("nightmares", NightmaresItem::new);
-    public static final RegistryObject<Item> BLACKBONE_THE_BLADE = REGISTRY.register("blackbone_the_blade", BlackboneTheBladeItem::new);
-    public static final RegistryObject<Item> BLACKBONE_THE_BLADE_DANSHOU = REGISTRY.register("blackbone_the_blade_danshou", BlackboneTheBladeSingleHandItem::new);
     public static final RegistryObject<Item> END_SATFF = REGISTRY.register("end_satff", EndSatffItem::new);
     public static final RegistryObject<Item> MAGIC_STARD = REGISTRY.register("magic_stard", () -> new ItemBase(p -> p.tab(ModCreativeTab.items).durability(5)));
-    public static final RegistryObject<Item> INTELLIGENCE_TOMAHAWK = REGISTRY.register("intelligence_tomahawk", IntelligenceTomahawkItem::new);
-    public static final RegistryObject<Item> LASER_SWORD = REGISTRY.register("laser_sword", LaserSwordItem::new);
-    public static final RegistryObject<Item> LIGHTSWORD = REGISTRY.register("lightsword", LightswordItem::new);
+    public static final RegistryObject<Item> LIGHTSWORD = REGISTRY.register("lightsword", () -> new FoilSwordBase(TierBase.of(200, 0.0F, 5.0F, 0, 25), 3, -2.2F, ModCreativeTab.createProperty().fireResistant()));
     public static final RegistryObject<Item> SHIELDEVER = REGISTRY.register("shieldever", ShieldeverItem::new);
     public static final RegistryObject<Item> DIVINECORE = REGISTRY.register("divinecore", DivinecoreItem::new);
     public static final RegistryObject<Item> SNOWSHIELD = REGISTRY.register("snowshield", SnowshieldItem::new);
@@ -129,22 +141,15 @@ public class ModItems {
     public static final RegistryObject<Item> BLACKDEATHSWORD = REGISTRY.register("blackdeathsword", BlackdeathswordItem::new);
     public static final RegistryObject<Item> PURIFICATION_1 = REGISTRY.register("purification_1", Purification1Item::new);
     public static final RegistryObject<Item> MYSTERIOUSGIFTBOX = REGISTRY.register("mysteriousgiftbox", MysteriousgiftboxItem::new);
-    public static final RegistryObject<Item> RAINLAZYEDSWORD = REGISTRY.register("rainlazyedsword", RainlazyedswordItem::new);
+    public static final RegistryObject<Item> RAINLAZYEDSWORD = REGISTRY.register("rainlazyedsword", () -> new FoilSwordBase(TierBase.of(1500, 0.0F, 8.0F, 0, 15), 3, -2.0F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> MAGICENDERPEAL = REGISTRY.register("magicenderpeal", MagicenderpealItem::new);
     public static final RegistryObject<Item> SOULTOTEM = REGISTRY.register("soultotem", SoultotemItem::new);
-    //sword
-    public static final RegistryObject<Item> GENERAL_PATRICK_LONG_KNIVES = REGISTRY.register("general_patrick_long_knives", () -> new SwordItem(TierBase.of(2500, 4.0F, 7.0F, 0, 5, SAPPRIES), 3, -2.0F, ModCreativeTab.createProperty().fireResistant()));
     public static final RegistryObject<Item> KING_ZOMBIE_PIG_MAN_SWORD = REGISTRY.register("king_zombie_pig_man_sword", () -> new SwordItem(TierBase.of(500, 0.0F, 6.0F, 0, 25, Items.GOLD_INGOT), 3, -2.3F, ModCreativeTab.createProperty()));
-    public static final RegistryObject<Item> SOLDIERS_HALBERD = REGISTRY.register("soldiers_halberd", () -> new SwordItem(TierBase.of(1500, 4.0F, 7.0F, 0, 5, SAPPRIES), 3, -2.0F, ModCreativeTab.createProperty()));
-    public static final RegistryObject<Item> GLUTTON_SLEDGEHAMMER = REGISTRY.register("glutton_sledgehammer", () -> new SwordItem(TierBase.of(1000, 2.0F, 8.0F, 0, 15, SUPER_RUBY), 3, -2.2F, ModCreativeTab.createProperty().fireResistant()));
     public static final RegistryObject<Item> EMERALD_BLADE = REGISTRY.register("emerald_blade", () -> new SwordItem(TierBase.of(1200, 4.0F, 5.0F, 0, 3, Blocks.EMERALD_BLOCK), 3, -2.2F, ModCreativeTab.createProperty().fireResistant()));
     public static final RegistryObject<Item> BLADEOFTHE_WHIRLWIND = REGISTRY.register("bladeofthe_whirlwind", () -> new SwordItem(TierBase.of(2500, 4.0F, 6.0F, 0, 2, Blocks.OAK_LEAVES), 3, -2.8F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> SNOW_DIAMOND_SWORD = REGISTRY.register("snow_diamond_sword", () -> new SwordItem(TierBase.of(3000, 4.0F, 6.0F, 0, 2, Blocks.SNOW_BLOCK), 3, -2.0F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> NETHER_SICKLE = REGISTRY.register("nether_sickle", () -> new SwordItem(TierBase.of(2000, 4.0F, 3.0F, 1, 2, Blocks.STRIPPED_WARPED_STEM), 3, -2.0F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> THE_GOLDEN_SWORD = REGISTRY.register("the_golden_sword", () -> new SwordItem(TierBase.of(3000, 4.0F, 6.0F, 1, 5, Blocks.GOLD_BLOCK), 3, -2.0F, ModCreativeTab.createProperty().fireResistant()));
-    public static final RegistryObject<Item> MACE = REGISTRY.register("mace", () -> new SwordItem(TierBase.of(12000, 4.0F, 10.0F, 0, 10, ModItems.SUPER_SPPARIES), 3, -2.6F, ModCreativeTab.createProperty().fireResistant()));
-    public static final RegistryObject<Item> SOLDIERS_WARHAMMER = REGISTRY.register("soldiers_warhammer", () -> new SwordItem(TierBase.of(2000, 4.0F, 6.0F, 0, 5, SAPPRIES), 3, -2.2F, ModCreativeTab.createProperty()));
-    public static final RegistryObject<Item> THE_BLUE_DAGGER = REGISTRY.register("the_blue_dagger", () -> new SwordItem(TierBase.of(2000, 4.0F, 5.0F, 1, 10, ModItems.SAPPRIES), 3, -2.0F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> DEEP_SICKLE = REGISTRY.register("deep_sickle", () -> new SwordItem(TierBase.of(1000, 4.0F, 6.0F, 1, 2, Blocks.MOSS_BLOCK), 3, -2.4F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> IRON_DAGGER = REGISTRY.register("iron_dagger", () -> new SwordItem(TierBase.of(1400, 4.0F, 7.0F, 1, 8, Blocks.IRON_BLOCK.asItem(), Items.IRON_INGOT), 3, -2.0F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> DEEPWARHAMMER = REGISTRY.register("deepwarhammer", () -> new SwordItem(TierBase.of(1500, 0.0F, 8.0F, 0, 5), 3, -2.3F, ModCreativeTab.createProperty()));
@@ -158,8 +163,6 @@ public class ModItems {
     public static final RegistryObject<Item> SOULRAIDINGHAMMER = REGISTRY.register("soulraidinghammer", () -> new SwordItem(TierBase.of(2000, 0.0F, 10.0F, 0, 20), 3, -2.2F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> KATANA = REGISTRY.register("katana", () -> new SwordItem(TierBase.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.0F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> AMETHYSTWARHAMMER = REGISTRY.register("amethystwarhammer", () -> new SwordItem(TierBase.of(1500, 0.0F, 9.0F, 0, 25), 3, -2.0F, ModCreativeTab.createProperty()));
-    //axe
-    public static final RegistryObject<Item> DIAMOND_HATCHET = REGISTRY.register("diamond_hatchet", () -> new AxeItem(TierBase.of(1500, 4.0F, 5.0F, 2, 2, BLUEDIAMOND), 1.0F, -2.0F, ModCreativeTab.createProperty()));
     //spawn egg
     public static final RegistryObject<Item> HEROBRINE_SPAWN_EGG = REGISTRY.register("herobrine_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.HEROBRINE, -10092544, -65536, ModCreativeTab.createProperty("mobs")));
     public static final RegistryObject<Item> CERIS_SPAWN_EGG = REGISTRY.register("ceris_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.CERIS, -10092442, -65281, ModCreativeTab.createProperty("mobs")));
@@ -217,4 +220,7 @@ public class ModItems {
     private static RegistryObject<Item> block(RegistryObject<Block> block) {
         return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), ModCreativeTab.createProperty("items")));
     }
+
+
+
 }

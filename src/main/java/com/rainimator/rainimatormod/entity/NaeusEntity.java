@@ -5,6 +5,7 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.Util;
 import net.minecraft.commands.CommandSourceStack;
@@ -13,7 +14,6 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -69,6 +69,18 @@ public class NaeusEntity extends Monster {
         this.setNoAi(false);
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NAEUS_SWORD.get()));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
+        builder = builder.add(Attributes.MAX_HEALTH, 200.0D);
+        builder = builder.add(Attributes.ARMOR, 35.0D);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 10.0D);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
+        return builder;
     }
 
     @Override
@@ -134,10 +146,7 @@ public class NaeusEntity extends Monster {
             else if (this.hasEffect(MobEffects.POISON))
                 this.removeAllEffects();
             else if (Math.random() < 0.5D) {
-                if (!this.level.isClientSide())
-                    this.level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-                else
-                    this.level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
+                MiscUtil.playSound(this.level,x,y,z,new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"),1.0F, 1.0F);
                 if (this.level instanceof ServerLevel _level)
                     _level.sendParticles((ParticleOptions) ModParticleTypes.REDFLOWER.get(), x, y, z, 20, 0.5D, 0.0D, 0.5D, 0.5D);
                 if (sourceentity instanceof LivingEntity _entity)
@@ -234,15 +243,11 @@ public class NaeusEntity extends Monster {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (world instanceof Level _level) {
-            if (!_level.isClientSide())
-                _level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "naeus_living"))), SoundSource.NEUTRAL, 1.0F, 1.0F);
-            else
-                _level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(RainimatorMod.MOD_ID, "naeus_living"))), SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-        }
+        if (world instanceof Level _level)
+            MiscUtil.playSound(_level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "naeus_living"), 1.0F, 1.0F);
         if (world instanceof ServerLevel _level)
             _level.sendParticles((ParticleOptions) ModParticleTypes.REDFLOWER.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
-        if (!(world.getDifficulty() == Difficulty.PEACEFUL)) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!this.level.isClientSide() && this.getServer() != null)
                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:naeus_boss_music neutral @a ~ ~ ~");
 
@@ -265,12 +270,10 @@ public class NaeusEntity extends Monster {
     public void baseTick() {
         super.baseTick();
         double y = this.getY();
-        if (this.level instanceof ServerLevel) {
-            ServerLevel _level = (ServerLevel) this.level;
+        if (this.level instanceof ServerLevel _level)
             _level.sendParticles((ParticleOptions) ModParticleTypes.REDFLOWER.get(), this.level
                     .clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(-1.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, this)).getBlockPos().getX(), y + 1.4D, this.level
                     .clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(-1.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, this)).getBlockPos().getZ(), 5, 0.5D, 0.0D, 0.5D, 0.1D);
-        }
         if (this.getHealth() <= 75.0F) {
             if (!this.level.isClientSide())
                 this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2));
@@ -281,7 +284,7 @@ public class NaeusEntity extends Monster {
             }
         }
         if (!this.isAlive() && this.level instanceof ServerLevel _level)
-            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), y, this.getZ()), Vec2.ZERO, _level, 4, "", (Component) new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:naeus_boss_music");
+            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), y, this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:naeus_boss_music");
     }
 
     @Override
@@ -305,20 +308,5 @@ public class NaeusEntity extends Monster {
     public void customServerAiStep() {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
-    }
-
-    public static void init() {
-    }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(Attributes.MAX_HEALTH, 200.0D);
-        builder = builder.add(Attributes.ARMOR, 35.0D);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 64.0D);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 10.0D);
-        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 }

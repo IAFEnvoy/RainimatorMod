@@ -37,6 +37,11 @@ public class DarkobsidianblockBlock extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public static void registerRenderLayer() {
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DARKOBSIDIANBLOCK.get(), renderType -> (renderType == RenderType.cutout()));
+    }
+
     @Override
     public boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter reader, @NotNull BlockPos pos) {
         return true;
@@ -99,10 +104,5 @@ public class DarkobsidianblockBlock extends Block {
         //TODO: Fail to decompile Darkobsidianblock_skillProcedure.java
 //        Darkobsidianblock_skillProcedure.execute((LevelAccessor) world, x, y, z, (Entity) entity);
         return InteractionResult.SUCCESS;
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.DARKOBSIDIANBLOCK.get(), renderType -> (renderType == RenderType.cutout()));
     }
 }
