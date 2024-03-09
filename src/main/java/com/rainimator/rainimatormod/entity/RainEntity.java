@@ -25,6 +25,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -145,7 +146,7 @@ public class RainEntity extends Monster implements RangedAttackMob {
                 this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 3));
                 this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 3));
             }
-        if (source.getDirectEntity() instanceof net.minecraft.world.entity.projectile.AbstractArrow)
+        if (source.getDirectEntity() instanceof AbstractArrow)
             return false;
         if (source == DamageSource.FALL)
             return false;

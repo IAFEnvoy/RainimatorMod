@@ -8,6 +8,7 @@ import com.rainimator.rainimatormod.registry.ModParticleTypes;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.Util;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -38,12 +39,14 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
@@ -67,9 +70,6 @@ public class NaeuskingEntity extends Monster {
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.NETHER_SPEAR.get()));
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.NETHER_THE_CROWN_HELMET.get()));
-    }
-
-    public static void init() {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -216,7 +216,7 @@ public class NaeuskingEntity extends Monster {
             }
         }
 
-        if (source.getDirectEntity() instanceof net.minecraft.world.entity.projectile.AbstractArrow)
+        if (source.getDirectEntity() instanceof AbstractArrow)
             return false;
         if (source == DamageSource.FALL)
             return false;
@@ -277,8 +277,16 @@ public class NaeuskingEntity extends Monster {
     @Override
     public void baseTick() {
         super.baseTick();
-        //TODO: Fail to decompile
-//        Naeusking_livingProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
+        if (this.hasEffect(ModEffects.ICEPEOPLE.get()) || this.hasEffect(ModEffects.FEARDARK.get()) || this.hasEffect(ModEffects.SOULDEATH.get())) {
+            this.removeAllEffects();
+            this.teleportTo(x, (y + 3), z);
+        }
+        if (!this.isAlive())
+            if (this.level instanceof ServerLevel _level)
+                _level.getServer().getCommands().performCommand(new CommandSourceStack(NULL, new Vec3(x, y, z), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null).withSuppressedOutput(), "stopsound @a neutral rainimator:naeus_boss_music");
     }
 
     @Override

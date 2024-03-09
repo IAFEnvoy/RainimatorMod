@@ -20,7 +20,6 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
@@ -54,7 +53,6 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 public class HerobrineEntity extends Monster {
@@ -137,21 +135,12 @@ public class HerobrineEntity extends Monster {
         Vec3 _center = new Vec3(x, y, z);
         List<Entity> _entfound = (this.level).getEntitiesOfClass(Entity.class, (new AABB(_center, _center)).inflate(4.5D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
         for (Entity entityiterator : _entfound) {
-            LivingEntity livingEntity = this;
-            if (livingEntity.hasEffect(ModEffects.ICEPEOPLE.get())) {
-                MiscUtil.playSound(this.level,this.getX(), this.getY(), this.getZ(),new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"),1.0F, 1.0F);
+            if (this.hasEffect(ModEffects.ICEPEOPLE.get())) {
+                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
                 this.teleportTo(x, y + 4.0D, z);
                 continue;
             }
-            if (this.hasEffect(MobEffects.POISON)) {
-                this.removeAllEffects();
-                continue;
-            }
-            if (this.hasEffect(MobEffects.WITHER)) {
-                this.removeAllEffects();
-                continue;
-            }
-            if (this.hasEffect(ModEffects.SOULDEATH.get())) {
+            if (this.hasEffect(MobEffects.POISON) || this.hasEffect(MobEffects.WITHER) || this.hasEffect(ModEffects.SOULDEATH.get())) {
                 this.removeAllEffects();
                 continue;
             }

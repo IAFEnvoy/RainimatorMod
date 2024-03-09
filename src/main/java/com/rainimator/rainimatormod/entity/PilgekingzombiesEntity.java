@@ -1,8 +1,13 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
@@ -12,6 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.BossEvent;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -126,9 +132,32 @@ public class PilgekingzombiesEntity extends Monster {
     @Override
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        //TODO: Fail to decompile, message as follow
-        // INTERNAL ERROR //
-//        Glutton_skill_2Procedure.execute( world, this.getX(), this.getY(), this.getZ(),  this);
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
+        if (world instanceof Level _level)
+            MiscUtil.playSound(_level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_skill"), 5, 1);
+        if (world instanceof ServerLevel _level)
+            _level.sendParticles((SimpleParticleType) (ModParticleTypes.YELLOWSTEARS.get()), x, y, z, 100, 1, 2, 1, 1);
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
+            if (!this.level.isClientSide() && this.getServer() != null)
+                this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimtor:gutton_boss_music neutral @a ~ ~ ~");
+            Timeout.create(30, () -> {
+                if (world instanceof Level _level)
+                    MiscUtil.playSound(_level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_living"), 5, 1);
+            });
+            Runnable callback = () -> {
+                if (this.isAlive())
+                    if (!this.level.isClientSide() && this.getServer() != null)
+                        this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimtor:gutton_boss_music neutral @a ~ ~ ~");
+            };
+            Timeout.create(5520, callback);
+            Timeout.create(11040, callback);
+            Timeout.create(16560, callback);
+            Timeout.create(22080, callback);
+            Timeout.create(27600, callback);
+            Timeout.create(33120, callback);
+        }
         return retval;
     }
 

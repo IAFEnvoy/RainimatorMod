@@ -1,14 +1,34 @@
 package com.rainimator.rainimatormod.block;
 
+import com.rainimator.rainimatormod.entity.*;
 import com.rainimator.rainimatormod.registry.ModBlocks;
+import com.rainimator.rainimatormod.registry.ModEntities;
+import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.util.Consumer5;
+import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.Timeout;
+import net.minecraft.Util;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.monster.Pillager;
+import net.minecraft.world.entity.monster.ZombifiedPiglin;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -27,9 +47,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class DarkobsidianblockBlock extends Block {
+    public static final HashMap<Item, Consumer5<Player, ServerLevel, Integer, Integer, Integer>> consumers = new HashMap<>();
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public DarkobsidianblockBlock() {
@@ -97,12 +120,245 @@ public class DarkobsidianblockBlock extends Block {
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
-        double hitX = (hit.getLocation()).x;
-        double hitY = (hit.getLocation()).y;
-        double hitZ = (hit.getLocation()).z;
-        Direction direction = hit.getDirection();
-        //TODO: Fail to decompile Darkobsidianblock_skillProcedure.java
-//        Darkobsidianblock_skillProcedure.execute((LevelAccessor) world, x, y, z, (Entity) entity);
+        if (consumers.size() == 0) initConsumers();
+        if (consumers.containsKey(entity.getMainHandItem().getItem())) {
+            if (world instanceof ServerLevel _level) {
+                _level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, x, y, z, 200, 0, 8, 0, 0.0002);
+                _level.sendParticles(ParticleTypes.FLAME, ((double) x + 3), y, z, 150, 0, 6, 0, 0.0002);
+                _level.sendParticles(ParticleTypes.FLAME, ((double) x - 3), y, z, 150, 0, 6, 0, 0.0002);
+                _level.sendParticles(ParticleTypes.FLAME, x, y, ((double) z + 3), 150, 0, 6, 0, 0.0002);
+                _level.sendParticles(ParticleTypes.FLAME, x, y, ((double) z - 3), 150, 0, 6, 0, 0.0002);
+                _level.sendParticles(ParticleTypes.FLAME, ((double) x + 2), y, ((double) z + 2), 150, 0, 6, 0, 0.0002);
+                _level.sendParticles(ParticleTypes.FLAME, ((double) x - 2), y, ((double) z - 2), 150, 0, 6, 0, 0.0002);
+                _level.sendParticles(ParticleTypes.FLAME, ((double) x + 2), y, ((double) z - 2), 150, 0, 6, 0, 0.0002);
+                _level.sendParticles(ParticleTypes.FLAME, ((double) x - 2), y, ((double) z + 2), 150, 0, 6, 0, 0.0002);
+            }
+            MiscUtil.playSound(world, x, y, z, new ResourceLocation("block.portal.travel"), 1, 1);
+            if (!world.isClientSide() && world.getServer() != null)
+                world.getServer().getPlayerList().broadcastMessage(new TextComponent("释放能量中"), ChatType.SYSTEM, Util.NIL_UUID);
+            ItemStack _setstack = new ItemStack(Blocks.AIR);
+            _setstack.setCount(1);
+            entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
+            entity.getInventory().setChanged();
+            if (world instanceof ServerLevel _level)
+                Timeout.create(60, () -> consumers.get(entity.getMainHandItem().getItem()).accept(entity, _level, x, y, z));
+        }
         return InteractionResult.SUCCESS;
+    }
+
+    public static synchronized void initConsumers() {
+        consumers.put(ModItems.LIGHTHEART.get(), (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new HerobrineEntity(ModEntities.HEROBRINE.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+            Mob entityToSpawn2 = new ZombiesEntity(ModEntities.ZOMBIES.get(), world);
+            entityToSpawn2.moveTo(x, y, ((double) z - Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn2.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn2);
+            Mob entityToSpawn3 = new DarkzombieEntity(ModEntities.DARKZOMBIE.get(), world);
+            entityToSpawn3.moveTo(x, y, ((double) z + Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn3.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn3);
+            Mob entityToSpawn4 = new AzaleaEntity(ModEntities.AZALEA.get(), world);
+            entityToSpawn4.moveTo(((double) x + Mth.nextInt(new Random(), 1, 3)), y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn4.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn4.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn4);
+        });
+        consumers.put(Blocks.WITHER_ROSE.asItem(), (entity, world, x, y, z) -> {
+            ItemStack _stktoremove = new ItemStack(Blocks.WITHER_ROSE);
+            entity.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, entity.inventoryMenu.getCraftSlots());
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new KralosEntity(ModEntities.KRALOS.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+        });
+        consumers.put(Items.TOTEM_OF_UNDYING, (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new KlausEntity(ModEntities.KLAUS.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+            Mob entityToSpawn2 = new Pillager(EntityType.PILLAGER, world);
+            entityToSpawn2.moveTo(x, y, ((double) z - Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn2.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn2);
+            Mob entityToSpawn3 = new Pillager(EntityType.PILLAGER, world);
+            entityToSpawn3.moveTo(x, y, ((double) z + Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn3.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn3);
+            Mob entityToSpawn4 = new Pillager(EntityType.PILLAGER, world);
+            entityToSpawn4.moveTo(((double) x + Mth.nextInt(new Random(), 1, 3)), y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn4.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn4.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn4);
+            Mob entityToSpawn5 = new Pillager(EntityType.PILLAGER, world);
+            entityToSpawn5.moveTo(((double) x - Mth.nextInt(new Random(), 1, 3)), y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn5.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn5.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn5);
+        });
+        consumers.put(Blocks.WITHER_SKELETON_SKULL.asItem(), (entity, world, x, y, z) -> {
+            ItemStack _stktoremove = new ItemStack(Blocks.WITHER_SKELETON_SKULL);
+            entity.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, entity.inventoryMenu.getCraftSlots());
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new GigaboneEntity(ModEntities.GIGABONE.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+        });
+        consumers.put(ModItems.SOULPEOPLE.get(), (entity, world, x, y, z) -> {
+            ItemStack _stktoremove = new ItemStack(ModItems.SOULPEOPLE.get());
+            entity.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, entity.inventoryMenu.getCraftSlots());
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new NamtarEntity(ModEntities.NAMTAR.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+            Mob entityToSpawn2 = new ZombiepiglinartEntity(ModEntities.ZOMBIEPIGLINART.get(), world);
+            entityToSpawn2.moveTo(x, y, ((double) z - Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn2.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn2);
+            Mob entityToSpawn3 = new MutatedEntity(ModEntities.MUTATED.get(), world);
+            entityToSpawn3.moveTo(x, y, ((double) z + Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn3.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn3);
+            Mob entityToSpawn4 = new SkeletonsnowEntity(ModEntities.SKELETONSNOW.get(), world);
+            entityToSpawn4.moveTo(((double) x + Mth.nextInt(new Random(), 1, 3)), y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn4.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn4.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn4);
+            Mob entityToSpawn5 = new WithershieldEntity(ModEntities.WITHERSHIELD.get(), world);
+            entityToSpawn5.moveTo(((double) x - Mth.nextInt(new Random(), 1, 3)), y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn5.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn5.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn5);
+        });
+        consumers.put(ModItems.WITHER_BONE.get(), (entity, world, x, y, z) -> {
+            ItemStack _stktoremove = new ItemStack(ModItems.WITHER_BONE.get());
+            entity.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, entity.inventoryMenu.getCraftSlots());
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new BigundeadskeletonEntity(ModEntities.BIGUNDEADSKELETON.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+        });
+        consumers.put(Items.GOLDEN_SWORD, (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new PiglincommanderEntity(ModEntities.PIGLINCOMMANDER.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+        });
+        consumers.put(Items.GOLD_INGOT, (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            ItemStack _stktoremove = new ItemStack(Items.GOLD_INGOT);
+            entity.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, entity.inventoryMenu.getCraftSlots());
+            Mob entityToSpawn1 = new ZombiespligekingEntity(ModEntities.ZOMBIESPLIGEKING.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+            Mob entityToSpawn2 = new ZombifiedPiglin(EntityType.ZOMBIFIED_PIGLIN, world);
+            entityToSpawn2.moveTo(x, y, ((double) z + Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn2.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn2);
+
+        });
+        consumers.put(Blocks.GOLD_BLOCK.asItem(), (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new PilgekingzombiesEntity(ModEntities.PILGEKINGZOMBIES.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+            Mob entityToSpawn2 = new ZombiepiglinartEntity(ModEntities.ZOMBIEPIGLINART.get(), world);
+            entityToSpawn2.moveTo(x, y, ((double) z - Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn2.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn2);
+            Mob entityToSpawn3 = new ZombifiedPiglin(EntityType.ZOMBIFIED_PIGLIN, world);
+            entityToSpawn3.moveTo(x, y, ((double) z + Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn3.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn3);
+            ItemStack _stktoremove = new ItemStack(Blocks.GOLD_BLOCK);
+            entity.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, entity.inventoryMenu.getCraftSlots());
+        });
+        consumers.put(ModItems.BAOZHU.get(), (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new NulllikeEntity(ModEntities.NULLLIKE.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+        });
+        consumers.put(ModItems.WARRIORHEART.get(), (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new NaeusEntity(ModEntities.NAEUS.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+            Mob entityToSpawn2 = new WitheredSkeletonsEntity(ModEntities.WITHERED_SKELETONS.get(), world);
+            entityToSpawn2.moveTo(x, y, ((double) z - Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn2.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn2);
+            Mob entityToSpawn3 = new HogsworthEntity(ModEntities.HOGSWORTH.get(), world);
+            entityToSpawn3.moveTo(x, y, ((double) z + Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn3.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn3);
+        });
+        consumers.put(ModItems.ICEHEART.get(), (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new RainEntity(ModEntities.RAIN.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+            Mob entityToSpawn2 = new CiaraEntity(ModEntities.CIARA.get(), world);
+            entityToSpawn2.moveTo(x, y, ((double) z + Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn2.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn2);
+            Mob entityToSpawn3 = new DaryllEntity(ModEntities.DARYLL.get(), world);
+            entityToSpawn3.moveTo(x, y, ((double) z - Mth.nextInt(new Random(), 1, 3)), world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn3.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn3);
+        });
+        consumers.put(ModItems.ENDERHEART.get(), (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new CerisEntity(ModEntities.CERIS.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+            Mob entityToSpawn2 = new DarkshieldEntity(ModEntities.DARKSHIELD.get(), world);
+            entityToSpawn2.moveTo(((double) x + Mth.nextInt(new Random(), 1, 3)), y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn2.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn2);
+            Mob entityToSpawn3 = new DarkshieldEntity(ModEntities.DARKSHIELD.get(), world);
+            entityToSpawn3.moveTo(((double) x - Mth.nextInt(new Random(), 1, 3)), y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn3.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn3);
+        });
+        consumers.put(ModItems.MAGIC_STARD.get(), (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new PatrickEntity(ModEntities.PATRICK.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+            Mob entityToSpawn2 = new HildaEntity(ModEntities.HILDA.get(), world);
+            entityToSpawn2.moveTo(((double) x - Mth.nextInt(new Random(), 1, 3)), y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn2.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn2);
+            Mob entityToSpawn3 = new SoldiersEntity(ModEntities.SOLDIERS.get(), world);
+            entityToSpawn3.moveTo(((double) x + Mth.nextInt(new Random(), 1, 3)), y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn3.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn3);
+        });
+        consumers.put(ModItems.LOWER_BOUND_ALLOY_BONE.get(), (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new BlackboneEntity(ModEntities.BLACKBONE.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+        });
+        consumers.put(ModItems.UNDERFLOWER.get(), (entity, world, x, y, z) -> {
+            world.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 1, 2, 1, 0.05);
+            Mob entityToSpawn1 = new AbigailEntity(ModEntities.ABIGAIL.get(), world);
+            entityToSpawn1.moveTo(x, y, z, world.getRandom().nextFloat() * 360F, 0);
+            entityToSpawn1.finalizeSpawn(world, world.getCurrentDifficultyAt(entityToSpawn1.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+            world.addFreshEntity(entityToSpawn1);
+        });
     }
 }

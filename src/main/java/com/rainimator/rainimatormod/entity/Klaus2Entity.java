@@ -9,6 +9,8 @@ import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
@@ -20,6 +22,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -31,6 +34,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -119,9 +123,75 @@ public class Klaus2Entity extends Monster {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        //TODO: Fail to decompile
-//        Klaus_skill_1Procedure.execute( this.level, this.getX(), this.getY(), this.getZ(),  this, source.getEntity());
-        if (source.getDirectEntity() instanceof net.minecraft.world.entity.projectile.AbstractArrow)
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
+        Entity sourceentity = source.getEntity();
+        if (sourceentity != null) {
+            if (sourceentity instanceof LivingEntity _ent)
+                this.setTarget(_ent);
+            if (this.getMainHandItem().getItem() == ModItems.DEEPWARHAMMER.get() || this.getMainHandItem().getItem() == ModItems.LASER_SWORD.get()) {
+                if (Math.random() < 0.3) {
+                    ItemStack _setstack = new ItemStack(ModItems.LASER_SWORD.get());
+                    _setstack.setCount(1);
+                    this.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
+                } else if (Math.random() < 0.4) {
+                    ItemStack _setstack = new ItemStack(ModItems.DEEPWARHAMMER.get());
+                    _setstack.setCount(1);
+                    this.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
+                }
+            }
+            if ((EnchantmentHelper.getItemEnchantmentLevel(Enchantments.ALL_DAMAGE_PROTECTION, this.getItemBySlot(EquipmentSlot.HEAD)) != 0)) {
+                if (!this.level.isClientSide()) {
+                    this.addEffect(new MobEffectInstance(ModEffects.PURIFICATION.get(), 200, 0));
+                    this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2));
+                }
+                if (Math.random() < 0.1) {
+                    if (!this.level.isClientSide())
+                        this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 0));
+                    MiscUtil.playSound(this.level, x, y, z, new ResourceLocation("block.anvil.land"), 1, 1);
+                    if (this.level instanceof ServerLevel _level)
+                        _level.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, x, y, z, 200, 0, 10, 0, 0.002);
+                }
+            }
+            if ((EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, this.getMainHandItem()) != 0)) {
+                if (!this.level.isClientSide())
+                    this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 0));
+                if (Math.random() < 0.1) {
+                    if (sourceentity instanceof LivingEntity _entity && !_entity.level.isClientSide())
+                        _entity.addEffect(new MobEffectInstance(ModEffects.STUNNED.get(), 100, 0));
+                    MiscUtil.playSound(this.level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "stunned"), 5, 1);
+                    if (this.level instanceof ServerLevel _level)
+                        _level.sendParticles((SimpleParticleType) (ModParticleTypes.YELLOWSTEARS.get()), x, y, z, 50, 1, 2, 1, 1);
+                }
+            }
+            if (this.getMainHandItem().getItem() == ModItems.SOULRAIDINGHAMMER.get()) {
+                if (!this.level.isClientSide())
+                    this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 1));
+                if (Math.random() < 0.1) {
+                    MiscUtil.playSound(this.level, x, y, z, new ResourceLocation("block.anvil.land"), 1, 1);
+                    if (this.level instanceof ServerLevel _level)
+                        _level.sendParticles(ParticleTypes.END_ROD, x, y, z, 100, 2, 3, 2, 0.002);
+                    if (sourceentity instanceof LivingEntity _entity && !_entity.level.isClientSide())
+                        _entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 1));
+                }
+            }
+            if (this.getMainHandItem().getItem() == ModItems.SEIZINGSHADOWHALBERD.get()) {
+                if (!this.level.isClientSide())
+                    this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 2));
+                if (Math.random() < 0.1) {
+                    MiscUtil.playSound(this.level, x, y, z, new ResourceLocation("block.anvil.land"), 1, 1);
+                    if (this.level instanceof ServerLevel _level)
+                        _level.sendParticles(ParticleTypes.END_ROD, x, y, z, 100, 2, 3, 2, 0.002);
+                    if (sourceentity instanceof LivingEntity _entity && !_entity.level.isClientSide()) {
+                        _entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 1));
+                        _entity.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 1));
+                        _entity.addEffect(new MobEffectInstance(MobEffects.POISON, 100, 1));
+                    }
+                }
+            }
+        }
+        if (source.getDirectEntity() instanceof AbstractArrow)
             return false;
         if (source == DamageSource.FALL)
             return false;
@@ -161,18 +231,13 @@ public class Klaus2Entity extends Monster {
             }
         }
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
+            if (!this.level.isClientSide() && this.getServer() != null)
+                this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:klaus_boss_music neutral @a ~ ~ ~");
 
-            Entity _ent = this;
-            if (!_ent.level.isClientSide() && _ent.getServer() != null) {
-                _ent.getServer().getCommands().performCommand(_ent.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:klaus_boss_music neutral @a ~ ~ ~");
-            }
             Runnable callback = () -> {
-                if (this.isAlive()) {
-
-                    if (!this.level.isClientSide() && this.getServer() != null) {
+                if (this.isAlive())
+                    if (!this.level.isClientSide() && this.getServer() != null)
                         this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:klaus_boss_music neutral @a ~ ~ ~");
-                    }
-                }
             };
             Timeout.create(6060, callback);
             Timeout.create(12120, callback);

@@ -106,8 +106,8 @@ public class ZecanirnThebladeItem extends SwordItem {
         Vec3 _center = entity.position();
         List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, (new AABB(_center, _center)).inflate(8.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
         for (Entity entityiterator : _entfound) {
-            LivingEntity _livEnt = (LivingEntity) entityiterator;
-            if (((entityiterator instanceof LivingEntity) ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.ZECANIRN_THEBLADE.get()) {
+            if (!(entityiterator instanceof LivingEntity _livEnt)) continue;
+            if (_livEnt.getMainHandItem().getItem() == ModItems.ZECANIRN_THEBLADE.get()) {
                 if (entity instanceof Player)
                     entity.getCooldowns().addCooldown(ar.getObject().getItem(), 0);
                 continue;

@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.google.common.collect.Lists;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModItems;
@@ -29,6 +30,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
@@ -59,52 +61,42 @@ public class RainSwordItem extends SwordItem {
         Vec3 _center = entity.position();
         List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, (new AABB(_center, _center)).inflate(7.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
         for (Entity entityiterator : _entfound) {
-            LivingEntity _livEnt = (LivingEntity) entityiterator;
-            if (((entityiterator instanceof LivingEntity) ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.RAIN_SWORD.get()) {
+            if (!(entityiterator instanceof LivingEntity _livEnt)) continue;
+            if (_livEnt.getMainHandItem().getItem() == ModItems.RAIN_SWORD.get()) {
                 entityiterator.hurt(DamageSource.GENERIC, 0.0F);
                 continue;
             }
             if (entity.isShiftKeyDown()) {
-                if (entityiterator instanceof Mob) {
-                    Mob _entity = (Mob) entityiterator;
+                if (entityiterator instanceof Mob _entity)
                     _entity.getNavigation().stop();
-                }
                 MiscUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation(RainimatorMod.MOD_ID, "rain_sword_skill"), 1.0F, 1.0F);
 
-                //TODO: for
-                world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), Blocks.ICE.defaultBlockState(), 3);
-                world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY() + 1.0D, entityiterator.getZ()), Blocks.ICE.defaultBlockState(), 3);
-                world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY() + 2.0D, entityiterator.getZ()), Blocks.ICE.defaultBlockState(), 3);
-                world.setBlock(new BlockPos(entityiterator.getX() + 1.0D, entityiterator.getY() + 1.0D, entityiterator.getZ()), Blocks.ICE.defaultBlockState(), 3);
-                world.setBlock(new BlockPos(entityiterator.getX() + 1.0D, entityiterator.getY(), entityiterator.getZ()), Blocks.ICE.defaultBlockState(), 3);
-                world.setBlock(new BlockPos(entityiterator.getX() - 1.0D, entityiterator.getY() + 1.0D, entityiterator.getZ()), Blocks.ICE.defaultBlockState(), 3);
-                world.setBlock(new BlockPos(entityiterator.getX() - 1.0D, entityiterator.getY(), entityiterator.getZ()), Blocks.ICE.defaultBlockState(), 3);
-                world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY() + 1.0D, entityiterator.getZ() + 1.0D), Blocks.ICE.defaultBlockState(), 3);
-                world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY() + 1.0D, entityiterator.getZ() - 1.0D), Blocks.ICE.defaultBlockState(), 3);
-                world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ() + 1.0D), Blocks.ICE.defaultBlockState(), 3);
-                world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ() - 1.0D), Blocks.ICE.defaultBlockState(), 3);
-                if (entityiterator instanceof LivingEntity _entity)
-                    if (!_entity.level.isClientSide()) {
-                        _entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 540, 4));
-                        _entity.addEffect(new MobEffectInstance(ModEffects.ICEPEOPLE.get(), 500, 0));
-                    }
+                List<Triple<Integer, Integer, Integer>> places = Lists.newArrayList(
+                        Triple.of(0, 0, 0),
+                        Triple.of(1, 0, 0),
+                        Triple.of(-1, 0, 0),
+                        Triple.of(0, 0, 1),
+                        Triple.of(0, 0, -1),
+                        Triple.of(0, 1, 0),
+                        Triple.of(1, 1, 0),
+                        Triple.of(-1, 1, 0),
+                        Triple.of(0, 1, 1),
+                        Triple.of(0, 1, -1),
+                        Triple.of(0, 2, 0)
+                );
+                for (Triple<Integer, Integer, Integer> place : places)
+                    world.setBlock(new BlockPos(entityiterator.getX() + place.getLeft(), entityiterator.getY() + place.getMiddle(), entityiterator.getZ() + place.getRight()), Blocks.ICE.defaultBlockState(), 3);
+                if (!_livEnt.level.isClientSide()) {
+                    _livEnt.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 540, 4));
+                    _livEnt.addEffect(new MobEffectInstance(ModEffects.ICEPEOPLE.get(), 500, 0));
+                }
                 if (entity instanceof Player)
                     entity.getCooldowns().addCooldown(ar.getObject().getItem(), 1200);
 
                 Timeout.create(500, () -> {
                     MiscUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation(RainimatorMod.MOD_ID, "rain_sword_skill_2"), 5.0F, 1.0F);
-
-                    world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), Blocks.AIR.defaultBlockState(), 3);
-                    world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY() + 1.0D, entityiterator.getZ()), Blocks.AIR.defaultBlockState(), 3);
-                    world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY() + 2.0D, entityiterator.getZ()), Blocks.AIR.defaultBlockState(), 3);
-                    world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY() + 1.0D, entityiterator.getZ() + 1.0D), Blocks.AIR.defaultBlockState(), 3);
-                    world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ() + 1.0D), Blocks.AIR.defaultBlockState(), 3);
-                    world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY() + 1.0D, entityiterator.getZ() - 1.0D), Blocks.AIR.defaultBlockState(), 3);
-                    world.setBlock(new BlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ() - 1.0D), Blocks.AIR.defaultBlockState(), 3);
-                    world.setBlock(new BlockPos(entityiterator.getX() + 1.0D, entityiterator.getY() + 1.0D, entityiterator.getZ()), Blocks.AIR.defaultBlockState(), 3);
-                    world.setBlock(new BlockPos(entityiterator.getX() + 1.0D, entityiterator.getY(), entityiterator.getZ()), Blocks.AIR.defaultBlockState(), 3);
-                    world.setBlock(new BlockPos(entityiterator.getX() - 1.0D, entityiterator.getY() + 1.0D, entityiterator.getZ()), Blocks.AIR.defaultBlockState(), 3);
-                    world.setBlock(new BlockPos(entityiterator.getX() - 1.0D, entityiterator.getY(), entityiterator.getZ()), Blocks.AIR.defaultBlockState(), 3);
+                    for (Triple<Integer, Integer, Integer> place : places)
+                        world.setBlock(new BlockPos(entityiterator.getX() + place.getLeft(), entityiterator.getY() + place.getMiddle(), entityiterator.getZ() + place.getRight()), Blocks.AIR.defaultBlockState(), 3);
                     entityiterator.hurt(DamageSource.MAGIC, 5.0F);
                 });
             }
@@ -145,41 +137,36 @@ public class RainSwordItem extends SwordItem {
             Vec3 _center = entity.position();
             List<Entity> _ent_found = world.getEntitiesOfClass(Entity.class, (new AABB(_center, _center)).inflate(7.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
             for (Entity entityIterator : _ent_found) {
-                LivingEntity _livEnt = (LivingEntity) entityIterator;
-                if (((entityIterator instanceof LivingEntity) ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.RAIN_SWORD.get()) {
+                if (!(entityIterator instanceof LivingEntity _livEnt)) continue;
+                if (_livEnt.getMainHandItem().getItem() == ModItems.RAIN_SWORD.get()) {
                     if (itemstack.hurt(0, new Random(), null)) {
                         itemstack.shrink(1);
                         itemstack.setDamageValue(0);
                     }
                     continue;
                 }
-                LivingEntity livingEntity1 = (LivingEntity) entityIterator;
-                if (!(entityIterator != null && livingEntity1.hasEffect(MobEffects.MOVEMENT_SLOWDOWN))) {
-                    if (!livingEntity1.level.isClientSide()) {
-                        livingEntity1.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 0));
-                        livingEntity1.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 0));
+                if (!_livEnt.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
+                    if (!_livEnt.level.isClientSide()) {
+                        _livEnt.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 0));
+                        _livEnt.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 60, 0));
                     }
                     entityIterator.setTicksFrozen(2);
                     if (Math.random() < 0.04D) {
-                        if (entityIterator instanceof LivingEntity _entity) {
-                            if (!_entity.level.isClientSide())
-                                _entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1));
-                        }
+                        if (!_livEnt.level.isClientSide())
+                            _livEnt.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1));
                         entityIterator.setTicksFrozen(4);
                         Runnable callback = () -> {
-                            if (entityIterator instanceof LivingEntity _entity)
-                                if (!_entity.level.isClientSide())
-                                    _entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 2));
+                            if (!_livEnt.level.isClientSide())
+                                _livEnt.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 2));
                             entityIterator.setTicksFrozen(6);
                         };
                         Timeout.create(60, callback);
                         Timeout.create(120, callback);
                         Timeout.create(180, () -> {
-                            if (entityIterator instanceof LivingEntity _entity)
-                                if (!_entity.level.isClientSide()) {
-                                    _entity.addEffect(new MobEffectInstance(ModEffects.ICEPEOPLE.get(), 100, 0));
-                                    _entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 4));
-                                }
+                            if (!_livEnt.level.isClientSide()) {
+                                _livEnt.addEffect(new MobEffectInstance(ModEffects.ICEPEOPLE.get(), 100, 0));
+                                _livEnt.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 4));
+                            }
                             MiscUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation("block.conduit.activate"), 1.0F, 1.0F);
                             entityIterator.setTicksFrozen(10);
                         });

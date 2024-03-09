@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurificationMobEffect extends MobEffect {
-    private static List<MobEffect> effects = new ArrayList<>();
+    private static final List<MobEffect> effects = new ArrayList<>();
 
     public PurificationMobEffect() {
         super(MobEffectCategory.BENEFICIAL, -10027009);
     }
 
-    public static void initEffectList() {
+    public static synchronized void initEffectList() {
         effects.add(ModEffects.FEARDARK.get());
         effects.add(ModEffects.SOULDEATH.get());
         effects.add(ModEffects.STUNNED.get());

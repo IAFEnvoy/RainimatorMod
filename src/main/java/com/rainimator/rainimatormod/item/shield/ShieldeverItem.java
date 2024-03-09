@@ -30,10 +30,6 @@ public class ShieldeverItem extends ShieldItem {
         super(ModCreativeTab.createProperty().stacksTo(1).durability(2500).rarity(Rarity.UNCOMMON));
     }
 
-    public boolean isShield(ItemStack stack, @Nullable LivingEntity entity) {
-        return true;
-    }
-
     @Override
     public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemStack) {
         return UseAnim.BLOCK;

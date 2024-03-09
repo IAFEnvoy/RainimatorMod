@@ -18,6 +18,10 @@ public class RainimatorMod {
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public RainimatorMod() {
+        if (ModList.get().isLoaded("annoying_villagersbychentu")) {
+            LOGGER.error("annoying_villagersbychentu failed to load");
+            System.exit(1);
+        }
         ModCreativeTab.load();
         RegistryManager.register(FMLJavaModLoadingContext.get().getModEventBus());
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);

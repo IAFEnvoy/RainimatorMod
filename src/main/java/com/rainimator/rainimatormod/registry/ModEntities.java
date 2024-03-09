@@ -19,13 +19,12 @@ public class ModEntities {
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
         return REGISTRY.register(registryname, () -> entityTypeBuilder.build(registryname));
-    }    public static final RegistryObject<EntityType<HerobrineEntity>> HEROBRINE = register("herobrine", EntityType.Builder.<HerobrineEntity>of(HerobrineEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HerobrineEntity::new).fireImmune().sized(0.6F, 1.8F));
+    }
 
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             ZombiesEntity.init();
-            BlackboneEntity.init();
             SoldiersEntity.init();
             HildaEntity.init();
             WitheredSkeletonsEntity.init();
@@ -33,15 +32,12 @@ public class ModEntities {
             DarkshieldEntity.init();
             WithershieldEntity.init();
             SkeletonsnowEntity.init();
-            ArabellaEntity.init();
-            NaeuskingEntity.init();
             TuskEntity.init();
             BrotsEntity.init();
             AgethaEntity.init();
-            BigundeadskeletonEntity.init();
             ArcherEntity.init();
         });
-    }    public static final RegistryObject<EntityType<CerisEntity>> CERIS = register("ceris", EntityType.Builder.<CerisEntity>of(CerisEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CerisEntity::new).fireImmune().sized(0.6F, 1.8F));
+    }
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
@@ -86,7 +82,11 @@ public class ModEntities {
         event.put(KLAUS.get(), KlausEntity.createAttributes().build());
         event.put(KLAUS_2.get(), Klaus2Entity.createAttributes().build());
         event.put(KRALOS.get(), KralosEntity.createAttributes().build());
-    }    public static final RegistryObject<EntityType<ZombiesEntity>> ZOMBIES = register("zombies", EntityType.Builder.<ZombiesEntity>of(ZombiesEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(ZombiesEntity::new).sized(0.6F, 1.8F));
+    }
+
+    public static final RegistryObject<EntityType<HerobrineEntity>> HEROBRINE = register("herobrine", EntityType.Builder.<HerobrineEntity>of(HerobrineEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HerobrineEntity::new).fireImmune().sized(0.6F, 1.8F));
+    public static final RegistryObject<EntityType<CerisEntity>> CERIS = register("ceris", EntityType.Builder.<CerisEntity>of(CerisEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CerisEntity::new).fireImmune().sized(0.6F, 1.8F));
+    public static final RegistryObject<EntityType<ZombiesEntity>> ZOMBIES = register("zombies", EntityType.Builder.<ZombiesEntity>of(ZombiesEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(ZombiesEntity::new).sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<NaeusEntity>> NAEUS = register("naeus", EntityType.Builder.<NaeusEntity>of(NaeusEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NaeusEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<RainEntity>> RAIN = register("rain", EntityType.Builder.<RainEntity>of(RainEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(RainEntity::new).sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<RainEntityProjectile>> RAIN_PROJECTILE = register("projectile_rain", EntityType.Builder.<RainEntityProjectile>of(RainEntityProjectile::new, MobCategory.MISC).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).setCustomClientFactory(RainEntityProjectile::new).sized(0.5F, 0.5F));
@@ -133,10 +133,6 @@ public class ModEntities {
     public static final RegistryObject<EntityType<KlausEntity>> KLAUS = register("klaus", EntityType.Builder.<KlausEntity>of(KlausEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(KlausEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<Klaus2Entity>> KLAUS_2 = register("klaus_2", EntityType.Builder.<Klaus2Entity>of(Klaus2Entity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(Klaus2Entity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<KralosEntity>> KRALOS = register("kralos", EntityType.Builder.<KralosEntity>of(KralosEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(KralosEntity::new).fireImmune().sized(0.6F, 1.8F));
-
-
-
-
 
 
 }

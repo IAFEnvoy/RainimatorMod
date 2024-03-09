@@ -1,5 +1,6 @@
 package com.rainimator.rainimatormod.item;
 
+import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.FoilItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.util.MiscUtil;
@@ -14,12 +15,20 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Comparator;
+import java.util.List;
 
 public class SoultotemItem extends FoilItemBase {
     public SoultotemItem() {
@@ -57,7 +66,6 @@ public class SoultotemItem extends FoilItemBase {
             if (!entity.level.isClientSide())
                 entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 400, 0));
             entity.getCooldowns().addCooldown(itemstack.getItem(), 600);
-
         }
         return ar;
     }
@@ -65,9 +73,31 @@ public class SoultotemItem extends FoilItemBase {
     @Override
     public void inventoryTick(@NotNull ItemStack itemstack, @NotNull Level world, @NotNull Entity entity, int slot, boolean selected) {
         super.inventoryTick(itemstack, world, entity, slot, selected);
-        //TODO: Fail to decompile Soultotem_skillProcedure.java
-//        if (selected)
-//            Soultotem_skill_4Procedure.execute(world, entity.getX(), entity.getY(), entity.getZ());
-//        Soultotem_skillProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity);
+        if (selected) {
+            Vec3 _center = new Vec3(entity.getX(), entity.getY(), entity.getZ());
+            List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(5.0d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
+            for (Entity entity1 : _entfound) {
+                if ((LevelAccessor) world instanceof Level _lvl) {
+                    if (_lvl.isDay()) {
+                        if (entity1 instanceof Player _entity) {
+                            if (!_entity.level.isClientSide())
+                                _entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 0));
+                        } else if (entity1 instanceof Monster _entity2)
+                            if (!_entity2.level.isClientSide())
+                                _entity2.addEffect(new MobEffectInstance(MobEffects.POISON, 100, 0));
+                    }
+                }
+            }
+        }
+        if ((entity instanceof Player _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(ModItems.SOULTOTEM.get())))) {
+            if (world.isDay()) {
+                LivingEntity _entity = (LivingEntity) entity;
+                if (!_entity.level.isClientSide())
+                    _entity.addEffect(new MobEffectInstance(MobEffects.SATURATION, 100, 1));
+                if (Math.random() < 0.005)
+                    if (!world.isClientSide())
+                        world.addFreshEntity(new ExperienceOrb(world, entity.getX(), entity.getY(), entity.getZ(), 1));
+            }
+        }
     }
 }

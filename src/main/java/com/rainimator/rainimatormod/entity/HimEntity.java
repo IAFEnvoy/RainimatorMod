@@ -144,15 +144,7 @@ public class HimEntity extends Monster {
                 this.teleportTo(x, y + 4.0D, z);
                 continue;
             }
-            if (this.hasEffect(MobEffects.POISON)) {
-                this.removeAllEffects();
-                continue;
-            }
-            if (this.hasEffect(MobEffects.WITHER)) {
-                this.removeAllEffects();
-                continue;
-            }
-            if (this.hasEffect(ModEffects.SOULDEATH.get())) {
+            if (this.hasEffect(MobEffects.POISON) || this.hasEffect(MobEffects.WITHER) || this.hasEffect(ModEffects.SOULDEATH.get())) {
                 this.removeAllEffects();
                 continue;
             }

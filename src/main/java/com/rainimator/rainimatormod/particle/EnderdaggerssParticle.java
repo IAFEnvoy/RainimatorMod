@@ -36,11 +36,6 @@ public class EnderdaggerssParticle extends TextureSheetParticle {
         return ParticleRenderType.PARTICLE_SHEET_LIT;
     }
 
-    @Override
-    public void tick() {
-        super.tick();
-    }
-
     public static class EnderdaggerssParticleProvider implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
 

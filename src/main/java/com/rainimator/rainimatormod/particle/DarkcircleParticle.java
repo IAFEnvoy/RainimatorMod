@@ -36,11 +36,6 @@ public class DarkcircleParticle extends TextureSheetParticle {
         return ParticleRenderType.PARTICLE_SHEET_LIT;
     }
 
-    @Override
-    public void tick() {
-        super.tick();
-    }
-
     public static class DarkcircleParticleProvider implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
 

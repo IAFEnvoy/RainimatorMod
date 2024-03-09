@@ -39,9 +39,6 @@ public class BigundeadskeletonEntity extends Monster {
         this.setPersistenceRequired();
     }
 
-    public static void init() {
-    }
-
     public static AttributeSupplier.Builder createAttributes() {
         AttributeSupplier.Builder builder = Mob.createMobAttributes();
         builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3D);

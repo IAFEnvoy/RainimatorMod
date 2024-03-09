@@ -61,7 +61,8 @@ public class EnderbookskillButtonMessage {
             int x = message.x;
             int y = message.y;
             int z = message.z;
-            handleButtonAction(serverPlayer, buttonID, x, y, z);
+            if (serverPlayer != null)
+                handleButtonAction(serverPlayer, buttonID, x, y, z);
         });
         context.setPacketHandled(true);
     }

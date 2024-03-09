@@ -2,10 +2,13 @@ package com.rainimator.rainimatormod.block;
 
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -51,8 +54,30 @@ public class SappriesOreBlock extends Block {
     @Override
     public boolean onDestroyedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player entity, boolean willHarvest, FluidState fluid) {
         boolean retval = super.onDestroyedByPlayer(blockstate, world, pos, entity, willHarvest, fluid);
-        //TODO: Fail to decompile FortuneitemProcedure.java
-//        FortuneitemProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), entity);
+        double x = pos.getX();
+        double y = pos.getY();
+        double z = pos.getZ();
+        if (entity != null) {
+            double[] p = {0.25, 0.2, 0.15, 0.1, 0.05};
+            for (int i = 1; i <= EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, entity.getMainHandItem()); i++)
+                if (Math.random() < p[i - 1]) {
+                    for (int j = 0; j < i; j++) {
+                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.RUBYBLOCKSHIT.get()));
+                        entityToSpawn.setPickUpDelay(50);
+                        world.addFreshEntity(entityToSpawn);
+                    }
+                    break;
+                }
+            for (int i = 1; i <= EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, entity.getOffhandItem()); i++)
+                if (Math.random() < p[i - 1]) {
+                    for (int j = 0; j < i; j++) {
+                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.RUBYBLOCKSHIT.get()));
+                        entityToSpawn.setPickUpDelay(50);
+                        world.addFreshEntity(entityToSpawn);
+                    }
+                    break;
+                }
+        }
         return retval;
     }
 }

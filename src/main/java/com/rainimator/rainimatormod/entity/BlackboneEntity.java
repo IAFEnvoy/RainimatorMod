@@ -6,11 +6,14 @@ import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.Timeout;
+import net.minecraft.Util;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -36,6 +39,8 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec2;
@@ -59,9 +64,6 @@ public class BlackboneEntity extends Monster {
         this.xpReward = 0;
         this.setNoAi(false);
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLACKBONE_THE_BLADE_DANSHOU.get()));
-    }
-
-    public static void init() {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -118,8 +120,76 @@ public class BlackboneEntity extends Monster {
 
     @Override
     public boolean hurt(@NotNull DamageSource source, float amount) {
-        //TODO: Failed to decompile Blackbone_skillProcedure.java
-//        Blackbone_skillProcedure.execute((LevelAccessor) this.level, getY(), (Entity) this, source.getEntity());
+        double y = this.getY();
+        Entity sourceentity = source.getEntity();
+        if (sourceentity != null) {
+            if (sourceentity instanceof LivingEntity _ent)
+                this.setTarget(_ent);
+            if (this.hasEffect(ModEffects.FEARDARK.get()))
+                this.removeAllEffects();
+            else if (this.hasEffect(ModEffects.ICEPEOPLE.get()))
+                this.removeAllEffects();
+            else if (this.hasEffect(ModEffects.SOULDEATH.get()))
+                this.removeAllEffects();
+            else if (this.hasEffect(MobEffects.POISON))
+                this.removeAllEffects();
+            else if (this.hasEffect(MobEffects.WITHER))
+                this.removeAllEffects();
+            else {
+                if (Math.random() < 0.2) {
+                    if ((sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModEffects.FEARDARK.get()))) {
+                        sourceentity.hurt(new DamageSource("death by dark").bypassArmor(), 12);
+                        if (!_livEnt.level.isClientSide())
+                            _livEnt.addEffect(new MobEffectInstance(MobEffects.WITHER, 500, 1));
+                    }
+                } else {
+                    if (!(sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModEffects.FEARDARK.get()))) {
+                        MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_skill"), 1, 1);
+                        if (this.level instanceof ServerLevel _level)
+                            _level.sendParticles(ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 50, 1, 1, 1, 1);
+                        if (sourceentity instanceof LivingEntity _entity && !_entity.level.isClientSide())
+                            _entity.addEffect(new MobEffectInstance(ModEffects.FEARDARK.get(), 300, 0));
+                        sourceentity.setSecondsOnFire(10);
+                    }
+                }
+            }
+
+            if (Math.random() < 0.1) {
+                if (!this.level.isClientSide() && this.level.getServer() != null)
+                    if (Math.random() < 0.3)
+                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§4誓死为Herobrine效力！"), ChatType.SYSTEM, Util.NIL_UUID);
+                    else if (Math.random() < 0.4)
+                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§4伟大的亡灵万岁！"), ChatType.SYSTEM, Util.NIL_UUID);
+                    else if (Math.random() < 0.5)
+                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§4消失在我的愤怒之下吧！"), ChatType.SYSTEM, Util.NIL_UUID);
+                    else
+                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§4小鬼，你太天真了！"), ChatType.SYSTEM, Util.NIL_UUID);
+
+                if (!sourceentity.level.isClientSide() && sourceentity.getServer() != null)
+                    sourceentity.getServer().getCommands().performCommand(sourceentity.createCommandSourceStack().withSuppressedOutput().withPermission(4), "title @p title {\"text\":\"！！！\",\"color\":\"red\"}");
+                Timeout.create(50, () -> {
+                    if (!this.level.isClientSide()) {
+                        BlockPos pos = BlackboneEntity.this.level.clip(new ClipContext(this.getEyePosition(1f), this.getEyePosition(1f).add(this.getViewVector(1f).scale(2)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, this)).getBlockPos();
+                        this.level.explode(null, (pos.getX()), (y + 1), (pos.getZ()), 1, Explosion.BlockInteraction.NONE);
+                    }
+
+                    Runnable callback = () -> {
+                        if (!this.level.isClientSide()) {
+                            BlockPos pos = this.level.clip(new ClipContext(this.getEyePosition(1f), this.getEyePosition(1f).add(this.getViewVector(1f).scale(18)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, this)).getBlockPos();
+                            this.level.explode(null, (pos.getX()), (y + 1), (pos.getZ()), 1, Explosion.BlockInteraction.NONE);
+                        }
+                    };
+                    Timeout.create(5, callback);
+                    Timeout.create(10, callback);
+                    Timeout.create(15, callback);
+                    Timeout.create(20, callback);
+                    Timeout.create(25, callback);
+                    Timeout.create(30, callback);
+                    Timeout.create(35, callback);
+                    Timeout.create(40, callback);
+                });
+            }
+        }
         if (source == DamageSource.FALL)
             return false;
         if (source == DamageSource.DROWN)

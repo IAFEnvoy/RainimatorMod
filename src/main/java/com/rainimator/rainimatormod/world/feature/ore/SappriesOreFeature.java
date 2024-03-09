@@ -27,6 +27,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Random;
@@ -77,7 +78,7 @@ public class SappriesOreFeature
         }
 
         @Override
-        public boolean test(BlockState blockAt, Random random) {
+        public boolean test(@NotNull BlockState blockAt, @NotNull Random random) {
             if (this.base_blocks == null) {
                 this.base_blocks = List.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE);
             }
@@ -85,7 +86,7 @@ public class SappriesOreFeature
         }
 
         @Override
-        protected RuleTestType<?> getType() {
+        protected @NotNull RuleTestType<?> getType() {
             return CUSTOM_MATCH;
         }
     }
