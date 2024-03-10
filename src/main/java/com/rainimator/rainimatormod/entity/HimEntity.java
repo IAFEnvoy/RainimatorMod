@@ -221,7 +221,7 @@ public class HimEntity extends Monster {
             }
         }
         if (!world.isClientSide() && world.getServer() != null)
-            world.getServer().getPlayerList().broadcastMessage(new TextComponent("µ²ÎÒÂ·Õß£¬±ØÖï£¡"), ChatType.SYSTEM, Util.NIL_UUID);
+            world.getServer().getPlayerList().broadcastMessage(new TextComponent("æŒ¡æˆ‘è·¯è€…ï¼Œå¿…è¯›ï¼"), ChatType.SYSTEM, Util.NIL_UUID);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!this.level.isClientSide() && this.getServer() != null)
                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");

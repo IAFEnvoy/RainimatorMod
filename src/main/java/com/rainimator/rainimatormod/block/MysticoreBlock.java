@@ -116,7 +116,7 @@ public class MysticoreBlock extends Block {
                         }
             } else {
                 if (!entity.level.isClientSide())
-                    entity.displayClientMessage(new TextComponent("Äã²¢Ã»ÓĞÍÚ¾òµ½ÓĞÓÃµÄÎïÆ·£¡"), true);
+                    entity.displayClientMessage(new TextComponent("ä½ å¹¶æ²¡æœ‰æŒ–æ˜åˆ°æœ‰ç”¨çš„ç‰©å“ï¼"), true);
                 if (!world.isClientSide()) {
                     ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(Blocks.COBBLED_DEEPSLATE));
                     entityToSpawn.setPickUpDelay(10);

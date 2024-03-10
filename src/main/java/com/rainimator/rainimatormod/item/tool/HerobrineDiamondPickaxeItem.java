@@ -55,7 +55,7 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
                 world.addFreshEntity(new ExperienceOrb(world, x, y, z, 10));
             if (context.getPlayer() instanceof Player)
                 if (!context.getPlayer().level.isClientSide())
-                    context.getPlayer().displayClientMessage(new TextComponent("ÄãÊ¹ÓÃÉñÁ¦Ïû³ıÁËÒ»¸ö·½¿é"), true);
+                    context.getPlayer().displayClientMessage(new TextComponent("ä½ ä½¿ç”¨ç¥åŠ›æ¶ˆé™¤äº†ä¸€ä¸ªæ–¹å—"), true);
             if (context.getPlayer() instanceof Player)
                 context.getPlayer().getCooldowns().addCooldown(context.getItemInHand().getItem(), 4800);
         }

@@ -15,11 +15,12 @@ import top.theillusivec4.curios.api.SlotTypePreset;
 @Mod(RainimatorMod.MOD_ID)
 public class RainimatorMod {
     public static final String MOD_ID = "rainimator";
+    public static final String CURIOS_MOD_ID = "curios";
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public RainimatorMod() {
         if (ModList.get().isLoaded("annoying_villagersbychentu")) {
-            LOGGER.error("annoying_villagersbychentu failed to load");
+            LOGGER.error("[annoying_villagersbychentu] failed to load");
             System.exit(1);
         }
         ModCreativeTab.load();
@@ -29,8 +30,9 @@ public class RainimatorMod {
 
     //curios api compact
     private void enqueueIMC(final InterModEnqueueEvent event) {
-        if (!ModList.get().isLoaded("curios")) return;
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.HEAD.getMessageBuilder().build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BACK.getMessageBuilder().build());
+        if (!ModList.get().isLoaded(CURIOS_MOD_ID)) return;
+        InterModComms.sendTo(CURIOS_MOD_ID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BACK.getMessageBuilder().build());
+        InterModComms.sendTo(CURIOS_MOD_ID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BELT.getMessageBuilder().build());
+        InterModComms.sendTo(CURIOS_MOD_ID, SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BELT.getMessageBuilder().build());
     }
 }

@@ -47,7 +47,7 @@ public class HerobrineArmorItem extends ArmorItem {
 
             @Override
             public @NotNull String getName() {
-                return "herobrine_armor";
+                return "herobrine_armors";
             }
 
             @Override

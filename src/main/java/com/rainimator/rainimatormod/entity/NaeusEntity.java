@@ -172,15 +172,15 @@ public class NaeusEntity extends Monster {
                     this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2));
                 if (!this.level.isClientSide() && this.level.getServer() != null)
                     if (Math.random() < 0.3D)
-                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("¡ìbÀ×¾÷£¡"), ChatType.SYSTEM, Util.NIL_UUID);
+                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("Â§bé›·è¯€ï¼"), ChatType.SYSTEM, Util.NIL_UUID);
                     else if (Math.random() < 0.4D)
-                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("¡ì7ÎÞÃûÐ¡×ä£¬µ¨¸ÒÏòÎÒ·¢ÆðÌôÕ½£¡"), ChatType.SYSTEM, Util.NIL_UUID);
+                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("Â§7æ— åå°å’ï¼Œèƒ†æ•¢å‘æˆ‘å‘èµ·æŒ‘æˆ˜ï¼"), ChatType.SYSTEM, Util.NIL_UUID);
                     else if (Math.random() < 0.5D)
-                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("¡ì4µØÓüÖ®Å­£¡"), ChatType.SYSTEM, Util.NIL_UUID);
+                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("Â§4åœ°ç‹±ä¹‹æ€’ï¼"), ChatType.SYSTEM, Util.NIL_UUID);
                     else
-                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("¡ìaÄã£¬ÕÒËÀ£¡"), ChatType.SYSTEM, Util.NIL_UUID);
+                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("Â§aä½ ï¼Œæ‰¾æ­»ï¼"), ChatType.SYSTEM, Util.NIL_UUID);
                 if (!sourceentity.level.isClientSide() && sourceentity.getServer() != null)
-                    sourceentity.getServer().getCommands().performCommand(sourceentity.createCommandSourceStack().withSuppressedOutput().withPermission(4), "title @p title {\"text\":\"£¡£¡£¡\",\"color\":\"red\"}");
+                    sourceentity.getServer().getCommands().performCommand(sourceentity.createCommandSourceStack().withSuppressedOutput().withPermission(4), "title @p title {\"text\":\"ï¼ï¼ï¼\",\"color\":\"red\"}");
 
                 Runnable callback = () -> {
                     BlockPos pos = this.level.clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(2.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, NaeusEntity.this)).getBlockPos();

@@ -48,7 +48,7 @@ public class ChiefOfThePigPeopleArmorItem extends ArmorItem {
 
             @Override
             public @NotNull String getName() {
-                return "chief_of_the_pig_people_aramor";
+                return "chief_of_the_pig_people_armors";
             }
 
             @Override

@@ -9,9 +9,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModEffects {
     public static final DeferredRegister<MobEffect> REGISTRY = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, "rainimator");
     public static final RegistryObject<MobEffect> FEARDARK = REGISTRY.register("feardark", FeardarkMobEffect::new);
-    public static final RegistryObject<MobEffect> ICEPEOPLE = REGISTRY.register("icepeople", IcepeopleMobEffect::new);
-    public static final RegistryObject<MobEffect> SOULDEATH = REGISTRY.register("souldeath", SouldeathMobEffect::new);
+    public static final RegistryObject<MobEffect> ICEPEOPLE = REGISTRY.register("icepeople", IcePeopleMobEffect::new);
+    public static final RegistryObject<MobEffect> SOULDEATH = REGISTRY.register("souldeath", SoulDeathMobEffect::new);
     public static final RegistryObject<MobEffect> PURIFICATION = REGISTRY.register("purification", PurificationMobEffect::new);
     public static final RegistryObject<MobEffect> STUNNED = REGISTRY.register("stunned", StunnedMobEffect::new);
-    public static final RegistryObject<MobEffect> SHADOWEROSION = REGISTRY.register("shadowerosion", ShadowerosionMobEffect::new);
+    public static final RegistryObject<MobEffect> SHADOWEROSION = REGISTRY.register("shadowerosion", ShadowErosionMobEffect::new);
 }

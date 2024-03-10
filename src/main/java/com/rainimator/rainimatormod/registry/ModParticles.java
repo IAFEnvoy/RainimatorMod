@@ -12,18 +12,18 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 public class ModParticles {
     @SubscribeEvent
     public static void registerParticles(ParticleFactoryRegisterEvent event) {
-        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.PURPLELIGHT.get(), PurplelightParticle::provider);
-        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.REDFLOWER.get(), RedflowerParticle::provider);
+        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.PURPLELIGHT.get(), PurpleLightParticle::provider);
+        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.REDFLOWER.get(), RedFlowerParticle::provider);
         (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.SNOW.get(), SnowParticle::provider);
         (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.LIGHTING_1.get(), Lighting1Particle::provider);
         (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.LIGHTING_2.get(), Lighting2Particle::provider);
-        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.YELLOWLIGHTING.get(), YellowlightingParticle::provider);
-        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.LIGHTINGARC.get(), LightingarcParticle::provider);
-        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.ENDERDAGGERSS.get(), EnderdaggerssParticle::provider);
-        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.WRITECRICLE.get(), WritecricleParticle::provider);
-        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.DARKCIRCLE.get(), DarkcircleParticle::provider);
-        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.FLOWERWRITE.get(), FlowerwriteParticle::provider);
-        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.SWEATERSNOW.get(), SweatersnowParticle::provider);
-        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.YELLOWSTEARS.get(), YellowstearsParticle::provider);
+        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.YELLOWLIGHTING.get(), YellowLightingParticle::provider);
+        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.LIGHTINGARC.get(), LightingArcParticle::provider);
+        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.ENDERDAGGERSS.get(), EnderDaggerParticle::provider);
+        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.WRITECRICLE.get(), WriteCricleParticle::provider);
+        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.DARKCIRCLE.get(), DarkCircleParticle::provider);
+        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.FLOWERWRITE.get(), FlowerWriteParticle::provider);
+        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.SWEATERSNOW.get(), SweaterSnowParticle::provider);
+        (Minecraft.getInstance()).particleEngine.register(ModParticleTypes.YELLOWSTEARS.get(), YellowStearsParticle::provider);
     }
 }

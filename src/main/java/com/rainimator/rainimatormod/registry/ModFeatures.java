@@ -1,7 +1,8 @@
 package com.rainimator.rainimatormod.registry;
 
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.world.feature.DarkweryFeature;
-import com.rainimator.rainimatormod.world.feature.PiglinteamFeature;
+import com.rainimator.rainimatormod.world.feature.PiglinTeamFeature;
 import com.rainimator.rainimatormod.world.feature.SkillFeature;
 import com.rainimator.rainimatormod.world.feature.SpeedFeature;
 import com.rainimator.rainimatormod.world.feature.ore.*;
@@ -25,19 +26,15 @@ import java.util.function.Supplier;
 
 @EventBusSubscriber
 public class ModFeatures {
-    public static final DeferredRegister<Feature<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.FEATURES, "rainimator");
+    public static final DeferredRegister<Feature<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.FEATURES, RainimatorMod.MOD_ID);
     private static final List<FeatureRegistration> FEATURE_REGISTRATIONS = new ArrayList<>();
     public static final RegistryObject<Feature<?>> RUBY_ORE = register("ruby_ore", RubyOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, RubyOreFeature.GENERATE_BIOMES, RubyOreFeature::placedFeature));
-    public static final RegistryObject<Feature<?>> SAPPRIES_ORE = register("sappries_ore", SappriesOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, SappriesOreFeature.GENERATE_BIOMES, SappriesOreFeature::placedFeature));
-
-    public static final RegistryObject<Feature<?>> DEEPSLATE_SAPPRIES_ORE = register("deepslate_sappries_ore", DeepslateSappriesOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, DeepslateSappriesOreFeature.GENERATE_BIOMES, DeepslateSappriesOreFeature::placedFeature));
-
+    public static final RegistryObject<Feature<?>> SAPPRIES_ORE = register("sappries_ore", SapphireOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, SapphireOreFeature.GENERATE_BIOMES, SapphireOreFeature::placedFeature));
+    public static final RegistryObject<Feature<?>> DEEPSLATE_SAPPRIES_ORE = register("deepslate_sappries_ore", DeepslateSapphireOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, DeepslateSapphireOreFeature.GENERATE_BIOMES, DeepslateSapphireOreFeature::placedFeature));
     public static final RegistryObject<Feature<?>> DEEPSLATE_RUBY_ORE = register("deepslate_ruby_ore", DeepslateRubyOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, DeepslateRubyOreFeature.GENERATE_BIOMES, DeepslateRubyOreFeature::placedFeature));
-
     public static final RegistryObject<Feature<?>> DARKWERY = register("darkwery", DarkweryFeature::feature, new FeatureRegistration(GenerationStep.Decoration.SURFACE_STRUCTURES, DarkweryFeature.GENERATE_BIOMES, DarkweryFeature::placedFeature));
     public static final RegistryObject<Feature<?>> MYSTICORE = register("mysticore", MysticoreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, MysticoreFeature.GENERATE_BIOMES, MysticoreFeature::placedFeature));
-    public static final RegistryObject<Feature<?>> PIGLINTEAM = register("piglinteam", PiglinteamFeature::feature, new FeatureRegistration(GenerationStep.Decoration.SURFACE_STRUCTURES, PiglinteamFeature.GENERATE_BIOMES, PiglinteamFeature::placedFeature));
-
+    public static final RegistryObject<Feature<?>> PIGLINTEAM = register("piglinteam", PiglinTeamFeature::feature, new FeatureRegistration(GenerationStep.Decoration.SURFACE_STRUCTURES, PiglinTeamFeature.GENERATE_BIOMES, PiglinTeamFeature::placedFeature));
     public static final RegistryObject<Feature<?>> SPEED = register("speed", SpeedFeature::feature, new FeatureRegistration(GenerationStep.Decoration.SURFACE_STRUCTURES, SpeedFeature.GENERATE_BIOMES, SpeedFeature::placedFeature));
     public static final RegistryObject<Feature<?>> SKILL = register("skill", SkillFeature::feature, new FeatureRegistration(GenerationStep.Decoration.SURFACE_STRUCTURES, SkillFeature.GENERATE_BIOMES, SkillFeature::placedFeature));
 
