@@ -27,11 +27,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 import java.util.Random;
 
-public class NetherSpearItem extends SwordItem {
+public class NetherSpearItem extends SwordItem implements ICurioItem {
     public NetherSpearItem() {
         super(TierBase.of(3000, 0.0F, 11.0F, 0, 25), 3, -2.2F, ModCreativeTab.createProperty().fireResistant());
     }

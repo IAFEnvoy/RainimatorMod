@@ -56,7 +56,6 @@ public class ModEntityRenderers {
         event.registerEntityRenderer(ModEntities.TRICER.get(), c -> new EntityRendererBase<>(c, "tricer"));
         event.registerEntityRenderer(ModEntities.BIGUNDEADSKELETON.get(), c -> new EntityRendererBase<>(c, "big_blackbone"));
         event.registerEntityRenderer(ModEntities.ARCHER.get(), c -> new EntityRendererBase<>(c, "archer"));
-        event.registerEntityRenderer(ModEntities.HIM.get(), c -> new EntityWithEyeRendererBase<>(c, "him_2", "him_eye"));
         event.registerEntityRenderer(ModEntities.GIGABONE.get(), c -> new EntityRendererBase<>(c, "gigabone"));
         event.registerEntityRenderer(ModEntities.KLAUS.get(), c -> new EntityRendererBase<>(c, "klaus"));
         event.registerEntityRenderer(ModEntities.KLAUS_2.get(), c -> new EntityRendererBase<>(c, "klaus_2"));

@@ -3,9 +3,7 @@ package com.rainimator.rainimatormod.registry;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.armor.*;
 import com.rainimator.rainimatormod.item.*;
-import com.rainimator.rainimatormod.item.shield.BlueDiamondShieldItem;
-import com.rainimator.rainimatormod.item.shield.ShieldEverItem;
-import com.rainimator.rainimatormod.item.shield.SnowShieldItem;
+import com.rainimator.rainimatormod.item.shield.*;
 import com.rainimator.rainimatormod.item.sword.*;
 import com.rainimator.rainimatormod.item.tool.*;
 import com.rainimator.rainimatormod.registry.util.*;
@@ -19,7 +17,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, RainimatorMod.MOD_ID);
-
     //resources
     public static final RegistryObject<Item> SUPER_RUBY = REGISTRY.register("super_ruby", () -> new ItemBase(p -> p.tab(ModCreativeTab.items).fireResistant()));
     public static final RegistryObject<Item> ABIGAIL_SPEAR = REGISTRY.register("abigail_spear", AbigailSpearItem::new);
@@ -40,7 +37,7 @@ public class ModItems {
     public static final RegistryObject<Item> RAIN_SWORD = REGISTRY.register("rain_sword", RainSwordItem::new);
     public static final RegistryObject<Item> HEROBRINE_TOMAHAWK = REGISTRY.register("herobrine_tomahawk", HerobrineTomahawkItem::new);
     public static final RegistryObject<Item> ZECANIRN_THEBLADE = REGISTRY.register("zecanirn_theblade", ZecanirnThebladeItem::new);
-    public static final RegistryObject<Item> END_BLADE = REGISTRY.register("end_blade", EndBladeItem::new);
+    public static final RegistryObject<Item> END_BLADE = REGISTRY.register("end_blade", EnderBigSwordItem::new);
     public static final RegistryObject<Item> LASER_SWORD = REGISTRY.register("laser_sword", () -> new FoilSwordBase(TierBase.of(3000, 4.0F, 13.0F, 1, 18, ModItems.SUPER_SPPARIES.get(), Items.ENDER_EYE), 3, -2.4F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> MACE = REGISTRY.register("mace", () -> new SwordItem(TierBase.of(12000, 4.0F, 10.0F, 0, 10, ModItems.SUPER_SPPARIES), 3, -2.6F, ModCreativeTab.createProperty().fireResistant()));
     public static final RegistryObject<Item> SAPPRIES = REGISTRY.register("sappries", () -> new ItemBase(p -> p.tab(ModCreativeTab.items)));
@@ -136,7 +133,7 @@ public class ModItems {
     public static final RegistryObject<Item> SAPPRIESHOE = REGISTRY.register("sapprieshoe", SapphireHoeItem::new);
     public static final RegistryObject<Item> RUBYHOE = REGISTRY.register("rubyhoe", RubyHoeItem::new);
     public static final RegistryObject<Item> DIAMONDAPPLESUPPER = REGISTRY.register("diamondapplesupper", DiamondAppleSupperItem::new);
-    public static final RegistryObject<Item> ENDERBIGSWORD = REGISTRY.register("enderbigsword", EnderBigSwordItem::new);
+    public static final RegistryObject<Item> ENDERBIGSWORD = REGISTRY.register("enderbigsword", EnderCurvedSwordItem::new);
     public static final RegistryObject<Item> UNDERFLOWER = REGISTRY.register("underflower", UnderFlowerItem::new);
     public static final RegistryObject<Item> BLUEDIAMONDSHIELD = REGISTRY.register("bluediamondshield", BlueDiamondShieldItem::new);
     public static final RegistryObject<Item> BLACKGUN = REGISTRY.register("blackgun", BlackGunItem::new);
@@ -200,7 +197,6 @@ public class ModItems {
     public static final RegistryObject<Item> ARCHER_SPAWN_EGG = REGISTRY.register("archer_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.ARCHER, -6710887, -16750951, ModCreativeTab.createProperty("mobs")));
     public static final RegistryObject<Item> DARYLL_SPAWN_EGG = REGISTRY.register("daryll_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.DARYLL, -6737152, -1, ModCreativeTab.createProperty("mobs")));
     public static final RegistryObject<Item> NULLLIKE_SPAWN_EGG = REGISTRY.register("nulllike_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.NULLLIKE, -1, -16777216, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> HIM_SPAWN_EGG = REGISTRY.register("him_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.HIM, -65536, -10092544, ModCreativeTab.createProperty("mobs")));
     public static final RegistryObject<Item> GIGABONE_SPAWN_EGG = REGISTRY.register("gigabone_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.GIGABONE, -10066330, -3355393, ModCreativeTab.createProperty("mobs")));
     public static final RegistryObject<Item> KLAUS_SPAWN_EGG = REGISTRY.register("klaus_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.KLAUS, -10066432, -16764109, ModCreativeTab.createProperty("mobs")));
     public static final RegistryObject<Item> KLAUS_2_SPAWN_EGG = REGISTRY.register("klaus_2_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.KLAUS_2, -6711040, -16751002, ModCreativeTab.createProperty("mobs")));
@@ -222,6 +218,4 @@ public class ModItems {
     private static RegistryObject<Item> block(RegistryObject<Block> block) {
         return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), ModCreativeTab.createProperty("items")));
     }
-
-
 }

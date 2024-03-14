@@ -77,7 +77,6 @@ public class ModEntities {
         event.put(TRICER.get(), TricerEntity.createAttributes().build());
         event.put(BIGUNDEADSKELETON.get(), BiGunDeadSkeletonEntity.createAttributes().build());
         event.put(ARCHER.get(), ArcherEntity.createAttributes().build());
-        event.put(HIM.get(), HimEntity.createAttributes().build());
         event.put(GIGABONE.get(), GigaBoneEntity.createAttributes().build());
         event.put(KLAUS.get(), KlausEntity.createAttributes().build());
         event.put(KLAUS_2.get(), Klaus2Entity.createAttributes().build());
@@ -128,7 +127,6 @@ public class ModEntities {
     public static final RegistryObject<EntityType<TricerEntity>> TRICER = register("tricer", EntityType.Builder.<TricerEntity>of(TricerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(TricerEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<BiGunDeadSkeletonEntity>> BIGUNDEADSKELETON = register("bigundeadskeleton", EntityType.Builder.<BiGunDeadSkeletonEntity>of(BiGunDeadSkeletonEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BiGunDeadSkeletonEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<ArcherEntity>> ARCHER = register("archer", EntityType.Builder.<ArcherEntity>of(ArcherEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ArcherEntity::new).sized(0.6F, 1.8F));
-    public static final RegistryObject<EntityType<HimEntity>> HIM = register("him", EntityType.Builder.<HimEntity>of(HimEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HimEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<GigaBoneEntity>> GIGABONE = register("gigabone", EntityType.Builder.<GigaBoneEntity>of(GigaBoneEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(GigaBoneEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<KlausEntity>> KLAUS = register("klaus", EntityType.Builder.<KlausEntity>of(KlausEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(KlausEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<Klaus2Entity>> KLAUS_2 = register("klaus_2", EntityType.Builder.<Klaus2Entity>of(Klaus2Entity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(Klaus2Entity::new).fireImmune().sized(0.6F, 1.8F));

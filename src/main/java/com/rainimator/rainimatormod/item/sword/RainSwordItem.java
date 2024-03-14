@@ -32,12 +32,27 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-public class RainSwordItem extends SwordItem {
+public class RainSwordItem extends SwordItem implements ICurioItem {
+    private static final List<Triple<Integer, Integer, Integer>> places = Lists.newArrayList(
+            Triple.of(0, 0, 0),
+            Triple.of(1, 0, 0),
+            Triple.of(-1, 0, 0),
+            Triple.of(0, 0, 1),
+            Triple.of(0, 0, -1),
+            Triple.of(0, 1, 0),
+            Triple.of(1, 1, 0),
+            Triple.of(-1, 1, 0),
+            Triple.of(0, 1, 1),
+            Triple.of(0, 1, -1),
+            Triple.of(0, 2, 0)
+    );
+
     public RainSwordItem() {
         super(TierBase.of(2000, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SPPARIES), 3, -2.0F, ModCreativeTab.createProperty());
     }
@@ -71,19 +86,6 @@ public class RainSwordItem extends SwordItem {
                     _entity.getNavigation().stop();
                 MiscUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation(RainimatorMod.MOD_ID, "rain_sword_skill"), 1.0F, 1.0F);
 
-                List<Triple<Integer, Integer, Integer>> places = Lists.newArrayList(
-                        Triple.of(0, 0, 0),
-                        Triple.of(1, 0, 0),
-                        Triple.of(-1, 0, 0),
-                        Triple.of(0, 0, 1),
-                        Triple.of(0, 0, -1),
-                        Triple.of(0, 1, 0),
-                        Triple.of(1, 1, 0),
-                        Triple.of(-1, 1, 0),
-                        Triple.of(0, 1, 1),
-                        Triple.of(0, 1, -1),
-                        Triple.of(0, 2, 0)
-                );
                 for (Triple<Integer, Integer, Integer> place : places)
                     world.setBlock(new BlockPos(entityiterator.getX() + place.getLeft(), entityiterator.getY() + place.getMiddle(), entityiterator.getZ() + place.getRight()), Blocks.ICE.defaultBlockState(), 3);
                 if (!_livEnt.level.isClientSide()) {

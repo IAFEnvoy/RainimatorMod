@@ -22,7 +22,7 @@ public class ModSounds {
             "ceris_boss_music", "null_boss_music", "blackbone_boss_music", "piglin_king_boss_music", "naeus_boss_music",
             "gutton_boss_music", "him_music_boss", "him_onelives", "kralos_boss_music", "klaus_boss_music"
     };
-    public static Map<String, SoundEvent> REGISTRY = new HashMap<>();
+    public static final Map<String, SoundEvent> REGISTRY = new HashMap<>();
 
     @SubscribeEvent
     public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {

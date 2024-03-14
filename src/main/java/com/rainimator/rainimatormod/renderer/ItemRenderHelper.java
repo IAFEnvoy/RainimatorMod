@@ -1,6 +1,5 @@
 package com.rainimator.rainimatormod.renderer;
 
-import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
@@ -12,7 +11,6 @@ import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import org.apache.commons.lang3.StringUtils;
 
 public class ItemRenderHelper {
     public static void move(PoseStack matrixStack, String[][] moveTypes, int slot, float translation) {
@@ -112,18 +110,16 @@ public class ItemRenderHelper {
         poseStack.popPose();
     }
 
-    public static void renderNormalItem(int slot, LivingEntity player, ItemStack itemStack, PoseStack poseStack, MultiBufferSource p_174522_, int p_174523_, ItemTransforms.TransformType ctx) {
+    public static void renderNormalItem(LivingEntity player, ItemStack itemStack, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, ItemTransforms.TransformType ctx) {
         poseStack.pushPose();
         poseStack.translate(0.0d, 0.35d, 0.16d);
-        poseStack.mulPose(Vector3f.YP.rotationDegrees(180.0f));
-        poseStack.mulPose(Vector3f.ZP.rotationDegrees(180.0f));
         poseStack.scale(0.8f, -0.8f, -0.8f);
         poseStack.translate(0.10000000149011612d, -0.10000000149011612d, -0.07999999821186066d);
-        Minecraft.getInstance().getItemInHandRenderer().renderItem(player, itemStack, ctx, false, poseStack, p_174522_, p_174523_);
+        Minecraft.getInstance().getItemInHandRenderer().renderItem(player, itemStack, ctx, false, poseStack, bufferSource, packedLight);
         poseStack.popPose();
     }
 
-    public static void renderTieredItem(int slot, LivingEntity player, ItemStack itemStack, PoseStack poseStack, MultiBufferSource p_174522_, int p_174523_, ItemTransforms.TransformType ctx) {
+    public static void renderTieredItem(LivingEntity player, ItemStack itemStack, PoseStack poseStack, MultiBufferSource p_174522_, int p_174523_, ItemTransforms.TransformType ctx) {
         poseStack.pushPose();
         poseStack.translate(-0.05d, 0.3d, 0.16d);
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180.0f));

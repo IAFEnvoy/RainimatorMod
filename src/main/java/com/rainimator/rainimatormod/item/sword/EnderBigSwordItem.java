@@ -1,53 +1,59 @@
 package com.rainimator.rainimatormod.item.sword;
 
+import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.registry.ModParticleTypes;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.MiscUtil;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-import java.util.Random;
-
 public class EnderBigSwordItem extends SwordItem implements ICurioItem {
     public EnderBigSwordItem() {
-        super(TierBase.of(2000, 0.0F, 6.0F, 0, 25), 3, -2.0F, ModCreativeTab.createProperty().fireResistant());
+        super(TierBase.of(2000, 4.0F, 9.0F, 1, 15, ModItems.SUPER_SPPARIES.get(), Items.ENDER_EYE), 3, -2.2F, ModCreativeTab.createProperty());
     }
 
     @Override
-    public boolean hurtEnemy(@NotNull ItemStack itemstack, @NotNull LivingEntity entity, @NotNull LivingEntity sourceentity) {
-        boolean ret_val = super.hurtEnemy(itemstack, entity, sourceentity);
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, @NotNull Player entity, @NotNull InteractionHand hand) {
+        InteractionResultHolder<ItemStack> ar = super.use(world, entity, hand);
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
-        if (entity instanceof Mob _entity)
-            _entity.setTarget(sourceentity);
-        boolean hurted = true;
-        if (Math.random() < 0.3D)
-            entity.hurt(DamageSource.MAGIC, 4.0F);
-        else if (Math.random() < 0.3D)
-            entity.hurt(DamageSource.MAGIC, 6.0F);
-        else if (Math.random() < 0.3D)
-            entity.hurt(DamageSource.MAGIC, 8.0F);
-        else if (Math.random() < 0.3D)
-            entity.hurt(DamageSource.MAGIC, 10.0F);
-        else hurted = false;
-        if (hurted) {
-            MiscUtil.playSound(entity.level, x, y, z, new ResourceLocation("block.anvil.land"), 5.0F, 1.0F);
-            if (itemstack.hurt(1, new Random(), null)) {
-                itemstack.shrink(1);
-                itemstack.setDamageValue(0);
+        ItemStack itemstack = ar.getObject();
+        double ender_1 = 0.0D;
+        if (entity.isShiftKeyDown()) {
+            entity.teleportTo(entity.level
+                    .clip(new ClipContext(entity.getEyePosition(1.0F), entity.getEyePosition(1.0F).add(entity.getViewVector(1.0F).scale(ender_1 + 6.0D)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity)).getBlockPos().getX(), entity.level
+                    .clip(new ClipContext(entity.getEyePosition(1.0F), entity.getEyePosition(1.0F).add(entity.getViewVector(1.0F).scale(ender_1)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity)).getBlockPos().getY(), entity.level
+                    .clip(new ClipContext(entity.getEyePosition(1.0F), entity.getEyePosition(1.0F).add(entity.getViewVector(1.0F).scale(ender_1 + 6.0D)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity)).getBlockPos().getZ());
+            if ((Entity) entity instanceof ServerPlayer _serverPlayer)
+                _serverPlayer.connection.teleport(entity.level
+                        .clip(new ClipContext(entity.getEyePosition(1.0F), entity.getEyePosition(1.0F).add(entity.getViewVector(1.0F).scale(ender_1 + 6.0D)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity)).getBlockPos()
+                        .getX(), entity.level
+                        .clip(new ClipContext(entity.getEyePosition(1.0F), entity.getEyePosition(1.0F).add(entity.getViewVector(1.0F).scale(ender_1)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity)).getBlockPos().getY(), entity.level
+                        .clip(new ClipContext(entity.getEyePosition(1.0F), entity.getEyePosition(1.0F).add(entity.getViewVector(1.0F).scale(ender_1 + 6.0D)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity)).getBlockPos()
+                        .getZ(), entity
+                        .getYRot(), entity.getXRot());
+            MiscUtil.playSound(world, x, y, z, new ResourceLocation("entity.enderman.teleport"), 1.0F, 1.0F);
+            if (world instanceof ServerLevel _level) {
+                _level.sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), x, y, z, 50, 0.5D, 0.0D, 0.5D, 0.2D);
+                entity.getCooldowns().addCooldown(itemstack.getItem(), 300);
             }
         }
-        if (Math.random() < 0.25D && sourceentity instanceof Player _player)
-            _player.giveExperiencePoints(Mth.nextInt(new Random(), 10, 25));
-        return ret_val;
+        return ar;
     }
 }
+
