@@ -1,6 +1,7 @@
 package com.rainimator.rainimatormod.util;
 
 public enum Episode {
+    None("None", Type.None),
     TheStruggle("The Struggle", Type.Series1),
     ColdAsIce("Cold As Ice", Type.Series1),
     BeginAgain("Begin Again", Type.Special),
@@ -44,6 +45,6 @@ public enum Episode {
     }
 
     enum Type {
-        Series1, Series2, Series3, Series4, Special, EnderKingdom
+        None, Series1, Series2, Series3, Series4, Special, EnderKingdom
     }
 }

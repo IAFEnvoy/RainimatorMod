@@ -18,15 +18,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 
 public class EnderBookSkillScreen extends AbstractContainerScreen<EnderBookSkillMenu> {
-    private static final HashMap<String, Object> guiState = EnderBookSkillMenu.guiState;
-
     private final int x;
     private final int y;
     private final int z;
     private final Player entity;
-    ImageButton image_button_ground;
-    ImageButton image_button_nether;
-    ImageButton image_button_ender;
     public EnderBookSkillScreen(EnderBookSkillMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
         this.x = container.x;
@@ -35,10 +30,6 @@ public class EnderBookSkillScreen extends AbstractContainerScreen<EnderBookSkill
         this.entity = container.entity;
         this.imageWidth = 300;
         this.imageHeight = 100;
-    }
-
-    public boolean isPauseScreen() {
-        return true;
     }
 
     @Override
@@ -67,11 +58,6 @@ public class EnderBookSkillScreen extends AbstractContainerScreen<EnderBookSkill
     }
 
     @Override
-    public void containerTick() {
-        super.containerTick();
-    }
-
-    @Override
     protected void renderLabels(@NotNull PoseStack poseStack, int mouseX, int mouseY) {
     }
 
@@ -86,29 +72,17 @@ public class EnderBookSkillScreen extends AbstractContainerScreen<EnderBookSkill
         super.init();
         if (this.minecraft != null)
             this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-        this.image_button_ground = new ImageButton(this.leftPos + 32, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID, "textures/screens/atlas/imagebutton_ground.png"), 64, 128, e -> {
+        this.addRenderableWidget(new ImageButton(this.leftPos + 32, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID, "textures/screens/atlas/imagebutton_ground.png"), 64, 128, e -> {
             NetworkManager.PACKET_HANDLER.sendToServer(new EnderBookSkillButtonMessage(0, this.x, this.y, this.z));
-
             EnderBookSkillButtonMessage.handleButtonAction(this.entity, 0, this.x, this.y, this.z);
-        });
-
-        guiState.put("button:imagebutton_ground", this.image_button_ground);
-        this.addRenderableWidget(this.image_button_ground);
-        this.image_button_nether = new ImageButton(this.leftPos + 118, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID, "textures/screens/atlas/imagebutton_nether.png"), 64, 128, e -> {
+        }));
+        this.addRenderableWidget(new ImageButton(this.leftPos + 118, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID, "textures/screens/atlas/imagebutton_nether.png"), 64, 128, e -> {
             NetworkManager.PACKET_HANDLER.sendToServer(new EnderBookSkillButtonMessage(1, this.x, this.y, this.z));
-
             EnderBookSkillButtonMessage.handleButtonAction(this.entity, 1, this.x, this.y, this.z);
-        });
-
-        guiState.put("button:imagebutton_nether", this.image_button_nether);
-        this.addRenderableWidget(this.image_button_nether);
-        this.image_button_ender = new ImageButton(this.leftPos + 203, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID, "textures/screens/atlas/imagebutton_ender.png"), 64, 128, e -> {
+        }));
+        this.addRenderableWidget(new ImageButton(this.leftPos + 203, this.topPos + 19, 64, 64, 0, 0, 64, new ResourceLocation(RainimatorMod.MOD_ID, "textures/screens/atlas/imagebutton_ender.png"), 64, 128, e -> {
             NetworkManager.PACKET_HANDLER.sendToServer(new EnderBookSkillButtonMessage(2, this.x, this.y, this.z));
-
             EnderBookSkillButtonMessage.handleButtonAction(this.entity, 2, this.x, this.y, this.z);
-        });
-
-        guiState.put("button:imagebutton_ender", this.image_button_ender);
-        this.addRenderableWidget(this.image_button_ender);
+        }));
     }
 }

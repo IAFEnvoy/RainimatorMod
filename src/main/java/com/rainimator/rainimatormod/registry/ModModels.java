@@ -1,6 +1,5 @@
 package com.rainimator.rainimatormod.registry;
 
-import com.rainimator.rainimatormod.model.*;
 import com.rainimator.rainimatormod.renderer.model.*;
 import com.rainimator.rainimatormod.renderer.model.wing.WingsOfSalvationModel;
 import net.minecraftforge.api.distmarker.Dist;

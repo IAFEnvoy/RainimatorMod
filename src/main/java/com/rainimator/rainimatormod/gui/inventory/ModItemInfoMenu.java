@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 
-public class EnderBookSkillMenu extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
+public class ModItemInfoMenu extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
     public final Level world;
     public final Player entity;
     private final Map<Integer, Slot> customSlots = new HashMap<>();
@@ -23,8 +23,8 @@ public class EnderBookSkillMenu extends AbstractContainerMenu implements Supplie
     public int y;
     public int z;
 
-    public EnderBookSkillMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-        super(ModMenus.ENDERBOOKSKILL, id);
+    public ModItemInfoMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
+        super(ModMenus.MOD_ITEM_INFO, id);
         this.entity = inv.player;
         this.world = inv.player.level;
         if (extraData != null) {

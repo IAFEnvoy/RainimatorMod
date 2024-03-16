@@ -2,8 +2,8 @@ package com.rainimator.rainimatormod.item.sword;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import com.rainimator.rainimatormod.registry.util.TierBase;
+import com.rainimator.rainimatormod.registry.util.*;
+import com.rainimator.rainimatormod.util.Episode;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
 import com.rainimator.rainimatormod.util.Timeout;
@@ -21,19 +21,16 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Random;
 
-public class BlackBoneTheBladeItem extends SwordItem {
+public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainimatorInfo {
     public BlackBoneTheBladeItem() {
         super(TierBase.of(1500, 0.0F, 7.0F, 0, 10, ModItems.RUBY), 3, -2.4F, ModCreativeTab.createProperty().fireResistant());
     }
@@ -90,20 +87,6 @@ public class BlackBoneTheBladeItem extends SwordItem {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TextComponent("§4拥有§c烈焰神力§4的武器，攻击目标可使目标着火，攻击着火目标会对目标造成额外的魔法伤害并有概率回复使用者的生命值"));
-
-        list.add(new TextComponent("§4这把武器被赋予了§c地狱诅咒§4，使用者无法将这把武器的附魔祛除，§a这把武器的前三个附魔属性属于绑定"));
-
-        list.add(new TextComponent("§4这把武器会根据自身拥有的 §c抢夺，§9耐久，§b经验修补§4的附魔级数，来对应强化自身攻击力"));
-
-        list.add(new TextComponent("§4这把武器排斥它§b不认可§4的所有附魔属性，包括§e(横扫之刃，更高等级的锋利/亡灵杀手/节肢杀手，火焰附加！)"));
-
-        list.add(new TextComponent("§a当使用者使用这把武器潜行右键时可使用技能§c地狱冲击波§a！"));
-    }
-
-    @Override
     public boolean onEntitySwing(ItemStack itemstack, LivingEntity entity) {
         boolean retval = super.onEntitySwing(itemstack, entity);
         if (Math.random() < 0.2D)
@@ -112,8 +95,7 @@ public class BlackBoneTheBladeItem extends SwordItem {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public boolean isFoil(@NotNull ItemStack itemstack) {
-        return true;
+    public Episode getEpisode() {
+        return Episode.WeAreTheDanger;
     }
 }

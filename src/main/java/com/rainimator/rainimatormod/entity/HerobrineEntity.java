@@ -283,7 +283,7 @@ public class HerobrineEntity extends Monster {
                             this.level.setBlock(new BlockPos(this.getX(), this.getY(), this.getZ()), Blocks.FIRE.defaultBlockState(), 3);
                             if (!this.level.isClientSide() && this.getServer() != null)
                                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
-                                        "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:0,Flicker:1,Trail:0,Colors:[I;8073150],FadeColors:[I;2437522]}]}}}}");
+                                        "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:0,Flicker:1,Trail:0,Colors:[I;8073150],FadeColors:[I;2437522]}]}}}}");
                             MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"), 5, 1);
 
                             if (this.level instanceof ServerLevel _level)
@@ -306,7 +306,7 @@ public class HerobrineEntity extends Monster {
                                     _level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.002);
                                 if (!this.level.isClientSide() && this.getServer() != null)
                                     this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
-                                            "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2437522],FadeColors:[I;2651799]}]}}}}");
+                                            "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2437522],FadeColors:[I;2651799]}]}}}}");
                             };
                             Timeout.create(30, callback);
                             Timeout.create(60, callback);
@@ -334,7 +334,7 @@ public class HerobrineEntity extends Monster {
                                     _level.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.05);
                                 if (!this.level.isClientSide() && this.getServer() != null)
                                     this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
-                                            "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:2,Flicker:1,Trail:0,Colors:[I;6719955],FadeColors:[I;15790320]}]}}}}");
+                                            "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:2,Flicker:1,Trail:0,Colors:[I;6719955],FadeColors:[I;15790320]}]}}}}");
                                 this.setHealth(this.getHealth() + 20);
                                 if (this.level instanceof ServerLevel _level) {
                                     Mob entityToSpawn = new HerobrineEntity(ModEntities.HEROBRINE.get(), _level, Stage.Second);
@@ -358,7 +358,7 @@ public class HerobrineEntity extends Monster {
                 MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.spawn"), 1, 1);
                 if (!this.level.isClientSide() && this.getServer() != null)
                     this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
-                            "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2651799],FadeColors:[I;6719955]}]}}}}");
+                            "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2651799],FadeColors:[I;6719955]}]}}}}");
 
                 if (this.level instanceof ServerLevel _level) {
                     _level.sendParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 400, 2, 3, 2, 0.002);

@@ -337,5 +337,9 @@
   "subtitles.him_skill": "",
   "advancements.fangweijindu.title": "Fangweijindu",
   "item.rainimator.vordus_spawn_egg": "Vordus Spawn Egg",
-  "item.rainimator.soldiers_armor_leggings": "Soldiers Armor 护腿"
+  "item.rainimator.soldiers_armor_leggings": "Soldiers Armor 护腿",
+  "gui.rainimator.item_info.alt_info": "§7Press [LALT] for more info",
+  "gui.rainimator.item_info.appear": "First appear in : ",
+  "gui.rainimator.detail.rain_sword": "§9这把剑可以把神力转换成§b极寒之力§9释放\n§b凛冬之怒：§3当使用者潜心加右键时，可将周围§e7*7§3范围内的所有实体冻结并冰封[时间较长，属于绝对控制]，冰封期间会使目标冻伤并持续受到冰冻伤害，在融冰时会使目标受到较大额外魔法伤害\n§e极寒风暴：§a当使用者手持这把剑时，会在自身周围§e7*7§a范围内形成一个§b极寒领域§a，在领域中的生物会被减速和削弱作战能力，在邻域内§9冻伤§a效果会逐渐增加，当§9冻伤§a效果每达到§65§a层时目标会受到一次§e极寒风暴§a的伤害§c[在邻域待的越久受到伤害的可能性越大]\n§c能力：侵蚀§4[使用者使用这把剑打击目标，有概率使目标减速并直接受到一次§e极寒风暴§4的伤害]\n§8能力：冰心§7[当使用者和这把剑一同作战时，使用者将永远不会被点燃]",
+  "gui.rainimator.detail.blackbone_the_blade": "§4拥有§c烈焰神力§4的武器，攻击目标可使目标着火，攻击着火目标会对目标造成额外的魔法伤害并有概率回复使用者的生命值\n§4这把武器被赋予了§c地狱诅咒§4，使用者无法将这把武器的附魔祛除，§a这把武器的前三个附魔属性属于绑定\n§4这把武器会根据自身拥有的 §c抢夺，§9耐久，§b经验修补§4的附魔级数，来对应强化自身攻击力\n§4这把武器排斥它§b不认可§4的所有附魔属性，包括§e(横扫之刃，更高等级的锋利/亡灵杀手/节肢杀手，火焰附加！)\n§a当使用者使用这把武器潜行右键时可使用技能§c地狱冲击波§a！"
 }
