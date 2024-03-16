@@ -42,7 +42,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -348,131 +347,42 @@ public class HerobrineEntity extends Monster {
                             });
                         }
                     }
-                } else if (this.stage == Stage.Second) {
-                    if (this.getOffhandItem().getItem() == Blocks.AIR.asItem()) {
-                        this.getNavigation().stop();
-                        this.teleportTo(this.getX(), this.getY(), this.getZ());
-                        ItemStack _setstack = new ItemStack(ModItems.SOULPEOPLE.get());
-                        _setstack.setCount(1);
-                        this.setItemInHand(InteractionHand.OFF_HAND, _setstack);
-                        if (!this.level.isClientSide())
-                            this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 4));
-                        if (!this.level.isClientSide())
-                            this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 4));
-                        if (this.level instanceof ServerLevel _level) {
-                            LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                            if (entityToSpawn != null) {
-                                entityToSpawn.moveTo(Vec3.atBottomCenterOf(new BlockPos(this.getX(), this.getY(), this.getZ())));
-                                entityToSpawn.setVisualOnly(true);
-                                _level.addFreshEntity(entityToSpawn);
-                            }
-                        }
-                        this.level.setBlock(new BlockPos(this.getX(), this.getY(), this.getZ()), Blocks.FIRE.defaultBlockState(), 3);
-
-                        if (!this.level.isClientSide() && this.getServer() != null)
-                            this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
-                                    "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:0,Flicker:1,Trail:0,Colors:[I;8073150],FadeColors:[I;2437522]}]}}}}");
-
-                        MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"), 5, 1);
-                        if (this.level instanceof ServerLevel _level)
-                            _level.sendParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 400, 3, 4, 3, 0.002);
-                        Runnable callback = () -> {
-                            this.getNavigation().stop();
-                            this.teleportTo(this.getX(), this.getY(), this.getZ());
-
-                            if (this.level instanceof ServerLevel _level) {
-                                LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                                if (entityToSpawn != null) {
-                                    entityToSpawn.moveTo(Vec3.atBottomCenterOf(new BlockPos(this.getX(), this.getY(), this.getZ())));
-                                    entityToSpawn.setVisualOnly(true);
-                                    _level.addFreshEntity(entityToSpawn);
-                                }
-                            }
-                            this.level.setBlock(new BlockPos(this.getX(), this.getY(), this.getZ()), Blocks.FIRE.defaultBlockState(), 3);
-                            MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("item.totem.use"), 5, 1);
-                            if (this.level instanceof ServerLevel _level)
-                                _level.sendParticles(ParticleTypes.END_ROD, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.02);
-                            if (!this.level.isClientSide() && this.getServer() != null)
-                                this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
-                                        "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2651799],FadeColors:[I;6719955]}]}}}}");
-                        };
-                        Timeout.create(30, callback);
-                        Timeout.create(60, callback);
-                        Timeout.create(80, () -> {
-                            if (this.level instanceof ServerLevel _level)
-                                _level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
-                                        "stopsound @a neutral rainimator:him_music_boss");
-                        });
-                        Timeout.create(90, () -> {
-                            this.getNavigation().stop();
-                            this.teleportTo(this.getX(), this.getY(), this.getZ());
-                            if (!this.level.isClientSide())
-                                this.discard();
-                            if (this.level instanceof ServerLevel _level) {
-                                LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                                if (entityToSpawn != null) {
-                                    entityToSpawn.moveTo(Vec3.atBottomCenterOf(new BlockPos(this.getX(), this.getY(), this.getZ())));
-                                    entityToSpawn.setVisualOnly(true);
-                                    _level.addFreshEntity(entityToSpawn);
-                                }
-                            }
-                            this.level.setBlock(new BlockPos(this.getX(), this.getY(), this.getZ()), Blocks.FIRE.defaultBlockState(), 3);
-                            MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.spawn"), 5, 1);
-                            if (this.level instanceof ServerLevel _level)
-                                _level.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.05);
-                            if (!this.level.isClientSide() && this.getServer() != null)
-                                this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
-                                        "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:2,Flicker:1,Trail:0,Colors:[I;6719955],FadeColors:[I;15790320]}]}}}}");
-
-                            this.setHealth(this.getHealth() + 20);
-                            if (this.level instanceof ServerLevel _level) {
-                                Mob entityToSpawn = new HerobrineEntity(ModEntities.HEROBRINE.get(), _level, Stage.Third);
-                                entityToSpawn.moveTo(this.getX(), (this.getY() + 1), this.getZ(), this.level.getRandom().nextFloat() * 360F, 0);
-                                entityToSpawn.finalizeSpawn(_level, this.level.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
-                                this.level.addFreshEntity(entityToSpawn);
-                            }
-                            if (!this.level.isClientSide() && this.level.getServer() != null)
-                                this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("<Herobrine>§4断剑重铸之日，主宰世界之时！"), ChatType.SYSTEM, Util.NIL_UUID);
-                        });
-                    } else if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SHARPNESS, this.getMainHandItem()) == 0) {
-                            this.getNavigation().stop();
-                            this.teleportTo(this.getX(), this.getY(), this.getZ());
-
-                            this.getMainHandItem().enchant(Enchantments.SHARPNESS, 5);
-                            this.getOffhandItem().enchant(Enchantments.SHARPNESS, 5);
-                            this.setHealth((this.getHealth() + 10));
-                            MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.spawn"), 1, 1);
-                            if (!this.level.isClientSide() && this.getServer() != null)
-                                this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
-                                        "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2651799],FadeColors:[I;6719955]}]}}}}");
-
-                            if (this.level instanceof ServerLevel _level)
-                                _level.sendParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 400, 2, 3, 2, 0.002);
-                            if (this.level instanceof ServerLevel _level) {
-                                LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                                if (entityToSpawn != null) {
-                                    entityToSpawn.moveTo(Vec3.atBottomCenterOf(new BlockPos(this.getX(), this.getY(), this.getZ())));
-                                    entityToSpawn.setVisualOnly(true);
-                                    _level.addFreshEntity(entityToSpawn);
-                                }
-                            }
-                            this.level.setBlock(new BlockPos(this.getX(), this.getY(), this.getZ()), Blocks.FIRE.defaultBlockState(), 3);
-                            if (this.level instanceof ServerLevel _level) {
-                                Mob entityToSpawn = new BlackBoneEntity(ModEntities.BLACKBONE.get(), _level);
-                                entityToSpawn.moveTo(this.getX(), (this.getY() + 3), this.getZ(), this.level.getRandom().nextFloat() * 360F, 0);
-                                entityToSpawn.finalizeSpawn(_level, this.level.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
-                                this.level.addFreshEntity(entityToSpawn);
-                            }
-                            if (!this.level.isClientSide() && this.level.getServer() != null)
-                                this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§7<BlackBone>犯我领地者，必叫他死无葬身之地！"), ChatType.SYSTEM, Util.NIL_UUID);
-                            Timeout.create(40, () -> {
-                                if (this.level instanceof ServerLevel _level)
-                                    _level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
-                                            "stopsound @a neutral rainimator:blackbone_boss_music");
-                            });
-                        }
-
                 }
+            } else if (this.stage == Stage.Second && this.getHealth() <= this.getMaxHealth() / 4) {
+                this.getNavigation().stop();
+                this.teleportTo(this.getX(), this.getY(), this.getZ());
+
+                this.getMainHandItem().enchant(Enchantments.SHARPNESS, 5);
+                this.getOffhandItem().enchant(Enchantments.SHARPNESS, 5);
+                this.setHealth((this.getHealth() + 10));
+                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.spawn"), 1, 1);
+                if (!this.level.isClientSide() && this.getServer() != null)
+                    this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
+                            "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2651799],FadeColors:[I;6719955]}]}}}}");
+
+                if (this.level instanceof ServerLevel _level) {
+                    _level.sendParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 400, 2, 3, 2, 0.002);
+                    LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
+                    if (entityToSpawn != null) {
+                        entityToSpawn.moveTo(Vec3.atBottomCenterOf(new BlockPos(this.getX(), this.getY(), this.getZ())));
+                        entityToSpawn.setVisualOnly(true);
+                        _level.addFreshEntity(entityToSpawn);
+                    }
+                }
+                this.level.setBlock(new BlockPos(this.getX(), this.getY(), this.getZ()), Blocks.FIRE.defaultBlockState(), 3);
+                if (this.level instanceof ServerLevel _level) {
+                    Mob entityToSpawn = new BlackBoneEntity(ModEntities.BLACKBONE.get(), _level);
+                    entityToSpawn.moveTo(this.getX(), (this.getY() + 3), this.getZ(), this.level.getRandom().nextFloat() * 360F, 0);
+                    entityToSpawn.finalizeSpawn(_level, this.level.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
+                    this.level.addFreshEntity(entityToSpawn);
+                }
+                if (!this.level.isClientSide() && this.level.getServer() != null)
+                    this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§7<BlackBone>犯我领地者，必叫他死无葬身之地！"), ChatType.SYSTEM, Util.NIL_UUID);
+                Timeout.create(40, () -> {
+                    if (this.level instanceof ServerLevel _level)
+                        _level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
+                                "stopsound @a neutral rainimator:blackbone_boss_music");
+                });
             }
         }
     }

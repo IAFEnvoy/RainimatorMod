@@ -1,11 +1,11 @@
 package com.rainimator.rainimatormod.registry;
 
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.world.feature.DarkweryFeature;
-import com.rainimator.rainimatormod.world.feature.PiglinTeamFeature;
-import com.rainimator.rainimatormod.world.feature.SkillFeature;
-import com.rainimator.rainimatormod.world.feature.SpeedFeature;
-import com.rainimator.rainimatormod.world.feature.ore.*;
+import com.rainimator.rainimatormod.feature.DarkweryFeature;
+import com.rainimator.rainimatormod.feature.PiglinTeamFeature;
+import com.rainimator.rainimatormod.feature.SkillFeature;
+import com.rainimator.rainimatormod.feature.SpeedFeature;
+import com.rainimator.rainimatormod.feature.ore.*;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.GenerationStep;

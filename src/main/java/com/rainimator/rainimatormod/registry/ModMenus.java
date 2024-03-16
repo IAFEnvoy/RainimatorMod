@@ -1,6 +1,6 @@
 package com.rainimator.rainimatormod.registry;
 
-import com.rainimator.rainimatormod.world.inventory.EnderBookSkillMenu;
+import com.rainimator.rainimatormod.gui.inventory.EnderBookSkillMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

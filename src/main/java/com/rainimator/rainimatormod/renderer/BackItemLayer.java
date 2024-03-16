@@ -6,6 +6,7 @@ import com.rainimator.rainimatormod.registry.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -37,7 +38,13 @@ public class BackItemLayer {
 
     public static void initPoseConsumers() {
         specialItemPose.put(ModItems.END_BLADE.get(), poseStack -> {
-            poseStack.translate(0, 0, 1);
+            poseStack.translate(-0.7, -0.3, 0.15);
+            poseStack.scale(0.6F, 0.6F, 0.6F);
+            poseStack.mulPose(Vector3f.ZP.rotationDegrees(45));
+        });
+        specialItemPose.put(ModItems.RAIN_SWORD.get(), poseStack -> {
+            poseStack.translate(-0.7, -0.3, 0.3);
+            poseStack.scale(0.6F, 0.6F, 0.6F);
             poseStack.mulPose(Vector3f.ZP.rotationDegrees(45));
         });
     }

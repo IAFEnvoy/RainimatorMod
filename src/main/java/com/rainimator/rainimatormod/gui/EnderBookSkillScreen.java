@@ -5,7 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.network.EnderBookSkillButtonMessage;
 import com.rainimator.rainimatormod.network.NetworkManager;
-import com.rainimator.rainimatormod.world.inventory.EnderBookSkillMenu;
+import com.rainimator.rainimatormod.gui.inventory.EnderBookSkillMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

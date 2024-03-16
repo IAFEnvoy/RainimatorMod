@@ -18,6 +18,5 @@ public class RenderManager {
         int packedLight = event.getPackedLight();
 
         BackItemLayer.render(entity, poseStack, bufferSource, packedLight);
-        CrownLayer.render(entity, poseStack, bufferSource, packedLight);
     }
 }

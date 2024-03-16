@@ -3,6 +3,7 @@ package com.rainimator.rainimatormod.registry;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.armor.*;
 import com.rainimator.rainimatormod.item.*;
+import com.rainimator.rainimatormod.item.armor.*;
 import com.rainimator.rainimatormod.item.shield.*;
 import com.rainimator.rainimatormod.item.sword.*;
 import com.rainimator.rainimatormod.item.tool.*;

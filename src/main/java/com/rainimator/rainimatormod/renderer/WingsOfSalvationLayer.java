@@ -3,7 +3,7 @@ package com.rainimator.rainimatormod.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.model.wing.WingsOfSalvationModel;
+import com.rainimator.rainimatormod.renderer.model.wing.WingsOfSalvationModel;
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
