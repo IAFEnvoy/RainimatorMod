@@ -3,14 +3,16 @@ package com.rainimator.rainimatormod.item.sword;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
+import com.rainimator.rainimatormod.util.Episode;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -26,8 +28,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -40,8 +40,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-public class ZecanirnThebladeItem extends SwordItem {
-    public ZecanirnThebladeItem() {
+public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorInfo {
+    public ZecanirnTheBladeItem() {
         super(TierBase.of(1500, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SPPARIES, ModItems.SUPER_RUBY), 3, -2.2F, ModCreativeTab.createProperty());
     }
 
@@ -159,24 +159,15 @@ public class ZecanirnThebladeItem extends SwordItem {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TextComponent("§5由§d末影巨剑§5升级而来，拥有者变种末影之力的巨剑，其内部含有巨大的恐怖力量"));
-
-        list.add(new TextComponent("§5当使用者潜行时右键可发动§d末影十字斩§5：发动者随机瞬移到四个边缘位置对8*8范围内的所有目标进行6次斩击，被斩击的目标会发生4次爆体"));
-
-        list.add(new TextComponent("§5如果使用者内在的末影之力不够强大，则需要消耗一块§d末影能量石§5来发动此技能"));
-
-        list.add(new TextComponent("§c由于这种力量有反噬型性，使用者使用§d末影十字斩§c时会对自身造成一定伤害"));
-
-        list.add(new TextComponent("§a需要副手拿§d末影能量石§a才可以发动§d末影十字斩§5！"));
-    }
-
-    @Override
     public boolean onEntitySwing(ItemStack itemstack, LivingEntity entity) {
         boolean ret_val = super.onEntitySwing(itemstack, entity);
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(entity.level, (ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), entity.getX(), entity.getY(), entity.getZ(), 4, 0, 50);
         return ret_val;
+    }
+
+    @Override
+    public Episode getEpisode() {
+        return Episode.Goodbye;
     }
 }

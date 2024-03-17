@@ -1,24 +1,22 @@
 package com.rainimator.rainimatormod.item;
 
+import com.rainimator.rainimatormod.registry.util.FoilItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class DivinecoreItem extends Item {
-    public DivinecoreItem() {
-        super(ModCreativeTab.createProperty("items").durability(100).rarity(Rarity.UNCOMMON));
+public class DivineCoreItem extends FoilItemBase {
+    public DivineCoreItem() {
+        super(p -> p.tab(ModCreativeTab.items).durability(100).rarity(Rarity.UNCOMMON));
     }
 
     @Override
@@ -34,12 +32,6 @@ public class DivinecoreItem extends Item {
     @Override
     public int getUseDuration(@NotNull ItemStack itemstack) {
         return 1;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public boolean isFoil(@NotNull ItemStack itemstack) {
-        return true;
     }
 
     @Override

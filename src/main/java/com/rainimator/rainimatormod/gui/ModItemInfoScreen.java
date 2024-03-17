@@ -8,42 +8,52 @@ import com.rainimator.rainimatormod.util.ComponentUtil;
 import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class ModItemInfoScreen extends AbstractContainerScreen<ModItemInfoMenu> implements MenuAccess<ModItemInfoMenu> {
     private final ItemInfo info;
+    private final Screen parent;
 
-    public ModItemInfoScreen(ModItemInfoMenu container, Inventory inventory, Component text, ItemInfo info) {
+    public ModItemInfoScreen(ModItemInfoMenu container, Inventory inventory, Component text, ItemInfo info, Screen parent) {
         super(container, inventory, text);
         this.imageWidth = 300;
         this.imageHeight = 100;
         this.info = info;
+        this.parent = parent;
     }
 
     @Override
     public void render(@NotNull PoseStack ms, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(ms);
         super.render(ms, mouseX, mouseY, partialTicks);
-        Minecraft.getInstance().font.drawShadow(ms, I18n.get(this.info.type.getId() + ".rainimator." + this.info.internalId), this.leftPos - 20, this.topPos - 30, -1);
+        Minecraft.getInstance().font.drawShadow(ms, I18n.get(this.info.type.getId() + "." + RainimatorMod.MOD_ID + "." + this.info.internalId), this.leftPos - 20, this.topPos - 30, -1);
         Minecraft.getInstance().font.drawShadow(ms, I18n.get("gui.rainimator.item_info.appear") + this.info.episode.getName(), this.leftPos - 20, this.topPos - 20, -1);
-        String[] details = I18n.get("gui.rainimator.detail." + this.info.internalId).split("\n");
-        int i = 0;
+        String[] details = I18n.get("gui." + RainimatorMod.MOD_ID + ".detail." + this.info.internalId).split("\n");
+        int i = -40;
         for (String s : details) {
             List<TextComponent> componentList = ComponentUtil.splitText(new TextComponent(s), 180, Minecraft.getInstance().font);
             for (TextComponent component : componentList) {
-                Minecraft.getInstance().font.drawShadow(ms, component, this.leftPos + 190, this.topPos - 40 + i * 10, -1);
-                i++;
+                Minecraft.getInstance().font.drawShadow(ms, component, this.leftPos + 190, this.topPos + i, -1);
+                i += 10;
             }
+            i += 5;
         }
+        Minecraft.getInstance().font.drawShadow(ms,
+                new TextComponent("Image By Rainimator @Rainolaguer").withStyle(Style.EMPTY.withBold(true).withUnderlined(true).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,"https://www.youtube.com/@Rainimator"))),
+                this.leftPos - 20, this.topPos + 125, -1);
         this.renderTooltip(ms, mouseX, mouseY);
     }
 
@@ -58,8 +68,7 @@ public class ModItemInfoScreen extends AbstractContainerScreen<ModItemInfoMenu> 
     @Override
     public boolean keyPressed(int key, int b, int c) {
         if (key == 256) {
-            if (this.minecraft != null && this.minecraft.player != null)
-                this.minecraft.player.closeContainer();
+            this.onClose();
             return true;
         }
         return super.keyPressed(key, b, c);
@@ -71,8 +80,11 @@ public class ModItemInfoScreen extends AbstractContainerScreen<ModItemInfoMenu> 
 
     @Override
     public void onClose() {
-        super.onClose();
         Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(false);
+        if (this.parent == null)
+            super.onClose();
+        else
+            Minecraft.getInstance().setScreen(this.parent);
     }
 
     @Override

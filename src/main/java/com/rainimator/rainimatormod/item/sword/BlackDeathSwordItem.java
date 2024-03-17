@@ -3,6 +3,7 @@ package com.rainimator.rainimatormod.item.sword;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
@@ -17,14 +18,13 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class BlackDeathSwordItem extends SwordItem {
+public class BlackDeathSwordItem extends SwordItemBase {
     public BlackDeathSwordItem() {
         super(TierBase.of(1000, 0.0F, 9.0F, 0, 30), 3, -1.7F, ModCreativeTab.createProperty().fireResistant());
     }

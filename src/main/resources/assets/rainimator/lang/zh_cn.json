@@ -57,7 +57,8 @@
   "entity.rainimator.zombies": "Zombies",
   "entity.rainimator.zombiespligeking": "piglin_king",
   "gui.rainimator.detail.blackbone_the_blade": "§4拥有§c烈焰神力§4的武器，攻击目标可使目标着火，攻击着火目标会对目标造成额外的魔法伤害并有概率回复使用者的生命值\n§4这把武器被赋予了§c地狱诅咒§4，使用者无法将这把武器的附魔祛除，§a这把武器的前三个附魔属性属于绑定\n§4这把武器会根据自身拥有的 §c抢夺，§9耐久，§b经验修补§4的附魔级数，来对应强化自身攻击力\n§4这把武器排斥它§b不认可§4的所有附魔属性，包括§e(横扫之刃，更高等级的锋利/亡灵杀手/节肢杀手，火焰附加！)\n§a当使用者使用这把武器潜行右键时可使用技能§c地狱冲击波§a！",
-  "gui.rainimator.detail.rain_sword": "§9这把剑可以把神力转换成§b极寒之力§9释放\n§b凛冬之怒：§3当使用者潜心加右键时，可将\n§b周围§e7*7§3范围内的所有实体冻结并冰封[时\n§b间较长，属于绝对控制]，冰封期间会使目标冻伤并持续受到冰冻伤害，在融冰时会使目标受到较大额外魔法伤害\n§e极寒风暴：§a当使用者手持这把剑时，会在自身周围§e7*7§a范围内形成一个§b极寒领域§a，在领域中的生物会被减速和削弱作战能力，在邻域内§9冻伤§a效果会逐渐增加，当§9冻伤§a效果每达到§65§a层时目标会受到一次§e极寒风暴§a的伤害§c[在邻域待的越久受到伤害的可能性越大]\n§c能力：侵蚀§4[使用者使用这把剑打击目标，有概率使目标减速并直接受到一次§e极寒风暴§4的伤害]\n§8能力：冰心§7[当使用者和这把剑一同作战时，使用者将永远不会被点燃]",
+  "gui.rainimator.detail.nether_spear": "§c杀戮之影：§4使用者的护甲值越低得到的§c地狱之力(力量BUFF)§4加成越高[最高得到§b4§4级的BUFF加成]\n§b雷诀：§4持有§c下界长枪§4的使用者潜行时右键可使用[Neaus的怨念之力]发动§b雷诀§4，向前方召唤数道雷电攻击并引燃目标，对同一直线上的生物具有穿透效果\n§e战神庇护：§c下界长枪§4会不同程度地强化自身所拥有的附魔属性，同时有概率获得其他方面属性的加成，使使用者在战斗中所向披靡\n§4能力：嗜血§7[使用者使用这把枪攻击目标时，有概率吸收目标生命值治疗自身]\n§c能力：淬火§5[使用者使用这把枪攻击目标时有概率点燃目标，攻击点燃的目标有概率使其受到额外的火焰伤害]",
+  "gui.rainimator.detail.rain_sword": "§9这把剑可以把神力转换成§b极寒之力§9释放\n§b凛冬之怒：§3当使用者潜心加右键时，可将周围§e7*7§3范围内的所有实体冻结并冰封[时间较长，属于绝对控制]，冰封期间会使目标冻伤并持续受到冰冻伤害，在融冰时会使目标受到较大额外魔法伤害\n§e极寒风暴：§a当使用者手持这把剑时，会在自身周围§e7*7§a范围内形成一个§b极寒领域§a，在领域中的生物会被减速和削弱作战能力，在邻域内§9冻伤§a效果会逐渐增加，当§9冻伤§a效果每达到§65§a层时目标会受到一次§e极寒风暴§a的伤害§c[在邻域待的越久受到伤害的可能性越大]\n§c能力：侵蚀§4[使用者使用这把剑打击目标，有概率使目标减速并直接受到一次§e极寒风暴§4的伤害]\n§8能力：冰心§7[当使用者和这把剑一同作战时，使用者将永远不会被点燃]",
   "gui.rainimator.item_info.alt_info": "§7按下LAlt查看更多信息",
   "gui.rainimator.item_info.appear": "首次出现于：",
   "gui.rainimator.zuozhefangwei.button_lvpeilin": "Lvpeilin",
@@ -74,7 +75,7 @@
   "item.rainimator.azalea_spawn_egg": "Azalea刷怪蛋",
   "item.rainimator.baozhu": "剧毒宝珠",
   "item.rainimator.bigundeadskeleton_spawn_egg": "Big_black_skeleton刷怪蛋",
-  "item.rainimator.blackbone_spawn_egg": "Blackbone Spawn Eg",
+  "item.rainimator.blackbone_spawn_egg": "Blackbone刷怪蛋",
   "item.rainimator.blackbone_the_blade": "红焰巨刃",
   "item.rainimator.blackbone_the_blade_danshou": "blackbone的红焰巨刃",
   "item.rainimator.blackbonemusic": "Blackbone_Boss_Music",
@@ -271,5 +272,7 @@
   "item.rainimator.zombiespligeking_spawn_egg": "piglin_king刷怪蛋",
   "itemGroup.rainimator": "Rainimator装备",
   "itemGroup.rainimator_items": "Rainimator物品",
-  "itemGroup.rainimator_mobs": "Rainimator生物"
+  "itemGroup.rainimator_mobs": "Rainimator生物",
+  "gui.rainimator.detail.zecanirn_theblade": "§5由§d末影巨剑§5升级而来，拥有者变种末影之力的巨剑，其内部含有巨大的恐怖力量\n§5当使用者潜行时右键可发动§d末影十字斩§5：发动者随机瞬移到四个边缘位置对8*8范围内的所有目标进行6次斩击，被斩击的目标会发生4次爆体\n§5如果使用者内在的末影之力不够强大，则需要消耗一块§d末影能量石§5来发动此技能\n§c由于这种力量有反噬型性，使用者使用§d末影十字斩§c时会对自身造成一定伤害\n§a需要副手拿§d末影能量石§a才可以发动§d末影十字斩§5！",
+  "gui.rainimator.detail.seizingshadowhalberd": "§7拥有双重神力的武器\n§d龙震波：§5当使用者潜行时右键地面可标记某一处位置，3秒后在标记处召唤一颗§d龙息弹§5打击范围内目标\n§7灾厄降临，§9当使用者潜行时右键，可在周围召唤§7唤魔者之牙§9法阵打击周围§16*6§9范围内的生物\n§b精准打击：§3使用者右键地面可召唤§7唤魔者之牙§3对指定位置生物造成一次伤害\n§e离心牵引：§6果目标被§5影蚀诅咒，§6使用者右键可将被诅咒生物拉至身前并召唤§7唤魔者之牙§6打击目标\n§a回溯：§2使用者使用此武器时所有技能CD减半\n§d影蚀：§5使用者使用此武器攻击目标时有概率诅咒目标，使目标漂浮！"
 }

@@ -1,6 +1,7 @@
 package com.rainimator.rainimatormod.item.sword;
 
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.registry.util.FoilSwordItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.MiscUtil;
@@ -18,19 +19,16 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-public class FallenSoulAxeItem extends SwordItem {
+public class FallenSoulAxeItem extends FoilSwordItemBase {
     public FallenSoulAxeItem() {
         super(TierBase.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.3F, ModCreativeTab.createProperty().fireResistant());
     }
@@ -93,11 +91,5 @@ public class FallenSoulAxeItem extends SwordItem {
             }
         }
         return ar;
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public boolean isFoil(@NotNull ItemStack itemstack) {
-        return true;
     }
 }

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class RenderManager {
     @SubscribeEvent
-    public static void render(RenderPlayerEvent event) {
+    public static void render(RenderPlayerEvent.Post event) {
         LivingEntity entity = event.getEntityLiving();
         if (entity.isSpectator() || entity.isInvisible() || !entity.isAlive()) return;
         PoseStack poseStack = event.getPoseStack();

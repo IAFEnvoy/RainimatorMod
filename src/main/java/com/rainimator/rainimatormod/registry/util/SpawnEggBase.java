@@ -2,7 +2,7 @@ package com.rainimator.rainimatormod.registry.util;
 
 import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
@@ -25,9 +25,8 @@ public class SpawnEggBase extends ForgeSpawnEggItem implements IRainimatorInfo {
     @Override
     public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
-        if (RainimatorInfoManager.idMap.size() == 0) RainimatorInfoManager.initIdMap();
-        if (RainimatorInfoManager.idMap.containsKey(this))
-            list.add(new TranslatableComponent("gui.rainimator.item_info.alt_info"));
+        if (this.episode != Episode.None)
+            list.add(new TextComponent(RainimatorInfoManager.getHoverText()));
     }
 
     @Override

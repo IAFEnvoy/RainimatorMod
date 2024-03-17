@@ -3,9 +3,9 @@ package com.rainimator.rainimatormod.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.gui.inventory.EnderBookSkillMenu;
 import com.rainimator.rainimatormod.network.EnderBookSkillButtonMessage;
 import com.rainimator.rainimatormod.network.NetworkManager;
-import com.rainimator.rainimatormod.gui.inventory.EnderBookSkillMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -14,8 +14,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
 
 public class EnderBookSkillScreen extends AbstractContainerScreen<EnderBookSkillMenu> {
     private final int x;

@@ -1,6 +1,7 @@
 package com.rainimator.rainimatormod.registry.util;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -19,7 +20,7 @@ public class SwordItemBase extends SwordItem {
     @Override
     public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
-        if(RainimatorInfoManager.idMap.containsKey(this))
-            list.add(new TranslatableComponent("gui.rainimator.item_info.alt_info"));
+        if(this instanceof IRainimatorInfo)
+            list.add(new TextComponent(RainimatorInfoManager.getHoverText()));
     }
 }

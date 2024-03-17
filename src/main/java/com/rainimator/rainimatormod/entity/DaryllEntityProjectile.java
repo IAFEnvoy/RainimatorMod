@@ -16,8 +16,7 @@ import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
-public class DaryllEntityProjectile
-        extends AbstractArrow implements ItemSupplier {
+public class DaryllEntityProjectile extends AbstractArrow implements ItemSupplier {
     public DaryllEntityProjectile(PlayMessages.SpawnEntity packet, Level world) {
         super(ModEntities.DARYLL_PROJECTILE.get(), world);
     }

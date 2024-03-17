@@ -2,6 +2,7 @@ package com.rainimator.rainimatormod.item.sword;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import net.minecraft.resources.ResourceLocation;
@@ -14,7 +15,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Comparator;
 import java.util.List;
 
-public class NaeusSwordItem extends SwordItem {
+public class NaeusSwordItem extends SwordItemBase {
     public NaeusSwordItem() {
         super(TierBase.of(4000, 4.0F, 9.0F, 0, 10), 3, -2.0F, ModCreativeTab.createProperty().fireResistant());
     }

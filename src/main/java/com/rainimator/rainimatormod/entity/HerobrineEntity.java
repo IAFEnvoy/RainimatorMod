@@ -5,6 +5,7 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.Stage;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.Util;
 import net.minecraft.commands.CommandSource;
@@ -78,11 +79,13 @@ public class HerobrineEntity extends Monster {
         this.setNoAi(false);
         this.setPersistenceRequired();
         switch (stage) {
-            case First, Third ->
-                    this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.HEROBRINE_TOMAHAWK.get()));
+            case First -> {
+                this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.HEROBRINE_TOMAHAWK.get()));
+                this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(Items.AIR));
+            }
             case Second -> {
                 this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLUE_DIAMOND_SWORD.get()));
-                this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(Items.IRON_SWORD));
+                this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.BLUE_DIAMOND_SWORD.get()));
                 this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.DIAMOND_HELMET));
                 this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.HEROBRINE_ARMOR_CHESTPLATE.get()));
             }
@@ -231,7 +234,7 @@ public class HerobrineEntity extends Monster {
             }
         }
         if (!world.isClientSide() && world.getServer() != null)
-            world.getServer().getPlayerList().broadcastMessage(new TextComponent("挡我路者，必诛！"), ChatType.SYSTEM, Util.NIL_UUID);
+            world.getServer().getPlayerList().broadcastMessage(new TextComponent(this.stage == Stage.First ? "亡灵领主已降临" : "挡我路者，必诛！"), ChatType.SYSTEM, Util.NIL_UUID);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!this.level.isClientSide() && this.getServer() != null)
                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");
@@ -354,7 +357,6 @@ public class HerobrineEntity extends Monster {
 
                 this.getMainHandItem().enchant(Enchantments.SHARPNESS, 5);
                 this.getOffhandItem().enchant(Enchantments.SHARPNESS, 5);
-                this.setHealth((this.getHealth() + 10));
                 MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.spawn"), 1, 1);
                 if (!this.level.isClientSide() && this.getServer() != null)
                     this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
@@ -383,6 +385,8 @@ public class HerobrineEntity extends Monster {
                         _level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
                                 "stopsound @a neutral rainimator:blackbone_boss_music");
                 });
+                if (!this.level.isClientSide() && this.level.getServer() != null)
+                    this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("<Herobrine>断剑重铸之日，主宰世界之时。"), ChatType.SYSTEM, Util.NIL_UUID);
             }
         }
     }
@@ -408,9 +412,5 @@ public class HerobrineEntity extends Monster {
     public void customServerAiStep() {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
-    }
-
-    public enum Stage {
-        First, Second, Third
     }
 }

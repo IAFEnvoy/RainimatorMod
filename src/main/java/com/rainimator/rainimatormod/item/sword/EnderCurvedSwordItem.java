@@ -1,6 +1,7 @@
 package com.rainimator.rainimatormod.item.sword;
 
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import net.minecraft.resources.ResourceLocation;
@@ -10,12 +11,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class EnderCurvedSwordItem extends SwordItem {
+public class EnderCurvedSwordItem extends SwordItemBase {
     public EnderCurvedSwordItem() {
         super(TierBase.of(2000, 0.0F, 6.0F, 0, 25), 3, -2.0F, ModCreativeTab.createProperty().fireResistant());
     }

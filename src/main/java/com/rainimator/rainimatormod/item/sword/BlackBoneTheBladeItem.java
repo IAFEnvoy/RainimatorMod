@@ -2,15 +2,16 @@ package com.rainimator.rainimatormod.item.sword;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.registry.util.*;
+import com.rainimator.rainimatormod.registry.util.FoilSwordItemBase;
+import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
+import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.Episode;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -21,13 +22,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
 import java.util.Random;
 
 public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainimatorInfo {

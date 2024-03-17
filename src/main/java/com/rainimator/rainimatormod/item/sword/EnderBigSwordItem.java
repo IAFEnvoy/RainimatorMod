@@ -3,6 +3,7 @@ package com.rainimator.rainimatormod.item.sword;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import net.minecraft.core.particles.ParticleOptions;
@@ -15,13 +16,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class EnderBigSwordItem extends SwordItem implements ICurioItem {
+public class EnderBigSwordItem extends SwordItemBase implements ICurioItem {
     public EnderBigSwordItem() {
         super(TierBase.of(2000, 4.0F, 9.0F, 1, 15, ModItems.SUPER_SPPARIES.get(), Items.ENDER_EYE), 3, -2.2F, ModCreativeTab.createProperty());
     }

@@ -4,6 +4,7 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
@@ -26,7 +27,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -39,9 +39,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
-public class BlueDiamondSwordItem extends SwordItem {
+public class BlueDiamondSwordItem extends SwordItemBase {
     public BlueDiamondSwordItem() {
         super(TierBase.of(3000, 4.0F, 15.0F, 0, 30, ModItems.BLUEDIAMOND), 3, -2.0F, ModCreativeTab.createProperty().fireResistant());
     }

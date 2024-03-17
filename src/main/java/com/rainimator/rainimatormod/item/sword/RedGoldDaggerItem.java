@@ -2,17 +2,17 @@ package com.rainimator.rainimatormod.item.sword;
 
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class RedGoldDaggerItem extends SwordItem {
+public class RedGoldDaggerItem extends SwordItemBase {
     public RedGoldDaggerItem() {
         super(TierBase.of(1000, 4.0F, 6.0F, 0, 3, ModItems.RUBY), 3, -2.0F, ModCreativeTab.createProperty());
     }

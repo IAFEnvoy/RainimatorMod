@@ -38,7 +38,7 @@ public class TitleScreenHandler {
                 computeBranding.setAccessible(true);
                 computeBranding.invoke(null);
 
-                List<String> brands = new ArrayList<>((List<String>) f.get(brandingControl));
+                List<String> brands = (List<String>) f.get(brandingControl);
                 List<String> newBrands = new ArrayList<>();
 
                 f.set(brandingControl, newBrands);

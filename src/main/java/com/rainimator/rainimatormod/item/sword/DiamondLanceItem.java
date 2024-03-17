@@ -2,6 +2,7 @@ package com.rainimator.rainimatormod.item.sword;
 
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -9,12 +10,11 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-public class DiamondLanceItem extends SwordItem {
+public class DiamondLanceItem extends SwordItemBase {
     public DiamondLanceItem() {
         super(TierBase.of(2000, 4.0F, 7.0F, 0, 3, ModItems.BLUEDIAMOND), 3, -2.0F, ModCreativeTab.createProperty());
     }

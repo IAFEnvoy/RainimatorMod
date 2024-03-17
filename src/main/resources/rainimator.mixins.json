@@ -3,13 +3,10 @@
   "minVersion": "0.8",
   "package": "com.rainimator.rainimatormod.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "Rainimator.refmap.json",
-  "mixins": [
-  ],
+  "refmap": "rainimator.refmap.json",
   "client": [
-    "CreativeModeInventoryScreenMixin",
-    "InventoryScreenMixin",
-    "PlayerRendererMixin"
+    "PlayerRendererMixin",
+    "ScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,15 +1,16 @@
 package com.rainimator.rainimatormod.item.sword;
 
 import com.rainimator.rainimatormod.RainimatorMod;
+import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
+import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
+import com.rainimator.rainimatormod.util.Episode;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -20,8 +21,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -29,10 +28,9 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-import java.util.List;
 import java.util.Random;
 
-public class NetherSpearItem extends SwordItem implements ICurioItem {
+public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, ICurioItem {
     public NetherSpearItem() {
         super(TierBase.of(3000, 0.0F, 11.0F, 0, 25), 3, -2.2F, ModCreativeTab.createProperty().fireResistant());
     }
@@ -100,20 +98,6 @@ public class NetherSpearItem extends SwordItem implements ICurioItem {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TextComponent("§c杀戮之影：§4使用者的护甲值越低得到的§c地狱之力(力量BUFF)§4加成越高[最高得到§b4§4级的BUFF加成]"));
-
-        list.add(new TextComponent("§b雷诀：§4持有§c下界长枪§4的使用者潜行时右键可使用[Neaus的怨念之力]发动§b雷诀§4，向前方召唤数道雷电攻击并引燃目标，对同一直线上的生物具有穿透效果"));
-
-        list.add(new TextComponent("§e战神庇护：§c下界长枪§4会不同程度地强化自身所拥有的附魔属性，同时有概率获得其他方面属性的加成，使使用者在战斗中所向披靡"));
-
-        list.add(new TextComponent("§4能力：嗜血§7[使用者使用这把枪攻击目标时，有概率吸收目标生命值治疗自身]"));
-
-        list.add(new TextComponent("§c能力：淬火§5[使用者使用这把枪攻击目标时有概率点燃目标，攻击点燃的目标有概率使其受到额外的火焰伤害]"));
-    }
-
-    @Override
     public boolean onEntitySwing(ItemStack itemstack, LivingEntity entity) {
         boolean retval = super.onEntitySwing(itemstack, entity);
         if (Math.random() < 0.2D)
@@ -139,7 +123,11 @@ public class NetherSpearItem extends SwordItem implements ICurioItem {
                     }
                 }
             }
-
         }
+    }
+
+    @Override
+    public Episode getEpisode() {
+        return Episode.HardPillToSwallow;
     }
 }

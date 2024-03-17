@@ -1,8 +1,8 @@
 package com.rainimator.rainimatormod.item;
 
+import com.rainimator.rainimatormod.gui.inventory.EnderBookSkillMenu;
 import com.rainimator.rainimatormod.registry.util.ItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import com.rainimator.rainimatormod.gui.inventory.EnderBookSkillMenu;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;

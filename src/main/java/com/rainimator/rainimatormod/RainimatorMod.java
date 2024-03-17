@@ -3,11 +3,13 @@ package com.rainimator.rainimatormod;
 import com.mojang.logging.LogUtils;
 import com.rainimator.rainimatormod.registry.RegistryManager;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import com.rainimator.rainimatormod.registry.util.RainimatorInfoManager;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
@@ -28,12 +30,7 @@ public class RainimatorMod {
         }
         ModCreativeTab.load();
         RegistryManager.register(FMLJavaModLoadingContext.get().getModEventBus());
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onStartUp);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-    }
-
-    private void onStartUp(FMLLoadCompleteEvent event) {
-        RainimatorInfoManager.initIdMap();
     }
 
     //curios api compact
