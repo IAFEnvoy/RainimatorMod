@@ -13,7 +13,7 @@ import com.rainimator.rainimatormod.util.ParticleUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -148,11 +148,11 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
                         continue;
                     }
                     if (!entity.level.isClientSide())
-                        entity.displayClientMessage(new TextComponent("§c生命值不足，你无法发动这把剑的真正力量！"), true);
+                        entity.displayClientMessage(new TranslatableComponent("item.rainimator.zecanirn_theblade.error.health"), true);
                     continue;
                 }
                 if (!entity.level.isClientSide())
-                    entity.displayClientMessage(new TextComponent("§c你的内在末影之力不足，你无法发动这把剑的真正力量！"), true);
+                    entity.displayClientMessage(new TranslatableComponent("item.rainimator.zecanirn_theblade.error.magic"), true);
             }
         }
         return ar;

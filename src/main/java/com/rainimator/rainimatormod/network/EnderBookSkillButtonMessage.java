@@ -4,7 +4,7 @@ import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
 import net.minecraft.network.protocol.game.ClientboundLevelEventPacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerAbilitiesPacket;
@@ -101,7 +101,7 @@ public class EnderBookSkillButtonMessage {
             } else if (entity.level.dimension() == Level.OVERWORLD) {
                 entity.closeContainer();
                 if (!entity.level.isClientSide())
-                    entity.displayClientMessage(new TextComponent("§a您已经在主世界了！"), true);
+                    entity.displayClientMessage(new TranslatableComponent("item.rainimator.enderbook.error.overworld"), true);
             }
         }
         if (buttonID == 1) {
@@ -167,7 +167,7 @@ public class EnderBookSkillButtonMessage {
             } else if (entity.level.dimension() == Level.NETHER) {
                 entity.closeContainer();
                 if (!entity.level.isClientSide())
-                    entity.displayClientMessage(new TextComponent("§a您已经在下界了！"), true);
+                    entity.displayClientMessage(new TranslatableComponent("item.rainimator.enderbook.error.nether"), true);
             }
         }
         if (buttonID == 2) {
@@ -204,7 +204,7 @@ public class EnderBookSkillButtonMessage {
             } else if (entity.level.dimension() == Level.END) {
                 entity.closeContainer();
                 if (!entity.level.isClientSide())
-                    entity.displayClientMessage(new TextComponent("§a您已经在终界了！"), true);
+                    entity.displayClientMessage(new TranslatableComponent("item.rainimator.enderbook.error.end"), true);
             }
         }
     }

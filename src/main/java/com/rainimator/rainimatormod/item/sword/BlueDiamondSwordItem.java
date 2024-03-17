@@ -3,9 +3,11 @@ package com.rainimator.rainimatormod.item.sword;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
+import com.rainimator.rainimatormod.util.Episode;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
 import com.rainimator.rainimatormod.util.Timeout;
@@ -13,8 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -27,7 +28,6 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -40,7 +40,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-public class BlueDiamondSwordItem extends SwordItemBase {
+public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorInfo {
     public BlueDiamondSwordItem() {
         super(TierBase.of(3000, 4.0F, 15.0F, 0, 30, ModItems.BLUEDIAMOND), 3, -2.0F, ModCreativeTab.createProperty().fireResistant());
     }
@@ -95,7 +95,7 @@ public class BlueDiamondSwordItem extends SwordItemBase {
                         entityiterator.setSecondsOnFire(10);
                         entity.getCooldowns().addCooldown(itemstack.getItem(), 1000);
                         if (!entity.level.isClientSide())
-                            entity.displayClientMessage(new TextComponent("§b雷霆诅咒！"), true);
+                            entity.displayClientMessage(new TranslatableComponent("item.rainimator.blue_diamond_sword.skill1"), true);
                         if (world.isClientSide())
                             Minecraft.getInstance().gameRenderer.displayItemActivation(itemstack);
                         Runnable callback = () -> {
@@ -126,7 +126,7 @@ public class BlueDiamondSwordItem extends SwordItemBase {
                         entityiterator.setSecondsOnFire(10);
                         entity.getCooldowns().addCooldown(itemstack.getItem(), 1000);
                         if (!entity.level.isClientSide())
-                            entity.displayClientMessage(new TextComponent("§e脉冲诅咒！"), true);
+                            entity.displayClientMessage(new TranslatableComponent("item.rainimator.blue_diamond_sword.skill2"), true);
                         if (((LevelAccessor) world).isClientSide())
                             Minecraft.getInstance().gameRenderer.displayItemActivation(itemstack);
 
@@ -154,7 +154,7 @@ public class BlueDiamondSwordItem extends SwordItemBase {
                             _level.sendParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
                         entity.getCooldowns().addCooldown(itemstack.getItem(), 1000);
                         if (!entity.level.isClientSide())
-                            entity.displayClientMessage(new TextComponent("§a波动诅咒！"), true);
+                            entity.displayClientMessage(new TranslatableComponent("item.rainimator.blue_diamond_sword.skill3"), true);
                         if (world.isClientSide())
                             Minecraft.getInstance().gameRenderer.displayItemActivation(itemstack);
                         Runnable callback1 = () -> {
@@ -205,26 +205,15 @@ public class BlueDiamondSwordItem extends SwordItemBase {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TextComponent("§e这把剑可以把神力转化为不同形式的能量放出，对不同的生物有者不同的效果"));
-
-        list.add(new TextComponent("§c当使用者潜行右键时可释放神力审判周围§b8*8§c范围内的生物"));
-        list.add(new TextComponent("§b雷霆诅咒：§3当周围生物为§6节肢生物§3时，技能释放形式为§b雷霆万钧§3，标记并点燃范围内所有目标，在接下来一段时间对每个目标进行§e5§3次雷击[若目标死亡，则取消之]"));
-
-        list.add(new TextComponent("§a脉冲诅咒：§2当周围生物为§4UNDEFINED§2时，技能释放形式为§a脉冲爆破§2，标记并点燃范围内所有目标，在接下来一段时间对每个目标进行§e5§2次爆破[若目标死亡，则取消之]"));
-
-        list.add(new TextComponent("§9波动诅咒：§1当周围生物为§7亡灵生物§1或§5暴民§1时，技能释放形式为§9波动异变§1，标记并点燃范围内所有目标，将§9波动异能§1注入生物体内，使生物§9失重§1，同时使生物缓慢聚集在一起数秒后在中心发动§9波动爆炸"));
-
-        list.add(new TextComponent("§b能力：雷击§3[使用者每次使用这把剑击中目标有概率召唤一道雷电打击目标]"));
-        list.add(new TextComponent("§d能力：魔切§5[当目标被标记时，使用者每次使用这把剑击中目标有概率造成额外魔法伤害]"));
-    }
-
-    @Override
     public boolean onEntitySwing(ItemStack itemstack, LivingEntity entity) {
         boolean retval = super.onEntitySwing(itemstack, entity);
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(entity.level, ParticleTypes.SOUL_FIRE_FLAME, entity.getX(), entity.getY(), entity.getZ(), 2, 0, 50);
         return retval;
+    }
+
+    @Override
+    public Episode getEpisode() {
+        return Episode.Unknown;
     }
 }

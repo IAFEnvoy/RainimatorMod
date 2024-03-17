@@ -3,7 +3,7 @@ package com.rainimator.rainimatormod.item.tool;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
@@ -55,7 +55,7 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
                 world.addFreshEntity(new ExperienceOrb(world, x, y, z, 10));
             if (context.getPlayer() instanceof Player)
                 if (!context.getPlayer().level.isClientSide())
-                    context.getPlayer().displayClientMessage(new TextComponent("你使用神力消除了一个方块"), true);
+                    context.getPlayer().displayClientMessage(new TranslatableComponent("item.rainimator.herobrine_diamond_pickaxe.breakblock"), true);
             if (context.getPlayer() instanceof Player)
                 context.getPlayer().getCooldowns().addCooldown(context.getItemInHand().getItem(), 4800);
         }

@@ -16,6 +16,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
@@ -234,7 +235,7 @@ public class HerobrineEntity extends Monster {
             }
         }
         if (!world.isClientSide() && world.getServer() != null)
-            world.getServer().getPlayerList().broadcastMessage(new TextComponent(this.stage == Stage.First ? "亡灵领主已降临" : "挡我路者，必诛！"), ChatType.SYSTEM, Util.NIL_UUID);
+            world.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.herobrine.stage" + (this.stage == Stage.First ? "1" : "2")), ChatType.SYSTEM, Util.NIL_UUID);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!this.level.isClientSide() && this.getServer() != null)
                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");
@@ -346,7 +347,7 @@ public class HerobrineEntity extends Monster {
                                     this.level.addFreshEntity(entityToSpawn);
                                 }
                                 if (!this.level.isClientSide() && this.level.getServer() != null)
-                                    this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("<Herobrine>挡我路者，虽远必诛！"), ChatType.SYSTEM, Util.NIL_UUID);
+                                    this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.herobrine.summon"), ChatType.SYSTEM, Util.NIL_UUID);
                             });
                         }
                     }
@@ -379,14 +380,14 @@ public class HerobrineEntity extends Monster {
                     this.level.addFreshEntity(entityToSpawn);
                 }
                 if (!this.level.isClientSide() && this.level.getServer() != null)
-                    this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§7<BlackBone>犯我领地者，必叫他死无葬身之地！"), ChatType.SYSTEM, Util.NIL_UUID);
+                    this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.blackbone.summon"), ChatType.SYSTEM, Util.NIL_UUID);
                 Timeout.create(40, () -> {
                     if (this.level instanceof ServerLevel _level)
                         _level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
                                 "stopsound @a neutral rainimator:blackbone_boss_music");
                 });
                 if (!this.level.isClientSide() && this.level.getServer() != null)
-                    this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("<Herobrine>断剑重铸之日，主宰世界之时。"), ChatType.SYSTEM, Util.NIL_UUID);
+                    this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.herobrine.summon1"), ChatType.SYSTEM, Util.NIL_UUID);
             }
         }
     }

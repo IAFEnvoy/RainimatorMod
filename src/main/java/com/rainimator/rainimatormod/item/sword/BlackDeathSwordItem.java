@@ -2,15 +2,16 @@ package com.rainimator.rainimatormod.item.sword;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
+import com.rainimator.rainimatormod.util.Episode;
 import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -24,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class BlackDeathSwordItem extends SwordItemBase {
+public class BlackDeathSwordItem extends SwordItemBase implements IRainimatorInfo {
     public BlackDeathSwordItem() {
         super(TierBase.of(1000, 0.0F, 9.0F, 0, 30), 3, -1.7F, ModCreativeTab.createProperty().fireResistant());
     }
@@ -59,13 +60,6 @@ public class BlackDeathSwordItem extends SwordItemBase {
     @Override
     public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TextComponent("§8攻击目标有概率使目标§7凋零§8并§a中毒，§8连续使用黑死剑会使使用者饥饿"));
-
-        list.add(new TextComponent("§8虽然这把武器会保护主人免死，但§b蓝钻石§8的武器和工具会完美压制这股力量"));
-
-        list.add(new TextComponent("§c并且当使用者死亡时，这把武器也会消逝"));
-        list.add(new TextComponent("§a当武器破裂时，其使用者也会消逝"));
-        list.add(new TextComponent("§c注意：§b如果目标绝对伤害压制这把剑，也可以打破这把剑的不死结界！"));
     }
 
     @Override
@@ -74,5 +68,10 @@ public class BlackDeathSwordItem extends SwordItemBase {
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(entity.level, ParticleTypes.SOUL, entity.getX(), entity.getY(), entity.getZ(), 3, 0, 50);
         return retval;
+    }
+
+    @Override
+    public Episode getEpisode() {
+        return Episode.Unknown;
     }
 }

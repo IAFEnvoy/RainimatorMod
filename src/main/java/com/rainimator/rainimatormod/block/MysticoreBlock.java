@@ -3,7 +3,7 @@ package com.rainimator.rainimatormod.block;
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -116,7 +116,7 @@ public class MysticoreBlock extends Block {
                         }
             } else {
                 if (!entity.level.isClientSide())
-                    entity.displayClientMessage(new TextComponent("你并没有挖掘到有用的物品！"), true);
+                    entity.displayClientMessage(new TranslatableComponent("block.rainimator.mysticore.nothing"), true);
                 if (!world.isClientSide()) {
                     ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(Blocks.COBBLED_DEEPSLATE));
                     entityToSpawn.setPickUpDelay(10);

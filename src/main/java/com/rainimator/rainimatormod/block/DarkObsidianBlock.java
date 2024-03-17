@@ -14,7 +14,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -136,7 +136,7 @@ public class DarkObsidianBlock extends Block {
             }
             MiscUtil.playSound(world, x, y, z, new ResourceLocation("block.portal.travel"), 1, 1);
             if (!world.isClientSide() && world.getServer() != null)
-                world.getServer().getPlayerList().broadcastMessage(new TextComponent("释放能量中"), ChatType.SYSTEM, Util.NIL_UUID);
+                world.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("block.rainimator.darkobsidianblock.running"), ChatType.SYSTEM, Util.NIL_UUID);
             ItemStack _setstack = new ItemStack(Blocks.AIR);
             _setstack.setCount(1);
             entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);

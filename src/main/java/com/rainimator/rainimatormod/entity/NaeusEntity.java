@@ -15,6 +15,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
@@ -172,13 +173,13 @@ public class NaeusEntity extends Monster {
                     this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2));
                 if (!this.level.isClientSide() && this.level.getServer() != null)
                     if (Math.random() < 0.3D)
-                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§b雷诀！"), ChatType.SYSTEM, Util.NIL_UUID);
+                        this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.naeus.message1"), ChatType.SYSTEM, Util.NIL_UUID);
                     else if (Math.random() < 0.4D)
-                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§7无名小卒，胆敢向我发起挑战！"), ChatType.SYSTEM, Util.NIL_UUID);
+                        this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.naeus.message2"), ChatType.SYSTEM, Util.NIL_UUID);
                     else if (Math.random() < 0.5D)
-                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§4地狱之怒！"), ChatType.SYSTEM, Util.NIL_UUID);
+                        this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.naeus.message3"), ChatType.SYSTEM, Util.NIL_UUID);
                     else
-                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§a你，找死！"), ChatType.SYSTEM, Util.NIL_UUID);
+                        this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.naeus.message4"), ChatType.SYSTEM, Util.NIL_UUID);
                 if (!sourceentity.level.isClientSide() && sourceentity.getServer() != null)
                     sourceentity.getServer().getCommands().performCommand(sourceentity.createCommandSourceStack().withSuppressedOutput().withPermission(4), "title @p title {\"text\":\"！！！\",\"color\":\"red\"}");
 

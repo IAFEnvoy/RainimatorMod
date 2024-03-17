@@ -15,6 +15,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
@@ -56,14 +57,14 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.Objects;
 
-public class NaeuskingEntity extends Monster {
+public class NaeusKingEntity extends Monster {
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS);
 
-    public NaeuskingEntity(PlayMessages.SpawnEntity packet, Level world) {
+    public NaeusKingEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.NAEUSKING.get(), world);
     }
 
-    public NaeuskingEntity(EntityType<NaeuskingEntity> type, Level world) {
+    public NaeusKingEntity(EntityType<NaeusKingEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
         this.setNoAi(false);
@@ -153,23 +154,23 @@ public class NaeuskingEntity extends Monster {
                 if (Math.random() < 0.1D) {
                     if (!this.level.isClientSide() && this.level.getServer() != null)
                         if (Math.random() < 0.3D)
-                            (this.level).getServer().getPlayerList().broadcastMessage(new TextComponent("§4我就是这个世界的梦魇，我就是这个世界的末日！"), ChatType.SYSTEM, Util.NIL_UUID);
+                            (this.level).getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.naeusking.message1"), ChatType.SYSTEM, Util.NIL_UUID);
                         else if (Math.random() < 0.4D)
-                            this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§b雷霆万钧！"), ChatType.SYSTEM, Util.NIL_UUID);
+                            this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.naeusking.message2"), ChatType.SYSTEM, Util.NIL_UUID);
                         else if (Math.random() < 0.45D)
-                            this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§4都是蝼蚁，都给我下地狱！"), ChatType.SYSTEM, Util.NIL_UUID);
+                            this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.naeusking.message3"), ChatType.SYSTEM, Util.NIL_UUID);
                         else if (Math.random() < 0.5D)
-                            this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§4你找死！"), ChatType.SYSTEM, Util.NIL_UUID);
+                            this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.naeusking.message4"), ChatType.SYSTEM, Util.NIL_UUID);
                         else
-                            this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§a愚蠢的人！"), ChatType.SYSTEM, Util.NIL_UUID);
+                            this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.naeusking.message5"), ChatType.SYSTEM, Util.NIL_UUID);
 
                     if (!sourceentity.level.isClientSide() && sourceentity.getServer() != null)
                         sourceentity.getServer().getCommands().performCommand(sourceentity.createCommandSourceStack().withSuppressedOutput().withPermission(4), "title @p title {\"text\":\"！！！\",\"color\":\"red\"}");
 
-                    BlockPos pos = this.level.clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(2.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, NaeuskingEntity.this)).getBlockPos();
+                    BlockPos pos = this.level.clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(2.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, NaeusKingEntity.this)).getBlockPos();
                     Runnable callback = () -> {
                         LevelAccessor levelAccessor = this.level;
-                        BlockPos pos1 = this.level.clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(0.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, NaeuskingEntity.this)).getBlockPos();
+                        BlockPos pos1 = this.level.clip(new ClipContext(this.getEyePosition(1.0F), this.getEyePosition(1.0F).add(this.getViewVector(1.0F).scale(0.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, NaeusKingEntity.this)).getBlockPos();
                         if (levelAccessor instanceof ServerLevel _level) {
                             LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
                             if (entityToSpawn != null) {
@@ -259,7 +260,7 @@ public class NaeuskingEntity extends Monster {
             if (!this.level.isClientSide() && this.getServer() != null)
                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:naeus_boss_music neutral @a ~ ~ ~");
             Runnable callback = () -> {
-                if (((Entity) NaeuskingEntity.this).isAlive())
+                if (((Entity) NaeusKingEntity.this).isAlive())
                     if (!this.level.isClientSide() && this.getServer() != null)
                         this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:naeus_boss_music neutral @a ~ ~ ~");
             };

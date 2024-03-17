@@ -67,7 +67,7 @@ public class ModEntities {
         event.put(PILGEKINGZOMBIE.get(), PiglinKingZombieEntity.createAttributes().build());
         event.put(PIGLINCOMMANDER.get(), PiglinCommanderEntity.createAttributes().build());
         event.put(DARYLL.get(), DaryllEntity.createAttributes().build());
-        event.put(NAEUSKING.get(), NaeuskingEntity.createAttributes().build());
+        event.put(NAEUSKING.get(), NaeusKingEntity.createAttributes().build());
         event.put(TUSK.get(), TuskEntity.createAttributes().build());
         event.put(BROTS.get(), BrotsEntity.createAttributes().build());
         event.put(ZOMBIEPIGLINART.get(), ZombiePiglinArtEntity.createAttributes().build());
@@ -117,7 +117,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<PiglinCommanderEntity>> PIGLINCOMMANDER = register("piglincommander", EntityType.Builder.<PiglinCommanderEntity>of(PiglinCommanderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PiglinCommanderEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<DaryllEntity>> DARYLL = register("daryll", EntityType.Builder.<DaryllEntity>of(DaryllEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DaryllEntity::new).sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<DaryllEntityProjectile>> DARYLL_PROJECTILE = register("projectile_daryll", EntityType.Builder.<DaryllEntityProjectile>of(DaryllEntityProjectile::new, MobCategory.MISC).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).setCustomClientFactory(DaryllEntityProjectile::new).sized(0.5F, 0.5F));
-    public static final RegistryObject<EntityType<NaeuskingEntity>> NAEUSKING = register("naeusking", EntityType.Builder.<NaeuskingEntity>of(NaeuskingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NaeuskingEntity::new).fireImmune().sized(0.6F, 1.8F));
+    public static final RegistryObject<EntityType<NaeusKingEntity>> NAEUSKING = register("naeusking", EntityType.Builder.<NaeusKingEntity>of(NaeusKingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NaeusKingEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<TuskEntity>> TUSK = register("tusk", EntityType.Builder.<TuskEntity>of(TuskEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(TuskEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<BrotsEntity>> BROTS = register("brots", EntityType.Builder.<BrotsEntity>of(BrotsEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BrotsEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<ZombiePiglinArtEntity>> ZOMBIEPIGLINART = register("zombiepiglinart", EntityType.Builder.<ZombiePiglinArtEntity>of(ZombiePiglinArtEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ZombiePiglinArtEntity::new).fireImmune().sized(0.6F, 1.8F));

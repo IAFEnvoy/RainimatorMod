@@ -2,6 +2,7 @@ package com.rainimator.rainimatormod.util;
 
 public enum Episode {
     None("None", Type.None),
+    Unknown("Unknown", Type.None),
     TheStruggle("The Struggle", Type.Series1),
     ColdAsIce("Cold As Ice", Type.Series1),
     BeginAgain("Begin Again", Type.Special),

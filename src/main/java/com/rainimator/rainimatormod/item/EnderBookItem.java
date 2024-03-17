@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -32,7 +33,7 @@ public class EnderBookItem extends ItemBase {
     @Override
     public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TextComponent("§5可以跨维度传送的魔法书，右键打开使用！§d[警告：传送的位置是使用者所在维度的同坐标位置的另一维度的位置，请谨慎使用]"));
+        list.add(new TranslatableComponent("item.rainimator.enderbook.tooltip"));
     }
 
     @Override

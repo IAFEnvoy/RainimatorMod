@@ -4,7 +4,7 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.util.ItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -36,7 +36,7 @@ public class PurificationItem extends ItemBase {
     @Override
     public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TextComponent("§b由蓝钻石的纯净之力净化而来的水，喝下可给予使用者2分30秒的净化buff，净化生效期间不会受到任何负面buff影响！"));
+        list.add(new TranslatableComponent("item.rainimator.purification_1.tooltip"));
     }
 
     @Override

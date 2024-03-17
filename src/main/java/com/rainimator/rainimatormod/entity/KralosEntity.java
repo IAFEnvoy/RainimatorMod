@@ -13,6 +13,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
@@ -151,7 +152,7 @@ public class KralosEntity extends Monster {
                     if (this.level instanceof ServerLevel _level)
                         _level.sendParticles((ParticleOptions) ParticleTypes.SOUL, x, y, z, 200, 2.0D, 3.0D, 2.0D, 0.001D);
                     if (!this.level.isClientSide() && this.level.getServer() != null)
-                        this.level.getServer().getPlayerList().broadcastMessage(new TextComponent("§7违反将军意志的人都得死！"), ChatType.SYSTEM, Util.NIL_UUID);
+                        this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.kralos.message"), ChatType.SYSTEM, Util.NIL_UUID);
                 }
             }
         }
