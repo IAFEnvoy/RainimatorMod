@@ -12,6 +12,7 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.lwjgl.glfw.GLFW;
@@ -23,17 +24,18 @@ public class RainimatorInfoManager {
         if (!ITEM_INFO.isDown()) return;
         if (item instanceof IRainimatorInfo info && info.getEpisode() != Episode.None) {
             BlockPos _bpos = new BlockPos(player.position());
-            String id = ForgeRegistries.ITEMS.getKey(item).getPath();
+            ResourceLocation location = ForgeRegistries.ITEMS.getKey(item);
+            if(location==null) return;
+            String id = location.getPath();
             ModItemInfoScreen.InfoType infoType = ModItemInfoScreen.InfoType.Item;
             if (item instanceof SpawnEggBase) {
                 id = id.replace("_spawn_egg", "");
                 infoType = ModItemInfoScreen.InfoType.Entity;
             }
-
             Minecraft.getInstance().setScreen(new ModItemInfoScreen(
                     new ModItemInfoMenu(111, player.getInventory(), new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(_bpos)),
                     player.getInventory(), new TextComponent("ModItemInfo"),
-                    new ModItemInfoScreen.ItemInfo(id, ForgeRegistries.ITEMS.getKey(item).getPath(), infoType, info.getEpisode()),
+                    new ModItemInfoScreen.ItemInfo(id, location.getPath(), infoType, info.getEpisode()),
                     Minecraft.getInstance().screen
             ));
         }

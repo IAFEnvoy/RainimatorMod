@@ -61,9 +61,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-public class HerobrineEntity extends Monster {
+public class HerobrineEntity extends Monster implements Stage.StagedEntity {
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS);
     private final Stage stage;
+    private boolean hasSpawnBlackBone = false;
 
     public HerobrineEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.HEROBRINE.get(), world);
@@ -352,7 +353,8 @@ public class HerobrineEntity extends Monster {
                         }
                     }
                 }
-            } else if (this.stage == Stage.Second && this.getHealth() <= this.getMaxHealth() / 4) {
+            } else if (this.stage == Stage.Second && this.getHealth() <= this.getMaxHealth() / 4 && !this.hasSpawnBlackBone) {
+                this.hasSpawnBlackBone = true;
                 this.getNavigation().stop();
                 this.teleportTo(this.getX(), this.getY(), this.getZ());
 
@@ -413,5 +415,10 @@ public class HerobrineEntity extends Monster {
     public void customServerAiStep() {
         super.customServerAiStep();
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
+    }
+
+    @Override
+    public Stage getStage() {
+        return this.stage;
     }
 }
