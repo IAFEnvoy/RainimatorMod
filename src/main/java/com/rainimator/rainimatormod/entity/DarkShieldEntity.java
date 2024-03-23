@@ -40,27 +40,27 @@ public class DarkShieldEntity extends Monster {
 
 
     public DarkShieldEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.DARKSHIELD.get(), world);
+        this(ModEntities.DARK_SHIELD.get(), world);
     }
 
     public DarkShieldEntity(EntityType<DarkShieldEntity> type, Level world) {
         super(type, world);
         this.xpReward = 20;
         this.setNoAi(false);
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.LIGHTSWORD.get()));
-        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.LIGHTSWORD.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.LIGHT_SWORD.get()));
+        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.LIGHT_SWORD.get()));
     }
 
     @SubscribeEvent
     public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
         if (SPAWN_BIOMES.contains(event.getName()))
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.DARKSHIELD.get(), 1, 1, 1));
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.DARK_SHIELD.get(), 1, 1, 1));
     }
 
     public static void init() {
-        SpawnPlacements.register(ModEntities.DARKSHIELD.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacements.register(ModEntities.DARK_SHIELD.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-        DungeonHooks.addDungeonMob(ModEntities.DARKSHIELD.get(), 180);
+        DungeonHooks.addDungeonMob(ModEntities.DARK_SHIELD.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

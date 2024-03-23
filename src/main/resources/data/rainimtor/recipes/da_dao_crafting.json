@@ -7,7 +7,7 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:bluediamondblock"
+      "item": "rainimator:blue_diamond_block"
     },
     "1": {
       "item": "rainimator:super_ruby"
@@ -25,13 +25,13 @@
       "item": "rainimator:super_ruby"
     },
     "6": {
-      "item": "rainimator:blackbone_the_blade_danshou"
+      "item": "rainimator:blackbone_the_blade_single_hand"
     },
     "7": {
       "item": "rainimator:lower_bound_alloy_flame_saber"
     },
     "8": {
-      "item": "rainimator:bluediamondblock"
+      "item": "rainimator:blue_diamond_block"
     }
   },
   "result": {

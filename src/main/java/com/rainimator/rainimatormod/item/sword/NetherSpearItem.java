@@ -6,8 +6,8 @@ import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.Episode;
-import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -55,7 +55,7 @@ public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo, I
         double z = entity.getZ();
         ItemStack itemstack = ar.getObject();
         if (entity.isShiftKeyDown())
-            MiscUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "naeus_sword_1"), 5.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "naeus_sword_1"), 5.0F, 1.0F);
         BlockPos pos1 = entity.level.clip(new ClipContext(entity.getEyePosition(1.0F), entity.getEyePosition(1.0F).add(entity.getViewVector(1.0F).scale(2.0D)), ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, entity)).getBlockPos();
         if (world instanceof ServerLevel _level) {
             LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);

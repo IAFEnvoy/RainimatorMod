@@ -46,8 +46,8 @@ public class MysticoreFeature extends OreFeature {
 
     public static Feature<?> feature() {
         FEATURE = new MysticoreFeature();
-        CONFIGURED_FEATURE = FeatureUtils.register(RainimatorMod.MOD_ID + ":mysticore", FEATURE, new OreConfiguration(MysticoreFeatureRuleTest.INSTANCE, ModBlocks.MYSTICORE.get().defaultBlockState(), 6));
-        PLACED_FEATURE = PlacementUtils.register(RainimatorMod.MOD_ID + ":mysticore", CONFIGURED_FEATURE,
+        CONFIGURED_FEATURE = FeatureUtils.register(RainimatorMod.MOD_ID + ":mystic_ore", FEATURE, new OreConfiguration(MysticoreFeatureRuleTest.INSTANCE, ModBlocks.MYSTIC_ORE.get().defaultBlockState(), 6));
+        PLACED_FEATURE = PlacementUtils.register(RainimatorMod.MOD_ID + ":mystic_ore", CONFIGURED_FEATURE,
                 List.of(CountPlacement.of(1), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.absolute(-60), VerticalAnchor.absolute(-15)), BiomeFilter.biome()));
         return FEATURE;
     }
@@ -73,7 +73,7 @@ public class MysticoreFeature extends OreFeature {
 
         @SubscribeEvent
         public static void init(FMLCommonSetupEvent event) {
-            Registry.register(Registry.RULE_TEST, new ResourceLocation(RainimatorMod.MOD_ID, "mysticore_match"), CUSTOM_MATCH);
+            Registry.register(Registry.RULE_TEST, new ResourceLocation(RainimatorMod.MOD_ID, "mystic_ore_match"), CUSTOM_MATCH);
         }
 
         @Override

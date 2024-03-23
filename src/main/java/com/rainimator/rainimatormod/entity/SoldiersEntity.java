@@ -48,8 +48,8 @@ public class SoldiersEntity extends Monster implements RangedAttackMob {
         super(type, world);
         this.xpReward = 10;
         this.setNoAi(false);
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SOLDIERS_WARHAMMER.get()));
-        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.SNOWSHIELD.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SOLDIERS_WAR_HAMMER.get()));
+        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.SNOW_SHIELD.get()));
     }
 
     @SubscribeEvent

@@ -47,7 +47,7 @@ public class PatrickArmorItem extends ArmorItem {
 
             @Override
             public @NotNull Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack(ModItems.SUPER_SPPARIES.get()));
+                return Ingredient.of(new ItemStack(ModItems.SUPER_SAPPHIRE.get()));
             }
 
             @Override
@@ -75,10 +75,10 @@ public class PatrickArmorItem extends ArmorItem {
     @Override
     public void onArmorTick(ItemStack itemstack, Level world, Player entity) {
         if (entity == null) return;
-        if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.HEAD).getItem() == ModItems.PATRICK_ARMOR_HELMET.get())
-            if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.CHEST).getItem() == ModItems.PATRICK_ARMOR_CHESTPLATE.get())
-                if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.LEGS).getItem() == ModItems.PATRICK_ARMOR_LEGGINGS.get())
-                    if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.FEET).getItem() == ModItems.PATRICK_ARMOR_BOOTS.get())
+        if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.HEAD).getItem() == ModItems.PATRICK_HELMET.get())
+            if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.CHEST).getItem() == ModItems.PATRICK_CHESTPLATE.get())
+                if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.LEGS).getItem() == ModItems.PATRICK_LEGGINGS.get())
+                    if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.FEET).getItem() == ModItems.PATRICK_BOOTS.get())
                         if (!entity.level.isClientSide()) {
                             entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, 1));
                             entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 80, 1));

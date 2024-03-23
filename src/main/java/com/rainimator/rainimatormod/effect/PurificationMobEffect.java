@@ -19,10 +19,10 @@ public class PurificationMobEffect extends MobEffect {
     }
 
     public static synchronized void initEffectList() {
-        effects.add(ModEffects.FEARDARK.get());
-        effects.add(ModEffects.SOULDEATH.get());
+        effects.add(ModEffects.FEAR_DARK.get());
+        effects.add(ModEffects.SOUL_DEATH.get());
         effects.add(ModEffects.STUNNED.get());
-        effects.add(ModEffects.ICEPEOPLE.get());
+        effects.add(ModEffects.ICE_PEOPLE.get());
         effects.add(MobEffects.BAD_OMEN);
         effects.add(MobEffects.BLINDNESS);
         effects.add(MobEffects.HUNGER);

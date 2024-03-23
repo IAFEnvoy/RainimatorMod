@@ -2,35 +2,35 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     }
   ],
   "result": {
-    "item": "rainimator:sappriesblock",
+    "item": "rainimator:sapphire_block",
     "count": 1
   }
 }

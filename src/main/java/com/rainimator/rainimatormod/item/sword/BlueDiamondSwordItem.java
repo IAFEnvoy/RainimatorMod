@@ -8,8 +8,8 @@ import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.Episode;
-import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -42,7 +42,7 @@ import java.util.Random;
 
 public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorInfo {
     public BlueDiamondSwordItem() {
-        super(TierBase.of(3000, 4.0F, 15.0F, 0, 30, ModItems.BLUEDIAMOND), 3, -2.0F, ModCreativeTab.createProperty().fireResistant());
+        super(TierBase.of(3000, 4.0F, 15.0F, 0, 30, ModItems.BLUE_DIAMOND), 3, -2.0F, ModCreativeTab.createProperty().fireResistant());
     }
 
     @Override
@@ -89,7 +89,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                     if (entityiterator instanceof LivingEntity _livEnt && _livEnt.getMobType() == MobType.ARTHROPOD) {
                         if (world instanceof ServerLevel _level)
                             _level.sendParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
-                        MiscUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5, 1);
+                        SoundUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5, 1);
                         if (!_livEnt.level.isClientSide())
                             _livEnt.addEffect(new MobEffectInstance(MobEffects.GLOWING, 1200, 0));
                         entityiterator.setSecondsOnFire(10);
@@ -120,7 +120,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                     } else if ((entityiterator instanceof LivingEntity _livEnt && _livEnt.getMobType() == MobType.UNDEFINED)) {
                         if ((LevelAccessor) world instanceof ServerLevel _level)
                             _level.sendParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
-                        MiscUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blue_diamond_skill_2"), 5, 1);
+                        SoundUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blue_diamond_skill_2"), 5, 1);
                         if (!_livEnt.level.isClientSide())
                             _livEnt.addEffect(new MobEffectInstance(MobEffects.GLOWING, 1200, 0));
                         entityiterator.setSecondsOnFire(10);
@@ -149,7 +149,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                             _livEnt.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 160, 2));
                             _livEnt.addEffect(new MobEffectInstance(MobEffects.WITHER, 160, 0));
                         }
-                        MiscUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blue_diamond_skill_3"), 5, 1);
+                        SoundUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blue_diamond_skill_3"), 5, 1);
                         if (world instanceof ServerLevel _level)
                             _level.sendParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
                         entity.getCooldowns().addCooldown(itemstack.getItem(), 1000);
@@ -167,7 +167,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                                 _serverPlayer.connection.teleport(x + Mth.nextDouble(new Random(), -1, 1), y + 2, z + Mth.nextDouble(new Random(), -1, 1), entityiterator.getYRot(), entityiterator.getXRot());
                         };
                         Runnable callback3 = () -> {
-                            MiscUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blue_diamond_skill_4"), 5, 1);
+                            SoundUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blue_diamond_skill_4"), 5, 1);
                             callback1.run();
                             entityiterator.teleportTo(x + Mth.nextDouble(new Random(), -1, 1), y + 2, z + Mth.nextDouble(new Random(), -1, 1));
                             if (entityiterator instanceof ServerPlayer _serverPlayer)

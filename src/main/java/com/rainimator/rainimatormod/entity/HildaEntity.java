@@ -48,8 +48,8 @@ public class HildaEntity extends Monster implements RangedAttackMob {
         super(type, world);
         this.xpReward = 0;
         this.setNoAi(false);
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SOLDIERS_WARHAMMER.get()));
-        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.BLUEDIAMONDSHIELD.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SOLDIERS_WAR_HAMMER.get()));
+        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.BLUE_DIAMOND_SHIELD.get()));
     }
 
     @SubscribeEvent

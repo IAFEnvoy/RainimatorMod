@@ -46,8 +46,8 @@ public class SapphireOreFeature extends OreFeature {
 
     public static Feature<?> feature() {
         FEATURE = new SapphireOreFeature();
-        CONFIGURED_FEATURE = FeatureUtils.register(RainimatorMod.MOD_ID + ":sappries_ore", FEATURE, new OreConfiguration(SappriesOreFeatureRuleTest.INSTANCE, ModBlocks.SAPPRIES_ORE.get().defaultBlockState(), 7));
-        PLACED_FEATURE = PlacementUtils.register(RainimatorMod.MOD_ID + ":sappries_ore", CONFIGURED_FEATURE,
+        CONFIGURED_FEATURE = FeatureUtils.register(RainimatorMod.MOD_ID + ":sapphire_ore", FEATURE, new OreConfiguration(SappriesOreFeatureRuleTest.INSTANCE, ModBlocks.SAPPHIRE_ORE.get().defaultBlockState(), 7));
+        PLACED_FEATURE = PlacementUtils.register(RainimatorMod.MOD_ID + ":sapphire_ore", CONFIGURED_FEATURE,
                 List.of(CountPlacement.of(2), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.absolute(-1), VerticalAnchor.absolute(20)), BiomeFilter.biome()));
         return FEATURE;
     }
@@ -73,7 +73,7 @@ public class SapphireOreFeature extends OreFeature {
 
         @SubscribeEvent
         public static void init(FMLCommonSetupEvent event) {
-            Registry.register(Registry.RULE_TEST, new ResourceLocation(RainimatorMod.MOD_ID, "sappries_ore_match"), CUSTOM_MATCH);
+            Registry.register(Registry.RULE_TEST, new ResourceLocation(RainimatorMod.MOD_ID, "sapphire_ore_match"), CUSTOM_MATCH);
         }
 
         @Override

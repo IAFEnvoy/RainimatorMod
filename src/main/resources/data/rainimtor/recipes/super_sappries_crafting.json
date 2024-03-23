@@ -7,13 +7,13 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "1": {
       "item": "minecraft:diamond"
     },
     "2": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "3": {
       "item": "minecraft:diamond"
@@ -25,17 +25,17 @@
       "item": "minecraft:diamond"
     },
     "6": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "7": {
       "item": "minecraft:diamond"
     },
     "8": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     }
   },
   "result": {
-    "item": "rainimator:super_spparies",
+    "item": "rainimator:super_sapphire",
     "count": 2
   }
 }

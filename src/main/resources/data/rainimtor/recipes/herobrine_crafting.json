@@ -16,7 +16,7 @@
       "item": "minecraft:obsidian"
     },
     "4": {
-      "item": "rainimator:warriorheart"
+      "item": "rainimator:warrior_heart"
     },
     "5": {
       "item": "minecraft:obsidian"
@@ -32,7 +32,7 @@
     }
   },
   "result": {
-    "item": "rainimator:herobrine_armor_chestplate",
+    "item": "rainimator:herobrine_chestplate",
     "count": 1
   }
 }

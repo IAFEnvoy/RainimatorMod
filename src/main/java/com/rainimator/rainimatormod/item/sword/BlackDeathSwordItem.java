@@ -7,8 +7,8 @@ import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.Episode;
-import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -44,9 +44,9 @@ public class BlackDeathSwordItem extends SwordItemBase implements IRainimatorInf
                 entity.addEffect(new MobEffectInstance(MobEffects.POISON, 100, 2));
             }
             if (Math.random() < 0.7D)
-                MiscUtil.playSound(entity.level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
+                SoundUtil.playSound(entity.level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
             else
-                MiscUtil.playSound(entity.level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "black_death_sword_skill_3"), 4.0F, 1.0F);
+                SoundUtil.playSound(entity.level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "black_death_sword_skill_3"), 4.0F, 1.0F);
             if (entity.level instanceof ServerLevel _level)
                 _level.sendParticles((ParticleOptions) ModParticleTypes.FLOWERWRITE.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         } else {

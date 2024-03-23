@@ -7,32 +7,32 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "2": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "3": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "4": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "5": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "6": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "7": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "8": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     }
   },
   "result": {
-    "item": "rainimator:sappriesarmor_chestplate",
+    "item": "rainimator:sapphire_chestplate",
     "count": 1
   }
 }

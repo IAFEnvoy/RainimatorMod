@@ -42,7 +42,7 @@ public class HerobrineArmorItem extends ArmorItem {
 
             @Override
             public @NotNull Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack(ModItems.SUPER_RUBY.get()), new ItemStack(ModItems.HEROBRINE_ARMOR_CHESTPLATE.get()));
+                return Ingredient.of(new ItemStack(ModItems.SUPER_RUBY.get()), new ItemStack(ModItems.HEROBRINE_CHESTPLATE.get()));
             }
 
             @Override

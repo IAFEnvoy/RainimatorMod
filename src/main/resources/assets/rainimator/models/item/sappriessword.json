@@ -1,7 +1,0 @@
-{
-  "parent": "rainimator:custom/sappries_sword",
-  "textures": {
-    "0": "rainimator:blocks/sappries_sword",
-    "particle": "rainimator:items/sappries_sword"
-  }
-}

@@ -19,7 +19,7 @@ public class IcePeopleMobEffect extends MobEffect {
 
     @Override
     public @NotNull String getDescriptionId() {
-        return "effect." + RainimatorMod.MOD_ID + ".icepeople";
+        return "effect." + RainimatorMod.MOD_ID + ".ice_people";
     }
 
     @Override

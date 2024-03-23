@@ -29,18 +29,18 @@ public class ModFeatures {
     public static final DeferredRegister<Feature<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.FEATURES, RainimatorMod.MOD_ID);
     private static final List<FeatureRegistration> FEATURE_REGISTRATIONS = new ArrayList<>();
     public static final RegistryObject<Feature<?>> RUBY_ORE = register("ruby_ore", RubyOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, RubyOreFeature.GENERATE_BIOMES, RubyOreFeature::placedFeature));
-    public static final RegistryObject<Feature<?>> SAPPRIES_ORE = register("sappries_ore", SapphireOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, SapphireOreFeature.GENERATE_BIOMES, SapphireOreFeature::placedFeature));
-    public static final RegistryObject<Feature<?>> DEEPSLATE_SAPPRIES_ORE = register("deepslate_sappries_ore", DeepslateSapphireOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, DeepslateSapphireOreFeature.GENERATE_BIOMES, DeepslateSapphireOreFeature::placedFeature));
+    public static final RegistryObject<Feature<?>> SAPPHIRE_ORE = register("sapphire_ore", SapphireOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, SapphireOreFeature.GENERATE_BIOMES, SapphireOreFeature::placedFeature));
+    public static final RegistryObject<Feature<?>> DEEPSLATE_SAPPHIRE_ORE = register("deepslate_sapphire_ore", DeepslateSapphireOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, DeepslateSapphireOreFeature.GENERATE_BIOMES, DeepslateSapphireOreFeature::placedFeature));
     public static final RegistryObject<Feature<?>> DEEPSLATE_RUBY_ORE = register("deepslate_ruby_ore", DeepslateRubyOreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, DeepslateRubyOreFeature.GENERATE_BIOMES, DeepslateRubyOreFeature::placedFeature));
-    public static final RegistryObject<Feature<?>> DARKWERY = register("darkwery", DarkweryFeature::feature, new FeatureRegistration(GenerationStep.Decoration.SURFACE_STRUCTURES, DarkweryFeature.GENERATE_BIOMES, DarkweryFeature::placedFeature));
-    public static final RegistryObject<Feature<?>> MYSTICORE = register("mysticore", MysticoreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, MysticoreFeature.GENERATE_BIOMES, MysticoreFeature::placedFeature));
-    public static final RegistryObject<Feature<?>> PIGLINTEAM = register("piglinteam", PiglinTeamFeature::feature, new FeatureRegistration(GenerationStep.Decoration.SURFACE_STRUCTURES, PiglinTeamFeature.GENERATE_BIOMES, PiglinTeamFeature::placedFeature));
+    public static final RegistryObject<Feature<?>> DARK_WERY = register("dark_wery", DarkweryFeature::feature, new FeatureRegistration(GenerationStep.Decoration.SURFACE_STRUCTURES, DarkweryFeature.GENERATE_BIOMES, DarkweryFeature::placedFeature));
+    public static final RegistryObject<Feature<?>> MYSTIC_ORE = register("mystic_ore", MysticoreFeature::feature, new FeatureRegistration(GenerationStep.Decoration.UNDERGROUND_ORES, MysticoreFeature.GENERATE_BIOMES, MysticoreFeature::placedFeature));
+    public static final RegistryObject<Feature<?>> PIGLIN_TEAM = register("piglin_team", PiglinTeamFeature::feature, new FeatureRegistration(GenerationStep.Decoration.SURFACE_STRUCTURES, PiglinTeamFeature.GENERATE_BIOMES, PiglinTeamFeature::placedFeature));
     public static final RegistryObject<Feature<?>> SPEED = register("speed", SpeedFeature::feature, new FeatureRegistration(GenerationStep.Decoration.SURFACE_STRUCTURES, SpeedFeature.GENERATE_BIOMES, SpeedFeature::placedFeature));
     public static final RegistryObject<Feature<?>> SKILL = register("skill", SkillFeature::feature, new FeatureRegistration(GenerationStep.Decoration.SURFACE_STRUCTURES, SkillFeature.GENERATE_BIOMES, SkillFeature::placedFeature));
 
-    private static RegistryObject<Feature<?>> register(String registryname, Supplier<Feature<?>> feature, FeatureRegistration featureRegistration) {
+    private static RegistryObject<Feature<?>> register(String registryName, Supplier<Feature<?>> feature, FeatureRegistration featureRegistration) {
         FEATURE_REGISTRATIONS.add(featureRegistration);
-        return REGISTRY.register(registryname, feature);
+        return REGISTRY.register(registryName, feature);
     }
 
     @SubscribeEvent

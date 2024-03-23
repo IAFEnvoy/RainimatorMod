@@ -35,6 +35,11 @@ public class ModItemInfoScreen extends AbstractContainerScreen<ModItemInfoMenu> 
     }
 
     @Override
+    protected void containerTick() {
+        super.containerTick();
+    }
+
+    @Override
     public void render(@NotNull PoseStack ms, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(ms);
         super.render(ms, mouseX, mouseY, partialTicks);

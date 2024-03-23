@@ -15,10 +15,10 @@
       }
     ]
   },
-  "curis_live": {
+  "ceris_live": {
     "sounds": [
       {
-        "name": "rainimator:curis",
+        "name": "rainimator:ceris",
         "stream": false
       }
     ]
@@ -127,10 +127,10 @@
       }
     ]
   },
-  "underflower_1": {
+  "under_flower": {
     "sounds": [
       {
-        "name": "rainimator:underflower_1",
+        "name": "rainimator:under_flower",
         "stream": false
       }
     ]
@@ -307,10 +307,10 @@
       }
     ]
   },
-  "gutton_boss_music": {
+  "glutton_boss_music": {
     "sounds": [
       {
-        "name": "rainimator:gutton_boss_music",
+        "name": "rainimator:glutton_boss_music",
         "stream": false
       }
     ]
@@ -323,10 +323,10 @@
       }
     ]
   },
-  "him_onelives": {
+  "him_one_lives": {
     "sounds": [
       {
-        "name": "rainimator:him_onelives",
+        "name": "rainimator:him_one_lives",
         "stream": false
       }
     ]

@@ -10,32 +10,32 @@
       "item": "minecraft:diamond"
     },
     "1": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "2": {
       "item": "minecraft:diamond"
     },
     "3": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "4": {
       "item": "minecraft:enchanted_golden_apple"
     },
     "5": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "6": {
       "item": "minecraft:diamond"
     },
     "7": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "8": {
       "item": "minecraft:diamond"
     }
   },
   "result": {
-    "item": "rainimator:diamondapplesupper",
+    "item": "rainimator:diamond_apple_supper",
     "count": 8
   }
 }

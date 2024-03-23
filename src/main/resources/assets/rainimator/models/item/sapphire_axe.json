@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/sapphire_axe",
+  "textures": {
+    "0": "rainimator:blocks/sapphire_axe",
+    "particle": "rainimator:items/sapphire_axe"
+  }
+}

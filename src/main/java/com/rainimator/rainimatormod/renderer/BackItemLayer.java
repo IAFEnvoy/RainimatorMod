@@ -36,7 +36,7 @@ public class BackItemLayer {
     }
 
     public static void initPoseConsumers() {
-        specialItemPose.put(ModItems.END_BLADE.get(), poseStack -> {
+        specialItemPose.put(ModItems.ENDER_BIG_SWORD.get(), poseStack -> {
             poseStack.translate(-0.7, -0.3, 0.15);
             poseStack.scale(0.6F, 0.6F, 0.6F);
             poseStack.mulPose(Vector3f.ZP.rotationDegrees(45));

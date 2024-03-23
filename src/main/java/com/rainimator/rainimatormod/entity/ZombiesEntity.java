@@ -41,7 +41,7 @@ public class ZombiesEntity extends Monster {
         super(type, world);
         this.xpReward = 0;
         this.setNoAi(false);
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.IRONLONGSPEAR.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.IRON_LONG_SPEAR.get()));
         this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.DIAMOND_HELMET));
         this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));

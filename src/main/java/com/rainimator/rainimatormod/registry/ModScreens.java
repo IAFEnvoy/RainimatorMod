@@ -11,6 +11,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class ModScreens {
     @SubscribeEvent
     public static void clientLoad(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> MenuScreens.register(ModMenus.ENDERBOOKSKILL, EnderBookSkillScreen::new));
+        event.enqueueWork(() -> MenuScreens.register(ModMenus.ENDER_BOOK_SKILL, EnderBookSkillScreen::new));
     }
 }

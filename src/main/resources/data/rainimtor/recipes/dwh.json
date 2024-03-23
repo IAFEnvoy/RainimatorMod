@@ -10,7 +10,7 @@
       "item": "minecraft:iron_ingot"
     },
     "1": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "2": {
       "item": "minecraft:iron_ingot"
@@ -29,7 +29,7 @@
     }
   },
   "result": {
-    "item": "rainimator:deepwarhammer",
+    "item": "rainimator:deep_war_hammer",
     "count": 1
   }
 }

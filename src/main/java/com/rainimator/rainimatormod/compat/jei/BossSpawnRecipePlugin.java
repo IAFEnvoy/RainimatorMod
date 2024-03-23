@@ -36,27 +36,27 @@ public class BossSpawnRecipePlugin implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         registration.addRecipes(BOSS_SPAWN_RECIPE, List.of(
-                new BossSpawnRecipe(ModItems.LIGHTHEART.get(), ModItems.HEROBRINE_SPAWN_EGG.get()),
+                new BossSpawnRecipe(ModItems.LIGHT_HEART.get(), ModItems.HEROBRINE_SPAWN_EGG.get()),
                 new BossSpawnRecipe(Blocks.WITHER_ROSE.asItem(), ModItems.KRALOS_SPAWN_EGG.get()),
                 new BossSpawnRecipe(Items.TOTEM_OF_UNDYING, ModItems.KLAUS_SPAWN_EGG.get()),
                 new BossSpawnRecipe(Blocks.WITHER_SKELETON_SKULL.asItem(), ModItems.GIGABONE_SPAWN_EGG.get()),
-                new BossSpawnRecipe(ModItems.SOULPEOPLE.get(), ModItems.NAMTAR_SPAWN_EGG.get()),
-                new BossSpawnRecipe(ModItems.WITHER_BONE.get(), ModItems.BIGUNDEADSKELETON_SPAWN_EGG.get()),
-                new BossSpawnRecipe(Items.GOLDEN_SWORD, ModItems.PIGLINCOMMANDER_SPAWN_EGG.get()),
-                new BossSpawnRecipe(Items.GOLD_INGOT, ModItems.ZOMBIESPLIGEKING_SPAWN_EGG.get()),
-                new BossSpawnRecipe(Blocks.GOLD_BLOCK.asItem(), ModItems.PILGEKINGZOMBIES_SPAWN_EGG.get()),
-                new BossSpawnRecipe(ModItems.BAOZHU.get(), ModItems.NULLLIKE_SPAWN_EGG.get()),
-                new BossSpawnRecipe(ModItems.WARRIORHEART.get(), ModItems.NAEUS_SPAWN_EGG.get()),
-                new BossSpawnRecipe(ModItems.ICEHEART.get(), ModItems.CIARA_SPAWN_EGG.get()),
-                new BossSpawnRecipe(ModItems.ENDERHEART.get(), ModItems.DARKSHIELD_SPAWN_EGG.get()),
+                new BossSpawnRecipe(ModItems.SOUL_PEOPLE.get(), ModItems.NAMTAR_SPAWN_EGG.get()),
+                new BossSpawnRecipe(ModItems.WITHER_BONE.get(), ModItems.BIG_UNDEAD_SKELETON_SPAWN_EGG.get()),
+                new BossSpawnRecipe(Items.GOLDEN_SWORD, ModItems.PIGLIN_COMMANDER_SPAWN_EGG.get()),
+                new BossSpawnRecipe(Items.GOLD_INGOT, ModItems.ZOMBIES_PIGLIN_KING_SPAWN_EGG.get()),
+                new BossSpawnRecipe(Blocks.GOLD_BLOCK.asItem(), ModItems.PIGLIN_KING_ZOMBIES_SPAWN_EGG.get()),
+                new BossSpawnRecipe(ModItems.BAO_ZHU.get(), ModItems.NULL_LIKE_SPAWN_EGG.get()),
+                new BossSpawnRecipe(ModItems.WARRIOR_HEART.get(), ModItems.NAEUS_SPAWN_EGG.get()),
+                new BossSpawnRecipe(ModItems.ICE_HEART.get(), ModItems.CIARA_SPAWN_EGG.get()),
+                new BossSpawnRecipe(ModItems.ENDER_HEART.get(), ModItems.DARK_SHIELD_SPAWN_EGG.get()),
                 new BossSpawnRecipe(ModItems.MAGIC_STARD.get(), ModItems.PATRICK_SPAWN_EGG.get()),
                 new BossSpawnRecipe(ModItems.LOWER_BOUND_ALLOY_BONE.get(), ModItems.BLACKBONE_SPAWN_EGG.get()),
-                new BossSpawnRecipe(ModItems.UNDERFLOWER.get(), ModItems.ABIGAIL_SPAWN_EGG.get())
+                new BossSpawnRecipe(ModItems.UNDER_FLOWER.get(), ModItems.ABIGAIL_SPAWN_EGG.get())
         ));
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(ModItems.DARKOBSIDIANBLOCK.get()), BOSS_SPAWN_RECIPE);
+        registration.addRecipeCatalyst(new ItemStack(ModItems.DARK_OBSIDIAN_BLOCK.get()), BOSS_SPAWN_RECIPE);
     }
 }

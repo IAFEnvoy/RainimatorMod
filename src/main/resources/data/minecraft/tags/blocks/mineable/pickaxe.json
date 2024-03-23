@@ -2,10 +2,10 @@
   "replace": false,
   "values": [
     "rainimator:ruby_ore",
-    "rainimator:sappries_ore",
-    "rainimator:deepslate_sappries_ore",
+    "rainimator:sapphire_ore",
+    "rainimator:deepslate_sapphire_ore",
     "rainimator:deepslate_ruby_ore",
-    "rainimator:darkobsidianblock",
-    "rainimator:mysticore"
+    "rainimator:dark_obsidian_block",
+    "rainimator:mystic_ore"
   ]
 }

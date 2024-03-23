@@ -10,26 +10,26 @@
       "item": "rainimator:super_ruby"
     },
     "2": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "3": {
-      "item": "rainimator:enderstone"
+      "item": "rainimator:ender_stone"
     },
     "4": {
-      "item": "rainimator:enderheart"
+      "item": "rainimator:ender_heart"
     },
     "5": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "6": {
       "item": "rainimator:ruby_pickaxe"
     },
     "7": {
-      "item": "rainimator:enderstone"
+      "item": "rainimator:ender_stone"
     }
   },
   "result": {
-    "item": "rainimator:enderbigsword",
+    "item": "rainimator:ender_curved_sword",
     "count": 1
   }
 }

@@ -5,7 +5,7 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -47,7 +47,7 @@ public class RainEntity extends Monster implements RangedAttackMob {
         this.setNoAi(false);
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.RAIN_SWORD.get()));
-        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.RAINARMOR_CHESTPLATE.get()));
+        this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.RAIN_CHESTPLATE.get()));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -164,7 +164,7 @@ public class RainEntity extends Monster implements RangedAttackMob {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof Level _level)
-            MiscUtil.playSound(_level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 1.0F, 1.0F);
+            SoundUtil.playSound(_level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 1.0F, 1.0F);
         if (world instanceof ServerLevel _level)
             _level.sendParticles((ParticleOptions) ModParticleTypes.SNOW.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         return retval;

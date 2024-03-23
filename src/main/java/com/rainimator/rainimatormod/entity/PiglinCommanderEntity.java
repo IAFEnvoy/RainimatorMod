@@ -34,7 +34,7 @@ import java.util.Random;
 
 public class PiglinCommanderEntity extends Monster {
     public PiglinCommanderEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.PIGLINCOMMANDER.get(), world);
+        this(ModEntities.PIGLIN_COMMANDER.get(), world);
     }
 
     public PiglinCommanderEntity(EntityType<PiglinCommanderEntity> type, Level world) {
@@ -43,7 +43,7 @@ public class PiglinCommanderEntity extends Monster {
         this.setNoAi(false);
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.THE_GOLDEN_SWORD.get()));
-        this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.PORKSHIREKINGCROWN_HELMET.get()));
+        this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.PORKSHIRE_KING_CROWN.get()));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -119,7 +119,7 @@ public class PiglinCommanderEntity extends Monster {
             mutatedEntity.finalizeSpawn(_level, world.getCurrentDifficultyAt(mutatedEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
             world.addFreshEntity(mutatedEntity);
             if (Math.random() < 0.4D) {
-                ZombiePiglinArtEntity zombiepiglinartEntity = new ZombiePiglinArtEntity(ModEntities.ZOMBIEPIGLINART.get(), _level);
+                ZombiePiglinArtEntity zombiepiglinartEntity = new ZombiePiglinArtEntity(ModEntities.ZOMBIE_PIGLIN_ART.get(), _level);
                 zombiepiglinartEntity.moveTo(x + Mth.nextInt(new Random(), -2, 2), y, z + Mth.nextInt(new Random(), -2, 2), world.getRandom().nextFloat() * 360.0F, 0.0F);
                 zombiepiglinartEntity.finalizeSpawn(_level, world.getCurrentDifficultyAt(zombiepiglinartEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
                 world.addFreshEntity(zombiepiglinartEntity);

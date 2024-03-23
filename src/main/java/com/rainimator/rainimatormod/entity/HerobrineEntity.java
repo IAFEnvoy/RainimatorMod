@@ -4,18 +4,15 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Stage;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.Util;
-import net.minecraft.commands.CommandSource;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -49,7 +46,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
@@ -88,8 +84,6 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
             case Second -> {
                 this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLUE_DIAMOND_SWORD.get()));
                 this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.BLUE_DIAMOND_SWORD.get()));
-                this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.DIAMOND_HELMET));
-                this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ModItems.HEROBRINE_ARMOR_CHESTPLATE.get()));
             }
         }
     }
@@ -159,12 +153,12 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
         Vec3 _center = new Vec3(x, y, z);
         List<Entity> _entfound = (this.level).getEntitiesOfClass(Entity.class, (new AABB(_center, _center)).inflate(4.5D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
         for (Entity entityiterator : _entfound) {
-            if (this.hasEffect(ModEffects.ICEPEOPLE.get())) {
-                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
+            if (this.hasEffect(ModEffects.ICE_PEOPLE.get())) {
+                SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
                 this.teleportTo(x, y + 4.0D, z);
                 continue;
             }
-            if (this.hasEffect(MobEffects.POISON) || this.hasEffect(MobEffects.WITHER) || this.hasEffect(ModEffects.SOULDEATH.get())) {
+            if (this.hasEffect(MobEffects.POISON) || this.hasEffect(MobEffects.WITHER) || this.hasEffect(ModEffects.SOUL_DEATH.get())) {
                 this.removeAllEffects();
                 continue;
             }
@@ -176,7 +170,7 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
                 continue;
             }
             if (Math.random() < 0.1D) {
-                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
 
                 if (this.level instanceof ServerLevel _level) {
                     LightningBolt entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
@@ -192,7 +186,7 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
                     if (!_entity.level.isClientSide())
                         _entity.addEffect(new MobEffectInstance(MobEffects.WITHER, 1200, 2));
             } else if (Math.random() < 0.05D) {
-                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
                 if (this.level instanceof ServerLevel _level)
                     _level.sendParticles((ParticleOptions) ParticleTypes.END_ROD, x, y, z, 15, 0.5D, 0.5D, 0.5D, 0.5D);
                 this.getNavigation().moveTo(x + Mth.nextInt(new Random(), -2, 2), y, z + Mth.nextInt(new Random(), -2, 2), 20.0D);
@@ -235,8 +229,8 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
                 _level.addFreshEntity(entityToSpawn);
             }
         }
-        if (!world.isClientSide() && world.getServer() != null)
-            world.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.herobrine.stage" + (this.stage == Stage.First ? "1" : "2")), ChatType.SYSTEM, Util.NIL_UUID);
+        if (!world.isClientSide() && world.getServer() != null && this.stage == Stage.First)
+            world.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.herobrine.stage1"), ChatType.SYSTEM, Util.NIL_UUID);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!this.level.isClientSide() && this.getServer() != null)
                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");
@@ -263,14 +257,13 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
             this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 80, 0));
             this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, 1));
             if (!this.isAlive()) {
-                if (this.level instanceof ServerLevel _level)
-                    _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:him_music_boss");
+                SoundUtil.stopSound(this.level, new ResourceLocation(RainimatorMod.MOD_ID, "him_music_boss"));
                 if (this.stage == Stage.First) {
                     if (this.getHealth() < 50) {
                         if (this.getOffhandItem().getItem() == Blocks.AIR.asItem()) {
                             this.getNavigation().stop();
                             this.teleportTo(this.getX(), this.getY(), this.getZ());
-                            ItemStack _setstack = new ItemStack(ModItems.SOULPEOPLE.get());
+                            ItemStack _setstack = new ItemStack(ModItems.SOUL_PEOPLE.get());
                             _setstack.setCount(1);
                             this.setItemInHand(InteractionHand.OFF_HAND, _setstack);
                             if (!this.level.isClientSide()) {
@@ -289,7 +282,7 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
                             if (!this.level.isClientSide() && this.getServer() != null)
                                 this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
                                         "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:0,Flicker:1,Trail:0,Colors:[I;8073150],FadeColors:[I;2437522]}]}}}}");
-                            MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"), 5, 1);
+                            SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"), 5, 1);
 
                             if (this.level instanceof ServerLevel _level)
                                 _level.sendParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 400, 3, 4, 3, 0.002);
@@ -306,7 +299,7 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
                                     }
                                 }
                                 this.level.setBlock(new BlockPos(this.getX(), this.getY(), this.getZ()), Blocks.FIRE.defaultBlockState(), 3);
-                                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("item.totem.use"), 5, 1);
+                                SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("item.totem.use"), 5, 1);
                                 if (this.level instanceof ServerLevel _level)
                                     _level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.002);
                                 if (!this.level.isClientSide() && this.getServer() != null)
@@ -315,11 +308,7 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
                             };
                             Timeout.create(30, callback);
                             Timeout.create(60, callback);
-                            Timeout.create(80, () -> {
-                                if (this.level instanceof ServerLevel _level)
-                                    _level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
-                                            "stopsound @a neutral rainimator:him_music_boss");
-                            });
+                            Timeout.create(80, () -> SoundUtil.stopSound(this.level, new ResourceLocation(RainimatorMod.MOD_ID, "him_music_boss")));
                             Timeout.create(90, () -> {
                                 this.getNavigation().stop();
                                 this.teleportTo(this.getX(), this.getY(), this.getZ());
@@ -334,7 +323,7 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
                                     }
                                 }
                                 this.level.setBlock(new BlockPos(this.getX(), this.getY(), this.getZ()), Blocks.FIRE.defaultBlockState(), 3);
-                                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.spawn"), 5, 1);
+                                SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.spawn"), 5, 1);
                                 if (this.level instanceof ServerLevel _level)
                                     _level.sendParticles(ParticleTypes.TOTEM_OF_UNDYING, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.05);
                                 if (!this.level.isClientSide() && this.getServer() != null)
@@ -347,8 +336,6 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
                                     entityToSpawn.finalizeSpawn(_level, this.level.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null);
                                     this.level.addFreshEntity(entityToSpawn);
                                 }
-                                if (!this.level.isClientSide() && this.level.getServer() != null)
-                                    this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.herobrine.summon"), ChatType.SYSTEM, Util.NIL_UUID);
                             });
                         }
                     }
@@ -360,7 +347,7 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
 
                 this.getMainHandItem().enchant(Enchantments.SHARPNESS, 5);
                 this.getOffhandItem().enchant(Enchantments.SHARPNESS, 5);
-                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.spawn"), 1, 1);
+                SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.spawn"), 1, 1);
                 if (!this.level.isClientSide() && this.getServer() != null)
                     this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4),
                             "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2651799],FadeColors:[I;6719955]}]}}}}");
@@ -383,11 +370,7 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
                 }
                 if (!this.level.isClientSide() && this.level.getServer() != null)
                     this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.blackbone.summon"), ChatType.SYSTEM, Util.NIL_UUID);
-                Timeout.create(40, () -> {
-                    if (this.level instanceof ServerLevel _level)
-                        _level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null).withSuppressedOutput(),
-                                "stopsound @a neutral rainimator:blackbone_boss_music");
-                });
+                Timeout.create(40, () -> SoundUtil.stopSound(this.level, new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_boss_music")));
                 if (!this.level.isClientSide() && this.level.getServer() != null)
                     this.level.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.herobrine.summon1"), ChatType.SYSTEM, Util.NIL_UUID);
             }

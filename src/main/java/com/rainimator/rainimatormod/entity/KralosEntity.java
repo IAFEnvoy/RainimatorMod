@@ -1,18 +1,17 @@
 package com.rainimator.rainimatormod.entity;
 
+import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.Util;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -43,7 +42,6 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
@@ -64,7 +62,7 @@ public class KralosEntity extends Monster {
         this.xpReward = 0;
         this.setNoAi(false);
         this.setPersistenceRequired();
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.FALLENSOULAXE.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.FALLEN_SOUL_AXE.get()));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -148,7 +146,7 @@ public class KralosEntity extends Monster {
                     }
 
                     this.level.setBlock(new BlockPos(x, y, z), Blocks.FIRE.defaultBlockState(), 3);
-                    MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.enderman.scream"), 1.0F, 1.0F);
+                    SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.enderman.scream"), 1.0F, 1.0F);
                     if (this.level instanceof ServerLevel _level)
                         _level.sendParticles((ParticleOptions) ParticleTypes.SOUL, x, y, z, 200, 2.0D, 3.0D, 2.0D, 0.001D);
                     if (!this.level.isClientSide() && this.level.getServer() != null)
@@ -179,7 +177,7 @@ public class KralosEntity extends Monster {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof Level _level)
-            MiscUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.ambient"), 1.0F, 1.0F);
+            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new ResourceLocation("entity.wither.ambient"), 1.0F, 1.0F);
         if (world instanceof ServerLevel _level)
             _level.sendParticles((ParticleOptions) ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.001D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
@@ -211,8 +209,8 @@ public class KralosEntity extends Monster {
             this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 0));
             this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, 0));
         }
-        if (!this.isAlive() && this.level instanceof ServerLevel _level)
-            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:kralos_boss_music");
+        if (!this.isAlive())
+            SoundUtil.stopSound(this.level, new ResourceLocation(RainimatorMod.MOD_ID, "kralos_boss_music"));
     }
 
     @Override

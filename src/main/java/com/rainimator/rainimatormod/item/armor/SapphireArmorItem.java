@@ -70,17 +70,17 @@ public class SapphireArmorItem extends ArmorItem {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return RainimatorMod.MOD_ID + ":textures/models/armor/sappries__layer_1.png";
+        return RainimatorMod.MOD_ID + ":textures/models/armor/sapphire__layer_1.png";
     }
 
     @Override
     public void onArmorTick(ItemStack itemstack, Level world, Player entity) {
         if (entity == null)
             return;
-        if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.HEAD).getItem() == ModItems.SAPPRIESARMOR_HELMET.get())
-            if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.CHEST).getItem() == ModItems.SAPPRIESARMOR_CHESTPLATE.get())
-                if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.LEGS).getItem() == ModItems.SAPPRIESARMOR_LEGGINGS.get())
-                    if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.FEET).getItem() == ModItems.SAPPRIESARMOR_BOOTS.get())
+        if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.HEAD).getItem() == ModItems.SAPPHIRE_HELMET.get())
+            if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.CHEST).getItem() == ModItems.SAPPHIRE_CHESTPLATE.get())
+                if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.LEGS).getItem() == ModItems.SAPPHIRE_LEGGINGS.get())
+                    if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.FEET).getItem() == ModItems.SAPPHIRE_BOOTS.get())
                         if (!entity.level.isClientSide()) {
                             entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 300, 0));
                             entity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 80, 0));

@@ -3,7 +3,7 @@ package com.rainimator.rainimatormod.item.sword;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -39,7 +39,7 @@ public class EnderCurvedSwordItem extends SwordItemBase {
             entity.hurt(DamageSource.MAGIC, 10.0F);
         else hurted = false;
         if (hurted) {
-            MiscUtil.playSound(entity.level, x, y, z, new ResourceLocation("block.anvil.land"), 5.0F, 1.0F);
+            SoundUtil.playSound(entity.level, x, y, z, new ResourceLocation("block.anvil.land"), 5.0F, 1.0F);
             if (itemstack.hurt(1, new Random(), null)) {
                 itemstack.shrink(1);
                 itemstack.setDamageValue(0);

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "rainimator:diamondpiece"
+      "item": "rainimator:diamond_piece"
     }
   ],
   "result": {

@@ -77,10 +77,10 @@ public class RubyarmorItem extends ArmorItem {
     public void onArmorTick(ItemStack itemstack, Level world, Player entity) {
         if (entity == null)
             return;
-        if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.HEAD).getItem() == ModItems.RUBYARMOR_HELMET.get())
-            if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.CHEST).getItem() == ModItems.RUBYARMOR_CHESTPLATE.get())
-                if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.LEGS).getItem() == ModItems.RUBYARMOR_LEGGINGS.get())
-                    if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.FEET).getItem() == ModItems.RUBYARMOR_BOOTS.get())
+        if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.HEAD).getItem() == ModItems.RUBY_HELMET.get())
+            if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.CHEST).getItem() == ModItems.RUBY_CHESTPLATE.get())
+                if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.LEGS).getItem() == ModItems.RUBY_LEGGINGS.get())
+                    if (((LivingEntity) entity).getItemBySlot(EquipmentSlot.FEET).getItem() == ModItems.RUBY_BOOTS.get())
                         if (!entity.level.isClientSide()) {
                             entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 80, 0));
                             entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 1));

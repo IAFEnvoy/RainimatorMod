@@ -7,7 +7,7 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "1": {
       "item": "minecraft:stick"
@@ -17,7 +17,7 @@
     }
   },
   "result": {
-    "item": "rainimator:sappriesshovel",
+    "item": "rainimator:sapphire_shovel",
     "count": 1
   }
 }

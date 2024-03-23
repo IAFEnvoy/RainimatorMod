@@ -19,7 +19,7 @@ public class ShadowErosionMobEffect extends MobEffect {
 
     @Override
     public @NotNull String getDescriptionId() {
-        return "effect." + RainimatorMod.MOD_ID + ".shadowerosion";
+        return "effect." + RainimatorMod.MOD_ID + ".shadow_erosion";
     }
 
     @Override

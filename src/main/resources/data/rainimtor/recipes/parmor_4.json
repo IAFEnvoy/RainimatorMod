@@ -4,9 +4,9 @@
     "item": "minecraft:diamond_boots"
   },
   "addition": {
-    "item": "rainimator:super_spparies"
+    "item": "rainimator:super_sapphire"
   },
   "result": {
-    "item": "rainimator:patrick_armor_boots"
+    "item": "rainimator:patrick_boots"
   }
 }

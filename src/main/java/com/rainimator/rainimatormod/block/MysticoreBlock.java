@@ -43,8 +43,8 @@ public class MysticoreBlock extends Block {
         lootTable.add(Pair.of(Items.EMERALD, 0.5D));
         lootTable.add(Pair.of(Items.LAPIS_LAZULI, 0.4D));
         lootTable.add(Pair.of(Items.DIAMOND, 0.3D));
-        lootTable.add(Pair.of(ModItems.SAPPRIESBLOCKSHIT.get(), 0.2D));
-        lootTable.add(Pair.of(ModItems.RUBYBLOCKSHIT.get(), 0.1D));
+        lootTable.add(Pair.of(ModItems.RAW_SAPPHIRE.get(), 0.2D));
+        lootTable.add(Pair.of(ModItems.RAW_RUBY.get(), 0.1D));
     }
 
     @Deprecated
@@ -116,7 +116,7 @@ public class MysticoreBlock extends Block {
                         }
             } else {
                 if (!entity.level.isClientSide())
-                    entity.displayClientMessage(new TranslatableComponent("block.rainimator.mysticore.nothing"), true);
+                    entity.displayClientMessage(new TranslatableComponent("block.rainimator.mystic_ore.nothing"), true);
                 if (!world.isClientSide()) {
                     ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(Blocks.COBBLED_DEEPSLATE));
                     entityToSpawn.setPickUpDelay(10);

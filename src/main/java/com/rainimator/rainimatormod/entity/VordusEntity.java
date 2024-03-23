@@ -39,8 +39,8 @@ public class VordusEntity extends EnderMan {
         this.xpReward = 0;
         this.setNoAi(false);
         this.setPersistenceRequired();
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.LIGHTSWORD.get()));
-        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.LIGHTSWORD.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.LIGHT_SWORD.get()));
+        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.LIGHT_SWORD.get()));
     }
 
     public static AttributeSupplier.@NotNull Builder createAttributes() {

@@ -7,29 +7,29 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "1": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "2": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "3": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "5": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "6": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "8": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     }
   },
   "result": {
-    "item": "rainimator:sappriesarmor_leggings",
+    "item": "rainimator:sapphire_leggings",
     "count": 1
   }
 }

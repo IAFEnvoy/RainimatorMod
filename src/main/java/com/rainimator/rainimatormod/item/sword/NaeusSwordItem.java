@@ -4,7 +4,7 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -52,7 +52,7 @@ public class NaeusSwordItem extends SwordItemBase {
                         if (!_entity.level.isClientSide())
                             _entity.addEffect(new MobEffectInstance(MobEffects.POISON, 300, 1));
                     entityIterator.setSecondsOnFire(10);
-                    MiscUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
+                    SoundUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
                     if (entity instanceof Player)
                         entity.getCooldowns().addCooldown(ar.getObject().getItem(), 600);
                 }

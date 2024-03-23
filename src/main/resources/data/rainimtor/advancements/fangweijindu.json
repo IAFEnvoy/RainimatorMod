@@ -2,7 +2,7 @@
   "display": {
     "background": "minecraft:textures/block/stone.png",
     "icon": {
-      "item": "rainimator:enderbook"
+      "item": "rainimator:ender_book"
     },
     "title": {
       "translate": "advancements.fangweijindu.title"

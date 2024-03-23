@@ -12,11 +12,11 @@ import net.minecraftforge.network.IContainerFactory;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class ModMenus {
-    public static final MenuType<EnderBookSkillMenu> ENDERBOOKSKILL;
+    public static final MenuType<EnderBookSkillMenu> ENDER_BOOK_SKILL;
     public static final MenuType<ModItemInfoMenu> MOD_ITEM_INFO;
 
     static {
-        ENDERBOOKSKILL = register(EnderBookSkillMenu::new,"enderbookskill");
+        ENDER_BOOK_SKILL = register(EnderBookSkillMenu::new,"ender_book_skill");
         MOD_ITEM_INFO = register(ModItemInfoMenu::new,"mod_item_info");
     }
 
@@ -28,6 +28,6 @@ public class ModMenus {
 
     @SubscribeEvent
     public static void registerContainers(RegistryEvent.Register<MenuType<?>> event) {
-        event.getRegistry().register(ENDERBOOKSKILL);
+        event.getRegistry().register(ENDER_BOOK_SKILL);
     }
 }

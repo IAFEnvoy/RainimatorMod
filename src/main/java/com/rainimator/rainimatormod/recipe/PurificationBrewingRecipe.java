@@ -25,13 +25,13 @@ public class PurificationBrewingRecipe implements IBrewingRecipe {
 
     @Override
     public boolean isIngredient(@NotNull ItemStack ingredient) {
-        return ingredient.getItem() == ModItems.BLUEDIAMOND.get();
+        return ingredient.getItem() == ModItems.BLUE_DIAMOND.get();
     }
 
     @Override
     public @NotNull ItemStack getOutput(@NotNull ItemStack input, @NotNull ItemStack ingredient) {
         if (this.isInput(input) && this.isIngredient(ingredient))
-            return new ItemStack(ModItems.PURIFICATION_1.get());
+            return new ItemStack(ModItems.PURIFICATION.get());
         return ItemStack.EMPTY;
     }
 }

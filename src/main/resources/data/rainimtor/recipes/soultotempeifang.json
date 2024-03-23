@@ -19,7 +19,7 @@
       "item": "rainimator:magic_stard"
     },
     "4": {
-      "item": "rainimator:lightheart"
+      "item": "rainimator:light_heart"
     },
     "5": {
       "item": "rainimator:magic_stard"
@@ -35,7 +35,7 @@
     }
   },
   "result": {
-    "item": "rainimator:soultotem",
+    "item": "rainimator:soul_totem",
     "count": 1
   }
 }

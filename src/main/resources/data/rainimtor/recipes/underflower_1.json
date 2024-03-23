@@ -22,14 +22,14 @@
       "item": "rainimator:hot_iron"
     },
     "7": {
-      "item": "rainimator:soulpeople"
+      "item": "rainimator:soul_people"
     },
     "8": {
       "item": "rainimator:hot_iron"
     }
   },
   "result": {
-    "item": "rainimator:underflower",
+    "item": "rainimator:under_flower",
     "count": 1
   }
 }

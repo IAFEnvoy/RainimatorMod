@@ -47,7 +47,7 @@ public class DeepslateRubyOreBlock extends Block {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
-        return Collections.singletonList(new ItemStack(ModItems.SAPPRIESBLOCKSHIT.get()));
+        return Collections.singletonList(new ItemStack(ModItems.RAW_SAPPHIRE.get()));
     }
 
     @Override
@@ -61,7 +61,7 @@ public class DeepslateRubyOreBlock extends Block {
             for (int i = 1; i <= EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, entity.getMainHandItem()); i++)
                 if (Math.random() < p[i - 1]) {
                     for (int j = 0; j < i; j++) {
-                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.SAPPRIESBLOCKSHIT.get()));
+                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.RAW_SAPPHIRE.get()));
                         entityToSpawn.setPickUpDelay(50);
                         world.addFreshEntity(entityToSpawn);
                     }
@@ -70,7 +70,7 @@ public class DeepslateRubyOreBlock extends Block {
             for (int i = 1; i <= EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, entity.getOffhandItem()); i++)
                 if (Math.random() < p[i - 1]) {
                     for (int j = 0; j < i; j++) {
-                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.SAPPRIESBLOCKSHIT.get()));
+                        ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(ModItems.RAW_SAPPHIRE.get()));
                         entityToSpawn.setPickUpDelay(50);
                         world.addFreshEntity(entityToSpawn);
                     }

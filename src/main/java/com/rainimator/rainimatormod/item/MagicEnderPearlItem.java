@@ -3,7 +3,7 @@ package com.rainimator.rainimatormod.item;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
 import com.rainimator.rainimatormod.registry.util.FoilItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -102,7 +102,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
                 entity.teleportTo(x, y, z);
                 if ((Entity) entity instanceof ServerPlayer _serverPlayer)
                     _serverPlayer.connection.teleport(x, y, z, entity.getYRot(), entity.getXRot());
-                MiscUtil.playSound(world, x, y, z, new ResourceLocation("entity.enderman.teleport"), 1.0F, 1.0F);
+                SoundUtil.playSound(world, x, y, z, new ResourceLocation("entity.enderman.teleport"), 1.0F, 1.0F);
                 if (world instanceof ServerLevel) {
                     ((ServerLevel) world).sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.02D);
                 }

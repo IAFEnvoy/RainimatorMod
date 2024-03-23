@@ -35,7 +35,7 @@ import org.jetbrains.annotations.NotNull;
 @Mod.EventBusSubscriber
 public class DarkZombieEntity extends Monster {
     public DarkZombieEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.DARKZOMBIE.get(), world);
+        this(ModEntities.DARK_ZOMBIE.get(), world);
     }
 
     public DarkZombieEntity(EntityType<DarkZombieEntity> type, Level world) {
@@ -50,11 +50,11 @@ public class DarkZombieEntity extends Monster {
     @SubscribeEvent
     public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
         if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.DARKZOMBIE.get(), 10, 1, 1));
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.DARK_ZOMBIE.get(), 10, 1, 1));
     }
 
     public static void init() {
-        SpawnPlacements.register(ModEntities.DARKZOMBIE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacements.register(ModEntities.DARK_ZOMBIE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 

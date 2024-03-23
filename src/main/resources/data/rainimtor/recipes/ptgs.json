@@ -13,7 +13,7 @@
       "item": "minecraft:iron_ingot"
     },
     "4": {
-      "item": "rainimator:goldenplunderingaxe"
+      "item": "rainimator:golden_plundering_axe"
     },
     "5": {
       "item": "minecraft:iron_ingot"
@@ -23,7 +23,7 @@
     }
   },
   "result": {
-    "item": "rainimator:plunderingthegiantaxe",
+    "item": "rainimator:plundering_the_giant_axe",
     "count": 1
   }
 }

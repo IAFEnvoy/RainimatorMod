@@ -6,23 +6,23 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "1": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "2": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "3": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "5": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     }
   },
   "result": {
-    "item": "rainimator:bluediamondarmors_helmet",
+    "item": "rainimator:blue_diamond_helmet",
     "count": 1
   }
 }

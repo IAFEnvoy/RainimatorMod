@@ -7,31 +7,31 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "1": {
       "item": "minecraft:nether_star"
     },
     "2": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "3": {
-      "item": "rainimator:bluediamondblock"
+      "item": "rainimator:blue_diamond_block"
     },
     "4": {
-      "item": "rainimator:iceheart"
+      "item": "rainimator:ice_heart"
     },
     "5": {
-      "item": "rainimator:bluediamondblock"
+      "item": "rainimator:blue_diamond_block"
     },
     "6": {
-      "item": "rainimator:icedheart"
+      "item": "rainimator:iced_heart"
     },
     "7": {
       "item": "rainimator:snow_diamond_sword"
     },
     "8": {
-      "item": "rainimator:icedheart"
+      "item": "rainimator:iced_heart"
     }
   },
   "result": {

@@ -9,8 +9,8 @@ import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.Episode;
-import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -53,7 +53,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, ICu
     );
 
     public RainSwordItem() {
-        super(TierBase.of(2000, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SPPARIES), 3, -2.0F, ModCreativeTab.createProperty());
+        super(TierBase.of(2000, 4.0F, 11.0F, 0, 20, ModItems.SUPER_SAPPHIRE), 3, -2.0F, ModCreativeTab.createProperty());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, ICu
         if (Math.random() < 0.1D)
             if (entity instanceof LivingEntity)
                 if (!entity.level.isClientSide()) {
-                    entity.addEffect(new MobEffectInstance(ModEffects.ICEPEOPLE.get(), 100, 0));
+                    entity.addEffect(new MobEffectInstance(ModEffects.ICE_PEOPLE.get(), 100, 0));
                     entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 0));
                 }
         return ret_val;
@@ -83,19 +83,19 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, ICu
             if (entity.isShiftKeyDown()) {
                 if (entityiterator instanceof Mob _entity)
                     _entity.getNavigation().stop();
-                MiscUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation(RainimatorMod.MOD_ID, "rain_sword_skill"), 1.0F, 1.0F);
+                SoundUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation(RainimatorMod.MOD_ID, "rain_sword_skill"), 1.0F, 1.0F);
 
                 for (Triple<Integer, Integer, Integer> place : places)
                     world.setBlock(new BlockPos(entityiterator.getX() + place.getLeft(), entityiterator.getY() + place.getMiddle(), entityiterator.getZ() + place.getRight()), Blocks.ICE.defaultBlockState(), 3);
                 if (!_livEnt.level.isClientSide()) {
                     _livEnt.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 540, 4));
-                    _livEnt.addEffect(new MobEffectInstance(ModEffects.ICEPEOPLE.get(), 500, 0));
+                    _livEnt.addEffect(new MobEffectInstance(ModEffects.ICE_PEOPLE.get(), 500, 0));
                 }
                 if (entity instanceof Player)
                     entity.getCooldowns().addCooldown(ar.getObject().getItem(), 1200);
 
                 Timeout.create(500, () -> {
-                    MiscUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation(RainimatorMod.MOD_ID, "rain_sword_skill_2"), 5.0F, 1.0F);
+                    SoundUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation(RainimatorMod.MOD_ID, "rain_sword_skill_2"), 5.0F, 1.0F);
                     for (Triple<Integer, Integer, Integer> place : places)
                         world.setBlock(new BlockPos(entityiterator.getX() + place.getLeft(), entityiterator.getY() + place.getMiddle(), entityiterator.getZ() + place.getRight()), Blocks.AIR.defaultBlockState(), 3);
                     entityiterator.hurt(DamageSource.MAGIC, 5.0F);
@@ -151,10 +151,10 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo, ICu
                         Timeout.create(120, callback);
                         Timeout.create(180, () -> {
                             if (!_livEnt.level.isClientSide()) {
-                                _livEnt.addEffect(new MobEffectInstance(ModEffects.ICEPEOPLE.get(), 100, 0));
+                                _livEnt.addEffect(new MobEffectInstance(ModEffects.ICE_PEOPLE.get(), 100, 0));
                                 _livEnt.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100, 4));
                             }
-                            MiscUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation("block.conduit.activate"), 1.0F, 1.0F);
+                            SoundUtil.playSound(world, _center.x, _center.y, _center.z, new ResourceLocation("block.conduit.activate"), 1.0F, 1.0F);
                             entityIterator.setTicksFrozen(10);
                         });
                     }

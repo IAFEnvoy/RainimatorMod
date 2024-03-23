@@ -7,32 +7,32 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "2": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "3": {
       "item": "minecraft:obsidian"
     },
     "4": {
-      "item": "rainimator:iceheart"
+      "item": "rainimator:ice_heart"
     },
     "5": {
       "item": "minecraft:obsidian"
     },
     "6": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "7": {
       "item": "minecraft:crying_obsidian"
     },
     "8": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     }
   },
   "result": {
-    "item": "rainimator:rainarmor_chestplate",
+    "item": "rainimator:rain_chestplate",
     "count": 1
   }
 }

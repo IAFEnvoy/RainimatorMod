@@ -4,17 +4,14 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.Util;
-import net.minecraft.commands.CommandSource;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -44,8 +41,6 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.phys.Vec2;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -64,7 +59,7 @@ public class BlackBoneEntity extends Monster {
         super(type, world);
         this.xpReward = 0;
         this.setNoAi(false);
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLACKBONE_THE_BLADE_DANSHOU.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLACKBONE_THE_BLADE_SINGLE_HAND.get()));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -126,11 +121,11 @@ public class BlackBoneEntity extends Monster {
         if (sourceentity != null) {
             if (sourceentity instanceof LivingEntity _ent)
                 this.setTarget(_ent);
-            if (this.hasEffect(ModEffects.FEARDARK.get()))
+            if (this.hasEffect(ModEffects.FEAR_DARK.get()))
                 this.removeAllEffects();
-            else if (this.hasEffect(ModEffects.ICEPEOPLE.get()))
+            else if (this.hasEffect(ModEffects.ICE_PEOPLE.get()))
                 this.removeAllEffects();
-            else if (this.hasEffect(ModEffects.SOULDEATH.get()))
+            else if (this.hasEffect(ModEffects.SOUL_DEATH.get()))
                 this.removeAllEffects();
             else if (this.hasEffect(MobEffects.POISON))
                 this.removeAllEffects();
@@ -138,18 +133,18 @@ public class BlackBoneEntity extends Monster {
                 this.removeAllEffects();
             else {
                 if (Math.random() < 0.2) {
-                    if ((sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModEffects.FEARDARK.get()))) {
+                    if ((sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModEffects.FEAR_DARK.get()))) {
                         sourceentity.hurt(new DamageSource("death by dark").bypassArmor(), 12);
                         if (!_livEnt.level.isClientSide())
                             _livEnt.addEffect(new MobEffectInstance(MobEffects.WITHER, 500, 1));
                     }
                 } else {
-                    if (!(sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModEffects.FEARDARK.get()))) {
-                        MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_skill"), 1, 1);
+                    if (!(sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModEffects.FEAR_DARK.get()))) {
+                        SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_skill"), 1, 1);
                         if (this.level instanceof ServerLevel _level)
                             _level.sendParticles(ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 50, 1, 1, 1, 1);
                         if (sourceentity instanceof LivingEntity _entity && !_entity.level.isClientSide())
-                            _entity.addEffect(new MobEffectInstance(ModEffects.FEARDARK.get(), 300, 0));
+                            _entity.addEffect(new MobEffectInstance(ModEffects.FEAR_DARK.get(), 300, 0));
                         sourceentity.setSecondsOnFire(10);
                     }
                 }
@@ -207,22 +202,19 @@ public class BlackBoneEntity extends Monster {
     @Override
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        LivingEntity entity = this;
         if (world instanceof Level _level)
-            MiscUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_living"), 1.0F, 1.0F);
+            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_living"), 1.0F, 1.0F);
 
-        if (world instanceof ServerLevel) {
-            ServerLevel _level = (ServerLevel) world;
+        if (world instanceof ServerLevel _level)
             _level.sendParticles((ParticleOptions) ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 50, 1.0D, 1.0D, 1.0D, 1.0D);
-        }
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (!entity.level.isClientSide() && entity.getServer() != null)
-                entity.getServer().getCommands().performCommand(entity.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:blackbone_boss_music neutral @a ~ ~ ~");
+            if (!this.level.isClientSide() && this.getServer() != null)
+                this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:blackbone_boss_music neutral @a ~ ~ ~");
 
             Runnable callback = () -> {
-                if (entity.isAlive())
-                    if (!entity.level.isClientSide() && entity.getServer() != null)
-                        entity.getServer().getCommands().performCommand(entity.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:blackbone_boss_music neutral @a ~ ~ ~");
+                if (this.isAlive())
+                    if (!this.level.isClientSide() && this.getServer() != null)
+                        this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:blackbone_boss_music neutral @a ~ ~ ~");
             };
             Timeout.create(3960, callback);
             Timeout.create(7920, callback);
@@ -243,8 +235,8 @@ public class BlackBoneEntity extends Monster {
                 this.addEffect(new MobEffectInstance(ModEffects.PURIFICATION.get(), 200, 0));
                 this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 2));
             }
-        if (!this.isAlive() && this.level instanceof ServerLevel _level)
-            _level.getServer().getCommands().performCommand((new CommandSourceStack(CommandSource.NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:blackbone_boss_music");
+        if (!this.isAlive())
+            SoundUtil.stopSound(this.level, new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_boss_music"));
     }
 
     @Override

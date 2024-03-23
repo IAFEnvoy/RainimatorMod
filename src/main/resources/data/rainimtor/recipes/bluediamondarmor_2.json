@@ -7,32 +7,32 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "2": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "3": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "4": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "5": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "6": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "7": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "8": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     }
   },
   "result": {
-    "item": "rainimator:bluediamondarmors_chestplate",
+    "item": "rainimator:blue_diamond_chestplate",
     "count": 1
   }
 }

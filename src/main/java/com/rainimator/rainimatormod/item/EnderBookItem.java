@@ -33,7 +33,7 @@ public class EnderBookItem extends ItemBase {
     @Override
     public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TranslatableComponent("item.rainimator.enderbook.tooltip"));
+        list.add(new TranslatableComponent("item.rainimator.ender_book.tooltip"));
     }
 
     @Override

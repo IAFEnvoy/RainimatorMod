@@ -15,7 +15,7 @@ public class FeardarkMobEffect extends MobEffect {
 
     @Override
     public @NotNull String getDescriptionId() {
-        return "effect." + RainimatorMod.MOD_ID + ".feardark";
+        return "effect." + RainimatorMod.MOD_ID + ".fear_dark";
     }
 
     @Override

@@ -16,7 +16,7 @@ public class SoulDeathMobEffect extends MobEffect {
 
     @Override
     public @NotNull String getDescriptionId() {
-        return "effect." + RainimatorMod.MOD_ID + ".souldeath";
+        return "effect." + RainimatorMod.MOD_ID + ".soul_death";
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.rainimator.rainimatormod.item;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.FoilItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleOptions;
@@ -46,7 +46,7 @@ public class SoulTotemItem extends FoilItemBase {
         if (entity.isOnGround()) {
             if (world.isClientSide())
                 (Minecraft.getInstance()).gameRenderer.displayItemActivation(itemstack);
-            MiscUtil.playSound(world, x, y, z, new ResourceLocation("block.anvil.land"), 5.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, new ResourceLocation("block.anvil.land"), 5.0F, 1.0F);
             if (world instanceof ServerLevel _level)
                 _level.sendParticles((ParticleOptions) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
             if (!entity.level.isClientSide())
@@ -60,7 +60,7 @@ public class SoulTotemItem extends FoilItemBase {
         } else {
             if (((LevelAccessor) world).isClientSide())
                 (Minecraft.getInstance()).gameRenderer.displayItemActivation(itemstack);
-            MiscUtil.playSound(world, x, y, z, new ResourceLocation("block.anvil.land"), 5.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, new ResourceLocation("block.anvil.land"), 5.0F, 1.0F);
             if (world instanceof ServerLevel _level)
                 _level.sendParticles((ParticleOptions) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
             if (!entity.level.isClientSide())
@@ -89,7 +89,7 @@ public class SoulTotemItem extends FoilItemBase {
                 }
             }
         }
-        if ((entity instanceof Player _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(ModItems.SOULTOTEM.get())))) {
+        if ((entity instanceof Player _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(ModItems.SOUL_TOTEM.get())))) {
             if (world.isDay()) {
                 LivingEntity _entity = (LivingEntity) entity;
                 if (!_entity.level.isClientSide())

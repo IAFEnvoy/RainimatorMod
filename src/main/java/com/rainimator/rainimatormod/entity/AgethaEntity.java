@@ -48,7 +48,7 @@ public class AgethaEntity extends Monster {
         super(type, world);
         this.xpReward = 10;
         this.setNoAi(false);
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DIAMONDBIGSWORD.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DIAMOND_BIG_SWORD.get()));
     }
 
     @SubscribeEvent

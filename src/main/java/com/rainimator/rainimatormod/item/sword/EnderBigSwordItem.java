@@ -5,7 +5,7 @@ import com.rainimator.rainimatormod.registry.ModParticleTypes;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -23,7 +23,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class EnderBigSwordItem extends SwordItemBase implements ICurioItem {
     public EnderBigSwordItem() {
-        super(TierBase.of(2000, 4.0F, 9.0F, 1, 15, ModItems.SUPER_SPPARIES.get(), Items.ENDER_EYE), 3, -2.2F, ModCreativeTab.createProperty());
+        super(TierBase.of(2000, 4.0F, 9.0F, 1, 15, ModItems.SUPER_SAPPHIRE.get(), Items.ENDER_EYE), 3, -2.2F, ModCreativeTab.createProperty());
     }
 
     @Override
@@ -47,7 +47,7 @@ public class EnderBigSwordItem extends SwordItemBase implements ICurioItem {
                         .clip(new ClipContext(entity.getEyePosition(1.0F), entity.getEyePosition(1.0F).add(entity.getViewVector(1.0F).scale(ender_1 + 6.0D)), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity)).getBlockPos()
                         .getZ(), entity
                         .getYRot(), entity.getXRot());
-            MiscUtil.playSound(world, x, y, z, new ResourceLocation("entity.enderman.teleport"), 1.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, new ResourceLocation("entity.enderman.teleport"), 1.0F, 1.0F);
             if (world instanceof ServerLevel _level) {
                 _level.sendParticles((ParticleOptions) ModParticleTypes.PURPLELIGHT.get(), x, y, z, 50, 0.5D, 0.0D, 0.5D, 0.2D);
                 entity.getCooldowns().addCooldown(itemstack.getItem(), 300);

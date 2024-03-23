@@ -25,7 +25,7 @@ import java.util.Random;
 
 public class IntelligenceTomahawkItem extends AxeItem {
     public IntelligenceTomahawkItem() {
-        super(TierBase.of(8000, 4.0F, 8.0F, 1, 5, ModItems.SAPPRIES), 1.0F, -2.2F, ModCreativeTab.createProperty());
+        super(TierBase.of(8000, 4.0F, 8.0F, 1, 5, ModItems.SAPPHIRE), 1.0F, -2.2F, ModCreativeTab.createProperty());
     }
 
     @Override

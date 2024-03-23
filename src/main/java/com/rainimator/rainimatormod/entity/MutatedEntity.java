@@ -34,7 +34,7 @@ public class MutatedEntity extends Monster {
         this.xpReward = 15;
         this.setNoAi(false);
         this.setPersistenceRequired();
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SKULLCRUSHER.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SKULL_CRUSHER.get()));
     }
 
     public static AttributeSupplier.Builder createAttributes() {

@@ -101,7 +101,7 @@ public class EnderBookSkillButtonMessage {
             } else if (entity.level.dimension() == Level.OVERWORLD) {
                 entity.closeContainer();
                 if (!entity.level.isClientSide())
-                    entity.displayClientMessage(new TranslatableComponent("item.rainimator.enderbook.error.overworld"), true);
+                    entity.displayClientMessage(new TranslatableComponent("item.rainimator.ender_book.error.overworld"), true);
             }
         }
         if (buttonID == 1) {
@@ -167,7 +167,7 @@ public class EnderBookSkillButtonMessage {
             } else if (entity.level.dimension() == Level.NETHER) {
                 entity.closeContainer();
                 if (!entity.level.isClientSide())
-                    entity.displayClientMessage(new TranslatableComponent("item.rainimator.enderbook.error.nether"), true);
+                    entity.displayClientMessage(new TranslatableComponent("item.rainimator.ender_book.error.nether"), true);
             }
         }
         if (buttonID == 2) {
@@ -204,7 +204,7 @@ public class EnderBookSkillButtonMessage {
             } else if (entity.level.dimension() == Level.END) {
                 entity.closeContainer();
                 if (!entity.level.isClientSide())
-                    entity.displayClientMessage(new TranslatableComponent("item.rainimator.enderbook.error.end"), true);
+                    entity.displayClientMessage(new TranslatableComponent("item.rainimator.ender_book.error.end"), true);
             }
         }
     }

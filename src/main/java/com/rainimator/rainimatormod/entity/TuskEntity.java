@@ -42,7 +42,7 @@ public class TuskEntity extends Monster {
         super(type, world);
         this.xpReward = 20;
         this.setNoAi(false);
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.PLUNDERINGTHEGIANTAXE.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.PLUNDERING_THE_GIANT_AXE.get()));
     }
 
     @SubscribeEvent

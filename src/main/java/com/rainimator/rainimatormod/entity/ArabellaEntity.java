@@ -4,8 +4,8 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
-import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -43,7 +43,7 @@ public class ArabellaEntity extends Monster {
         this.xpReward = 0;
         this.setNoAi(false);
         this.setPersistenceRequired();
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.ENDERBIGSWORD.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.ENDER_CURVED_SWORD.get()));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -104,7 +104,7 @@ public class ArabellaEntity extends Monster {
         List<Entity> _entfound = this.level.getEntitiesOfClass(Entity.class, (new AABB(_center, _center)).inflate(3.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
         for (Entity entityiterator : _entfound) {
             if (entityiterator instanceof Player && Math.random() < 0.3D) {
-                MiscUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
                 ParticleUtil.spawn3x3Particles(this.level, ModParticleTypes.ENDERDAGGERSS.get(), this.getX(), this.getY(), this.getZ());
                 entityiterator.hurt(DamageSource.MAGIC, 6.0F);
             }

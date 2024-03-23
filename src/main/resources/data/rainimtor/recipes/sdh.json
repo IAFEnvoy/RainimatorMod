@@ -7,35 +7,35 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:enderstone"
+      "item": "rainimator:ender_stone"
     },
     "1": {
-      "item": "rainimator:enderheart"
+      "item": "rainimator:ender_heart"
     },
     "2": {
-      "item": "rainimator:enderstone"
+      "item": "rainimator:ender_stone"
     },
     "3": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "4": {
       "item": "minecraft:end_crystal"
     },
     "5": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "6": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "7": {
-      "item": "rainimator:deepwarhammer"
+      "item": "rainimator:deep_war_hammer"
     },
     "8": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     }
   },
   "result": {
-    "item": "rainimator:soulraidinghammer",
+    "item": "rainimator:soul_raiding_hammer",
     "count": 1
   }
 }

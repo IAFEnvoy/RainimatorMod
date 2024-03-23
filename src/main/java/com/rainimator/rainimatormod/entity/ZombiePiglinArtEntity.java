@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ZombiePiglinArtEntity extends Monster {
     public ZombiePiglinArtEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.ZOMBIEPIGLINART.get(), world);
+        this(ModEntities.ZOMBIE_PIGLIN_ART.get(), world);
     }
 
     public ZombiePiglinArtEntity(EntityType<ZombiePiglinArtEntity> type, Level world) {

@@ -16,7 +16,7 @@
       "item": "rainimator:super_ruby"
     },
     "3": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "4": {
       "item": "minecraft:diamond_block"
@@ -25,17 +25,17 @@
       "item": "rainimator:super_ruby"
     },
     "6": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "7": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "8": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     }
   },
   "result": {
-    "item": "rainimator:bluediamond",
+    "item": "rainimator:blue_diamond",
     "count": 2
   }
 }

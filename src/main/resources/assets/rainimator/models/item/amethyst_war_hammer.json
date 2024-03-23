@@ -1,0 +1,11 @@
+{
+  "parent": "rainimator:custom/amethyst_war_hammer",
+  "textures": {
+    "gemsceptertexture4": "rainimator:blocks/gemsceptertexture4",
+    "gemringsheet": "rainimator:blocks/gemringsheet",
+    "texture": "rainimator:blocks/gemsceptertexture1",
+    "gemsceptertexture2": "rainimator:blocks/gemsceptertexture2",
+    "gemsceptertexture3": "rainimator:blocks/gemsceptertexture3",
+    "particle": "rainimator:items/gemsceptertexture1"
+  }
+}

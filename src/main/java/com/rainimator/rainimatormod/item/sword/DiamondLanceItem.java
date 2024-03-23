@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DiamondLanceItem extends SwordItemBase {
     public DiamondLanceItem() {
-        super(TierBase.of(2000, 4.0F, 7.0F, 0, 3, ModItems.BLUEDIAMOND), 3, -2.0F, ModCreativeTab.createProperty());
+        super(TierBase.of(2000, 4.0F, 7.0F, 0, 3, ModItems.BLUE_DIAMOND), 3, -2.0F, ModCreativeTab.createProperty());
     }
 
     @Override

@@ -10,7 +10,7 @@
       "item": "rainimator:ruby"
     },
     "1": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "2": {
       "item": "rainimator:ruby"
@@ -19,7 +19,7 @@
       "item": "minecraft:amethyst_block"
     },
     "4": {
-      "item": "rainimator:bladeofthe_whirlwind"
+      "item": "rainimator:blade_of_the_whirlwind"
     },
     "5": {
       "item": "minecraft:amethyst_block"
@@ -29,7 +29,7 @@
     }
   },
   "result": {
-    "item": "rainimator:amethystwarhammer",
+    "item": "rainimator:amethyst_war_hammer",
     "count": 1
   }
 }

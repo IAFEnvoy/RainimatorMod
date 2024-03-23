@@ -7,13 +7,13 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:neaussouls"
+      "item": "rainimator:neaus_souls"
     },
     "1": {
       "item": "rainimator:naeus_sword"
     },
     "2": {
-      "item": "rainimator:neaussouls"
+      "item": "rainimator:neaus_souls"
     },
     "3": {
       "item": "rainimator:abigail_spear"
@@ -22,16 +22,16 @@
       "item": "minecraft:nether_star"
     },
     "5": {
-      "item": "rainimator:blackdeathsword"
+      "item": "rainimator:black_death_sword"
     },
     "6": {
-      "item": "rainimator:bluediamondblock"
+      "item": "rainimator:blue_diamond_block"
     },
     "7": {
-      "item": "rainimator:blackbone_the_blade_danshou"
+      "item": "rainimator:blackbone_the_blade_single_hand"
     },
     "8": {
-      "item": "rainimator:bluediamondblock"
+      "item": "rainimator:blue_diamond_block"
     }
   },
   "result": {

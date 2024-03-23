@@ -7,8 +7,8 @@ import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.SwordItemBase;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.Episode;
-import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -48,7 +48,7 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
         boolean retval = super.hurtEnemy(itemstack, entity, sourceentity);
         if (Math.random() < 0.1D)
             if (!entity.level.isClientSide())
-                entity.addEffect(new MobEffectInstance(ModEffects.SHADOWEROSION.get(), 200, 0));
+                entity.addEffect(new MobEffectInstance(ModEffects.SHADOW_EROSION.get(), 200, 0));
         return retval;
     }
 
@@ -63,7 +63,7 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
             final Vec3 _center = new Vec3(x, y, z);
             List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(12 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
             for (Entity entityiterator : _entfound) {
-                if ((entityiterator instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModEffects.SHADOWEROSION.get()))) {
+                if ((entityiterator instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModEffects.SHADOW_EROSION.get()))) {
                     if ((Entity) entity instanceof Player _player)
                         _player.getCooldowns().addCooldown(itemstack.getItem(), 300);
 
@@ -107,7 +107,7 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
                 if (entity.isShiftKeyDown()) {
                     if ((Entity) entity instanceof Player _player)
                         _player.getCooldowns().addCooldown(itemstack.getItem(), 300);
-                    MiscUtil.playSound(world, x, y, z, new ResourceLocation("entity.evoker.cast_spell"), 1, 1);
+                    SoundUtil.playSound(world, x, y, z, new ResourceLocation("entity.evoker.cast_spell"), 1, 1);
                     Runnable callback = () -> {
                         if (world instanceof ServerLevel _level)
                             for (int i = -2; i <= 2; i += 2)
@@ -140,12 +140,12 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
         ItemStack itemstack = context.getItemInHand();
         if (entity != null) {
             if (entity.isShiftKeyDown()) {
-                MiscUtil.playSound((Level) world,x,y,z,new ResourceLocation(RainimatorMod.MOD_ID,"fire_soul"), 1, 1);
+                SoundUtil.playSound((Level) world,x,y,z,new ResourceLocation(RainimatorMod.MOD_ID,"fire_soul"), 1, 1);
                 if (world instanceof ServerLevel _level)
                     _level.sendParticles(ParticleTypes.DRAGON_BREATH, x, y, z, 500, 0, 20, 0, 0.0001);
                 entity.getCooldowns().addCooldown(itemstack.getItem(), 300);
                 Timeout.create(60,()->{
-                    MiscUtil.playSound((Level) world,x,y,z,new ResourceLocation("entity.ender_dragon.shoot"), 1, 1);
+                    SoundUtil.playSound((Level) world,x,y,z,new ResourceLocation("entity.ender_dragon.shoot"), 1, 1);
                     if (world instanceof ServerLevel _level)
                         _level.sendParticles(ParticleTypes.END_ROD, x, y, z, 200, 0, 10, 0, 0.001);
                     if (world instanceof ServerLevel projectileLevel) {

@@ -34,7 +34,7 @@ import org.jetbrains.annotations.NotNull;
 @Mod.EventBusSubscriber
 public class SkeletonSnowEntity extends Monster {
     public SkeletonSnowEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.SKELETONSNOW.get(), world);
+        this(ModEntities.SKELETON_SNOW.get(), world);
     }
 
     public SkeletonSnowEntity(EntityType<SkeletonSnowEntity> type, Level world) {
@@ -47,11 +47,11 @@ public class SkeletonSnowEntity extends Monster {
     @SubscribeEvent
     public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
         if (SpawnBiome.SNOW_SPAWN_BIOMES.contains(event.getName()))
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.SKELETONSNOW.get(), 10, 1, 1));
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.SKELETON_SNOW.get(), 10, 1, 1));
     }
 
     public static void init() {
-        SpawnPlacements.register(ModEntities.SKELETONSNOW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacements.register(ModEntities.SKELETON_SNOW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 

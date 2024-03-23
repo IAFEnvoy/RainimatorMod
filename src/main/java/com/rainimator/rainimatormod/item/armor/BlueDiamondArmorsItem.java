@@ -46,7 +46,7 @@ public class BlueDiamondArmorsItem extends ArmorItem {
 
             @Override
             public @NotNull Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack(ModItems.BLUEDIAMOND.get()));
+                return Ingredient.of(new ItemStack(ModItems.BLUE_DIAMOND.get()));
             }
 
             @Override
@@ -75,10 +75,10 @@ public class BlueDiamondArmorsItem extends ArmorItem {
     public void onArmorTick(ItemStack itemstack, Level world, Player entity) {
         if (entity == null)
             return;
-        if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() == ModItems.BLUEDIAMONDARMORS_HELMET.get())
-            if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() == ModItems.BLUEDIAMONDARMORS_CHESTPLATE.get())
-                if (entity.getItemBySlot(EquipmentSlot.LEGS).getItem() == ModItems.BLUEDIAMONDARMORS_LEGGINGS.get())
-                    if (entity.getItemBySlot(EquipmentSlot.FEET).getItem() == ModItems.BLUEDIAMONDARMORS_BOOTS.get())
+        if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() == ModItems.BLUE_DIAMOND_HELMET.get())
+            if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() == ModItems.BLUE_DIAMOND_CHESTPLATE.get())
+                if (entity.getItemBySlot(EquipmentSlot.LEGS).getItem() == ModItems.BLUE_DIAMOND_LEGGINGS.get())
+                    if (entity.getItemBySlot(EquipmentSlot.FEET).getItem() == ModItems.BLUE_DIAMOND_BOOTS.get())
                         if (!entity.level.isClientSide()) {
                             entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, 1));
                             entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 2));

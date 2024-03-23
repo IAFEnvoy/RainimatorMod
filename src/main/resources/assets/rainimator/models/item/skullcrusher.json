@@ -1,7 +1,0 @@
-{
-  "parent": "rainimator:custom/skullcrusher",
-  "textures": {
-    "texture": "rainimator:blocks/skullcrusher_1",
-    "particle": "rainimator:items/skullcrusher_1"
-  }
-}

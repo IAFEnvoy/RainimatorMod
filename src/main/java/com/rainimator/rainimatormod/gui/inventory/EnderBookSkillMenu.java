@@ -24,7 +24,7 @@ public class EnderBookSkillMenu extends AbstractContainerMenu implements Supplie
     public int z;
 
     public EnderBookSkillMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-        super(ModMenus.ENDERBOOKSKILL, id);
+        super(ModMenus.ENDER_BOOK_SKILL, id);
         this.entity = inv.player;
         this.world = inv.player.level;
         if (extraData != null) {

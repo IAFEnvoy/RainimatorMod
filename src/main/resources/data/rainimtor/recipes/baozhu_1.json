@@ -19,7 +19,7 @@
       "item": "rainimator:zombie_heart"
     },
     "4": {
-      "item": "rainimator:soulpeople"
+      "item": "rainimator:soul_people"
     },
     "5": {
       "item": "rainimator:zombie_heart"
@@ -35,7 +35,7 @@
     }
   },
   "result": {
-    "item": "rainimator:baozhu",
+    "item": "rainimator:bao_zhu",
     "count": 1
   }
 }

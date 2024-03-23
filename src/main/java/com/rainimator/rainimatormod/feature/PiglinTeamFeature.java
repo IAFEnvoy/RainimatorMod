@@ -41,8 +41,8 @@ public class PiglinTeamFeature extends Feature<NoneFeatureConfiguration> {
 
     public static Feature<?> feature() {
         FEATURE = new PiglinTeamFeature();
-        CONFIGURED_FEATURE = FeatureUtils.register(RainimatorMod.MOD_ID + ":piglinteam", FEATURE, FeatureConfiguration.NONE);
-        PLACED_FEATURE = PlacementUtils.register(RainimatorMod.MOD_ID + ":piglinteam", CONFIGURED_FEATURE, List.of());
+        CONFIGURED_FEATURE = FeatureUtils.register(RainimatorMod.MOD_ID + ":piglin_team", FEATURE, FeatureConfiguration.NONE);
+        PLACED_FEATURE = PlacementUtils.register(RainimatorMod.MOD_ID + ":piglin_team", CONFIGURED_FEATURE, List.of());
         return FEATURE;
     }
 

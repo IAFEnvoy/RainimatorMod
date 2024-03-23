@@ -29,7 +29,7 @@ import java.util.Random;
 
 public class BiGunDeadSkeletonEntity extends Monster {
     public BiGunDeadSkeletonEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.BIGUNDEADSKELETON.get(), world);
+        this(ModEntities.BIG_UNDEAD_SKELETON.get(), world);
     }
 
     public BiGunDeadSkeletonEntity(EntityType<BiGunDeadSkeletonEntity> type, Level world) {

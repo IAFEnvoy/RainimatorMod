@@ -22,7 +22,7 @@ public class BossSpawnRecipeCategory implements IRecipeCategory<BossSpawnRecipe>
 
     public BossSpawnRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(new ResourceLocation(RainimatorMod.MOD_ID, "textures/gui/gui_boss_spawn_recipe.png"), 0, 0, 140, 44);
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModItems.DARKOBSIDIANBLOCK.get()));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModItems.DARK_OBSIDIAN_BLOCK.get()));
     }
 
     @SuppressWarnings("removal")
@@ -33,7 +33,7 @@ public class BossSpawnRecipeCategory implements IRecipeCategory<BossSpawnRecipe>
 
     @Override
     public @NotNull Component getTitle() {
-        return new TranslatableComponent("block.rainimator.darkobsidianblock");
+        return new TranslatableComponent("block.rainimator.dark_obsidian_block");
     }
 
     @Override
@@ -60,7 +60,7 @@ public class BossSpawnRecipeCategory implements IRecipeCategory<BossSpawnRecipe>
     @Override
     public void setRecipe(@NotNull IRecipeLayoutBuilder builder, @NotNull BossSpawnRecipe recipe, @NotNull IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 14, 13).addItemStack(new ItemStack(recipe.activeItem()));
-        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 62, 13).addItemStack(new ItemStack(ModItems.DARKOBSIDIANBLOCK.get()));
+        builder.addSlot(RecipeIngredientRole.RENDER_ONLY, 62, 13).addItemStack(new ItemStack(ModItems.DARK_OBSIDIAN_BLOCK.get()));
         builder.addSlot(RecipeIngredientRole.OUTPUT, 110, 13).addItemStack(new ItemStack(recipe.entitySpawnEgg()));
     }
 }

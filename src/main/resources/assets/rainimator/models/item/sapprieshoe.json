@@ -1,7 +1,0 @@
-{
-  "parent": "rainimator:custom/sappries_hoe",
-  "textures": {
-    "0": "rainimator:blocks/sappries_hoe",
-    "particle": "rainimator:items/sappries_hoe"
-  }
-}

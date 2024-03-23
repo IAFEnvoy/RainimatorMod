@@ -7,10 +7,10 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "1": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "3": {
       "item": "minecraft:stick"
@@ -20,7 +20,7 @@
     }
   },
   "result": {
-    "item": "rainimator:sapprieshoe",
+    "item": "rainimator:sapphire_hoe",
     "count": 1
   }
 }

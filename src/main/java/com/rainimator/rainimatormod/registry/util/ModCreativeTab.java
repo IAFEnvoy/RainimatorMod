@@ -12,9 +12,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Supplier;
 
 public class ModCreativeTab extends CreativeModeTab {
-    public static final ModCreativeTab main = new ModCreativeTab(RainimatorMod.MOD_ID, ModItems.WARRIORHEART);
-    public static final ModCreativeTab mobs = new ModCreativeTab(RainimatorMod.MOD_ID + "_mobs", ModItems.ICEHEART);
-    public static final ModCreativeTab items = new ModCreativeTab(RainimatorMod.MOD_ID + "_items", ModItems.ENDERHEART);
+    public static final ModCreativeTab main = new ModCreativeTab(RainimatorMod.MOD_ID, ModItems.WARRIOR_HEART);
+    public static final ModCreativeTab mobs = new ModCreativeTab(RainimatorMod.MOD_ID + "_mobs", ModItems.ICE_HEART);
+    public static final ModCreativeTab items = new ModCreativeTab(RainimatorMod.MOD_ID + "_items", ModItems.ENDER_HEART);
 
     private final Supplier<Item> icon;
 

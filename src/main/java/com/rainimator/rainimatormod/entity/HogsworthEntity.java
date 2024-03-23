@@ -35,7 +35,7 @@ public class HogsworthEntity extends Monster {
         this.xpReward = 0;
         this.setNoAi(false);
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.NETHERITE_SWORD));
-        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.SHIELDEVER.get()));
+        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.SHIELD_EVER.get()));
     }
 
     public static AttributeSupplier.Builder createAttributes() {

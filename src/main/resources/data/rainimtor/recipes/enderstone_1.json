@@ -19,11 +19,11 @@
       "item": "rainimator:zombie_heart"
     },
     "7": {
-      "item": "rainimator:soulpeople"
+      "item": "rainimator:soul_people"
     }
   },
   "result": {
-    "item": "rainimator:enderstone",
+    "item": "rainimator:ender_stone",
     "count": 1
   }
 }

@@ -19,7 +19,7 @@
       "item": "minecraft:diamond"
     },
     "4": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "5": {
       "item": "minecraft:diamond"
@@ -35,7 +35,7 @@
     }
   },
   "result": {
-    "item": "rainimator:divinecore",
+    "item": "rainimator:divine_core",
     "count": 1
   }
 }

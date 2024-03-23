@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class HerobrineTomahawkItem extends SwordItemBase {
     public HerobrineTomahawkItem() {
-        super(TierBase.of(2500, 12.0F, 11.0F, 0, 20, ModItems.SUPER_RUBY, ModItems.SUPER_SPPARIES), 3, -2.2F, ModCreativeTab.createProperty().fireResistant());
+        super(TierBase.of(2500, 12.0F, 11.0F, 0, 20, ModItems.SUPER_RUBY, ModItems.SUPER_SAPPHIRE), 3, -2.2F, ModCreativeTab.createProperty().fireResistant());
     }
 
     @Override

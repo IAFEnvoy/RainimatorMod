@@ -2,7 +2,7 @@ package com.rainimator.rainimatormod.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.rainimator.rainimatormod.entity.EndSatffEntity;
+import com.rainimator.rainimatormod.entity.EndStaffEntity;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.ItemBase;
 import net.minecraft.server.level.ServerPlayer;
@@ -69,7 +69,7 @@ public class EndStaffItem extends ItemBase {
                     }
                 }
             if ((entity.getAbilities()).instabuild || stack != ItemStack.EMPTY) {
-                EndSatffEntity entityarrow = EndSatffEntity.shoot(world, entity, world.getRandom(), 1.2F, 7.0D, 0);
+                EndStaffEntity entityarrow = EndStaffEntity.shoot(world, entity, world.getRandom(), 1.2F, 7.0D, 0);
                 itemstack.hurtAndBreak(1, (LivingEntity) entity, e -> e.broadcastBreakEvent(entity.getUsedItemHand()));
                 if ((entity.getAbilities()).instabuild) {
                     entityarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;

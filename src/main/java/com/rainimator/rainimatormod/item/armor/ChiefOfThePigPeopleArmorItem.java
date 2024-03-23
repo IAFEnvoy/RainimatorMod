@@ -72,10 +72,10 @@ public class ChiefOfThePigPeopleArmorItem extends ArmorItem {
     public void onArmorTick(ItemStack itemstack, Level world, Player entity) {
         if (entity == null)
             return;
-        if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_ARAMOR_HELMET.get())
-            if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_ARAMOR_CHESTPLATE.get())
-                if (entity.getItemBySlot(EquipmentSlot.LEGS).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_ARAMOR_LEGGINGS.get())
-                    if (entity.getItemBySlot(EquipmentSlot.FEET).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_ARAMOR_BOOTS.get())
+        if (entity.getItemBySlot(EquipmentSlot.HEAD).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_HELMET.get())
+            if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_CHESTPLATE.get())
+                if (entity.getItemBySlot(EquipmentSlot.LEGS).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_LEGGINGS.get())
+                    if (entity.getItemBySlot(EquipmentSlot.FEET).getItem() == ModItems.CHIEF_OF_THE_PIG_PEOPLE_BOOTS.get())
                         if (!entity.level.isClientSide()) {
                             entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 80, 1));
                             entity.addEffect(new MobEffectInstance(MobEffects.LUCK, 80, 1));

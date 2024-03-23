@@ -10,7 +10,7 @@
       "item": "minecraft:dragon_head"
     },
     "3": {
-      "item": "rainimator:magicenderpeal"
+      "item": "rainimator:magic_ender_pearl"
     },
     "4": {
       "item": "minecraft:book"
@@ -23,7 +23,7 @@
     }
   },
   "result": {
-    "item": "rainimator:enderbook",
+    "item": "rainimator:ender_book",
     "count": 1
   }
 }

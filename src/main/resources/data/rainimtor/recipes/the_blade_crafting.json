@@ -7,35 +7,35 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:bluediamondblock"
+      "item": "rainimator:blue_diamond_block"
     },
     "1": {
       "item": "minecraft:nether_star"
     },
     "2": {
-      "item": "rainimator:bluediamondblock"
+      "item": "rainimator:blue_diamond_block"
     },
     "3": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "4": {
-      "item": "rainimator:enderheart"
+      "item": "rainimator:ender_heart"
     },
     "5": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "6": {
-      "item": "rainimator:enderbigsword"
+      "item": "rainimator:ender_curved_sword"
     },
     "7": {
-      "item": "rainimator:end_blade"
+      "item": "rainimator:ender_big_sword"
     },
     "8": {
-      "item": "rainimator:amethystwarhammer"
+      "item": "rainimator:amethyst_war_hammer"
     }
   },
   "result": {
-    "item": "rainimator:zecanirn_theblade",
+    "item": "rainimator:zecanirn_the_blade",
     "count": 1
   }
 }

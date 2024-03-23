@@ -16,26 +16,26 @@
       "item": "minecraft:dragon_breath"
     },
     "3": {
-      "item": "rainimator:bluediamondblock"
+      "item": "rainimator:blue_diamond_block"
     },
     "4": {
       "item": "minecraft:nether_star"
     },
     "5": {
-      "item": "rainimator:bluediamondblock"
+      "item": "rainimator:blue_diamond_block"
     },
     "6": {
-      "item": "rainimator:enderheart"
+      "item": "rainimator:ender_heart"
     },
     "7": {
-      "item": "rainimator:soulraidinghammer"
+      "item": "rainimator:soul_raiding_hammer"
     },
     "8": {
-      "item": "rainimator:enderheart"
+      "item": "rainimator:ender_heart"
     }
   },
   "result": {
-    "item": "rainimator:seizingshadowhalberd",
+    "item": "rainimator:seizing_shadow_halberd",
     "count": 1
   }
 }

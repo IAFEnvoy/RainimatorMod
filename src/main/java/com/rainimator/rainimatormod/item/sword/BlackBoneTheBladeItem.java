@@ -7,8 +7,8 @@ import com.rainimator.rainimatormod.registry.util.IRainimatorInfo;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.TierBase;
 import com.rainimator.rainimatormod.util.Episode;
-import com.rainimator.rainimatormod.util.MiscUtil;
 import com.rainimator.rainimatormod.util.ParticleUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -56,7 +56,7 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
         double z = entity.getZ();
         ItemStack itemstack = ar.getObject();
         if (entity.isShiftKeyDown()) {
-            MiscUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_living"), 10.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_living"), 10.0F, 1.0F);
             if (world instanceof ServerLevel _level)
                 _level.sendParticles((ParticleOptions) ParticleTypes.ELECTRIC_SPARK, x, y, z, 25, 1.0D, 1.0D, 1.0D, 1.0D);
             if (!world.isClientSide())

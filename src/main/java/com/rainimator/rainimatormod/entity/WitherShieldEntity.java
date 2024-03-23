@@ -35,7 +35,7 @@ import org.jetbrains.annotations.NotNull;
 @Mod.EventBusSubscriber
 public class WitherShieldEntity extends Monster {
     public WitherShieldEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.WITHERSHIELD.get(), world);
+        this(ModEntities.WITHER_SHIELD.get(), world);
     }
 
     public WitherShieldEntity(EntityType<WitherShieldEntity> type, Level world) {
@@ -43,19 +43,19 @@ public class WitherShieldEntity extends Monster {
         this.xpReward = 20;
         this.setNoAi(false);
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.LOWER_BOUND_ALLOY_FLAME_SABER.get()));
-        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.SHIELDEVER.get()));
+        this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.SHIELD_EVER.get()));
     }
 
     @SubscribeEvent
     public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
         if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.WITHERSHIELD.get(), 3, 1, 1));
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.WITHER_SHIELD.get(), 3, 1, 1));
     }
 
     public static void init() {
-        SpawnPlacements.register(ModEntities.WITHERSHIELD.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacements.register(ModEntities.WITHER_SHIELD.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-        DungeonHooks.addDungeonMob(ModEntities.WITHERSHIELD.get(), 180);
+        DungeonHooks.addDungeonMob(ModEntities.WITHER_SHIELD.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

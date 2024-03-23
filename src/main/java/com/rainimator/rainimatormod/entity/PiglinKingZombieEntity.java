@@ -4,12 +4,10 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
@@ -36,8 +34,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.phys.Vec2;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -49,7 +45,7 @@ public class PiglinKingZombieEntity extends Monster {
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS);
 
     public PiglinKingZombieEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.PILGEKINGZOMBIE.get(), world);
+        this(ModEntities.PIGLIN_KING_ZOMBIE.get(), world);
     }
 
     public PiglinKingZombieEntity(EntityType<PiglinKingZombieEntity> type, Level world) {
@@ -58,7 +54,7 @@ public class PiglinKingZombieEntity extends Monster {
         this.setNoAi(false);
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.GLUTTON_SLEDGEHAMMER.get()));
-        this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.GLUTTONARMOR_1_HELMET.get()));
+        this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.GLUTTON_HELMET.get()));
         this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(Items.GOLDEN_LEGGINGS));
         this.setItemSlot(EquipmentSlot.FEET, new ItemStack(Items.GOLDEN_BOOTS));
     }
@@ -139,16 +135,16 @@ public class PiglinKingZombieEntity extends Monster {
         double y = this.getY();
         double z = this.getZ();
         if ((LevelAccessor) world instanceof Level _level)
-            MiscUtil.playSound(_level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_skill"), 5, 1);
+            SoundUtil.playSound(_level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blackbone_skill"), 5, 1);
         if ((LevelAccessor) world instanceof ServerLevel _level)
             _level.sendParticles((SimpleParticleType) (ModParticleTypes.YELLOWSTEARS.get()), x, y, z, 100, 1, 2, 1, 1);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!this.level.isClientSide() && this.getServer() != null)
-                this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimtor:gutton_boss_music neutral @a ~ ~ ~");
+                SoundUtil.playSound(this.level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "glutton_boss_music"), 1, 1);
             Runnable callback = () -> {
                 if (this.isAlive())
                     if (!this.level.isClientSide() && this.getServer() != null)
-                        this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimtor:gutton_boss_music neutral @a ~ ~ ~");
+                        SoundUtil.playSound(this.level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "glutton_boss_music"), 1, 1);
             };
             Timeout.create(5520, callback);
             Timeout.create(11040, callback);
@@ -163,8 +159,8 @@ public class PiglinKingZombieEntity extends Monster {
     @Override
     public void baseTick() {
         super.baseTick();
-        if (!this.isAlive() && this.level instanceof ServerLevel _level)
-            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:gutton_boss_music");
+        if (!this.isAlive())
+            SoundUtil.stopSound(this.level, new ResourceLocation(RainimatorMod.MOD_ID, "glutton_boss_music"));
     }
 
     @Override

@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/skull_crusher",
+  "textures": {
+    "texture": "rainimator:blocks/skull_crusher_1",
+    "particle": "rainimator:items/skull_crusher_1"
+  }
+}

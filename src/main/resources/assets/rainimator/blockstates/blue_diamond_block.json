@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "rainimator:block/blue_diamond_block"
+    },
+    "facing=east": {
+      "model": "rainimator:block/blue_diamond_block",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "rainimator:block/blue_diamond_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rainimator:block/blue_diamond_block",
+      "y": 270
+    }
+  }
+}

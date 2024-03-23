@@ -20,7 +20,7 @@ public class BlueDiamondItem extends FoilItemBase {
     @Override
     public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TranslatableComponent("item.rainimator.bluediamond.tooltip1"));
-        list.add(new TranslatableComponent("item.rainimator.bluediamond.tooltip2"));
+        list.add(new TranslatableComponent("item.rainimator.blue_diamond.tooltip1"));
+        list.add(new TranslatableComponent("item.rainimator.blue_diamond.tooltip2"));
     }
 }

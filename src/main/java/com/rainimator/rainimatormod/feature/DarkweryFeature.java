@@ -37,8 +37,8 @@ public class DarkweryFeature extends Feature<NoneFeatureConfiguration> {
 
     public static Feature<?> feature() {
         FEATURE = new DarkweryFeature();
-        CONFIGURED_FEATURE = FeatureUtils.register(RainimatorMod.MOD_ID + ":darkwery", FEATURE, FeatureConfiguration.NONE);
-        PLACED_FEATURE = PlacementUtils.register(RainimatorMod.MOD_ID + ":darkwery", CONFIGURED_FEATURE, List.of());
+        CONFIGURED_FEATURE = FeatureUtils.register(RainimatorMod.MOD_ID + ":dark_wery", FEATURE, FeatureConfiguration.NONE);
+        PLACED_FEATURE = PlacementUtils.register(RainimatorMod.MOD_ID + ":dark_wery", CONFIGURED_FEATURE, List.of());
         return FEATURE;
     }
 

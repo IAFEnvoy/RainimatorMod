@@ -42,7 +42,7 @@ public class RainArmorItem extends ArmorItem {
 
             @Override
             public @NotNull Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack(ModItems.SUPER_SPPARIES.get()), new ItemStack(ModItems.RAINARMOR_CHESTPLATE.get()));
+                return Ingredient.of(new ItemStack(ModItems.SUPER_SAPPHIRE.get()), new ItemStack(ModItems.RAIN_CHESTPLATE.get()));
             }
 
             @Override

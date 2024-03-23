@@ -7,13 +7,13 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "1": {
       "item": "minecraft:diamond"
     },
     "2": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "3": {
       "item": "rainimator:lower_bound_alloy_bone"

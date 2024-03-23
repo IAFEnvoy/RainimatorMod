@@ -4,7 +4,7 @@ import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.FoilSwordItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
 import com.rainimator.rainimatormod.registry.util.TierBase;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -53,7 +53,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
         for (Entity entityiterator : _entfound) {
             if (entity.isShiftKeyDown()) {
                 LivingEntity _livEnt = (LivingEntity) entityiterator;
-                if (((entityiterator instanceof LivingEntity) ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.FALLENSOULAXE.get()) {
+                if (((entityiterator instanceof LivingEntity) ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.FALLEN_SOUL_AXE.get()) {
                     if (itemstack.hurt(0, new Random(), null)) {
                         itemstack.shrink(1);
                         itemstack.setDamageValue(0);
@@ -84,7 +84,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
                             _serverPlayer.connection.teleport(x, y + finalI, z, entityiterator.getYRot(), entityiterator.getXRot());
                     });
                 }
-                MiscUtil.playSound(world, x, y, z, new ResourceLocation("entity.wither.spawn"), 10.0F, 1.0F);
+                SoundUtil.playSound(world, x, y, z, new ResourceLocation("entity.wither.spawn"), 10.0F, 1.0F);
                 if (world instanceof ServerLevel _level)
                     _level.sendParticles((ParticleOptions) ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 1.0E-4D);
                 entity.getCooldowns().addCooldown(itemstack.getItem(), 600);

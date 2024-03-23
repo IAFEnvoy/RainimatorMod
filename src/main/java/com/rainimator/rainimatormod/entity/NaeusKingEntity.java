@@ -5,16 +5,14 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.Util;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -47,7 +45,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
@@ -61,7 +58,7 @@ public class NaeusKingEntity extends Monster {
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS);
 
     public NaeusKingEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.NAEUSKING.get(), world);
+        this(ModEntities.NAEUS_KING.get(), world);
     }
 
     public NaeusKingEntity(EntityType<NaeusKingEntity> type, Level world) {
@@ -134,11 +131,11 @@ public class NaeusKingEntity extends Monster {
         if (sourceentity != null) {
             if (sourceentity instanceof LivingEntity _ent)
                 this.setTarget(_ent);
-            if (this.hasEffect(ModEffects.ICEPEOPLE.get()))
+            if (this.hasEffect(ModEffects.ICE_PEOPLE.get()))
                 this.removeAllEffects();
             else {
                 if (Math.random() < 0.5D) {
-                    MiscUtil.playSound(this.level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"), 1.0F, 1.0F);
+                    SoundUtil.playSound(this.level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "fire_soul"), 1.0F, 1.0F);
                     if (this.level instanceof ServerLevel _level)
                         _level.sendParticles((ParticleOptions) ParticleTypes.SOUL_FIRE_FLAME, x, y, z, 100, 1.0D, 2.0D, 1.0D, 2.0E-4D);
                     if (!this.level.isClientSide()) {
@@ -148,7 +145,7 @@ public class NaeusKingEntity extends Monster {
                     }
                     if (sourceentity instanceof LivingEntity _entity)
                         if (!_entity.level.isClientSide())
-                            _entity.addEffect(new MobEffectInstance(ModEffects.SOULDEATH.get(), 100, 0));
+                            _entity.addEffect(new MobEffectInstance(ModEffects.SOUL_DEATH.get(), 100, 0));
                     sourceentity.hurt(DamageSource.MAGIC, 5.0F);
                 }
                 if (Math.random() < 0.1D) {
@@ -281,13 +278,12 @@ public class NaeusKingEntity extends Monster {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (this.hasEffect(ModEffects.ICEPEOPLE.get()) || this.hasEffect(ModEffects.FEARDARK.get()) || this.hasEffect(ModEffects.SOULDEATH.get())) {
+        if (this.hasEffect(ModEffects.ICE_PEOPLE.get()) || this.hasEffect(ModEffects.FEAR_DARK.get()) || this.hasEffect(ModEffects.SOUL_DEATH.get())) {
             this.removeAllEffects();
             this.teleportTo(x, (y + 3), z);
         }
         if (!this.isAlive())
-            if (this.level instanceof ServerLevel _level)
-                _level.getServer().getCommands().performCommand(new CommandSourceStack(NULL, new Vec3(x, y, z), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null).withSuppressedOutput(), "stopsound @a neutral rainimator:naeus_boss_music");
+            SoundUtil.stopSound(this.level, new ResourceLocation(RainimatorMod.MOD_ID, "naeus_boss_music"));
     }
 
     @Override

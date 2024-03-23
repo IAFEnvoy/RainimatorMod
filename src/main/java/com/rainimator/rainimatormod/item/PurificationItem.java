@@ -36,7 +36,7 @@ public class PurificationItem extends ItemBase {
     @Override
     public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TranslatableComponent("item.rainimator.purification_1.tooltip"));
+        list.add(new TranslatableComponent("item.rainimator.purification.tooltip"));
     }
 
     @Override

@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "rainimator:sappriesblock"
+      "item": "rainimator:sapphire_block"
     }
   ],
   "result": {
-    "item": "rainimator:sappries",
+    "item": "rainimator:sapphire",
     "count": 9
   }
 }

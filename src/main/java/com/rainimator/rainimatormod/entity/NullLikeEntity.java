@@ -5,12 +5,10 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Timeout;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
@@ -37,8 +35,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.phys.Vec2;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -50,7 +46,7 @@ public class NullLikeEntity extends Monster {
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS);
 
     public NullLikeEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.NULLLIKE.get(), world);
+        this(ModEntities.NULL_LIKE.get(), world);
     }
 
     public NullLikeEntity(EntityType<NullLikeEntity> type, Level world) {
@@ -58,7 +54,7 @@ public class NullLikeEntity extends Monster {
         this.xpReward = 0;
         this.setNoAi(false);
         this.setPersistenceRequired();
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLACKDEATHSWORD.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLACK_DEATH_SWORD.get()));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -118,9 +114,9 @@ public class NullLikeEntity extends Monster {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (this.hasEffect(ModEffects.FEARDARK.get()))
+        if (this.hasEffect(ModEffects.FEAR_DARK.get()))
             this.removeAllEffects();
-        else if (this.hasEffect(ModEffects.SOULDEATH.get()))
+        else if (this.hasEffect(ModEffects.SOUL_DEATH.get()))
             this.removeAllEffects();
         else if (this.hasEffect(MobEffects.POISON))
             this.removeAllEffects();
@@ -176,7 +172,7 @@ public class NullLikeEntity extends Monster {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof Level _level)
-            MiscUtil.playSound(_level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5.0F, 1.0F);
+            SoundUtil.playSound(_level, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5.0F, 1.0F);
         if (world instanceof ServerLevel _level)
             _level.sendParticles((ParticleOptions) ModParticleTypes.FLOWERWRITE.get(), x, y, z, 300, 2.0D, 3.0D, 2.0D, 0.3D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
@@ -203,8 +199,8 @@ public class NullLikeEntity extends Monster {
         super.baseTick();
         if (!this.level.isClientSide())
             this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 1));
-        if (!this.isAlive() && this.level instanceof ServerLevel _level)
-            _level.getServer().getCommands().performCommand((new CommandSourceStack(NULL, new Vec3(this.getX(), this.getY(), this.getZ()), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null)).withSuppressedOutput(), "stopsound @a neutral rainimator:null_boss_music");
+        if (!this.isAlive())
+            SoundUtil.stopSound(this.level, new ResourceLocation(RainimatorMod.MOD_ID, "null_boss_music"));
     }
 
     @Override

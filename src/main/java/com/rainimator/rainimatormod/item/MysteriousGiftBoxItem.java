@@ -4,7 +4,7 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.util.ItemBase;
 import com.rainimator.rainimatormod.registry.util.ModCreativeTab;
-import com.rainimator.rainimatormod.util.MiscUtil;
+import com.rainimator.rainimatormod.util.SoundUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -36,7 +36,7 @@ public class MysteriousGiftBoxItem extends ItemBase {
         lootTable.add(Triple.of(Blocks.SWEET_BERRY_BUSH, 3, ""));
         lootTable.add(Triple.of(Items.GOLD_NUGGET, 5, ""));
         lootTable.add(Triple.of(Items.IRON_NUGGET, 5, ""));
-        lootTable.add(Triple.of(ModItems.COTTONCANDY.get(), 3, ""));
+        lootTable.add(Triple.of(ModItems.COTTON_CANDY.get(), 3, ""));
         lootTable.add(Triple.of(Items.GLOW_BERRIES, 3, ""));
         lootTable.add(Triple.of(Items.STICK, 6, ""));
         lootTable.add(Triple.of(Items.FEATHER, 3, ""));
@@ -49,12 +49,12 @@ public class MysteriousGiftBoxItem extends ItemBase {
         lootTable.add(Triple.of(Items.CLAY_BALL, 5, ""));
         lootTable.add(Triple.of(Blocks.MAGMA_BLOCK, 5, ""));
         lootTable.add(Triple.of(Items.COAL, 5, ""));
-        lootTable.add(Triple.of(Items.CHARCOAL, 5, "item.rainimator.mysteriousgiftbox.goodluck1"));
+        lootTable.add(Triple.of(Items.CHARCOAL, 5, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.BAMBOO, 5, ""));
         lootTable.add(Triple.of(Items.LEATHER, 5, ""));
         lootTable.add(Triple.of(Items.STRING, 5, ""));
         lootTable.add(Triple.of(Items.WHEAT_SEEDS, 5, ""));
-        lootTable.add(Triple.of(Items.WHEAT, 4, "item.rainimator.mysteriousgiftbox.goodluck1"));
+        lootTable.add(Triple.of(Items.WHEAT, 4, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.ARROW, 5, ""));
         lootTable.add(Triple.of(Items.NETHER_WART, 5, ""));
         lootTable.add(Triple.of(Items.COPPER_INGOT, 5, ""));
@@ -65,37 +65,37 @@ public class MysteriousGiftBoxItem extends ItemBase {
         lootTable.add(Triple.of(Items.QUARTZ, 5, ""));
         lootTable.add(Triple.of(ModItems.ZOMBIE_HEART.get(), 3, ""));
         lootTable.add(Triple.of(ModItems.WITHER_BONE.get(), 3, ""));
-        lootTable.add(Triple.of(ModItems.LOWER_BOUND_ALLOY_BONE.get(), 1, "item.rainimator.mysteriousgiftbox.goodluck1"));
+        lootTable.add(Triple.of(ModItems.LOWER_BOUND_ALLOY_BONE.get(), 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.IRON_INGOT, 3, ""));
-        lootTable.add(Triple.of(Blocks.IRON_BLOCK, 1, "item.rainimator.mysteriousgiftbox.goodluck1"));
-        lootTable.add(Triple.of(ModItems.HOT_IRON.get(), 3, "item.rainimator.mysteriousgiftbox.goodluck2"));
+        lootTable.add(Triple.of(Blocks.IRON_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
+        lootTable.add(Triple.of(ModItems.HOT_IRON.get(), 3, "item.rainimator.mysterious_gift_box.goodluck2"));
         lootTable.add(Triple.of(Items.EXPERIENCE_BOTTLE, 3, ""));
         lootTable.add(Triple.of(Items.BLAZE_ROD, 3, ""));
-        lootTable.add(Triple.of(Items.BLAZE_POWDER, 5, "item.rainimator.mysteriousgiftbox.goodluck1"));
+        lootTable.add(Triple.of(Items.BLAZE_POWDER, 5, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.SLIME_BALL, 5, ""));
-        lootTable.add(Triple.of(Blocks.SLIME_BLOCK, 1, "item.rainimator.mysteriousgiftbox.goodluck1"));
+        lootTable.add(Triple.of(Blocks.SLIME_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.ENCHANTED_GOLDEN_APPLE, 3, ""));
         lootTable.add(Triple.of(Items.GOLDEN_APPLE, 5, ""));
         lootTable.add(Triple.of(Items.BREAD, 5, ""));
-        lootTable.add(Triple.of(Items.GOLDEN_CARROT, 5, "item.rainimator.mysteriousgiftbox.goodluck1"));
+        lootTable.add(Triple.of(Items.GOLDEN_CARROT, 5, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.DIAMOND, 5, ""));
         lootTable.add(Triple.of(Blocks.DIAMOND_BLOCK, 1, ""));
-        lootTable.add(Triple.of(ModItems.BLUEDIAMOND.get(), 5, "item.rainimator.mysteriousgiftbox.goodluck2"));
+        lootTable.add(Triple.of(ModItems.BLUE_DIAMOND.get(), 5, "item.rainimator.mysterious_gift_box.goodluck2"));
         lootTable.add(Triple.of(Items.GOLD_INGOT, 5, ""));
-        lootTable.add(Triple.of(Blocks.GOLD_BLOCK, 1, "item.rainimator.mysteriousgiftbox.goodluck1"));
+        lootTable.add(Triple.of(Blocks.GOLD_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.NETHERITE_INGOT, 5, ""));
-        lootTable.add(Triple.of(Blocks.NETHERITE_BLOCK, 1, "item.rainimator.mysteriousgiftbox.goodluck1"));
-        lootTable.add(Triple.of(ModItems.SAPPRIES.get(), 3, ""));
-        lootTable.add(Triple.of(ModItems.SAPPRIESBLOCK.get(), 1, "item.rainimator.mysteriousgiftbox.goodluck1"));
+        lootTable.add(Triple.of(Blocks.NETHERITE_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
+        lootTable.add(Triple.of(ModItems.SAPPHIRE.get(), 3, ""));
+        lootTable.add(Triple.of(ModItems.SAPPHIRE_BLOCK.get(), 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(ModItems.RUBY.get(), 3, ""));
-        lootTable.add(Triple.of(ModItems.RUBYBLOCK.get(), 1, "item.rainimator.mysteriousgiftbox.goodluck1"));
+        lootTable.add(Triple.of(ModItems.RUBY_BLOCK.get(), 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Items.EMERALD, 5, ""));
-        lootTable.add(Triple.of(Blocks.EMERALD_BLOCK, 1, "item.rainimator.mysteriousgiftbox.goodluck1"));
-        lootTable.add(Triple.of(ModItems.SOULPEOPLE.get(), 3, ""));
-        lootTable.add(Triple.of(ModItems.SUPER_DIAMOND_APPLE.get(), 1, "item.rainimator.mysteriousgiftbox.goodluck1"));
+        lootTable.add(Triple.of(Blocks.EMERALD_BLOCK, 1, "item.rainimator.mysterious_gift_box.goodluck1"));
+        lootTable.add(Triple.of(ModItems.SOUL_PEOPLE.get(), 3, ""));
+        lootTable.add(Triple.of(ModItems.SUPER_DIAMOND_APPLE.get(), 1, "item.rainimator.mysterious_gift_box.goodluck1"));
         lootTable.add(Triple.of(Blocks.LAPIS_BLOCK, 1, ""));
         lootTable.add(Triple.of(Blocks.REDSTONE_BLOCK, 1, ""));
-        lootTable.add(Triple.of(ModItems.MYSTERIOUSGIFTBOX.get(), 1, "item.rainimator.mysteriousgiftbox.goodluck3"));
+        lootTable.add(Triple.of(ModItems.MYSTERIOUS_GIFT_BOX.get(), 1, "item.rainimator.mysterious_gift_box.goodluck3"));
     }
 
     @Override
@@ -111,7 +111,7 @@ public class MysteriousGiftBoxItem extends ItemBase {
     @Override
     public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
-        list.add(new TranslatableComponent("item.rainimator.mysteriousgiftbox.tooltip"));
+        list.add(new TranslatableComponent("item.rainimator.mysterious_gift_box.tooltip"));
     }
 
     @Override
@@ -122,8 +122,8 @@ public class MysteriousGiftBoxItem extends ItemBase {
         double z = entity.getZ();
 
         if (entity instanceof Player _player) {
-            MiscUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "gift_box"), 15.0F, 1.0F);
-            ItemStack _stktoremove = new ItemStack(ModItems.MYSTERIOUSGIFTBOX.get());
+            SoundUtil.playSound(world, x, y, z, new ResourceLocation(RainimatorMod.MOD_ID, "gift_box"), 15.0F, 1.0F);
+            ItemStack _stktoremove = new ItemStack(ModItems.MYSTERIOUS_GIFT_BOX.get());
             _player.getInventory().clearOrCountMatchingItems(p -> (_stktoremove.getItem() == p.getItem()), 0, _player.inventoryMenu.getCraftSlots());
             ItemStack stack = new ItemStack(Items.AIR);
             if (lootTable.size() == 0) initLootTable();
@@ -137,7 +137,7 @@ public class MysteriousGiftBoxItem extends ItemBase {
             }
             if (stack.getItem() == Items.AIR)
                 if (!_player.level.isClientSide())
-                    _player.displayClientMessage(new TranslatableComponent("item.rainimator.mysteriousgiftbox.goodluck4"), true);
+                    _player.displayClientMessage(new TranslatableComponent("item.rainimator.mysterious_gift_box.goodluck4"), true);
             ItemHandlerHelper.giveItemToPlayer(_player, stack);
         }
         return retval;

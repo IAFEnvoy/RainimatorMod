@@ -7,35 +7,35 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:enderstone"
+      "item": "rainimator:ender_stone"
     },
     "1": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "2": {
-      "item": "rainimator:enderstone"
+      "item": "rainimator:ender_stone"
     },
     "3": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "4": {
-      "item": "rainimator:enderheart"
+      "item": "rainimator:ender_heart"
     },
     "5": {
-      "item": "rainimator:super_spparies"
+      "item": "rainimator:super_sapphire"
     },
     "6": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     },
     "7": {
       "item": "rainimator:ruby_pickaxe"
     },
     "8": {
-      "item": "rainimator:bluediamond"
+      "item": "rainimator:blue_diamond"
     }
   },
   "result": {
-    "item": "rainimator:end_blade",
+    "item": "rainimator:ender_big_sword",
     "count": 1
   }
 }

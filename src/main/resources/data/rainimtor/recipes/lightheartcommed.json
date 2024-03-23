@@ -7,13 +7,13 @@
   ],
   "key": {
     "0": {
-      "item": "rainimator:soulpeople"
+      "item": "rainimator:soul_people"
     },
     "1": {
       "item": "minecraft:glowstone_dust"
     },
     "2": {
-      "item": "rainimator:soulpeople"
+      "item": "rainimator:soul_people"
     },
     "3": {
       "item": "minecraft:glowstone_dust"
@@ -25,17 +25,17 @@
       "item": "minecraft:glowstone_dust"
     },
     "6": {
-      "item": "rainimator:soulpeople"
+      "item": "rainimator:soul_people"
     },
     "7": {
       "item": "minecraft:glowstone_dust"
     },
     "8": {
-      "item": "rainimator:soulpeople"
+      "item": "rainimator:soul_people"
     }
   },
   "result": {
-    "item": "rainimator:lightheart",
+    "item": "rainimator:light_heart",
     "count": 1
   }
 }

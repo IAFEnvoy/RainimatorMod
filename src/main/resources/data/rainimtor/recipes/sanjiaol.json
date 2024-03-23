@@ -19,7 +19,7 @@
       "item": "minecraft:iron_ingot"
     },
     "4": {
-      "item": "rainimator:sappries"
+      "item": "rainimator:sapphire"
     },
     "5": {
       "item": "minecraft:iron_ingot"
@@ -29,7 +29,7 @@
     }
   },
   "result": {
-    "item": "rainimator:soldiers_warhammer",
+    "item": "rainimator:soldiers_war_hammer",
     "count": 1
   }
 }
