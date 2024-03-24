@@ -1,42 +1,32 @@
 package com.rainimator.rainimatormod.gui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.rainimator.rainimatormod.RainimatorMod;
-import com.rainimator.rainimatormod.gui.inventory.ModItemInfoMenu;
 import com.rainimator.rainimatormod.util.ComponentUtil;
 import com.rainimator.rainimatormod.util.Episode;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ModItemInfoScreen extends AbstractContainerScreen<ModItemInfoMenu> implements MenuAccess<ModItemInfoMenu> {
+public class ModItemInfoScreen extends Screen {
     private final ItemInfo info;
     private final Screen parent;
+    private int leftPos;
+    private int topPos;
 
-    public ModItemInfoScreen(ModItemInfoMenu container, Inventory inventory, Component text, ItemInfo info, Screen parent) {
-        super(container, inventory, text);
-        this.imageWidth = 300;
-        this.imageHeight = 100;
+    public ModItemInfoScreen(Component text, ItemInfo info, Screen parent) {
+        super(text);
         this.info = info;
         this.parent = parent;
-    }
-
-    @Override
-    protected void containerTick() {
-        super.containerTick();
     }
 
     @Override
@@ -56,17 +46,8 @@ public class ModItemInfoScreen extends AbstractContainerScreen<ModItemInfoMenu> 
             i += 5;
         }
         Minecraft.getInstance().font.drawShadow(ms,
-                new TextComponent("Image By Rainimator @Rainolaguer").withStyle(Style.EMPTY.withBold(true).withUnderlined(true).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,"https://www.youtube.com/@Rainimator"))),
+                new TextComponent("Image By Rainimator @Rainolaguer").withStyle(Style.EMPTY.withBold(true).withUnderlined(true).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.youtube.com/@Rainimator"))),
                 this.leftPos - 20, this.topPos + 125, -1);
-        this.renderTooltip(ms, mouseX, mouseY);
-    }
-
-    @Override
-    protected void renderBg(@NotNull PoseStack ms, float partialTicks, int gx, int gy) {
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.disableBlend();
     }
 
     @Override
@@ -79,23 +60,18 @@ public class ModItemInfoScreen extends AbstractContainerScreen<ModItemInfoMenu> 
     }
 
     @Override
-    protected void renderLabels(@NotNull PoseStack poseStack, int mouseX, int mouseY) {
-    }
-
-    @Override
     public void onClose() {
         Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(false);
-        if (this.parent == null)
-            super.onClose();
-        else
-            Minecraft.getInstance().setScreen(this.parent);
+        if (this.parent == null) super.onClose();
+        else Minecraft.getInstance().setScreen(this.parent);
     }
 
     @Override
     public void init() {
         super.init();
-        if (this.minecraft != null)
-            this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
+        this.leftPos = (this.width - 300) / 2;
+        this.topPos = (this.height - 100) / 2;
+        Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(true);
         if (this.info == null) return;
 
         this.addRenderableOnly(new ImageButton(this.leftPos - 20, this.topPos - 10,//Location
