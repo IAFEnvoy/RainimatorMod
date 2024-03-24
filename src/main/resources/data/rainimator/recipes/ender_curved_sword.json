@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 01",
+    "234",
+    "52 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_ruby"
+    },
+    "1": {
+      "item": "rainimator:blue_diamond"
+    },
+    "2": {
+      "item": "rainimator:ender_stone"
+    },
+    "3": {
+      "item": "rainimator:ender_heart"
+    },
+    "4": {
+      "item": "rainimator:super_sapphire"
+    },
+    "5": {
+      "item": "rainimator:ruby_pickaxe"
+    }
+  },
+  "result": {
+    "item": "rainimator:ender_curved_sword",
+    "count": 1
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "232",
+    " 4 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:iron_ingot"
+    },
+    "1": {
+      "item": "rainimator:super_sapphire"
+    },
+    "2": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "3": {
+      "item": "rainimator:deep_sickle"
+    },
+    "4": {
+      "item": "rainimator:ruby_pickaxe"
+    }
+  },
+  "result": {
+    "item": "rainimator:deep_war_hammer",
+    "count": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 0 ",
+    " 1 ",
+    "020"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:gold_ingot"
+    },
+    "1": {
+      "item": "minecraft:gold_block"
+    },
+    "2": {
+      "item": "rainimator:ruby_pickaxe"
+    }
+  },
+  "result": {
+    "item": "rainimator:the_golden_sword",
+    "count": 1
+  }
+}

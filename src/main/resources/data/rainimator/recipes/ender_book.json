@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 0 ",
+    "123",
+    " 4 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:dragon_head"
+    },
+    "1": {
+      "item": "rainimator:magic_ender_pearl"
+    },
+    "2": {
+      "item": "minecraft:book"
+    },
+    "3": {
+      "item": "minecraft:end_crystal"
+    },
+    "4": {
+      "item": "minecraft:dragon_egg"
+    }
+  },
+  "result": {
+    "item": "rainimator:ender_book",
+    "count": 1
+  }
+}

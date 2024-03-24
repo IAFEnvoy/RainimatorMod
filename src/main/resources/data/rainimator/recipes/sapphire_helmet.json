@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "1 1"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:sapphire"
+    },
+    "1": {
+      "item": "rainimator:super_sapphire"
+    }
+  },
+  "result": {
+    "item": "rainimator:sapphire_helmet",
+    "count": 1
+  }
+}

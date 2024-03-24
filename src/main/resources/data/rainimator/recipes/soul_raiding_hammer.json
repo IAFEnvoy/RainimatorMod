@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "232",
+    "454"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:ender_stone"
+    },
+    "1": {
+      "item": "rainimator:ender_heart"
+    },
+    "2": {
+      "item": "rainimator:blue_diamond"
+    },
+    "3": {
+      "item": "minecraft:end_crystal"
+    },
+    "4": {
+      "item": "rainimator:super_sapphire"
+    },
+    "5": {
+      "item": "rainimator:deep_war_hammer"
+    }
+  },
+  "result": {
+    "item": "rainimator:soul_raiding_hammer",
+    "count": 1
+  }
+}

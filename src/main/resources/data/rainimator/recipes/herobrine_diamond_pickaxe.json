@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "121",
+    " 3 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:blue_diamond"
+    },
+    "1": {
+      "item": "rainimator:super_sapphire"
+    },
+    "2": {
+      "item": "minecraft:netherite_pickaxe"
+    },
+    "3": {
+      "item": "rainimator:ruby_pickaxe"
+    }
+  },
+  "result": {
+    "item": "rainimator:herobrine_diamond_pickaxe",
+    "count": 1
+  }
+}

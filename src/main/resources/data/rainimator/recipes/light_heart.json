@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "121",
+    "010"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:soul_people"
+    },
+    "1": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "2": {
+      "item": "rainimator:magic_stard"
+    }
+  },
+  "result": {
+    "item": "rainimator:light_heart",
+    "count": 1
+  }
+}

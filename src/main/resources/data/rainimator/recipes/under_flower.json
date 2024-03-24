@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 0 ",
+    "121",
+    "343"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:ruby"
+    },
+    "1": {
+      "item": "minecraft:blaze_powder"
+    },
+    "2": {
+      "item": "minecraft:poppy"
+    },
+    "3": {
+      "item": "rainimator:hot_iron"
+    },
+    "4": {
+      "item": "rainimator:soul_people"
+    }
+  },
+  "result": {
+    "item": "rainimator:under_flower",
+    "count": 1
+  }
+}

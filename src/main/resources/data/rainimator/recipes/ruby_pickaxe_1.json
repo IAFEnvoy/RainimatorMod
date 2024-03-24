@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "000",
+    " 1 ",
+    " 1 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:ruby"
+    },
+    "1": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "rainimator:ruby_pickaxe_1",
+    "count": 1
+  }
+}

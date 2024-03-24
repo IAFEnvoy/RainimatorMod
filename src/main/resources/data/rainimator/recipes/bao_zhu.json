@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "121",
+    "010"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:quartz"
+    },
+    "1": {
+      "item": "rainimator:zombie_heart"
+    },
+    "2": {
+      "item": "rainimator:soul_people"
+    }
+  },
+  "result": {
+    "item": "rainimator:bao_zhu",
+    "count": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "121",
+    "010"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:diamond"
+    },
+    "1": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "2": {
+      "item": "minecraft:golden_apple"
+    }
+  },
+  "result": {
+    "item": "rainimator:super_diamond_apple",
+    "count": 4
+  }
+}

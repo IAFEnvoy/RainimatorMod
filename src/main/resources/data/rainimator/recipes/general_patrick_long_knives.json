@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "232",
+    " 4 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:soul_people"
+    },
+    "1": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "2": {
+      "item": "rainimator:super_ruby"
+    },
+    "3": {
+      "item": "rainimator:warrior_heart"
+    },
+    "4": {
+      "item": "rainimator:ruby_pickaxe"
+    }
+  },
+  "result": {
+    "item": "rainimator:general_patrick_long_knives",
+    "count": 1
+  }
+}

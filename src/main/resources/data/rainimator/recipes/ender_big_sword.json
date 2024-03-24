@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "121",
+    "343"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:ender_stone"
+    },
+    "1": {
+      "item": "rainimator:super_sapphire"
+    },
+    "2": {
+      "item": "rainimator:ender_heart"
+    },
+    "3": {
+      "item": "rainimator:blue_diamond"
+    },
+    "4": {
+      "item": "rainimator:ruby_pickaxe"
+    }
+  },
+  "result": {
+    "item": "rainimator:ender_big_sword",
+    "count": 1
+  }
+}

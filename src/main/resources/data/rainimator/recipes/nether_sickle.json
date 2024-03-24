@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    " 2 ",
+    "3  "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:stripped_warped_stem"
+    },
+    "1": {
+      "item": "minecraft:emerald"
+    },
+    "2": {
+      "item": "rainimator:ruby_pickaxe"
+    },
+    "3": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "rainimator:nether_sickle",
+    "count": 1
+  }
+}

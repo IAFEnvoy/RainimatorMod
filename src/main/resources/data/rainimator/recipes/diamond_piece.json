@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "00",
+    "00"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "rainimator:diamond_piece",
+    "count": 1
+  }
+}

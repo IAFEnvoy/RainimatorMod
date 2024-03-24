@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "000",
+    "010",
+    " 2 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:diamond"
+    },
+    "1": {
+      "item": "rainimator:ruby_pickaxe"
+    },
+    "2": {
+      "item": "minecraft:diamond_sword"
+    }
+  },
+  "result": {
+    "item": "rainimator:diamond_big_sword",
+    "count": 1
+  }
+}

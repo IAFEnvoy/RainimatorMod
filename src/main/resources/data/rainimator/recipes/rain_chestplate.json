@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 0",
+    "121",
+    "343"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:sapphire"
+    },
+    "1": {
+      "item": "minecraft:obsidian"
+    },
+    "2": {
+      "item": "rainimator:ice_heart"
+    },
+    "3": {
+      "item": "rainimator:super_sapphire"
+    },
+    "4": {
+      "item": "minecraft:crying_obsidian"
+    }
+  },
+  "result": {
+    "item": "rainimator:rain_chestplate",
+    "count": 1
+  }
+}

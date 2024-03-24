@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 01",
+    "234",
+    "52 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:under_flower"
+    },
+    "1": {
+      "item": "rainimator:blue_diamond"
+    },
+    "2": {
+      "item": "rainimator:super_ruby"
+    },
+    "3": {
+      "item": "rainimator:warrior_heart"
+    },
+    "4": {
+      "item": "rainimator:bao_zhu"
+    },
+    "5": {
+      "item": "rainimator:emerald_blade"
+    }
+  },
+  "result": {
+    "item": "rainimator:naeus_sword",
+    "count": 1
+  }
+}

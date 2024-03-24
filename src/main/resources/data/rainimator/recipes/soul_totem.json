@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "121",
+    "010"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:gold_block"
+    },
+    "1": {
+      "item": "rainimator:magic_stard"
+    },
+    "2": {
+      "item": "rainimator:light_heart"
+    }
+  },
+  "result": {
+    "item": "rainimator:soul_totem",
+    "count": 1
+  }
+}

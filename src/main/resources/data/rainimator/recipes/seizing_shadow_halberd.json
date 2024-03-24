@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "232",
+    "454"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:dragon_breath"
+    },
+    "1": {
+      "item": "minecraft:end_crystal"
+    },
+    "2": {
+      "item": "rainimator:blue_diamond_block"
+    },
+    "3": {
+      "item": "minecraft:nether_star"
+    },
+    "4": {
+      "item": "rainimator:ender_heart"
+    },
+    "5": {
+      "item": "rainimator:soul_raiding_hammer"
+    }
+  },
+  "result": {
+    "item": "rainimator:seizing_shadow_halberd",
+    "count": 1
+  }
+}

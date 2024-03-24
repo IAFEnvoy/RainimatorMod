@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01",
+    "02",
+    " 3"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:gold_ingot"
+    },
+    "1": {
+      "item": "minecraft:iron_block"
+    },
+    "2": {
+      "item": "minecraft:diamond_axe"
+    },
+    "3": {
+      "item": "rainimator:ruby_pickaxe"
+    }
+  },
+  "result": {
+    "item": "rainimator:golden_plundering_axe",
+    "count": 1
+  }
+}

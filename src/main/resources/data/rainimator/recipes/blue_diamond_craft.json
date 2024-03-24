@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "000",
+    "120",
+    "111"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_ruby"
+    },
+    "1": {
+      "item": "rainimator:super_sapphire"
+    },
+    "2": {
+      "item": "minecraft:diamond_block"
+    }
+  },
+  "result": {
+    "item": "rainimator:blue_diamond",
+    "count": 2
+  }
+}
