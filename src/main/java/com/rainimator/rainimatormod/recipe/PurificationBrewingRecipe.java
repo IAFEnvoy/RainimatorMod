@@ -3,6 +3,8 @@ package com.rainimator.rainimatormod.recipe;
 import com.rainimator.rainimatormod.registry.ModItems;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,7 +22,7 @@ public class PurificationBrewingRecipe implements IBrewingRecipe {
 
     @Override
     public boolean isInput(@NotNull ItemStack input) {
-        return input.getItem() == Items.POTION;
+        return input.getItem() == Items.POTION && PotionUtils.getPotion(input) == Potions.AWKWARD;
     }
 
     @Override
