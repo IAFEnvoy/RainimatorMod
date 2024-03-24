@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/wooden_shovel",
+  "parent": "rainimator:custom/herobrine_tomahawk",
   "textures": {
-    "texture": "rainimator:blocks/wooden_spade1",
-    "particle": "rainimator:items/wooden_spade2"
+    "texture": "rainimator:items/herobrine_tomahawk_1",
+    "particle": "rainimator:items/herobrine_tomahawk_2"
   }
 }

@@ -1,12 +1,7 @@
 {
-  "parent": "block/cube",
+  "parent": "block/cube_all",
   "textures": {
-    "down": "rainimator:blocks/ruby_block",
-    "up": "rainimator:blocks/ruby_block",
-    "north": "rainimator:blocks/ruby_block",
-    "east": "rainimator:blocks/ruby_block",
-    "south": "rainimator:blocks/ruby_block",
-    "west": "rainimator:blocks/ruby_block",
+    "all": "rainimator:blocks/ruby_block",
     "particle": "rainimator:blocks/ruby_block"
   }
 }

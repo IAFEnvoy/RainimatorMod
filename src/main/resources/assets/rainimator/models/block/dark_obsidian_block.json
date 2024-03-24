@@ -1,5 +1,5 @@
 {
-  "parent": "rainimator:custom/jitan",
+  "parent": "rainimator:custom/alter",
   "textures": {
     "all": "rainimator:blocks/crying_obsidian",
     "particle": "rainimator:blocks/crying_obsidian",

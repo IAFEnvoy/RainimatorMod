@@ -1,8 +1,8 @@
 {
-  "parent": "rainimator:custom/cooked_chicken",
+  "parent": "rainimator:custom/mace",
   "textures": {
-    "texture": "rainimator:blocks/toothcrusher",
-    "toothcrusher2": "rainimator:blocks/toothcrusher2",
-    "particle": "rainimator:items/toothcrusher"
+    "texture": "rainimator:items/mace_1",
+    "toothcrusher2": "rainimator:items/mace_2",
+    "particle": "rainimator:items/mace_1"
   }
 }

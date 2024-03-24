@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/dfdfggh.lnk",
+  "parent": "rainimator:custom/deep_sickle",
   "textures": {
-    "0": "rainimator:blocks/texture1",
-    "particle": "rainimator:items/texture1"
+    "0": "rainimator:items/deep_sickle",
+    "particle": "rainimator:items/deep_sickle"
   }
 }

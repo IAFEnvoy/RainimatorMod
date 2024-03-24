@@ -1,12 +1,7 @@
 {
-  "parent": "block/cube",
+  "parent": "block/cube_all",
   "textures": {
-    "down": "rainimator:blocks/deepslaterubyore",
-    "up": "rainimator:blocks/deepslaterubyore",
-    "north": "rainimator:blocks/deepslaterubyore",
-    "east": "rainimator:blocks/deepslaterubyore",
-    "south": "rainimator:blocks/deepslaterubyore",
-    "west": "rainimator:blocks/deepslaterubyore",
+    "all": "rainimator:blocks/deepslaterubyore",
     "particle": "rainimator:blocks/deepslaterubyore"
   }
 }

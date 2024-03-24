@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/golden_pickaxe",
+  "parent": "rainimator:custom/end_staff",
   "textures": {
-    "texture": "rainimator:blocks/golden_pieckaxe1",
-    "particle": "rainimator:items/golden_pieckaxe1"
+    "texture": "rainimator:items/end_staff",
+    "particle": "rainimator:items/end_staff"
   }
 }

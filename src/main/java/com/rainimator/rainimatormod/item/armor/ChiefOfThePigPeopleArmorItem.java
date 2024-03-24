@@ -65,7 +65,7 @@ public class ChiefOfThePigPeopleArmorItem extends ArmorItem {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return RainimatorMod.MOD_ID + ":textures/models/armor/amrom1_layer_1.png";
+        return RainimatorMod.MOD_ID + ":textures/models/armor/chief_of_the_pig_people_armors_layer_1_layer_1.png";
     }
 
     @Override

@@ -69,7 +69,7 @@ public class SoldiersArmorItem extends ArmorItem {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return RainimatorMod.MOD_ID + ":textures/models/armor/11451444444_layer_1.png";
+        return RainimatorMod.MOD_ID + ":textures/models/armor/soldiers_armor_layer_1.png";
     }
 
     @Override

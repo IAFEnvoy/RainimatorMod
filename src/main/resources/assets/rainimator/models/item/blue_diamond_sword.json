@@ -1,7 +1,7 @@
 {
   "parent": "rainimator:custom/blue_diamond_sword",
   "textures": {
-    "4": "rainimator:blocks/blue_diamond_sword",
+    "4": "rainimator:items/blue_diamond_sword",
     "particle": "rainimator:items/blue_diamond_sword"
   }
 }

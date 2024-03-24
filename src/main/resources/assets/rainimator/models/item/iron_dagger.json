@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/wooden_axe",
+  "parent": "rainimator:custom/iron_dagger",
   "textures": {
-    "texture": "rainimator:blocks/wooden_axe_ref",
-    "particle": "rainimator:items/wooden_axe_ref"
+    "texture": "rainimator:items/iron_dagger",
+    "particle": "rainimator:items/iron_dagger"
   }
 }

@@ -64,7 +64,7 @@ public class HerobrineArmorItem extends ArmorItem {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return RainimatorMod.MOD_ID + ":textures/models/armor/skinseedskin_1696241635559_layer_1.png";
+        return RainimatorMod.MOD_ID + ":textures/models/armor/herobrine_armors_layer_1.png";
     }
 
     public static class Chestplate extends HerobrineArmorItem {

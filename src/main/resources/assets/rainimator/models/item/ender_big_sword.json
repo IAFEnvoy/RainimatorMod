@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/ender_greatsword",
+  "parent": "rainimator:custom/ender_big_sword",
   "textures": {
-    "0": "rainimator:blocks/end",
-    "particle": "rainimator:items/end"
+    "0": "rainimator:items/ender_big_sword",
+    "particle": "rainimator:items/ender_big_sword"
   }
 }

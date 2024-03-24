@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/blade_of_cursed_flames",
+  "parent": "rainimator:custom/emerald_blade",
   "textures": {
-    "0": "rainimator:blocks/blade_of_cursed_flames",
-    "particle": "rainimator:items/blade_of_cursed_flames"
+    "0": "rainimator:items/emerald_blade",
+    "particle": "rainimator:items/emerald_blade"
   }
 }

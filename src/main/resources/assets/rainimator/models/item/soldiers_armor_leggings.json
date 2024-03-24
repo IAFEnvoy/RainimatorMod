@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rainimator:items/solid"
+    "layer0": "rainimator:items/soldiers_armor_leggings"
   }
 }

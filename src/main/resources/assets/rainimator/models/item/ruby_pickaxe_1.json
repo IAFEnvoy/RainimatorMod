@@ -1,7 +1,7 @@
 {
   "parent": "rainimator:custom/ruby_pickaxe",
   "textures": {
-    "0": "rainimator:blocks/ruby_pickaxe",
+    "0": "rainimator:items/ruby_pickaxe",
     "particle": "rainimator:items/ruby_pickaxe"
   }
 }

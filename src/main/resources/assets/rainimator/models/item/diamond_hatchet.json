@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/jotunn_dragon",
+  "parent": "rainimator:custom/diamond_hatchet",
   "textures": {
-    "0": "rainimator:blocks/jotunn_dragon",
-    "particle": "rainimator:items/jotunn_dragon"
+    "0": "rainimator:items/diamond_hatchet",
+    "particle": "rainimator:items/diamond_hatchet"
   }
 }

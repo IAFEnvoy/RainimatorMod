@@ -1,7 +1,7 @@
 {
   "parent": "rainimator:custom/plundering_the_giant_axe",
   "textures": {
-    "0": "rainimator:blocks/plundering_the_giant_axe",
+    "0": "rainimator:items/plundering_the_giant_axe",
     "particle": "rainimator:items/plundering_the_giant_axe"
   }
 }

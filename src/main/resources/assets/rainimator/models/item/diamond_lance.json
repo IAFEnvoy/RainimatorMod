@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/bohemian_earspoon",
+  "parent": "rainimator:custom/diamond_lance",
   "textures": {
-    "0": "rainimator:blocks/bohemian_earspoon",
-    "particle": "rainimator:items/bohemian_earspoon"
+    "0": "rainimator:items/diamond_lance",
+    "particle": "rainimator:items/diamond_lance"
   }
 }

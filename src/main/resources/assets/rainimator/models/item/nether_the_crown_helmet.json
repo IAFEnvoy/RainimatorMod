@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rainimator:items/crown"
+    "layer0": "rainimator:items/nether_the_crown_helmet"
   }
 }

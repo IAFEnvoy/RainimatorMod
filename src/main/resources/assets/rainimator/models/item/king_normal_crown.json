@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rainimator:items/king_nomal_crown"
+    "layer0": "rainimator:items/king_normal_crown"
   }
 }

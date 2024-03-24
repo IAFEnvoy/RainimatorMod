@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/golden_axe",
+  "parent": "rainimator:custom/naeus_sword",
   "textures": {
-    "texture": "rainimator:blocks/golden_axe_unwrap",
-    "particle": "rainimator:items/naeussword"
+    "texture": "rainimator:items/naeus_sword",
+    "particle": "rainimator:items/naeus_sword"
   }
 }

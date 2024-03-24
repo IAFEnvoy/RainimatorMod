@@ -1,12 +1,7 @@
 {
-  "parent": "block/cube",
+  "parent": "block/cube_all",
   "textures": {
-    "down": "rainimator:blocks/blue_diamond_block",
-    "up": "rainimator:blocks/blue_diamond_block",
-    "north": "rainimator:blocks/blue_diamond_block",
-    "east": "rainimator:blocks/blue_diamond_block",
-    "south": "rainimator:blocks/blue_diamond_block",
-    "west": "rainimator:blocks/blue_diamond_block",
+    "all": "rainimator:blocks/blue_diamond_block",
     "particle": "rainimator:blocks/blue_diamond_block"
   }
 }

@@ -1,7 +1,7 @@
 {
   "parent": "rainimator:custom/ruby_sword",
   "textures": {
-    "0": "rainimator:blocks/ruby_sword",
+    "0": "rainimator:items/ruby_sword",
     "particle": "rainimator:items/ruby_sword"
   }
 }

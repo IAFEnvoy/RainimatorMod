@@ -1,7 +1,7 @@
 {
   "parent": "rainimator:custom/sapphire_hoe",
   "textures": {
-    "0": "rainimator:blocks/sapphire_hoe",
+    "0": "rainimator:items/sapphire_hoe",
     "particle": "rainimator:items/sapphire_hoe"
   }
 }

@@ -69,7 +69,7 @@ public class PatrickArmorItem extends ArmorItem {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return RainimatorMod.MOD_ID + ":textures/models/armor/po_sui_jiang_jun__layer_1.png";
+        return RainimatorMod.MOD_ID + ":textures/models/armor/patrick_armor_layer_1.png";
     }
 
     @Override

@@ -1,7 +1,7 @@
 {
   "parent": "rainimator:custom/ruby_shovel",
   "textures": {
-    "0": "rainimator:blocks/ruby_shovel",
+    "0": "rainimator:items/ruby_shovel",
     "particle": "rainimator:items/ruby_shovel"
   }
 }

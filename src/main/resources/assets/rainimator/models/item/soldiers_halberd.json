@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/potato",
+  "parent": "rainimator:custom/soldiers_halberd",
   "textures": {
-    "texture": "rainimator:blocks/potato",
-    "particle": "rainimator:items/potato"
+    "texture": "rainimator:items/soldiers_halberd",
+    "particle": "rainimator:items/soldiers_halberd"
   }
 }

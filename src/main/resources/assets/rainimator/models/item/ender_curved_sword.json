@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/albldd",
+  "parent": "rainimator:custom/ender_curved_sword",
   "textures": {
-    "0": "rainimator:blocks/alobldd",
-    "particle": "rainimator:items/alobldd"
+    "0": "rainimator:items/ender_curved_sword",
+    "particle": "rainimator:items/ender_curved_sword"
   }
 }

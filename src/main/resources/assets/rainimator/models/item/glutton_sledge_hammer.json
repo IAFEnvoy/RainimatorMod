@@ -1,8 +1,8 @@
 {
-  "parent": "rainimator:custom/string",
+  "parent": "rainimator:custom/glutton_sledge_hammer",
   "textures": {
-    "texture": "rainimator:blocks/rabbit_unwrap1",
-    "particle": "rainimator:items/rabbit_unwrap1",
-    "pallyhammeranim": "rainimator:blocks/pallyhammeranim"
+    "texture": "rainimator:items/glutton_sledge_hammer",
+    "particle": "rainimator:items/glutton_sledge_hammer",
+    "pallyhammeranim": "rainimator:items/pallyhammeranim"
   }
 }

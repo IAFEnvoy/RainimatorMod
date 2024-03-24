@@ -62,7 +62,7 @@ public class WingsOfSalvationItem extends ArmorItem {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return RainimatorMod.MOD_ID + ":textures/entities/wings_of_salvation.png";
+        return RainimatorMod.MOD_ID + ":textures/models/armor/wings_of_salvation.png";
     }
 
     public static class Chestplate extends WingsOfSalvationItem {

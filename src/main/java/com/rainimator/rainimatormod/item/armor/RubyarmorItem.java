@@ -53,7 +53,7 @@ public class RubyarmorItem extends ArmorItem {
 
             @Override
             public @NotNull String getName() {
-                return "rubyarmor";
+                return "ruby_armor";
             }
 
             @Override
@@ -70,7 +70,7 @@ public class RubyarmorItem extends ArmorItem {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return RainimatorMod.MOD_ID + ":textures/models/armor/ruby__layer_1.png";
+        return RainimatorMod.MOD_ID + ":textures/models/armor/ruby_armor_layer_1.png";
     }
 
 

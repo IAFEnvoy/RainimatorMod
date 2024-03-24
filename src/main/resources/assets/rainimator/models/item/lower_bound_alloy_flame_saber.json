@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "rainimator:items/114514"
+    "layer0": "rainimator:items/lower_bound_alloy_flame_saber"
   }
 }

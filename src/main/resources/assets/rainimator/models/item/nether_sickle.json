@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/prismarine_sycthe",
+  "parent": "rainimator:custom/nether_sickle",
   "textures": {
-    "0": "rainimator:blocks/prismarine_sycthe",
-    "particle": "rainimator:items/prismarine_sycthe"
+    "0": "rainimator:items/nether_sickle",
+    "particle": "rainimator:items/nether_sickle"
   }
 }

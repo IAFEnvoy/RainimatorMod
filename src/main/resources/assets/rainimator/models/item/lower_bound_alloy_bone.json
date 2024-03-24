@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rainimator:items/he_jin_diao_lin_gu"
+    "layer0": "rainimator:items/lower_bound_alloy_bone"
   }
 }

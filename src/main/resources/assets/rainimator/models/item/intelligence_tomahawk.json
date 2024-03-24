@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/tribal_axe",
+  "parent": "rainimator:custom/intelligence_tomahawk",
   "textures": {
-    "0": "rainimator:blocks/tribal_axe",
-    "particle": "rainimator:items/tribal_axe"
+    "0": "rainimator:items/intelligence_tomahawk",
+    "particle": "rainimator:items/intelligence_tomahawk"
   }
 }

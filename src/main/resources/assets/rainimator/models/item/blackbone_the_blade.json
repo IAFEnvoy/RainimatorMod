@@ -1,8 +1,8 @@
 {
-  "parent": "rainimator:custom/wooden_hoe",
+  "parent": "rainimator:custom/blackbone_the_blade",
   "textures": {
-    "texture": "rainimator:blocks/stone_hoe_2",
-    "zweianimation": "rainimator:blocks/zweianimation",
-    "particle": "rainimator:items/stone_hoe_1"
+    "texture": "rainimator:items/blackbone_the_blade_2",
+    "zweianimation": "rainimator:items/zweianimation",
+    "particle": "rainimator:items/blackbone_the_blade_1"
   }
 }

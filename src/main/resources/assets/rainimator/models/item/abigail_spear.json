@@ -1,8 +1,8 @@
 {
-  "parent": "rainimator:custom/poisonous_potato",
+  "parent": "rainimator:custom/abigail_spear",
   "textures": {
-    "unwrap1": "rainimator:blocks/poisonous_potato_unwrap1",
-    "unwrap2": "rainimator:blocks/poisonous_potato_unwrap2",
-    "particle": "rainimator:items/poisonous_potato_unwrap1"
+    "unwrap1": "rainimator:items/abigail_spear_unwrap1",
+    "unwrap2": "rainimator:items/abigail_spear_unwrap2",
+    "particle": "rainimator:items/abigail_spear_unwrap1"
   }
 }

@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/paradox_katana",
+  "parent": "rainimator:custom/snow_diamond_sword",
   "textures": {
-    "0": "rainimator:blocks/paradox_katana",
-    "particle": "rainimator:items/paradox_katana"
+    "0": "rainimator:items/snow_diamond_sword",
+    "particle": "rainimator:items/snow_diamond_sword"
   }
 }

@@ -1,10 +1,10 @@
 {
-  "parent": "rainimator:custom/cod",
+  "parent": "rainimator:custom/rain_sword",
   "textures": {
-    "icepuffs2": "rainimator:blocks/icepuffs2",
-    "texture": "rainimator:blocks/ice_shard_unwrap1",
-    "particle": "rainimator:items/rainsword",
-    "icepuffs3": "rainimator:blocks/icepuffs3",
-    "icepuffs": "rainimator:blocks/icepuffs"
+    "icepuffs2": "rainimator:items/rain_sword_2",
+    "texture": "rainimator:items/rain_sword_unwrap1",
+    "particle": "rainimator:items/rain_sword",
+    "icepuffs3": "rainimator:items/rain_sword_3",
+    "icepuffs": "rainimator:items/rain_sword_1"
   }
 }

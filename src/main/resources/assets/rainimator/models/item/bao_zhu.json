@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rainimator:items/judu_bao_zhu"
+    "layer0": "rainimator:items/bao_zhu"
   }
 }

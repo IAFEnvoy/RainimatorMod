@@ -1,9 +1,9 @@
 {
-  "parent": "rainimator:custom/golden_carrot",
+  "parent": "rainimator:custom/zecanirn_the_blade",
   "textures": {
-    "ani1": "rainimator:blocks/",
-    "unwrap1": "rainimator:blocks/golden_carrot_unwrap1",
-    "unwrap2": "rainimator:blocks/golden_carrot_unwrap2",
-    "particle": "rainimator:items/golden_carrot_unwrap1"
+    "ani1": "rainimator:items/zecanirn_the_blade_ani1",
+    "unwrap1": "rainimator:items/zecanirn_the_blade_1",
+    "unwrap2": "rainimator:items/zecanirn_the_blade_2",
+    "particle": "rainimator:items/zecanirn_the_blade_1"
   }
 }

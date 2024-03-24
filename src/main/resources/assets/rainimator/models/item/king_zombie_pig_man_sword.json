@@ -1,7 +1,7 @@
 {
-  "parent": "rainimator:custom/da_jin_jian_l",
+  "parent": "rainimator:custom/king_zombie_pig_man_sword",
   "textures": {
-    "0": "rainimator:blocks/texture",
-    "particle": "rainimator:items/texture"
+    "0": "rainimator:items/king_zombie_pig_man_sword",
+    "particle": "rainimator:items/king_zombie_pig_man_sword"
   }
 }

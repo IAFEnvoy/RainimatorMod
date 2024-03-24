@@ -25,7 +25,7 @@ public class KingNormalCrownItem extends ItemBase {
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return RainimatorMod.MOD_ID + ":textures/entities/king_nomal_crown.png";
+        return RainimatorMod.MOD_ID + ":textures/models/armor/king_normal_crown.png";
     }
 
     public static class Helmet extends KingNormalCrownItem {
@@ -48,18 +48,5 @@ public class KingNormalCrownItem extends ItemBase {
             });
         }
     }
-
-//    class null implements
-//
-//    IItemRenderProperties {
-//        public HumanoidModel getArmorModel (LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel
-//        defaultModel){
-//            HumanoidModel armorModel = new HumanoidModel(new ModelPart(Collections.emptyList(), Map.of("head", (new Modelking_nomal_crown(Minecraft.getInstance().getEntityModels().bakeLayer(Modelking_nomal_crown.LAYER_LOCATION))).Head, "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()))));
-//            armorModel.crouching = living.isShiftKeyDown();
-//            armorModel.riding = defaultModel.riding;
-//            armorModel.young = living.isBaby();
-//            return armorModel;
-//        }
-//    }
 }
 
