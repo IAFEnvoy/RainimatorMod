@@ -78,9 +78,8 @@ public class RubyOreFeature extends OreFeature {
 
         @Override
         public boolean test(@NotNull BlockState blockAt, @NotNull Random random) {
-            if (this.base_blocks == null) {
+            if (this.base_blocks == null)
                 this.base_blocks = List.of(Blocks.STONE, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE, Blocks.DEEPSLATE);
-            }
             return this.base_blocks.contains(blockAt.getBlock());
         }
 

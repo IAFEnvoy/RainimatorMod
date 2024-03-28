@@ -18,20 +18,16 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-@EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EnderBookSkillButtonMessage {
     private final int buttonID;
     private final int x;
     private final int y;
     private final int z;
+
     public EnderBookSkillButtonMessage(FriendlyByteBuf buffer) {
         this.buttonID = buffer.readInt();
         this.x = buffer.readInt();
@@ -207,10 +203,5 @@ public class EnderBookSkillButtonMessage {
                     entity.displayClientMessage(new TranslatableComponent("item.rainimator.ender_book.error.end"), true);
             }
         }
-    }
-
-    @SubscribeEvent
-    public static void registerMessage(FMLCommonSetupEvent event) {
-        NetworkManager.addNetworkMessage(EnderBookSkillButtonMessage.class, EnderBookSkillButtonMessage::buffer, EnderBookSkillButtonMessage::new, EnderBookSkillButtonMessage::handler);
     }
 }

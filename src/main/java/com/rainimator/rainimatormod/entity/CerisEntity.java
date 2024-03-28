@@ -5,11 +5,12 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
 import com.rainimator.rainimatormod.util.SoundUtil;
+import com.rainimator.rainimatormod.util.Stage;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
@@ -31,14 +32,12 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -46,7 +45,8 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class CerisEntity extends Monster {
+public class CerisEntity extends MonsterEntityBase {
+    public static Stage.StagedEntityTextureProvider texture = Stage.ofProvider("ceris").setEyeTextureId("ceris_eye");
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.PURPLE, BossEvent.BossBarOverlay.PROGRESS);
 
     public CerisEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -54,9 +54,8 @@ public class CerisEntity extends Monster {
     }
 
     public CerisEntity(EntityType<CerisEntity> type, Level world) {
-        super(type, world);
+        super(type, world, MobType.UNDEFINED);
         this.xpReward = 0;
-        this.setNoAi(false);
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.ENDER_BIG_SWORD.get()));
     }
@@ -74,11 +73,6 @@ public class CerisEntity extends Monster {
     }
 
     @Override
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    @Override
     protected void registerGoals() {
         super.registerGoals();
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
@@ -91,11 +85,6 @@ public class CerisEntity extends Monster {
         this.targetSelector.addGoal(4, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(6, new FloatGoal(this));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.UNDEFINED;
     }
 
     @Override
@@ -244,7 +233,7 @@ public class CerisEntity extends Monster {
             this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 80, 1));
         }
         if (!this.isAlive())
-            SoundUtil.stopSound(this.level,new ResourceLocation(RainimatorMod.MOD_ID,"ceris_boss_music"));
+            SoundUtil.stopSound(this.level, new ResourceLocation(RainimatorMod.MOD_ID, "ceris_boss_music"));
     }
 
     @Override

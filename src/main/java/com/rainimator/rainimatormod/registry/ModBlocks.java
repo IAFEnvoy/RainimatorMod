@@ -3,6 +3,10 @@ package com.rainimator.rainimatormod.registry;
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.block.*;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SkullBlock;
+import net.minecraft.world.level.block.WallSkullBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -23,6 +27,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> SAPPHIRE_BLOCK = REGISTRY.register("sapphire_block", SapphireBlock::new);
     public static final RegistryObject<Block> BLUE_DIAMOND_BLOCK = REGISTRY.register("blue_diamond_block", BlueDiamondBlock::new);
     public static final RegistryObject<Block> MYSTIC_ORE = REGISTRY.register("mystic_ore", MysticoreBlock::new);
+    //skull
+    public static final RegistryObject<Block> HEROBRINE_HEAD = REGISTRY.register("herobrine_head", () -> new SkullBlock(ModSkulls.SkullType.HEROBRINE, BlockBehaviour.Properties.of(Material.DECORATION).strength(1.0F)));
+    public static final RegistryObject<Block> HEROBRINE_WALL_HEAD = REGISTRY.register("herobrine_wall_head", () -> new WallSkullBlock(ModSkulls.SkullType.HEROBRINE, BlockBehaviour.Properties.of(Material.DECORATION).strength(1.0F)));
 
     @EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
     public static class ClientSideHandler {

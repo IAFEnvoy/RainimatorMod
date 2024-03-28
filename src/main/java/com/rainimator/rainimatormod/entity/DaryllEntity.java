@@ -1,7 +1,8 @@
 package com.rainimator.rainimatormod.entity;
 
 import com.rainimator.rainimatormod.registry.ModEntities;
-import net.minecraft.network.protocol.Packet;
+import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
+import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
@@ -11,26 +12,25 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
-public class DaryllEntity extends Monster implements RangedAttackMob {
+public class DaryllEntity extends MonsterEntityBase implements RangedAttackMob {
+    public static Stage.StagedEntityTextureProvider texture = Stage.ofProvider("daryll");
+
     public DaryllEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.DARYLL.get(), world);
     }
 
     public DaryllEntity(EntityType<DaryllEntity> type, Level world) {
-        super(type, world);
+        super(type, world, MobType.UNDEFINED);
         this.xpReward = 0;
-        this.setNoAi(false);
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_AXE));
     }
@@ -45,11 +45,6 @@ public class DaryllEntity extends Monster implements RangedAttackMob {
         builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
         builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
         return builder;
-    }
-
-    @Override
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -72,11 +67,6 @@ public class DaryllEntity extends Monster implements RangedAttackMob {
                 return this.canUse();
             }
         });
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.UNDEFINED;
     }
 
     @Override

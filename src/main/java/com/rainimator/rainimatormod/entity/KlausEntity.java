@@ -5,12 +5,13 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
 import com.rainimator.rainimatormod.util.SoundUtil;
+import com.rainimator.rainimatormod.util.Stage;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
@@ -29,7 +30,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -38,14 +38,14 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class KlausEntity extends Monster {
+public class KlausEntity extends MonsterEntityBase {
+    public static Stage.StagedEntityTextureProvider texture = Stage.ofProvider("klaus");
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS);
 
     public KlausEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -53,9 +53,8 @@ public class KlausEntity extends Monster {
     }
 
     public KlausEntity(EntityType<KlausEntity> type, Level world) {
-        super(type, world);
+        super(type, world, MobType.UNDEFINED);
         this.xpReward = 0;
-        this.setNoAi(false);
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.DEEP_WAR_HAMMER.get()));
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.KING_NORMAL_CROWN.get()));
@@ -74,11 +73,6 @@ public class KlausEntity extends Monster {
     }
 
     @Override
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    @Override
     protected void registerGoals() {
         super.registerGoals();
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
@@ -93,11 +87,6 @@ public class KlausEntity extends Monster {
         this.goalSelector.addGoal(6, new OpenDoorGoal(this, false));
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(8, new FloatGoal(this));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.UNDEFINED;
     }
 
     @Override
@@ -175,7 +164,7 @@ public class KlausEntity extends Monster {
                     this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 2));
                 if (Math.random() < 0.1) {
                     SoundUtil.playSound(this.level, x, y, z, new ResourceLocation("block.anvil.land"), 1, 1);
-                    if ( this.level instanceof ServerLevel _level)
+                    if (this.level instanceof ServerLevel _level)
                         _level.sendParticles(ParticleTypes.END_ROD, x, y, z, 100, 2, 3, 2, 0.002);
                     if (sourceentity instanceof LivingEntity _entity && !_entity.level.isClientSide()) {
                         _entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 1));

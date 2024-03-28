@@ -5,13 +5,14 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
 import com.rainimator.rainimatormod.util.SoundUtil;
+import com.rainimator.rainimatormod.util.Stage;
 import com.rainimator.rainimatormod.util.Timeout;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
@@ -30,7 +31,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -40,14 +40,14 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class Klaus2Entity extends Monster {
+public class Klaus2Entity extends MonsterEntityBase {
+    public static Stage.StagedEntityTextureProvider texture = Stage.ofProvider("klaus_2");
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS);
 
     public Klaus2Entity(PlayMessages.SpawnEntity packet, Level world) {
@@ -55,9 +55,8 @@ public class Klaus2Entity extends Monster {
     }
 
     public Klaus2Entity(EntityType<Klaus2Entity> type, Level world) {
-        super(type, world);
+        super(type, world, MobType.UNDEFINED);
         this.xpReward = 0;
-        this.setNoAi(false);
         this.setPersistenceRequired();
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.SOUL_RAIDING_HAMMER.get()));
         this.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ModItems.KING_NORMAL_CROWN.get()));
@@ -76,11 +75,6 @@ public class Klaus2Entity extends Monster {
     }
 
     @Override
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    @Override
     protected void registerGoals() {
         super.registerGoals();
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
@@ -95,11 +89,6 @@ public class Klaus2Entity extends Monster {
         this.goalSelector.addGoal(6, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(8, new FloatGoal(this));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.UNDEFINED;
     }
 
     @Override

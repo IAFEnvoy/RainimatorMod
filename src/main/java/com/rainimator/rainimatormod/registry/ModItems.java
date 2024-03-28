@@ -166,46 +166,46 @@ public class ModItems {
     public static final RegistryObject<Item> KATANA = REGISTRY.register("katana", () -> new SwordItem(TierBase.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.0F, ModCreativeTab.createProperty()));
     public static final RegistryObject<Item> AMETHYST_WAR_HAMMER = REGISTRY.register("amethyst_war_hammer", () -> new SwordItem(TierBase.of(1500, 0.0F, 9.0F, 0, 25), 3, -2.0F, ModCreativeTab.createProperty()));
     //spawn egg
-    public static final RegistryObject<Item> HEROBRINE_SPAWN_EGG = REGISTRY.register("herobrine_spawn_egg", () -> new SpawnEggBase(Episode.TheStruggle,ModEntities.HEROBRINE, -10092544, -65536, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> CERIS_SPAWN_EGG = REGISTRY.register("ceris_spawn_egg", () -> new SpawnEggBase(Episode.ColdAsIce,ModEntities.CERIS, -10092442, -65281, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> ZOMBIES_SPAWN_EGG = REGISTRY.register("zombies_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.ZOMBIES, -16724941, -16751104, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> NAEUS_SPAWN_EGG = REGISTRY.register("naeus_spawn_egg", () -> new SpawnEggBase(Episode.BeginAgain,ModEntities.NAEUS, -10066330, -3355444, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> RAIN_SPAWN_EGG = REGISTRY.register("rain_spawn_egg", () -> new SpawnEggBase(Episode.TheStruggle,ModEntities.RAIN, -16777063, -13408513, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> ABIGAIL_SPAWN_EGG = REGISTRY.register("abigail_spawn_egg", () -> new SpawnEggBase(Episode.BeginAgain,ModEntities.ABIGAIL, -65332, -39169, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> PATRICK_SPAWN_EGG = REGISTRY.register("patrick_spawn_egg", () -> new SpawnEggBase(Episode.ColdAsIce,ModEntities.PATRICK, -16737895, -13369345, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> BLACKBONE_SPAWN_EGG = REGISTRY.register("blackbone_spawn_egg", () -> new SpawnEggBase(Episode.WeAreTheDanger,ModEntities.BLACKBONE, -16777216, -10066330, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> HOGSWORTH_SPAWN_EGG = REGISTRY.register("hogsworth_spawn_egg", () -> new SpawnEggBase(Episode.HardPillToSwallow,ModEntities.HOGSWORTH, -26215, -13108, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> CIARA_SPAWN_EGG = REGISTRY.register("ciara_spawn_egg", () -> new SpawnEggBase(Episode.Nightmares,ModEntities.CIARA, -52378, -39220, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> HILDA_SPAWN_EGG = REGISTRY.register("hilda_spawn_egg", () -> new SpawnEggBase(Episode.ColdAsIceRemake,ModEntities.HILDA, -256, -3355444, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> SOLDIERS_SPAWN_EGG = REGISTRY.register("soldiers_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.SOLDIERS, -1, -1, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> WITHERED_SKELETONS_SPAWN_EGG = REGISTRY.register("withered_skeletons_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.WITHERED_SKELETONS, -13421773, -10066330, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> DARK_SHIELD_SPAWN_EGG = REGISTRY.register("dark_shield_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.DARK_SHIELD, -6736897, -16777216, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> DARK_ZOMBIE_SPAWN_EGG = REGISTRY.register("dark_zombie_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.DARK_ZOMBIE, -16751104, -13369549, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> VORDUS_SPAWN_EGG = REGISTRY.register("vordus_spawn_egg", () -> new SpawnEggBase(Episode.Goodbye,ModEntities.VORDUS, -13421773, -3355648, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> WITHER_SHIELD_SPAWN_EGG = REGISTRY.register("wither_shield_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.WITHER_SHIELD, -16777216, -1, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> SKELETON_SNOW_SPAWN_EGG = REGISTRY.register("skeleton_snow_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.SKELETON_SNOW, -1, -13369345, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> ZOMBIES_PIGLIN_KING_SPAWN_EGG = REGISTRY.register("zombies_piglin_king_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.ZOMBIE_PIGLIN_KING, -39424, -256, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> PIGLIN_KING_ZOMBIES_SPAWN_EGG = REGISTRY.register("piglin_king_zombies_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.PIGLIN_KING_ZOMBIES, -26368, -52, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> PIGLIN_KING_ZOMBIE_SPAWN_EGG = REGISTRY.register("piglin_king_zombie_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.PIGLIN_KING_ZOMBIE, -256, -13108, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> PIGLIN_COMMANDER_SPAWN_EGG = REGISTRY.register("piglin_commander_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.PIGLIN_COMMANDER, -52, -256, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> NAEUS_KING_SPAWN_EGG = REGISTRY.register("naeus_king_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.NAEUS_KING, -6737152, -65536, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> TUSK_SPAWN_EGG = REGISTRY.register("tusk_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.TUSK, -13159, -13108, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> BROTS_SPAWN_EGG = REGISTRY.register("brots_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.BROTS, -3399168, -9175040, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> ZOMBIE_PIGLIN_ART_SPAWN_EGG = REGISTRY.register("zombie_piglin_art_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.ZOMBIE_PIGLIN_ART, -1343393, -412045, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> MUTATED_SPAWN_EGG = REGISTRY.register("mutated_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.MUTATED, -5134336, -16735132, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> NAMTAR_SPAWN_EGG = REGISTRY.register("namtar_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.NAMTAR, -7274496, -12544, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> AGETHA_SPAWN_EGG = REGISTRY.register("agetha_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.AGETHA, -6710887, -3381760, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> TRICER_SPAWN_EGG = REGISTRY.register("tricer_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.TRICER, -3407872, -16777216, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> BIG_UNDEAD_SKELETON_SPAWN_EGG = REGISTRY.register("big_undead_skeleton_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.BIG_UNDEAD_SKELETON, -10066330, -16777216, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> ARCHER_SPAWN_EGG = REGISTRY.register("archer_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.ARCHER, -6710887, -16750951, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> DARYLL_SPAWN_EGG = REGISTRY.register("daryll_spawn_egg", () -> new SpawnEggBase(Episode.ColdAsIce,ModEntities.DARYLL, -6737152, -1, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> NULL_LIKE_SPAWN_EGG = REGISTRY.register("null_like_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.NULL_LIKE, -1, -16777216, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> GIGABONE_SPAWN_EGG = REGISTRY.register("gigabone_spawn_egg", () -> new SpawnEggBase(Episode.WeAreTheDanger,ModEntities.GIGABONE, -10066330, -3355393, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> KLAUS_SPAWN_EGG = REGISTRY.register("klaus_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.KLAUS, -10066432, -16764109, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> KLAUS_2_SPAWN_EGG = REGISTRY.register("klaus_2_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.KLAUS_2, -6711040, -16751002, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> KRALOS_SPAWN_EGG = REGISTRY.register("kralos_spawn_egg", () -> new SpawnEggBase(Episode.None,ModEntities.KRALOS, -16777165, -6750157, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> ARABELLA_SPAWN_EGG = REGISTRY.register("arabella_spawn_egg", () -> new SpawnEggBase(Episode.ToTheVoid,ModEntities.ARABELLA, -3407668, -13369345, ModCreativeTab.createProperty("mobs")));
-    public static final RegistryObject<Item> AZALEA_SPAWN_EGG = REGISTRY.register("azalea_spawn_egg", () -> new SpawnEggBase(Episode.PreachToTheChoir,ModEntities.AZALEA, -256, -16738048, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> HEROBRINE_SPAWN_EGG = REGISTRY.register("herobrine_spawn_egg", () -> new SpawnEggBase(Episode.TheStruggle, ModEntities.HEROBRINE, -10092544, -65536, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> CERIS_SPAWN_EGG = REGISTRY.register("ceris_spawn_egg", () -> new SpawnEggBase(Episode.ColdAsIce, ModEntities.CERIS, -10092442, -65281, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> ZOMBIES_SPAWN_EGG = REGISTRY.register("zombies_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.ZOMBIES, -16724941, -16751104, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> NAEUS_SPAWN_EGG = REGISTRY.register("naeus_spawn_egg", () -> new SpawnEggBase(Episode.BeginAgain, ModEntities.NAEUS, -10066330, -3355444, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> RAIN_SPAWN_EGG = REGISTRY.register("rain_spawn_egg", () -> new SpawnEggBase(Episode.TheStruggle, ModEntities.RAIN, -16777063, -13408513, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> ABIGAIL_SPAWN_EGG = REGISTRY.register("abigail_spawn_egg", () -> new SpawnEggBase(Episode.BeginAgain, ModEntities.ABIGAIL, -65332, -39169, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> PATRICK_SPAWN_EGG = REGISTRY.register("patrick_spawn_egg", () -> new SpawnEggBase(Episode.ColdAsIce, ModEntities.PATRICK, -16737895, -13369345, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> BLACKBONE_SPAWN_EGG = REGISTRY.register("blackbone_spawn_egg", () -> new SpawnEggBase(Episode.WeAreTheDanger, ModEntities.BLACKBONE, -16777216, -10066330, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> HOGSWORTH_SPAWN_EGG = REGISTRY.register("hogsworth_spawn_egg", () -> new SpawnEggBase(Episode.HardPillToSwallow, ModEntities.HOGSWORTH, -26215, -13108, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> CIARA_SPAWN_EGG = REGISTRY.register("ciara_spawn_egg", () -> new SpawnEggBase(Episode.Nightmares, ModEntities.CIARA, -52378, -39220, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> HILDA_SPAWN_EGG = REGISTRY.register("hilda_spawn_egg", () -> new SpawnEggBase(Episode.ColdAsIceRemake, ModEntities.HILDA, -256, -3355444, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> SOLDIERS_SPAWN_EGG = REGISTRY.register("soldiers_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.SOLDIERS, -1, -1, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> WITHERED_SKELETONS_SPAWN_EGG = REGISTRY.register("withered_skeletons_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.WITHERED_SKELETONS, -13421773, -10066330, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> DARK_SHIELD_SPAWN_EGG = REGISTRY.register("dark_shield_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.DARK_SHIELD, -6736897, -16777216, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> DARK_ZOMBIE_SPAWN_EGG = REGISTRY.register("dark_zombie_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.DARK_ZOMBIE, -16751104, -13369549, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> VORDUS_SPAWN_EGG = REGISTRY.register("vordus_spawn_egg", () -> new SpawnEggBase(Episode.Goodbye, ModEntities.VORDUS, -13421773, -3355648, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> WITHER_SHIELD_SPAWN_EGG = REGISTRY.register("wither_shield_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.WITHER_SHIELD, -16777216, -1, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> SKELETON_SNOW_SPAWN_EGG = REGISTRY.register("skeleton_snow_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.SKELETON_SNOW, -1, -13369345, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> ZOMBIES_PIGLIN_KING_SPAWN_EGG = REGISTRY.register("zombies_piglin_king_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.ZOMBIE_PIGLIN_KING, -39424, -256, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> PIGLIN_KING_ZOMBIES_SPAWN_EGG = REGISTRY.register("piglin_king_zombies_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.PIGLIN_KING_ZOMBIES, -26368, -52, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> PIGLIN_KING_ZOMBIE_SPAWN_EGG = REGISTRY.register("piglin_king_zombie_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.PIGLIN_KING_ZOMBIE, -256, -13108, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> PIGLIN_COMMANDER_SPAWN_EGG = REGISTRY.register("piglin_commander_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.PIGLIN_COMMANDER, -52, -256, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> NAEUS_KING_SPAWN_EGG = REGISTRY.register("naeus_king_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.NAEUS_KING, -6737152, -65536, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> TUSK_SPAWN_EGG = REGISTRY.register("tusk_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.TUSK, -13159, -13108, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> BROTS_SPAWN_EGG = REGISTRY.register("brots_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.BROTS, -3399168, -9175040, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> ZOMBIE_PIGLIN_ART_SPAWN_EGG = REGISTRY.register("zombie_piglin_art_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.ZOMBIE_PIGLIN_ART, -1343393, -412045, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> MUTATED_SPAWN_EGG = REGISTRY.register("mutated_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.MUTATED, -5134336, -16735132, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> NAMTAR_SPAWN_EGG = REGISTRY.register("namtar_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.NAMTAR, -7274496, -12544, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> AGETHA_SPAWN_EGG = REGISTRY.register("agetha_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.AGETHA, -6710887, -3381760, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> TRICER_SPAWN_EGG = REGISTRY.register("tricer_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.TRICER, -3407872, -16777216, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> BIG_UNDEAD_SKELETON_SPAWN_EGG = REGISTRY.register("big_undead_skeleton_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.BIG_UNDEAD_SKELETON, -10066330, -16777216, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> ARCHER_SPAWN_EGG = REGISTRY.register("archer_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.ARCHER, -6710887, -16750951, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> DARYLL_SPAWN_EGG = REGISTRY.register("daryll_spawn_egg", () -> new SpawnEggBase(Episode.ColdAsIce, ModEntities.DARYLL, -6737152, -1, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> NULL_LIKE_SPAWN_EGG = REGISTRY.register("null_like_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.NULL_LIKE, -1, -16777216, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> GIGABONE_SPAWN_EGG = REGISTRY.register("gigabone_spawn_egg", () -> new SpawnEggBase(Episode.WeAreTheDanger, ModEntities.GIGABONE, -10066330, -3355393, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> KLAUS_SPAWN_EGG = REGISTRY.register("klaus_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.KLAUS, -10066432, -16764109, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> KLAUS_2_SPAWN_EGG = REGISTRY.register("klaus_2_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.KLAUS_2, -6711040, -16751002, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> KRALOS_SPAWN_EGG = REGISTRY.register("kralos_spawn_egg", () -> new SpawnEggBase(Episode.None, ModEntities.KRALOS, -16777165, -6750157, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> ARABELLA_SPAWN_EGG = REGISTRY.register("arabella_spawn_egg", () -> new SpawnEggBase(Episode.ToTheVoid, ModEntities.ARABELLA, -3407668, -13369345, ModCreativeTab.createProperty("mobs")));
+    public static final RegistryObject<Item> AZALEA_SPAWN_EGG = REGISTRY.register("azalea_spawn_egg", () -> new SpawnEggBase(Episode.PreachToTheChoir, ModEntities.AZALEA, -256, -16738048, ModCreativeTab.createProperty("mobs")));
     //music
     public static final RegistryObject<Item> HIM_MUSIC = REGISTRY.register("him_music", () -> new MusicItemBase("him_music_boss"));
     public static final RegistryObject<Item> CERIS_MUSIC = REGISTRY.register("ceris_music", () -> new MusicItemBase("ceris_boss_music"));
@@ -217,8 +217,14 @@ public class ModItems {
     public static final RegistryObject<Item> HIM_ONE_LIVES = REGISTRY.register("him_one_lives", () -> new MusicItemBase("him_one_lives"));
     public static final RegistryObject<Item> KRALOS_MUSIC = REGISTRY.register("kralos_music", () -> new MusicItemBase("kralos_boss_music"));
     public static final RegistryObject<Item> KLAUS_MUSIC = REGISTRY.register("klaus_music", () -> new MusicItemBase("klaus_boss_music"));
+    //skull
+    public static final RegistryObject<Item> HEROBRINE_HEAD = skull(ModBlocks.HEROBRINE_HEAD, ModBlocks.HEROBRINE_WALL_HEAD);
 
     private static RegistryObject<Item> block(RegistryObject<Block> block) {
         return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), ModCreativeTab.createProperty("items")));
+    }
+
+    private static RegistryObject<Item> skull(RegistryObject<Block> block1, RegistryObject<Block> block2) {
+        return REGISTRY.register(block1.getId().getPath(), () -> new StandingAndWallBlockItem(block1.get(), block2.get(), ModCreativeTab.createProperty("mobs").rarity(Rarity.UNCOMMON)));
     }
 }

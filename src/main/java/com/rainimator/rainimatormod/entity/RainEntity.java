@@ -5,10 +5,11 @@ import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
 import com.rainimator.rainimatormod.registry.ModParticleTypes;
+import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
 import com.rainimator.rainimatormod.util.SoundUtil;
+import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -22,27 +23,27 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class RainEntity extends Monster implements RangedAttackMob {
+public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
+    public static Stage.StagedEntityTextureProvider texture = Stage.ofProvider("rain");
+
     public RainEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.RAIN.get(), world);
     }
 
     public RainEntity(EntityType<RainEntity> type, Level world) {
-        super(type, world);
+        super(type, world, MobType.UNDEFINED);
         this.xpReward = 0;
         this.setNoAi(false);
         this.setPersistenceRequired();
@@ -60,11 +61,6 @@ public class RainEntity extends Monster implements RangedAttackMob {
         builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 5.0D);
         builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
         return builder;
-    }
-
-    @Override
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -87,11 +83,6 @@ public class RainEntity extends Monster implements RangedAttackMob {
                 return this.canUse();
             }
         });
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.UNDEFINED;
     }
 
     @Override

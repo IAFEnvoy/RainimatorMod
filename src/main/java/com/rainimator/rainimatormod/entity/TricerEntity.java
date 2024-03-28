@@ -1,7 +1,8 @@
 package com.rainimator.rainimatormod.entity;
 
 import com.rainimator.rainimatormod.registry.ModEntities;
-import net.minecraft.network.protocol.Packet;
+import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
+import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
@@ -21,12 +22,12 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
-public class TricerEntity extends Monster {
+public class TricerEntity extends MonsterEntityBase {
+    public static Stage.StagedEntityTextureProvider texture = Stage.ofProvider("tricer");
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.NOTCHED_6);
 
     public TricerEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -34,9 +35,8 @@ public class TricerEntity extends Monster {
     }
 
     public TricerEntity(EntityType<TricerEntity> type, Level world) {
-        super(type, world);
+        super(type, world, MobType.WATER);
         this.xpReward = 100;
-        this.setNoAi(false);
         this.setPersistenceRequired();
     }
 
@@ -50,11 +50,6 @@ public class TricerEntity extends Monster {
         builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 10.0D);
         builder = builder.add(Attributes.ATTACK_KNOCKBACK, 10.0D);
         return builder;
-    }
-
-    @Override
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -75,11 +70,6 @@ public class TricerEntity extends Monster {
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(11, new FloatGoal(this));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.WATER;
     }
 
     @Override

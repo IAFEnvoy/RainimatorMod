@@ -78,9 +78,8 @@ public class DeepslateSapphireOreFeature extends OreFeature {
 
         @Override
         public boolean test(@NotNull BlockState blockAt, @NotNull Random random) {
-            if (this.base_blocks == null) {
+            if (this.base_blocks == null)
                 this.base_blocks = List.of(Blocks.DEEPSLATE, Blocks.CRACKED_DEEPSLATE_TILES, Blocks.POLISHED_DEEPSLATE, Blocks.COBBLED_DEEPSLATE);
-            }
             return this.base_blocks.contains(blockAt.getBlock());
         }
 

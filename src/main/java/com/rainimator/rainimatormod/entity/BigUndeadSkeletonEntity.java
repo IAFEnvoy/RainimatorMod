@@ -1,7 +1,8 @@
 package com.rainimator.rainimatormod.entity;
 
 import com.rainimator.rainimatormod.registry.ModEntities;
-import net.minecraft.network.protocol.Packet;
+import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
+import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -16,26 +17,25 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class BiGunDeadSkeletonEntity extends Monster {
-    public BiGunDeadSkeletonEntity(PlayMessages.SpawnEntity packet, Level world) {
+public class BigUndeadSkeletonEntity extends MonsterEntityBase {
+    public static Stage.StagedEntityTextureProvider texture = Stage.ofProvider("big_blackbone");
+
+    public BigUndeadSkeletonEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.BIG_UNDEAD_SKELETON.get(), world);
     }
 
-    public BiGunDeadSkeletonEntity(EntityType<BiGunDeadSkeletonEntity> type, Level world) {
-        super(type, world);
+    public BigUndeadSkeletonEntity(EntityType<BigUndeadSkeletonEntity> type, Level world) {
+        super(type, world, MobType.UNDEAD);
         this.xpReward = 200;
-        this.setNoAi(false);
         this.setPersistenceRequired();
     }
 
@@ -52,11 +52,6 @@ public class BiGunDeadSkeletonEntity extends Monster {
     }
 
     @Override
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    @Override
     protected void registerGoals() {
         super.registerGoals();
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
@@ -69,11 +64,6 @@ public class BiGunDeadSkeletonEntity extends Monster {
         this.targetSelector.addGoal(4, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(6, new FloatGoal(this));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.UNDEAD;
     }
 
     @Override

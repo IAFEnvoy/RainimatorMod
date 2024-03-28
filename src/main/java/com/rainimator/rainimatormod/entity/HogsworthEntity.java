@@ -2,7 +2,8 @@ package com.rainimator.rainimatormod.entity;
 
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
-import net.minecraft.network.protocol.Packet;
+import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
+import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
@@ -15,25 +16,24 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
-public class HogsworthEntity extends Monster {
+public class HogsworthEntity extends MonsterEntityBase {
+    public static Stage.StagedEntityTextureProvider texture = Stage.ofProvider("hogsworth");
+
     public HogsworthEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.HOGSWORTH.get(), world);
     }
 
     public HogsworthEntity(EntityType<HogsworthEntity> type, Level world) {
-        super(type, world);
+        super(type, world, MobType.UNDEAD);
         this.xpReward = 0;
-        this.setNoAi(false);
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.NETHERITE_SWORD));
         this.setItemSlot(EquipmentSlot.OFFHAND, new ItemStack(ModItems.SHIELD_EVER.get()));
     }
@@ -51,11 +51,6 @@ public class HogsworthEntity extends Monster {
     }
 
     @Override
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    @Override
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2D, false) {
@@ -68,11 +63,6 @@ public class HogsworthEntity extends Monster {
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(6, new FloatGoal(this));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.UNDEAD;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.rainimator.rainimatormod.gui;
 
-import com.rainimator.rainimatormod.RainimatorMod;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = RainimatorMod.MOD_ID, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(value = Dist.CLIENT)
 public class TitleScreenHandler {
     private static boolean hasLoaded = false;
 

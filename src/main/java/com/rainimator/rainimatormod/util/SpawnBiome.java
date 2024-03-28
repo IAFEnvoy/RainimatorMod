@@ -68,4 +68,10 @@ public class SpawnBiome {
             new ResourceLocation("snowy_slopes"),
             new ResourceLocation("snowy_taiga"),
             new ResourceLocation("snowy_beach"));
+    public static final Set<ResourceLocation> END_SPAWN_BIOMES = Set.of(
+            new ResourceLocation("small_end_islands"),
+            new ResourceLocation("end_midlands"),
+            new ResourceLocation("the_end"),
+            new ResourceLocation("end_highlands"),
+            new ResourceLocation("end_barrens"));
 }

@@ -2,7 +2,8 @@ package com.rainimator.rainimatormod.entity;
 
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
-import net.minecraft.network.protocol.Packet;
+import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
+import com.rainimator.rainimatormod.util.Stage;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -13,28 +14,27 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class AbigailEntity extends Monster implements RangedAttackMob {
+public class AbigailEntity extends MonsterEntityBase implements RangedAttackMob {
+    public static Stage.StagedEntityTextureProvider texture = Stage.ofProvider("abigail");
+
     public AbigailEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.ABIGAIL.get(), world);
     }
 
     public AbigailEntity(EntityType<AbigailEntity> type, Level world) {
-        super(type, world);
+        super(type, world, MobType.UNDEFINED);
         this.xpReward = 0;
-        this.setNoAi(false);
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.ABIGAIL_SPEAR.get()));
     }
 
@@ -48,11 +48,6 @@ public class AbigailEntity extends Monster implements RangedAttackMob {
         builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
         builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0D);
         return builder;
-    }
-
-    @Override
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -75,11 +70,6 @@ public class AbigailEntity extends Monster implements RangedAttackMob {
                 return this.canUse();
             }
         });
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.UNDEFINED;
     }
 
     @Override

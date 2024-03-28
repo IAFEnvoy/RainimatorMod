@@ -78,9 +78,8 @@ public class MysticoreFeature extends OreFeature {
 
         @Override
         public boolean test(@NotNull BlockState blockAt, @NotNull Random random) {
-            if (this.base_blocks == null) {
+            if (this.base_blocks == null)
                 this.base_blocks = List.of(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE, Blocks.POLISHED_DEEPSLATE, Blocks.GRANITE, Blocks.CALCITE, Blocks.GRAVEL, Blocks.DIORITE, Blocks.STONE);
-            }
             return this.base_blocks.contains(blockAt.getBlock());
         }
 

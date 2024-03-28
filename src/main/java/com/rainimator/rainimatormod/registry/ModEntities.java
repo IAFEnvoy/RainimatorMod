@@ -2,10 +2,18 @@ package com.rainimator.rainimatormod.registry;
 
 import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.entity.*;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
+import com.rainimator.rainimatormod.util.SpawnBiome;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -13,75 +21,11 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.Objects;
+
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntities {
     public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.ENTITIES, RainimatorMod.MOD_ID);
-
-    private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryName, EntityType.Builder<T> entityTypeBuilder) {
-        return REGISTRY.register(registryName, () -> entityTypeBuilder.build(registryName));
-    }
-
-    @SubscribeEvent
-    public static void init(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            ZombiesEntity.init();
-            SoldiersEntity.init();
-            HildaEntity.init();
-            WitheredSkeletonsEntity.init();
-            DarkZombieEntity.init();
-            DarkShieldEntity.init();
-            WitherShieldEntity.init();
-            SkeletonSnowEntity.init();
-            TuskEntity.init();
-            BrotsEntity.init();
-            AgethaEntity.init();
-            ArcherEntity.init();
-        });
-    }
-
-    @SubscribeEvent
-    public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(HEROBRINE.get(), HerobrineEntity.createAttributes().build());
-        event.put(CERIS.get(), CerisEntity.createAttributes().build());
-        event.put(ZOMBIES.get(), ZombiesEntity.createAttributes().build());
-        event.put(NAEUS.get(), NaeusEntity.createAttributes().build());
-        event.put(RAIN.get(), RainEntity.createAttributes().build());
-        event.put(ABIGAIL.get(), AbigailEntity.createAttributes().build());
-        event.put(PATRICK.get(), PatrickEntity.createAttributes().build());
-        event.put(BLACKBONE.get(), BlackBoneEntity.createAttributes().build());
-        event.put(HOGSWORTH.get(), HogsworthEntity.createAttributes().build());
-        event.put(SOLDIERS.get(), SoldiersEntity.createAttributes().build());
-        event.put(CIARA.get(), CiaraEntity.createAttributes().build());
-        event.put(HILDA.get(), HildaEntity.createAttributes().build());
-        event.put(WITHERED_SKELETONS.get(), WitheredSkeletonsEntity.createAttributes().build());
-        event.put(VORDUS.get(), VordusEntity.createAttributes().build());
-        event.put(DARK_ZOMBIE.get(), DarkZombieEntity.createAttributes().build());
-        event.put(DARK_SHIELD.get(), DarkShieldEntity.createAttributes().build());
-        event.put(WITHER_SHIELD.get(), WitherShieldEntity.createAttributes().build());
-        event.put(SKELETON_SNOW.get(), SkeletonSnowEntity.createAttributes().build());
-        event.put(ARABELLA.get(), ArabellaEntity.createAttributes().build());
-        event.put(AZALEA.get(), AzaleaEntity.createAttributes().build());
-        event.put(NULL_LIKE.get(), NullLikeEntity.createAttributes().build());
-        event.put(ZOMBIE_PIGLIN_KING.get(), ZombiesPiglinKingEntity.createAttributes().build());
-        event.put(PIGLIN_KING_ZOMBIES.get(), PiglinKingZombiesEntity.createAttributes().build());
-        event.put(PIGLIN_KING_ZOMBIE.get(), PiglinKingZombieEntity.createAttributes().build());
-        event.put(PIGLIN_COMMANDER.get(), PiglinCommanderEntity.createAttributes().build());
-        event.put(DARYLL.get(), DaryllEntity.createAttributes().build());
-        event.put(NAEUS_KING.get(), NaeusKingEntity.createAttributes().build());
-        event.put(TUSK.get(), TuskEntity.createAttributes().build());
-        event.put(BROTS.get(), BrotsEntity.createAttributes().build());
-        event.put(ZOMBIE_PIGLIN_ART.get(), ZombiePiglinArtEntity.createAttributes().build());
-        event.put(MUTATED.get(), MutatedEntity.createAttributes().build());
-        event.put(NAMTAR.get(), NamtarEntity.createAttributes().build());
-        event.put(AGETHA.get(), AgethaEntity.createAttributes().build());
-        event.put(TRICER.get(), TricerEntity.createAttributes().build());
-        event.put(BIG_UNDEAD_SKELETON.get(), BiGunDeadSkeletonEntity.createAttributes().build());
-        event.put(ARCHER.get(), ArcherEntity.createAttributes().build());
-        event.put(GIGABONE.get(), GigaBoneEntity.createAttributes().build());
-        event.put(KLAUS.get(), KlausEntity.createAttributes().build());
-        event.put(KLAUS_2.get(), Klaus2Entity.createAttributes().build());
-        event.put(KRALOS.get(), KralosEntity.createAttributes().build());
-    }
 
     public static final RegistryObject<EntityType<HerobrineEntity>> HEROBRINE = register("herobrine", EntityType.Builder.<HerobrineEntity>of(HerobrineEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HerobrineEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<CerisEntity>> CERIS = register("ceris", EntityType.Builder.<CerisEntity>of(CerisEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CerisEntity::new).fireImmune().sized(0.6F, 1.8F));
@@ -125,12 +69,123 @@ public class ModEntities {
     public static final RegistryObject<EntityType<NamtarEntity>> NAMTAR = register("namtar", EntityType.Builder.<NamtarEntity>of(NamtarEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NamtarEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<AgethaEntity>> AGETHA = register("agetha", EntityType.Builder.<AgethaEntity>of(AgethaEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(AgethaEntity::new).sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<TricerEntity>> TRICER = register("tricer", EntityType.Builder.<TricerEntity>of(TricerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(TricerEntity::new).fireImmune().sized(0.6F, 1.8F));
-    public static final RegistryObject<EntityType<BiGunDeadSkeletonEntity>> BIG_UNDEAD_SKELETON = register("big_undead_skeleton", EntityType.Builder.<BiGunDeadSkeletonEntity>of(BiGunDeadSkeletonEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BiGunDeadSkeletonEntity::new).fireImmune().sized(0.6F, 1.8F));
+    public static final RegistryObject<EntityType<BigUndeadSkeletonEntity>> BIG_UNDEAD_SKELETON = register("big_undead_skeleton", EntityType.Builder.<BigUndeadSkeletonEntity>of(BigUndeadSkeletonEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BigUndeadSkeletonEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<ArcherEntity>> ARCHER = register("archer", EntityType.Builder.<ArcherEntity>of(ArcherEntity::new, MobCategory.UNDERGROUND_WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ArcherEntity::new).sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<GigaBoneEntity>> GIGABONE = register("gigabone", EntityType.Builder.<GigaBoneEntity>of(GigaBoneEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(GigaBoneEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<KlausEntity>> KLAUS = register("klaus", EntityType.Builder.<KlausEntity>of(KlausEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(KlausEntity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<Klaus2Entity>> KLAUS_2 = register("klaus_2", EntityType.Builder.<Klaus2Entity>of(Klaus2Entity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(Klaus2Entity::new).fireImmune().sized(0.6F, 1.8F));
     public static final RegistryObject<EntityType<KralosEntity>> KRALOS = register("kralos", EntityType.Builder.<KralosEntity>of(KralosEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(KralosEntity::new).fireImmune().sized(0.6F, 1.8F));
 
+    private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryName, EntityType.Builder<T> entityTypeBuilder) {
+        return REGISTRY.register(registryName, () -> entityTypeBuilder.build(registryName));
+    }
 
+    @SubscribeEvent
+    public static void init(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            SpawnPlacements.register(ZOMBIES.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+            DungeonHooks.addDungeonMob(ZOMBIES.get(), 180);
+            SpawnPlacements.register(SOLDIERS.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getFluidState(pos.below()).is(FluidTags.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER) && pos.getY() >= world.getSeaLevel() - 13 && pos.getY() <= world.getSeaLevel()));
+            SpawnPlacements.register(HILDA.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getFluidState(pos.below()).is(FluidTags.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER) && pos.getY() >= world.getSeaLevel() - 13 && pos.getY() <= world.getSeaLevel()));
+            SpawnPlacements.register(WITHERED_SKELETONS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+            SpawnPlacements.register(DARK_ZOMBIE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+            SpawnPlacements.register(DARK_SHIELD.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+            DungeonHooks.addDungeonMob(DARK_SHIELD.get(), 180);
+            SpawnPlacements.register(WITHER_SHIELD.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+            DungeonHooks.addDungeonMob(WITHER_SHIELD.get(), 180);
+            SpawnPlacements.register(SKELETON_SNOW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+            SpawnPlacements.register(TUSK.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+            DungeonHooks.addDungeonMob(TUSK.get(), 180);
+            SpawnPlacements.register(BROTS.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+            SpawnPlacements.register(AGETHA.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getFluidState(pos.below()).is(FluidTags.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER) && pos.getY() >= world.getSeaLevel() - 13 && pos.getY() <= world.getSeaLevel()));
+            SpawnPlacements.register(ARCHER.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+                    (world.getFluidState(pos.below()).is(FluidTags.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER) && pos.getY() >= world.getSeaLevel() - 13 && pos.getY() <= world.getSeaLevel()));
+        });
+    }
+
+    @SubscribeEvent
+    public static void registerAttributes(EntityAttributeCreationEvent event) {
+        event.put(HEROBRINE.get(), HerobrineEntity.createAttributes().build());
+        event.put(CERIS.get(), CerisEntity.createAttributes().build());
+        event.put(ZOMBIES.get(), ZombiesEntity.createAttributes().build());
+        event.put(NAEUS.get(), NaeusEntity.createAttributes().build());
+        event.put(RAIN.get(), RainEntity.createAttributes().build());
+        event.put(ABIGAIL.get(), AbigailEntity.createAttributes().build());
+        event.put(PATRICK.get(), PatrickEntity.createAttributes().build());
+        event.put(BLACKBONE.get(), BlackBoneEntity.createAttributes().build());
+        event.put(HOGSWORTH.get(), HogsworthEntity.createAttributes().build());
+        event.put(SOLDIERS.get(), SoldiersEntity.createAttributes().build());
+        event.put(CIARA.get(), CiaraEntity.createAttributes().build());
+        event.put(HILDA.get(), HildaEntity.createAttributes().build());
+        event.put(WITHERED_SKELETONS.get(), WitheredSkeletonsEntity.createAttributes().build());
+        event.put(VORDUS.get(), VordusEntity.createAttributes().build());
+        event.put(DARK_ZOMBIE.get(), DarkZombieEntity.createAttributes().build());
+        event.put(DARK_SHIELD.get(), DarkShieldEntity.createAttributes().build());
+        event.put(WITHER_SHIELD.get(), WitherShieldEntity.createAttributes().build());
+        event.put(SKELETON_SNOW.get(), SkeletonSnowEntity.createAttributes().build());
+        event.put(ARABELLA.get(), ArabellaEntity.createAttributes().build());
+        event.put(AZALEA.get(), AzaleaEntity.createAttributes().build());
+        event.put(NULL_LIKE.get(), NullLikeEntity.createAttributes().build());
+        event.put(ZOMBIE_PIGLIN_KING.get(), ZombiesPiglinKingEntity.createAttributes().build());
+        event.put(PIGLIN_KING_ZOMBIES.get(), PiglinKingZombiesEntity.createAttributes().build());
+        event.put(PIGLIN_KING_ZOMBIE.get(), PiglinKingZombieEntity.createAttributes().build());
+        event.put(PIGLIN_COMMANDER.get(), PiglinCommanderEntity.createAttributes().build());
+        event.put(DARYLL.get(), DaryllEntity.createAttributes().build());
+        event.put(NAEUS_KING.get(), NaeusKingEntity.createAttributes().build());
+        event.put(TUSK.get(), TuskEntity.createAttributes().build());
+        event.put(BROTS.get(), BrotsEntity.createAttributes().build());
+        event.put(ZOMBIE_PIGLIN_ART.get(), ZombiePiglinArtEntity.createAttributes().build());
+        event.put(MUTATED.get(), MutatedEntity.createAttributes().build());
+        event.put(NAMTAR.get(), NamtarEntity.createAttributes().build());
+        event.put(AGETHA.get(), AgethaEntity.createAttributes().build());
+        event.put(TRICER.get(), TricerEntity.createAttributes().build());
+        event.put(BIG_UNDEAD_SKELETON.get(), BigUndeadSkeletonEntity.createAttributes().build());
+        event.put(ARCHER.get(), ArcherEntity.createAttributes().build());
+        event.put(GIGABONE.get(), GigaBoneEntity.createAttributes().build());
+        event.put(KLAUS.get(), KlausEntity.createAttributes().build());
+        event.put(KLAUS_2.get(), Klaus2Entity.createAttributes().build());
+        event.put(KRALOS.get(), KralosEntity.createAttributes().build());
+    }
+
+    @Mod.EventBusSubscriber
+    public static class ForgeEvents {
+        @SubscribeEvent
+        public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
+            if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+                event.getSpawns().getSpawner(MobCategory.UNDERGROUND_WATER_CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.AGETHA.get(), 10, 1, 1));
+            if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+                event.getSpawns().getSpawner(MobCategory.UNDERGROUND_WATER_CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.ARCHER.get(), 10, 1, 1));
+            if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+                event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.BROTS.get(), 5, 1, 1));
+            if (SpawnBiome.END_SPAWN_BIOMES.contains(event.getName()))
+                event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.DARK_SHIELD.get(), 1, 1, 1));
+            if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+                event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.DARK_ZOMBIE.get(), 10, 1, 1));
+            if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+                event.getSpawns().getSpawner(MobCategory.UNDERGROUND_WATER_CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.HILDA.get(), 10, 1, 1));
+            if (SpawnBiome.SNOW_SPAWN_BIOMES.contains(event.getName()))
+                event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.SKELETON_SNOW.get(), 10, 1, 1));
+            if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+                event.getSpawns().getSpawner(MobCategory.UNDERGROUND_WATER_CREATURE).add(new MobSpawnSettings.SpawnerData(ModEntities.SOLDIERS.get(), 10, 1, 1));
+            if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+                event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.TUSK.get(), 5, 1, 1));
+            if (Objects.equals(new ResourceLocation("nether_wastes"), event.getName()))
+                event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.WITHERED_SKELETONS.get(), 19, 2, 2));
+            if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+                event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.WITHER_SHIELD.get(), 3, 1, 1));
+            if (SpawnBiome.SPAWN_BIOMES.contains(event.getName()))
+                event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.ZOMBIES.get(), 10, 1, 1));
+        }
+    }
 }

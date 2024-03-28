@@ -4,6 +4,7 @@ import com.rainimator.rainimatormod.RainimatorMod;
 import com.rainimator.rainimatormod.registry.ModEffects;
 import com.rainimator.rainimatormod.registry.ModEntities;
 import com.rainimator.rainimatormod.registry.ModItems;
+import com.rainimator.rainimatormod.registry.util.MonsterEntityBase;
 import com.rainimator.rainimatormod.util.SoundUtil;
 import com.rainimator.rainimatormod.util.Stage;
 import com.rainimator.rainimatormod.util.Timeout;
@@ -14,7 +15,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
@@ -37,7 +37,6 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -47,7 +46,6 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -57,7 +55,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-public class HerobrineEntity extends Monster implements Stage.StagedEntity {
+public class HerobrineEntity extends MonsterEntityBase implements Stage.StagedEntity {
+    public static Stage.StagedEntityTextureProvider texture = Stage.ofProvider("him_1", "him_2").setEyeTextureId("him_eye");
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS);
     private final Stage stage;
     private boolean hasSpawnBlackBone = false;
@@ -71,10 +70,9 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
     }
 
     public HerobrineEntity(EntityType<HerobrineEntity> type, Level world, Stage stage) {
-        super(type, world);
+        super(type, world, MobType.UNDEAD);
         this.stage = stage;
         this.xpReward = 0;
-        this.setNoAi(false);
         this.setPersistenceRequired();
         switch (stage) {
             case First -> {
@@ -101,11 +99,6 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
     }
 
     @Override
-    public @NotNull Packet<?> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    @Override
     protected void registerGoals() {
         super.registerGoals();
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
@@ -118,11 +111,6 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
         this.goalSelector.addGoal(4, new RandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(6, new FloatGoal(this));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.UNDEAD;
     }
 
     @Override
@@ -233,11 +221,11 @@ public class HerobrineEntity extends Monster implements Stage.StagedEntity {
             world.getServer().getPlayerList().broadcastMessage(new TranslatableComponent("entity.rainimator.herobrine.stage1"), ChatType.SYSTEM, Util.NIL_UUID);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             if (!this.level.isClientSide() && this.getServer() != null)
-                this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");
+                SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_music_boss"), 1, 1);
             Runnable callback = () -> {
                 if (this.isAlive())
                     if (!this.level.isClientSide() && this.getServer() != null)
-                        this.getServer().getCommands().performCommand(this.createCommandSourceStack().withSuppressedOutput().withPermission(4), "playsound rainimator:him_music_boss neutral @a ~ ~ ~");
+                        SoundUtil.playSound(this.level, this.getX(), this.getY(), this.getZ(), new ResourceLocation(RainimatorMod.MOD_ID, "him_music_boss"), 1, 1);
             };
             Timeout.create(5720, callback);
             Timeout.create(11440, callback);
