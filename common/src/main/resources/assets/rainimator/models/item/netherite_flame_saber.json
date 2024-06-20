@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rainimator:item/netherite_flame_saber"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "121",
+    "343"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:ender_stone"
+    },
+    "1": {
+      "item": "rainimator:super_sugilite"
+    },
+    "2": {
+      "item": "rainimator:ender_heart"
+    },
+    "3": {
+      "item": "rainimator:blue_diamond"
+    },
+    "4": {
+      "item": "rainimator:gemstone_mixture"
+    }
+  },
+  "result": {
+    "item": "rainimator:ender_big_sword",
+    "count": 1
+  }
+}

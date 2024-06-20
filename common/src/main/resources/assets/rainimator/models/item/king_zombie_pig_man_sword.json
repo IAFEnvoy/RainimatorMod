@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/king_zombie_pig_man_sword",
+  "textures": {
+    "0": "rainimator:item/king_zombie_pig_man_sword",
+    "particle": "rainimator:item/king_zombie_pig_man_sword"
+  }
+}

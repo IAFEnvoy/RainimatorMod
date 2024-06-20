@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rainimator:blue_diamond_block"
+    }
+  ],
+  "result": {
+    "item": "rainimator:blue_diamond",
+    "count": 9
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "232",
+    " 4 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:ruby_block"
+    },
+    "1": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "2": {
+      "item": "rainimator:sapphire_block"
+    },
+    "3": {
+      "item": "rainimator:netherite_nuclear_reactor"
+    },
+    "4": {
+      "item": "rainimator:netherite_wither_bone"
+    }
+  },
+  "result": {
+    "item": "rainimator:mace",
+    "count": 1
+  }
+}

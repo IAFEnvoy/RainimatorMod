@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/herobrine_tomahawk",
+  "textures": {
+    "texture": "rainimator:item/herobrine_tomahawk_1",
+    "particle": "rainimator:item/herobrine_tomahawk_2"
+  }
+}

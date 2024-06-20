@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/ender_curved_sword",
+  "textures": {
+    "0": "rainimator:item/ender_curved_sword",
+    "particle": "rainimator:item/ender_curved_sword"
+  }
+}

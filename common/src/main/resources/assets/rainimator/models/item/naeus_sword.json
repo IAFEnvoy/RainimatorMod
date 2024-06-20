@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/naeus_sword",
+  "textures": {
+    "texture": "rainimator:item/naeus_sword",
+    "particle": "rainimator:item/naeus_sword"
+  }
+}

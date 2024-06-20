@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/blade_of_the_whirlwind",
+  "textures": {
+    "0": "rainimator:item/blade_of_the_whirlwind",
+    "particle": "rainimator:item/blade_of_the_whirlwind"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/golden_plundering_axe",
+  "textures": {
+    "0": "rainimator:item/golden_plundering_axe",
+    "particle": "rainimator:item/golden_plundering_axe"
+  }
+}

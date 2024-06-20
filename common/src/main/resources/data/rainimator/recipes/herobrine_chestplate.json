@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 0",
+    "121",
+    "343"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:ruby"
+    },
+    "1": {
+      "item": "minecraft:obsidian"
+    },
+    "2": {
+      "item": "rainimator:warrior_heart"
+    },
+    "3": {
+      "item": "rainimator:super_ruby"
+    },
+    "4": {
+      "item": "minecraft:crying_obsidian"
+    }
+  },
+  "result": {
+    "item": "rainimator:herobrine_chestplate",
+    "count": 1
+  }
+}

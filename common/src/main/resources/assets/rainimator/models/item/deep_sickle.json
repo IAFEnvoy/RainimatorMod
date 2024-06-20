@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/deep_sickle",
+  "textures": {
+    "0": "rainimator:item/deep_sickle",
+    "particle": "rainimator:item/deep_sickle"
+  }
+}

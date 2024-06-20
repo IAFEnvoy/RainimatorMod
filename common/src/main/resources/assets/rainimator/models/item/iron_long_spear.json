@@ -1,0 +1,8 @@
+{
+  "parent": "rainimator:custom/iron_long_spear",
+  "textures": {
+    "0": "rainimator:block/oak_planks",
+    "1": "rainimator:item/iron_long_spear",
+    "particle": "rainimator:item/iron_long_spear"
+  }
+}

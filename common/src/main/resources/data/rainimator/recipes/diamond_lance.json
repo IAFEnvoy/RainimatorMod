@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 00",
+    " 10",
+    "2  "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:blue_diamond"
+    },
+    "1": {
+      "item": "rainimator:gemstone_mixture"
+    },
+    "2": {
+      "item": "rainimator:netherite_wither_bone"
+    }
+  },
+  "result": {
+    "item": "rainimator:diamond_lance",
+    "count": 1
+  }
+}

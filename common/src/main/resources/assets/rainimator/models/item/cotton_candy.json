@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/cotton_candy",
+  "textures": {
+    "0": "rainimator:item/oak_planks_candy",
+    "particle": "rainimator:item/candy"
+  }
+}

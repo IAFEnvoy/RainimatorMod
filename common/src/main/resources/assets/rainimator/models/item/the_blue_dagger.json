@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/the_blue_dagger",
+  "textures": {
+    "0": "rainimator:item/the_blue_dagger",
+    "particle": "rainimator:item/the_blue_dagger"
+  }
+}

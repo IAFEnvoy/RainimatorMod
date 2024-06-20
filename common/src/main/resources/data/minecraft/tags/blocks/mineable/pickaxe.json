@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "rainimator:ruby_ore",
+    "rainimator:sapphire_ore",
+    "rainimator:sugilite_ore",
+    "rainimator:topaz_ore",
+    "rainimator:deepslate_sapphire_ore",
+    "rainimator:deepslate_ruby_ore",
+    "rainimator:dark_obsidian_block",
+    "rainimator:mystic_ore",
+    "rainimator:ruby_block",
+    "rainimator:sapphire_block",
+    "rainimator:sugilite_block",
+    "rainimator:topaz_block",
+    "rainimator:blue_diamond_block"
+  ]
+}

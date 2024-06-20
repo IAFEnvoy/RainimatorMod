@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rainimator:sugilite_block"
+    }
+  ],
+  "result": {
+    "item": "rainimator:sugilite",
+    "count": 9
+  }
+}

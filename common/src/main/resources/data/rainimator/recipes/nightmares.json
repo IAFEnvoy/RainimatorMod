@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 0",
+    " 1 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_ruby"
+    },
+    "1": {
+      "item": "rainimator:zombie_heart"
+    }
+  },
+  "result": {
+    "item": "rainimator:nightmares",
+    "count": 1
+  }
+}

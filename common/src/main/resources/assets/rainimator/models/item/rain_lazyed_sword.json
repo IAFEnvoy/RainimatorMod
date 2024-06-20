@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/rain_lazyed_sword",
+  "textures": {
+    "0": "rainimator:item/rain_lazyed_sword",
+    "particle": "rainimator:item/rain_lazyed_sword"
+  }
+}

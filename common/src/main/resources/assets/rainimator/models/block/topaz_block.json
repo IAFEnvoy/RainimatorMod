@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "rainimator:block/topaz_block",
+    "particle": "rainimator:block/topaz_block"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "rainimator:custom/abigail_spear",
+  "textures": {
+    "unwrap1": "rainimator:item/abigail_spear_unwrap1",
+    "unwrap2": "rainimator:item/abigail_spear_unwrap2",
+    "particle": "rainimator:item/abigail_spear_unwrap1"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 0 ",
+    "121",
+    "34 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "1": {
+      "item": "rainimator:ruby"
+    },
+    "2": {
+      "item": "rainimator:warrior_heart"
+    },
+    "3": {
+      "item": "minecraft:blaze_rod"
+    },
+    "4": {
+      "item": "rainimator:gemstone_mixture"
+    }
+  },
+  "result": {
+    "item": "rainimator:netherite_flame_saber",
+    "count": 1
+  }
+}

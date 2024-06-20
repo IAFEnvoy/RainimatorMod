@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rainimator:ruby"
+    },
+    {
+      "item": "rainimator:ruby"
+    },
+    {
+      "item": "rainimator:ruby"
+    },
+    {
+      "item": "rainimator:ruby"
+    },
+    {
+      "item": "rainimator:ruby"
+    },
+    {
+      "item": "rainimator:ruby"
+    },
+    {
+      "item": "rainimator:ruby"
+    },
+    {
+      "item": "rainimator:ruby"
+    },
+    {
+      "item": "rainimator:ruby"
+    }
+  ],
+  "result": {
+    "item": "rainimator:ruby_block",
+    "count": 1
+  }
+}

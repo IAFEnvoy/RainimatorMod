@@ -1,0 +1,10 @@
+{
+  "parent": "rainimator:custom/rain_sword",
+  "textures": {
+    "icepuffs2": "rainimator:item/rain_sword_2",
+    "texture": "rainimator:item/rain_sword_unwrap1",
+    "particle": "rainimator:item/rain_sword",
+    "icepuffs3": "rainimator:item/rain_sword_3",
+    "icepuffs": "rainimator:item/rain_sword_1"
+  }
+}

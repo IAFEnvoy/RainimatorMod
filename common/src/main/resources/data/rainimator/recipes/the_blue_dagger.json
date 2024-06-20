@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "00",
+    "10"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:sapphire"
+    },
+    "1": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "rainimator:the_blue_dagger",
+    "count": 1
+  }
+}

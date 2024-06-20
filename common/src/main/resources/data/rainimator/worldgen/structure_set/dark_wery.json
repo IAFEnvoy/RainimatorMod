@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "rainimator:dark_wery",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 100,
+    "separation": 50,
+    "salt": 68184616
+  }
+}

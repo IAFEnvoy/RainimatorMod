@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rainimator:topaz"
+    },
+    {
+      "item": "rainimator:topaz"
+    },
+    {
+      "item": "rainimator:topaz"
+    },
+    {
+      "item": "rainimator:topaz"
+    },
+    {
+      "item": "rainimator:topaz"
+    },
+    {
+      "item": "rainimator:topaz"
+    },
+    {
+      "item": "rainimator:topaz"
+    },
+    {
+      "item": "rainimator:topaz"
+    },
+    {
+      "item": "rainimator:topaz"
+    }
+  ],
+  "result": {
+    "item": "rainimator:topaz_block",
+    "count": 1
+  }
+}

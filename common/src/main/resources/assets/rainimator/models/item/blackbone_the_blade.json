@@ -1,0 +1,8 @@
+{
+  "parent": "rainimator:custom/blackbone_the_blade",
+  "textures": {
+    "texture": "rainimator:item/blackbone_the_blade_2",
+    "zweianimation": "rainimator:item/zweianimation",
+    "particle": "rainimator:item/blackbone_the_blade_1"
+  }
+}

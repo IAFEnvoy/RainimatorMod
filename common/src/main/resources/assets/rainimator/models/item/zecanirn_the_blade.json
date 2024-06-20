@@ -1,0 +1,9 @@
+{
+  "parent": "rainimator:custom/zecanirn_the_blade",
+  "textures": {
+    "ani1": "rainimator:item/zecanirn_the_blade_ani1",
+    "unwrap1": "rainimator:item/zecanirn_the_blade_1",
+    "unwrap2": "rainimator:item/zecanirn_the_blade_2",
+    "particle": "rainimator:item/zecanirn_the_blade_1"
+  }
+}

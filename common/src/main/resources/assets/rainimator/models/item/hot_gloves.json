@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/hot_gloves",
+  "textures": {
+    "0": "rainimator:item/hot_gloves",
+    "particle": "rainimator:item/hot_gloves"
+  }
+}

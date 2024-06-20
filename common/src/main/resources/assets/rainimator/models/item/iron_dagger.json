@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/iron_dagger",
+  "textures": {
+    "texture": "rainimator:item/iron_dagger",
+    "particle": "rainimator:item/iron_dagger"
+  }
+}

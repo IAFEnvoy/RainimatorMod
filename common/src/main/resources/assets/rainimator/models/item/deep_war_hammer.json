@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/deepslate_war_hammer",
+  "textures": {
+    "1": "rainimator:item/deepslate_war_hammer",
+    "particle": "rainimator:item/deepslate_war_hammer"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 0",
+    "121",
+    " 3 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:blue_diamond"
+    },
+    "1": {
+      "item": "rainimator:super_sapphire"
+    },
+    "2": {
+      "item": "rainimator:nightmares"
+    },
+    "3": {
+      "item": "rainimator:netherite_wither_bone"
+    }
+  },
+  "result": {
+    "item": "rainimator:herobrine_tomahawk",
+    "count": 1
+  }
+}

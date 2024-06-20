@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/soldiers_war_hammer",
+  "textures": {
+    "texture": "rainimator:item/soldiers_war_hammer",
+    "particle": "rainimator:item/soldiers_war_hammer"
+  }
+}

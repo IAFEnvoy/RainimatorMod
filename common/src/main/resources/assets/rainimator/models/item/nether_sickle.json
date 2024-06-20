@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/nether_sickle",
+  "textures": {
+    "0": "rainimator:item/nether_sickle",
+    "particle": "rainimator:item/nether_sickle"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rainimator:super_ruby"
+    },
+    {
+      "item": "rainimator:super_sapphire"
+    },
+    {
+      "item": "rainimator:super_topaz"
+    },
+    {
+      "item": "rainimator:super_sugilite"
+    },
+    {
+      "item": "minecraft:diamond_block"
+    },
+    {
+      "item": "rainimator:super_sugilite"
+    },
+    {
+      "item": "rainimator:super_topaz"
+    },
+    {
+      "item": "rainimator:super_sapphire"
+    },
+    {
+      "item": "rainimator:super_ruby"
+    }
+  ],
+  "result": {
+    "item": "rainimator:blue_diamond",
+    "count": 2
+  }
+}

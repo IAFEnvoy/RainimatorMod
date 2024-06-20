@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "rainimator:block/mystic_ore"
+    },
+    "facing=east": {
+      "model": "rainimator:block/mystic_ore",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "rainimator:block/mystic_ore",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rainimator:block/mystic_ore",
+      "y": 270
+    }
+  }
+}

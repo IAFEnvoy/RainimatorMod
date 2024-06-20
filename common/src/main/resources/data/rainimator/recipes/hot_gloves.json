@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 00",
+    "120",
+    " 1 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:hot_iron"
+    },
+    "1": {
+      "item": "minecraft:stick"
+    },
+    "2": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "rainimator:hot_gloves",
+    "count": 1
+  }
+}

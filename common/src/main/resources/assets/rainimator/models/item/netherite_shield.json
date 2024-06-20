@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/netherite_shield",
+  "textures": {
+    "0": "rainimator:item/netherite_shield",
+    "particle": "rainimator:item/netherite_shield"
+  }
+}

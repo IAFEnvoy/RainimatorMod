@@ -1,0 +1,8 @@
+{
+  "parent": "rainimator:custom/light_sword_ever",
+  "textures": {
+    "0": "rainimator:item/light_sword_ever_1",
+    "1": "rainimator:item/light_sword_ever_2",
+    "particle": "rainimator:item/light_sword_ever_2"
+  }
+}

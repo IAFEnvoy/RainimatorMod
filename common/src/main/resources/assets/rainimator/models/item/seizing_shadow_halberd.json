@@ -1,0 +1,9 @@
+{
+  "parent": "rainimator:custom/seizing_shadow_halberd",
+  "textures": {
+    "0": "rainimator:block/end_crystal",
+    "1": "rainimator:item/seizing_shadow_halberd_1",
+    "2": "rainimator:item/seizing_shadow_halberd_2",
+    "particle": "rainimator:item/seizing_shadow_halberd_2"
+  }
+}

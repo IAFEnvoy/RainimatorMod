@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rainimator:ruby"
+    },
+    {
+      "item": "rainimator:sapphire"
+    },
+    {
+      "item": "rainimator:topaz"
+    },
+    {
+      "item": "rainimator:sugilite"
+    },
+    {
+      "item": "rainimator:magic_star"
+    },
+    {
+      "item": "rainimator:sugilite"
+    },
+    {
+      "item": "rainimator:topaz"
+    },
+    {
+      "item": "rainimator:sapphire"
+    },
+    {
+      "item": "rainimator:ruby"
+    }
+  ],
+  "result": {
+    "item": "rainimator:gemstone_mixture",
+    "count": 1
+  }
+}

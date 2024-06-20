@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  0",
+    "12 ",
+    "31 "
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:sapphire"
+    },
+    "1": {
+      "item": "minecraft:emerald"
+    },
+    "2": {
+      "item": "minecraft:emerald_block"
+    },
+    "3": {
+      "item": "minecraft:diamond_sword"
+    }
+  },
+  "result": {
+    "item": "rainimator:emerald_blade",
+    "count": 1
+  }
+}

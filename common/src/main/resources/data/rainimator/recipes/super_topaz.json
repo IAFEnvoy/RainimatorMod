@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "121",
+    "010"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:topaz"
+    },
+    "1": {
+      "item": "minecraft:diamond"
+    },
+    "2": {
+      "item": "minecraft:amethyst_block"
+    }
+  },
+  "result": {
+    "item": "rainimator:super_topaz",
+    "count": 1
+  }
+}

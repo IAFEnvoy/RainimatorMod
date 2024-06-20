@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rainimator:sugilite"
+    },
+    {
+      "item": "rainimator:sugilite"
+    },
+    {
+      "item": "rainimator:sugilite"
+    },
+    {
+      "item": "rainimator:sugilite"
+    },
+    {
+      "item": "rainimator:sugilite"
+    },
+    {
+      "item": "rainimator:sugilite"
+    },
+    {
+      "item": "rainimator:sugilite"
+    },
+    {
+      "item": "rainimator:sugilite"
+    },
+    {
+      "item": "rainimator:sugilite"
+    }
+  ],
+  "result": {
+    "item": "rainimator:sugilite_block",
+    "count": 1
+  }
+}

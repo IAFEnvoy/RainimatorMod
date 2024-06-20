@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "rainimator:sapphire"
+    },
+    {
+      "item": "rainimator:sapphire"
+    },
+    {
+      "item": "rainimator:sapphire"
+    },
+    {
+      "item": "rainimator:sapphire"
+    },
+    {
+      "item": "rainimator:sapphire"
+    },
+    {
+      "item": "rainimator:sapphire"
+    },
+    {
+      "item": "rainimator:sapphire"
+    },
+    {
+      "item": "rainimator:sapphire"
+    },
+    {
+      "item": "rainimator:sapphire"
+    }
+  ],
+  "result": {
+    "item": "rainimator:sapphire_block",
+    "count": 1
+  }
+}

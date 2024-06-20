@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/diamond_big_sword",
+  "textures": {
+    "1": "rainimator:item/diamond_big_sword",
+    "particle": "rainimator:item/diamond_big_sword"
+  }
+}

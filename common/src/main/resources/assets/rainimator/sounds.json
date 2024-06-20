@@ -1,0 +1,350 @@
+{
+  "blackbone": {
+    "sounds": [
+      {
+        "name": "rainimator:hei_gu_1",
+        "stream": false
+      },
+      {
+        "name": "rainimator:hei_gu_2",
+        "stream": false
+      },
+      {
+        "name": "rainimator:hei_gu_3",
+        "stream": false
+      }
+    ]
+  },
+  "ceris_live": {
+    "sounds": [
+      {
+        "name": "rainimator:ceris",
+        "stream": false
+      }
+    ]
+  },
+  "ceris_skill": {
+    "sounds": [
+      {
+        "name": "rainimator:ceris_skill",
+        "stream": false
+      }
+    ]
+  },
+  "ceris_f": {
+    "sounds": [
+      {
+        "name": "rainimator:ceris_f",
+        "stream": false
+      }
+    ]
+  },
+  "him_skill": {
+    "sounds": [
+      {
+        "name": "rainimator:him_skill",
+        "stream": false
+      }
+    ]
+  },
+  "naeus_living": {
+    "sounds": [
+      {
+        "name": "rainimator:naeus_living",
+        "stream": false
+      }
+    ]
+  },
+  "fire_soul": {
+    "sounds": [
+      {
+        "name": "rainimator:fire_soul",
+        "stream": false
+      }
+    ]
+  },
+  "rain_sword_skill": {
+    "sounds": [
+      {
+        "name": "rainimator:rain_sword_skill",
+        "stream": false
+      }
+    ]
+  },
+  "rain_sword_skill_2": {
+    "sounds": [
+      {
+        "name": "rainimator:rain_sword_skill_2",
+        "stream": false
+      }
+    ]
+  },
+  "blackbone_living": {
+    "sounds": [
+      {
+        "name": "rainimator:blackbone_living",
+        "stream": false
+      }
+    ]
+  },
+  "blackbone_skill": {
+    "sounds": [
+      {
+        "name": "rainimator:blackbone_skill",
+        "stream": false
+      }
+    ]
+  },
+  "naeus_roll": {
+    "sounds": [
+      {
+        "name": "rainimator:naeus_roll",
+        "stream": false
+      }
+    ]
+  },
+  "ceris_death": {
+    "sounds": [
+      {
+        "name": "rainimator:ceris_death",
+        "stream": false
+      }
+    ]
+  },
+  "naeus_sword_1": {
+    "sounds": [
+      {
+        "name": "rainimator:naeus_sword_1",
+        "stream": false
+      }
+    ]
+  },
+  "power_skill": {
+    "sounds": [
+      {
+        "name": "rainimator:power_skill",
+        "stream": false
+      }
+    ]
+  },
+  "under_flower": {
+    "sounds": [
+      {
+        "name": "rainimator:under_flower",
+        "stream": false
+      }
+    ]
+  },
+  "sword_teleport1": {
+    "sounds": [
+      {
+        "name": "rainimator:sword_teleport1",
+        "stream": false
+      }
+    ]
+  },
+  "sword_teleport2": {
+    "sounds": [
+      {
+        "name": "rainimator:sword_teleport2",
+        "stream": false
+      }
+    ]
+  },
+  "sword_teleport3": {
+    "sounds": [
+      {
+        "name": "rainimator:sword_teleport3",
+        "stream": false
+      }
+    ]
+  },
+  "sword_teleport4": {
+    "sounds": [
+      {
+        "name": "rainimator:sword_teleport4",
+        "stream": false
+      }
+    ]
+  },
+  "black_death_sword_skill": {
+    "sounds": [
+      {
+        "name": "rainimator:black_death_sword_skill",
+        "stream": false
+      }
+    ]
+  },
+  "black_death_sword_skills": {
+    "sounds": [
+      {
+        "name": "rainimator:black_death_sword_skills",
+        "stream": false
+      }
+    ]
+  },
+  "black_death_sword_skill_3": {
+    "sounds": [
+      {
+        "name": "rainimator:black_death_sword_skill_3",
+        "stream": false
+      }
+    ]
+  },
+  "gift_box": {
+    "sounds": [
+      {
+        "name": "rainimator:gift_box",
+        "stream": false
+      }
+    ]
+  },
+  "him": {
+    "sounds": [
+      {
+        "name": "rainimator:hb1",
+        "stream": false
+      },
+      {
+        "name": "rainimator:hb2",
+        "stream": false
+      },
+      {
+        "name": "rainimator:hb3",
+        "stream": false
+      },
+      {
+        "name": "rainimator:hb4",
+        "stream": false
+      },
+      {
+        "name": "rainimator:hb5",
+        "stream": false
+      },
+      {
+        "name": "rainimator:hb6",
+        "stream": false
+      }
+    ]
+  },
+  "stunned": {
+    "sounds": [
+      {
+        "name": "rainimator:syunned",
+        "stream": false
+      }
+    ]
+  },
+  "blued_diamond_skill_1": {
+    "sounds": [
+      {
+        "name": "rainimator:blue_diamond_skill_1",
+        "stream": false
+      }
+    ]
+  },
+  "blue_diamond_skill_2": {
+    "sounds": [
+      {
+        "name": "rainimator:blue_diamond_skill_2",
+        "stream": false
+      }
+    ]
+  },
+  "blue_diamond_skill_3": {
+    "sounds": [
+      {
+        "name": "rainimator:blue_diamond_skill_3",
+        "stream": false
+      }
+    ]
+  },
+  "blue_diamond_skill_4": {
+    "sounds": [
+      {
+        "name": "rainimator:blue_diamond_skill_4",
+        "stream": false
+      }
+    ]
+  },
+  "ceris_boss_music": {
+    "sounds": [
+      {
+        "name": "rainimator:ceris_boss_music",
+        "stream": false
+      }
+    ]
+  },
+  "null_boss_music": {
+    "sounds": [
+      {
+        "name": "rainimator:null_boss_music",
+        "stream": false
+      }
+    ]
+  },
+  "blackbone_boss_music": {
+    "sounds": [
+      {
+        "name": "rainimator:blackbone_boss_music",
+        "stream": false
+      }
+    ]
+  },
+  "piglin_king_boss_music": {
+    "sounds": [
+      {
+        "name": "rainimator:piglin_king_boss_music",
+        "stream": false
+      }
+    ]
+  },
+  "naeus_boss_music": {
+    "sounds": [
+      {
+        "name": "rainimator:naeus_boss_music",
+        "stream": false
+      }
+    ]
+  },
+  "glutton_boss_music": {
+    "sounds": [
+      {
+        "name": "rainimator:glutton_boss_music",
+        "stream": false
+      }
+    ]
+  },
+  "him_music_boss": {
+    "sounds": [
+      {
+        "name": "rainimator:him_boss_music",
+        "stream": false
+      }
+    ]
+  },
+  "him_one_lives": {
+    "sounds": [
+      {
+        "name": "rainimator:him_one_lives",
+        "stream": false
+      }
+    ]
+  },
+  "kralos_boss_music": {
+    "sounds": [
+      {
+        "name": "rainimator:kralos_boss_music",
+        "stream": false
+      }
+    ]
+  },
+  "klaus_boss_music": {
+    "sounds": [
+      {
+        "name": "rainimator:klaus_boss_music",
+        "stream": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/intelligence_tomahawk",
+  "textures": {
+    "0": "rainimator:item/intelligence_tomahawk",
+    "particle": "rainimator:item/intelligence_tomahawk"
+  }
+}

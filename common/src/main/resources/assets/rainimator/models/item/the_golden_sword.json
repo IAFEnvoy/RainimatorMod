@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/the_golden_sword",
+  "textures": {
+    "texture": "rainimator:item/the_golden_sword",
+    "particle": "rainimator:item/the_golden_sword"
+  }
+}

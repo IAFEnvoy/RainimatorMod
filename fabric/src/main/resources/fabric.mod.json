@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "rainimator",
+  "version": "${version}",
+  "name": "Rainimator Mod",
+  "description": "Rainimator Minecraft Animation mod. @Rainimator @Rainolaguer",
+  "authors": [
+    "Triceratops",
+    {
+      "name": "IAFEnvoy",
+      "contact": {
+        "homepage": "https://iafenvoy.com",
+        "sources": "https://github.com/IAFEnvoy"
+      }
+    }
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/rainimatormod",
+    "sources": "https://github.com/ArkTechMC/RainimatorMod",
+    "issues": "https://github.com/ArkTechMC/RainimatorMod/issues"
+  },
+  "license": "LGPL-3.0",
+  "icon": "logo.jpg",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.rainimator.mod.fabric.RainimatorModFabric"
+    ],
+    "client": [
+      "dev.rainimator.mod.fabric.RainimatorModFabricClient"
+    ],
+    "cardinal-components-entity": [
+      "dev.rainimator.mod.fabric.component.ModComponentEntry"
+    ],
+    "emi": [
+      "dev.rainimator.mod.fabric.compat.emi.BossSpawnRecipePlugin"
+    ]
+  },
+  "custom": {
+    "cardinal-components": [
+      "rainimator:mana"
+    ]
+  },
+  "accessWidener": "rainimator.accesswidener",
+  "mixins": [
+    "rainimator-common.mixins.json",
+    "rainimator-fabric.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "1.20.1"
+  }
+}

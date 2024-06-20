@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/laser_sword",
+  "textures": {
+    "0": "rainimator:item/laser_sword",
+    "particle": "rainimator:item/laser_sword"
+  }
+}

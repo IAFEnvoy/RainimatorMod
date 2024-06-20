@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/blue_diamond_shield",
+  "textures": {
+    "0": "rainimator:item/blue_diamond_shield",
+    "particle": "rainimator:item/blue_diamond_shield"
+  }
+}

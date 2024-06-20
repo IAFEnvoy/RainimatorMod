@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/red_gold_dagger",
+  "textures": {
+    "0": "rainimator:item/red_gold_dagger",
+    "particle": "rainimator:item/red_gold_dagger"
+  }
+}

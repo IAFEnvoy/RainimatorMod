@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/snow_diamond_sword",
+  "textures": {
+    "0": "rainimator:item/snow_diamond_sword",
+    "particle": "rainimator:item/snow_diamond_sword"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 0 ",
+    "121",
+    " 0 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "1": {
+      "item": "minecraft:iron_ingot"
+    },
+    "2": {
+      "item": "rainimator:golden_plundering_axe"
+    }
+  },
+  "result": {
+    "item": "rainimator:plundering_the_giant_axe",
+    "count": 1
+  }
+}

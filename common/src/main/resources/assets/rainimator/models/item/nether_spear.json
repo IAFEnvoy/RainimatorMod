@@ -1,0 +1,9 @@
+{
+  "parent": "rainimator:custom/nether_spear",
+  "textures": {
+    "2": "rainimator:item/nether_spear_2",
+    "unwrap1": "rainimator:item/nether_spear_1",
+    "unwrap2": "rainimator:item/nether_spear_3",
+    "particle": "rainimator:item/nether_spear_2"
+  }
+}

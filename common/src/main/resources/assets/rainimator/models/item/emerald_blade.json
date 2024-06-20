@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/emerald_blade",
+  "textures": {
+    "0": "rainimator:item/emerald_blade",
+    "particle": "rainimator:item/emerald_blade"
+  }
+}

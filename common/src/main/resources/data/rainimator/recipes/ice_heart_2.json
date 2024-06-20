@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "121",
+    "010"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_sapphire"
+    },
+    "1": {
+      "item": "rainimator:ice_heart"
+    },
+    "2": {
+      "item": "minecraft:end_crystal"
+    }
+  },
+  "result": {
+    "item": "rainimator:iced_heart",
+    "count": 1
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "232",
+    "454"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_sapphire"
+    },
+    "1": {
+      "item": "minecraft:nether_star"
+    },
+    "2": {
+      "item": "rainimator:blue_diamond_block"
+    },
+    "3": {
+      "item": "rainimator:ice_heart"
+    },
+    "4": {
+      "item": "rainimator:iced_heart"
+    },
+    "5": {
+      "item": "rainimator:snow_diamond_sword"
+    }
+  },
+  "result": {
+    "item": "rainimator:rain_sword",
+    "count": 1
+  }
+}

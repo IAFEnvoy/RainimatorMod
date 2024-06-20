@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "121",
+    "010"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:sapphire"
+    },
+    "1": {
+      "item": "minecraft:diamond"
+    },
+    "2": {
+      "item": "rainimator:super_ruby"
+    }
+  },
+  "result": {
+    "item": "rainimator:divine_core",
+    "count": 1
+  }
+}

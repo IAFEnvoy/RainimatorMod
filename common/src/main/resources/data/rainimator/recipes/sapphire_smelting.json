@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "experience": 2,
+  "cookingtime": 200,
+  "ingredient": {
+    "item": "rainimator:raw_sapphire"
+  },
+  "result": "rainimator:sapphire"
+}

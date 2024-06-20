@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "rainimator:item/herobrine_diamond_pickaxe"
+  }
+}

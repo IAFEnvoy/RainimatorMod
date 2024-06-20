@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rainimator:item/chief_of_the_pig_people_helmet"
+  }
+}

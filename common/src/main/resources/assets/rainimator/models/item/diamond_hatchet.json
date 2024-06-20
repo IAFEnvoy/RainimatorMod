@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/diamond_hatchet",
+  "textures": {
+    "0": "rainimator:item/diamond_hatchet",
+    "particle": "rainimator:item/diamond_hatchet"
+  }
+}

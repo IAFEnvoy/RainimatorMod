@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/black_death_sword",
+  "textures": {
+    "0": "rainimator:item/black_death_sword",
+    "particle": "rainimator:item/black_death_sword"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 0 ",
+    "010",
+    " 0 "
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "1": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "result": {
+    "item": "rainimator:magic_star",
+    "count": 1
+  }
+}

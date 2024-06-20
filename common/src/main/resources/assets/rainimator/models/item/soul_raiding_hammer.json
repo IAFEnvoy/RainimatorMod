@@ -1,0 +1,8 @@
+{
+  "parent": "rainimator:custom/soul_raiding_hammer",
+  "textures": {
+    "0": "rainimator:block/end_crystal",
+    "1": "rainimator:item/soul_raiding_hammer_1",
+    "particle": "rainimator:item/soul_raiding_hammer"
+  }
+}
