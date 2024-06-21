@@ -74,7 +74,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(7.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 if (!(entityiterator instanceof LivingEntity _livEnt)) continue;
-                if (_livEnt.getMainHandStack().getItem() == RainimatorItems.RAIN_SWORD) {
+                if (_livEnt.getMainHandStack().getItem() == RainimatorItems.RAIN_SWORD.get()) {
                     entityiterator.damage(DamageUtil.build(entity, DamageTypes.GENERIC), 0.0F);
                     continue;
                 }
@@ -121,7 +121,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo {
             List<Entity> _ent_found = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(7.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityIterator : _ent_found) {
                 if (!(entityIterator instanceof LivingEntity _livEnt)) continue;
-                if (_livEnt.getMainHandStack().getItem() == RainimatorItems.RAIN_SWORD) {
+                if (_livEnt.getMainHandStack().getItem() == RainimatorItems.RAIN_SWORD.get()) {
                     if (itemtack.damage(0, world.getRandom(), null)) {
                         itemtack.decrement(1);
                         itemtack.setDamage(0);

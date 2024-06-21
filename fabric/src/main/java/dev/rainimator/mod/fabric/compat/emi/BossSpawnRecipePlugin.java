@@ -62,7 +62,7 @@ public class BossSpawnRecipePlugin implements EmiPlugin {
         }
 
         @Override
-        public @NotNull Identifier getId() {
+        public Identifier getId() {
             return Identifier.of(RainimatorMod.MOD_ID, this.id);
         }
 

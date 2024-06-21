@@ -21,7 +21,7 @@ public enum Stage {
     }
 
     public int getIndex() {
-        return index;
+        return this.index;
     }
 
     public static Stage getByIndex(int index) {
@@ -61,7 +61,7 @@ public enum Stage {
         }
 
         public Identifier getTexture(Stage stage) {
-            return Identifier.tryParse(this.modId, "textures/entities/" + this.getTextureId(stage) + ".png");
+            return Identifier.of(this.modId, "textures/entities/" + this.getTextureId(stage) + ".png");
         }
 
         private String getTextureId(Stage stage) {
@@ -75,7 +75,7 @@ public enum Stage {
         public <T extends MobEntity> EntityRendererBase<T> createRenderer(EntityRendererFactory.Context context) {
             if (this.eyeTextureId == null)
                 return new EntityRendererBase<>(context, this, null);
-            return new EntityRendererBase<>(context, this, Identifier.tryParse(this.modId, this.eyeTextureId));
+            return new EntityRendererBase<>(context, this, Identifier.of(this.modId, this.eyeTextureId));
         }
     }
 }

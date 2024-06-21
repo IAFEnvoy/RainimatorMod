@@ -17,7 +17,6 @@ public class RainimatorMod {
         RainimatorSkulls.init();
 
         RainimatorBlocks.REGISTRY.register();
-        RainimatorBlockEntities.REGISTRY.register();
         RainimatorEffects.REGISTRY.register();
         RainimatorEnchantments.REGISTRY.register();
         RainimatorEntities.REGISTRY.register();

@@ -4,12 +4,8 @@ import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.effect.*;
-import net.minecraft.block.Block;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 
 import java.util.function.Supplier;
 

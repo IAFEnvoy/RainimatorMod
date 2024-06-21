@@ -111,7 +111,7 @@ public class PiglinKingZombieEntity extends MonsterEntityBase {
         if (world instanceof World _level)
             SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blackbone_skill"), 5, 1);
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles((DefaultParticleType) (RainimatorParticles.YELLOW_STARS), x, y, z, 100, 1, 2, 1, 1);
+            _level.spawnParticles(RainimatorParticles.YELLOW_STARS, x, y, z, 100, 1, 2, 1, 1);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())

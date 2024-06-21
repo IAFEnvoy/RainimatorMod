@@ -77,7 +77,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
         if (entity.isSneaking() && data.tryUseMana(ServerConfig.getInstance().blue_diamond_sword)) {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(16 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
-                if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == RainimatorItems.BLUE_DIAMOND_SWORD) {
+                if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == RainimatorItems.BLUE_DIAMOND_SWORD.get()) {
                     if (itemtack.damage(0, entity.getRandom(), null)) {
                         itemtack.decrement(1);
                         itemtack.setDamage(0);

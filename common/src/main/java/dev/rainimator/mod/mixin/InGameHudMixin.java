@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Environment(EnvType.CLIENT)
 @Mixin(InGameHud.class)
-public class InGameHudMixin {
+public abstract class InGameHudMixin {
     @Shadow
     @Final
     @Mutable
@@ -29,6 +29,15 @@ public class InGameHudMixin {
     @Shadow
     private int scaledHeight;
 
+    @Shadow
+    protected abstract PlayerEntity getCameraPlayer();
+
+    @Shadow
+    protected abstract LivingEntity getRiddenEntity();
+
+    @Shadow
+    protected abstract int getHeartCount(LivingEntity entity);
+
     @Inject(method = "renderStatusBars", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/profiler/Profiler;swap(Ljava/lang/String;)V", ordinal = 1))
     private void renderStatusBarsMixin(DrawContext context, CallbackInfo info) {
         InGameHudRenderHelper.render(context, this.client, this.getCameraPlayer(), this.scaledWidth, this.scaledHeight, this.getHeartCount(this.getRiddenEntity()));
@@ -37,20 +46,5 @@ public class InGameHudMixin {
     @Inject(method = "getHeartRows", at = @At(value = "HEAD"), cancellable = true)
     private void getHeartRowsMixin(int heartCount, CallbackInfoReturnable<Integer> info) {
         info.setReturnValue((int) Math.ceil((double) heartCount / 10.0D) + 1);
-    }
-
-    @Shadow
-    private PlayerEntity getCameraPlayer() {
-        return null;
-    }
-
-    @Shadow
-    private LivingEntity getRiddenEntity() {
-        return null;
-    }
-
-    @Shadow
-    private int getHeartCount(LivingEntity entity) {
-        return 0;
     }
 }

@@ -12,7 +12,7 @@ import net.minecraft.nbt.NbtCompound;
 import java.util.Map;
 
 public class ManaData {
-    public LivingEntity entity;
+    public final LivingEntity entity;
     private double mana = 0;
     private double restoreSpeed;
     private double maxMana;

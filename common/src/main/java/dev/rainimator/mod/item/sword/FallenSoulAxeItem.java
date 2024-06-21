@@ -55,7 +55,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(5.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 LivingEntity _livEnt = (LivingEntity) entityiterator;
-                if (((entityiterator instanceof LivingEntity) ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == RainimatorItems.FALLEN_SOUL_AXE) {
+                if (((entityiterator instanceof LivingEntity) ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == RainimatorItems.FALLEN_SOUL_AXE.get()) {
                     if (itemtack.damage(0, entity.getRandom(), null)) {
                         itemtack.decrement(1);
                         itemtack.setDamage(0);

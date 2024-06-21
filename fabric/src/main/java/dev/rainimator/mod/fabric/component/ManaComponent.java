@@ -32,11 +32,11 @@ public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTi
     }
 
     public LivingEntity getEntity() {
-        return entity;
+        return this.entity;
     }
 
     public ManaData getData() {
-        return data;
+        return this.data;
     }
 
     @Override

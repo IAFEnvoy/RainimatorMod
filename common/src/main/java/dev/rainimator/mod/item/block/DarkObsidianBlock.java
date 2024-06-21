@@ -1,27 +1,17 @@
 package dev.rainimator.mod.item.block;
 
-import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.item.block.entity.DarkObsidianBlockEntity;
-import dev.rainimator.mod.registry.RainimatorBlockEntities;
-import dev.rainimator.mod.registry.RainimatorBlocks;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.util.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.resource.language.I18n;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContextParameterSet;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
@@ -34,18 +24,14 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
-public class DarkObsidianBlock extends BlockWithEntity {
+public class DarkObsidianBlock extends Block {
     public static final HashMap<Item, Consumer5<PlayerEntity, ServerWorld, Integer, Integer, Integer>> consumers = new HashMap<>();
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
-    public static final String NBT_KEY = "biome";
 
     public DarkObsidianBlock() {
         super(Settings.create().requiresTool().strength(50, 1200));
@@ -147,45 +133,11 @@ public class DarkObsidianBlock extends BlockWithEntity {
     }
 
     @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        super.onPlaced(world, pos, state, placer, itemStack);
-        Optional<DarkObsidianBlockEntity> placed = world.getBlockEntity(pos, RainimatorBlockEntities.DARK_OBSIDIAN_BLOCK.get());
-        placed.ifPresent(x -> x.setBiome(itemStack, world.getBiome(pos)));
-    }
-
-    @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        super.onBreak(world, pos, state, player);
-        ItemStack dropStack = new ItemStack(RainimatorBlocks.DARK_OBSIDIAN_BLOCK.get());
-        Optional<DarkObsidianBlockEntity> placed = world.getBlockEntity(pos, RainimatorBlockEntities.DARK_OBSIDIAN_BLOCK.get());
-        placed.ifPresent(x -> {
-            RegistryKey<Biome> key = placed.get().getBiome();
-            Optional<RegistryKey<Biome>> current = world.getBiome(pos).getKey();
-            if (key == null && current.isPresent())
-                placed.get().setBiome(current.get());
-            if (key != null)
-                dropStack.getOrCreateNbt().putString(NBT_KEY, key.getValue().toString());
-        });
-        dropStack(world, pos, dropStack);
-    }
-
-    @Override
     public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
         List<ItemStack> dropsOriginal = super.getDroppedStacks(state, builder);
         if (!dropsOriginal.isEmpty())
             return dropsOriginal;
         return Collections.emptyList();
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        super.appendTooltip(stack, world, tooltip, options);
-        NbtCompound compound = stack.getOrCreateNbt();
-        String t = compound.getString(NBT_KEY);
-        if (t.isBlank())
-            t = RainimatorMod.MOD_ID + ":unknown";
-        Identifier biome = Identifier.tryParse(t);
-        tooltip.add(Text.literal(I18n.translate("block.rainimator.dark_obsidian_block.tooltip.biome") + I18n.translate(String.format("biome.%s.%s", biome.getNamespace(), biome.getPath()))));
     }
 
     @Override
@@ -220,11 +172,5 @@ public class DarkObsidianBlock extends BlockWithEntity {
                 });
         }
         return ActionResult.SUCCESS;
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new DarkObsidianBlockEntity(pos, state);
     }
 }
