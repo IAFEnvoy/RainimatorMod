@@ -70,7 +70,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
         Vec3d _center = entity.getPos();
         ManaData data = ComponentManager.getManaData(entity);
-        if (entity.isSneaking() && data.tryUseMana(ServerConfig.getInstance().rain_sword)) {
+        if (entity.isSneaking() && data.tryUseMana(entity,ServerConfig.getInstance().rain_sword)) {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(7.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 if (!(entityiterator instanceof LivingEntity _livEnt)) continue;

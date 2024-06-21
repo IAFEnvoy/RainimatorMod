@@ -22,6 +22,7 @@ public class RainimatorModFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         RainimatorMod.init();
+        RainimatorMod.process();
         FabricApiCall.run();
         TrinketsRegistry.registerCommon();
 

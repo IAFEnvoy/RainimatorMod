@@ -16,20 +16,24 @@ public class RainimatorMod {
 
         RainimatorSkulls.init();
 
+        RainimatorEntities.REGISTRY.register();
         RainimatorBlocks.REGISTRY.register();
         RainimatorEffects.REGISTRY.register();
         RainimatorEnchantments.REGISTRY.register();
-        RainimatorEntities.REGISTRY.register();
         RainimatorItems.REGISTRY.register();
         RainimatorPotions.REGISTRY.register();
         RainimatorItemGroups.REGISTRY.register();
+        RainimatorParticles.REGISTRY.register();
         RainimatorScreenHandlers.REGISTRY.register();
         RainimatorSounds.REGISTRY.register();
-
         RainimatorEntities.registerAttributes();
         RainimatorEntities.addSpawner();
-        RainimatorEntities.addLivingEntityToBiomes();
         RainimatorFeatures.init();
+        RainimatorParticles.registerParticles();
+    }
+
+    public static void process(){
+        RainimatorEntities.addLivingEntityToBiomes();
         RainimatorItemGroups.init();
         RainimatorItems.init();
         RainimatorTrades.registerTrades();
@@ -41,7 +45,9 @@ public class RainimatorMod {
     public static void initClient() {
         RainimatorEntities.registerEntityRenderers();
         RainimatorModels.registerLayerDefinitions();
-        RainimatorParticles.registerParticles();
+    }
+
+    public static void processClient(){
         RainimatorScreenHandlers.registerGui();
         RainimatorSkulls.clientInit();
     }

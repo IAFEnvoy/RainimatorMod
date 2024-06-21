@@ -95,7 +95,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
         ManaData data = ComponentManager.getManaData(entity);
-        if (entity.isSneaking() && data.tryUseMana(ServerConfig.getInstance().zecanirn_the_blade)) {
+        if (entity.isSneaking() && data.tryUseMana(entity,ServerConfig.getInstance().zecanirn_the_blade)) {
             Vec3d _center = entity.getPos();
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(8.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
@@ -148,7 +148,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
         boolean ret_val = super.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
-            ParticleUtil.spawnCircleParticles(world, RainimatorParticles.PURPLE_LIGHT, x, y, z, 4, 0, 50);
+            ParticleUtil.spawnCircleParticles(world, RainimatorParticles.PURPLE_LIGHT.get(), x, y, z, 4, 0, 50);
         return ret_val;
     }
 

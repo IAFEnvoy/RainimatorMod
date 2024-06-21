@@ -28,7 +28,7 @@ public class UnderFlowerItem extends FoilItemBase {
         super.useOnBlock(context);
         if (context.getPlayer() == null) return ActionResult.PASS;
         ManaData data = ComponentManager.getManaData(context.getPlayer());
-        if (!data.tryUseMana(ServerConfig.getInstance().under_flower))
+        if (!data.tryUseMana(context.getPlayer(), ServerConfig.getInstance().under_flower))
             return ActionResult.PASS;
         World world = context.getWorld();
         double x = context.getBlockPos().getX();

@@ -41,7 +41,7 @@ public class SoulTotemItem extends FoilItemBase {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
         ManaData data = ComponentManager.getManaData(entity);
-        if (!data.tryUseMana(ServerConfig.getInstance().soul_totem)) return ar;
+        if (!data.tryUseMana(entity,ServerConfig.getInstance().soul_totem)) return ar;
         ItemStack itemtack = ar.getValue();
         double x = entity.getX();
         double y = entity.getY();

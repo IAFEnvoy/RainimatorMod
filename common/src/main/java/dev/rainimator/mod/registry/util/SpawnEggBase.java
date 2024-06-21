@@ -1,5 +1,7 @@
 package dev.rainimator.mod.registry.util;
 
+import dev.architectury.core.item.ArchitecturySpawnEggItem;
+import dev.architectury.registry.registries.RegistrySupplier;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.util.Episode;
 import net.minecraft.client.item.TooltipContext;
@@ -12,10 +14,10 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class SpawnEggBase extends SpawnEggItem implements IRainimatorInfo {
+public class SpawnEggBase extends ArchitecturySpawnEggItem implements IRainimatorInfo {
     private final Episode episode;
 
-    public SpawnEggBase(Episode episode, EntityType<? extends MobEntity> type, int backgroundColor, int highlightColor) {
+    public SpawnEggBase(Episode episode, RegistrySupplier<? extends EntityType<? extends MobEntity>> type, int backgroundColor, int highlightColor) {
         super(type, backgroundColor, highlightColor, new Settings().arch$tab(RainimatorItemGroups.MOBS));
         this.episode = episode;
     }

@@ -11,6 +11,7 @@ public class RainimatorModFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         RainimatorMod.initClient();
+        RainimatorMod.processClient();
         TrinketsRegistry.registerClient();
 
         if (FabricLoader.getInstance().isModLoaded("asteorbar"))

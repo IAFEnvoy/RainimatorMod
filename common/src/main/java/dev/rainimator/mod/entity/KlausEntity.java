@@ -131,7 +131,7 @@ public class KlausEntity extends MonsterEntityBase {
                         _entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.STUNNED.get(), 100, 0));
                     SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "stunned"), 1, 1);
                     if ((WorldAccess) this.getWorld() instanceof ServerWorld _level)
-                        _level.spawnParticles(RainimatorParticles.YELLOW_STARS, x, y, z, 50, 1, 2, 1, 1);
+                        _level.spawnParticles(RainimatorParticles.YELLOW_STARS.get(), x, y, z, 50, 1, 2, 1, 1);
                 }
             }
             if (this.getMainHandStack().getItem() == RainimatorItems.SOUL_RAIDING_HAMMER.get()) {

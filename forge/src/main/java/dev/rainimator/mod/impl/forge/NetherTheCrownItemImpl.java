@@ -1,7 +1,5 @@
-package dev.rainimator.mod.impl.fabric;
+package dev.rainimator.mod.impl.forge;
 
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.Trinket;
 import dev.rainimator.mod.entity.WitheredSkeletonsEntity;
 import dev.rainimator.mod.impl.NetherTheCrownItem;
 import dev.rainimator.mod.registry.RainimatorItems;
@@ -12,11 +10,13 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.Comparator;
 import java.util.List;
 
-public class NetherTheCrownItemImpl extends NetherTheCrownItem implements Trinket {
+public class NetherTheCrownItemImpl extends NetherTheCrownItem implements ICurioItem {
     public NetherTheCrownItemImpl() {
         super();
     }
@@ -26,8 +26,11 @@ public class NetherTheCrownItemImpl extends NetherTheCrownItem implements Trinke
     }
 
     @Override
-    public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        ICurioItem.super.curioTick(slotContext, stack);
+        LivingEntity entity = slotContext.entity();
         if (entity == null) return;
+
         Vec3d _center = new Vec3d(entity.getX(), entity.getY(), entity.getZ());
         List<Entity> _entfound = entity.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(16.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {

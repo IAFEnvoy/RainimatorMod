@@ -37,7 +37,7 @@ public class EnderBigSwordItem extends SwordItemBase {
         ItemStack itemtack = ar.getValue();
         double ender_1 = 0.0D;
         ManaData data = ComponentManager.getManaData(entity);
-        if (entity.isSneaking() && data.tryUseMana(ServerConfig.getInstance().ender_big_sword)) {
+        if (entity.isSneaking() && data.tryUseMana(entity,ServerConfig.getInstance().ender_big_sword)) {
             BlockPos blockPos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(ender_1 + 6.0D)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             BlockPos blockPos2 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(ender_1)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             entity.requestTeleport(blockPos1.getX(), blockPos2.getY(), blockPos1.getZ());

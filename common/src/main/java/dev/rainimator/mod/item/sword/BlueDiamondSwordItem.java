@@ -74,7 +74,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
         ItemStack itemtack = ar.getValue();
         final Vec3d _center = new Vec3d(x, y, z);
         ManaData data = ComponentManager.getManaData(entity);
-        if (entity.isSneaking() && data.tryUseMana(ServerConfig.getInstance().blue_diamond_sword)) {
+        if (entity.isSneaking() && data.tryUseMana(entity,ServerConfig.getInstance().blue_diamond_sword)) {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(16 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == RainimatorItems.BLUE_DIAMOND_SWORD.get()) {
@@ -150,7 +150,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                             MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemtack);
                         Runnable callback1 = () -> {
                             if (world instanceof ServerWorld _level)
-                                _level.spawnParticles(RainimatorParticles.FLOWER_WHITE, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 2, 0.5, 0.2);
+                                _level.spawnParticles(RainimatorParticles.FLOWER_WHITE.get(), entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 2, 0.5, 0.2);
                         };
                         Runnable callback2 = () -> {
                             entityiterator.requestTeleport(x + RandomHelper.nextDouble(-1, 1), y + 2, z + RandomHelper.nextDouble(-1, 1));
@@ -185,7 +185,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                                 if (!world.isClient())
                                     world.createExplosion(null, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 8, World.ExplosionSourceType.NONE);
                                 if (world instanceof ServerWorld _level)
-                                    _level.spawnParticles(RainimatorParticles.LIGHTENING_ARC, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 1, 0.5, 0.2);
+                                    _level.spawnParticles(RainimatorParticles.LIGHTENING_ARC.get(), entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 1, 0.5, 0.2);
                             }
                         });
                     }

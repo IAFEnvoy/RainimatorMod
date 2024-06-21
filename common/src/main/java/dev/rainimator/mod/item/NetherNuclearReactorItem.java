@@ -22,7 +22,7 @@ public class NetherNuclearReactorItem extends ItemBase {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
         ManaData data = ComponentManager.getManaData(entity);
-        if (!data.tryUseMana(ServerConfig.getInstance().nether_nuclear_reactor))
+        if (!data.tryUseMana(entity,ServerConfig.getInstance().nether_nuclear_reactor))
             return ar;
         ItemStack itemtack = ar.getValue();
         if (!entity.getWorld().isClient())

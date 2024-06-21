@@ -99,25 +99,25 @@ public class NullLikeEntity extends MonsterEntityBase {
         else if (this.hasStatusEffect(StatusEffects.WEAKNESS))
             this.clearStatusEffects();
         else if (Math.random() < 0.3D) {//TODO: Optimize
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.3D) {
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.3D) {
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.3D) {
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW, x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
         }
         if (Math.random() < 0.7D)
             if (!this.getWorld().isClient()) {
@@ -157,7 +157,7 @@ public class NullLikeEntity extends MonsterEntityBase {
         if (world instanceof World _level)
             SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5.0F, 1.0F);
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles(RainimatorParticles.FLOWER_WHITE, x, y, z, 300, 2.0D, 3.0D, 2.0D, 0.3D);
+            _level.spawnParticles(RainimatorParticles.FLOWER_WHITE.get(), x, y, z, 300, 2.0D, 3.0D, 2.0D, 0.3D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())

@@ -89,25 +89,25 @@ public class PatrickEntity extends MonsterEntityBase implements RangedAttackMob 
         double y = this.getY();
         double z = this.getZ();
         if (Math.random() < 0.2D) {//TODO: Optimize
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x - 1.0D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x + 1.0D, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x - 1.0D, y + 1.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x - 0.5D, y + 1.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x + 1.0D, y + 2.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x + 1.0D, y + 1.0D, z - 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x - 1.0D, y + 2.0D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x + 1.0D, y + 1.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x - 1.0D, y + 0.5D, z - 1.0D, 0.0D, 0.0D, 0.0D);
         } else if (Math.random() < 0.2D) {
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
-            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING, x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x, y + 1.0D, z - 0.5D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x - 0.5D, y + 2.0D, z, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x, y + 0.5D, z + 1.0D, 0.0D, 0.0D, 0.0D);
+            this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
         }
         if (Math.random() < 0.7D)
             if (!this.getWorld().isClient()) {

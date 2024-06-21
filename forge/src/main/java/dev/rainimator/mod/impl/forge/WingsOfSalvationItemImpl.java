@@ -1,19 +1,18 @@
-package dev.rainimator.mod.impl.fabric;
+package dev.rainimator.mod.impl.forge;
 
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.Trinket;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.impl.WingsOfSalvationItem;
-import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class WingsOfSalvationItemImpl extends WingsOfSalvationItem implements Trinket, FabricElytraItem {
+public class WingsOfSalvationItemImpl extends WingsOfSalvationItem implements ICurioItem {
     protected int lastBoostTick = 0;
 
     public WingsOfSalvationItemImpl() {
@@ -29,7 +28,14 @@ public class WingsOfSalvationItemImpl extends WingsOfSalvationItem implements Tr
     }
 
     @Override
-    public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+    public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
+        return true;
+    }
+
+    @Override
+    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+        ICurioItem.super.onEquip(slotContext, prevStack, stack);
+        LivingEntity entity = slotContext.entity();
         if (entity instanceof PlayerEntity player && ServerConfig.getInstance().enableWingsCreativeFly && !player.isCreative()) {
             player.getAbilities().allowFlying = true;
             player.sendAbilitiesUpdate();
@@ -37,7 +43,9 @@ public class WingsOfSalvationItemImpl extends WingsOfSalvationItem implements Tr
     }
 
     @Override
-    public void onUnequip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+        ICurioItem.super.onUnequip(slotContext, newStack, stack);
+        LivingEntity entity = slotContext.entity();
         if (entity instanceof PlayerEntity player && ServerConfig.getInstance().enableWingsCreativeFly && !player.isCreative()) {
             player.getAbilities().allowFlying = false;
             player.getAbilities().flying = false;
@@ -46,7 +54,9 @@ public class WingsOfSalvationItemImpl extends WingsOfSalvationItem implements Tr
     }
 
     @Override
-    public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        ICurioItem.super.curioTick(slotContext, stack);
+        LivingEntity entity = slotContext.entity();
         if (entity instanceof PlayerEntity player) {
             if (ServerConfig.getInstance().enableWingsCreativeFly && !player.isCreative()) {
                 if (!player.getAbilities().allowFlying) {
@@ -74,10 +84,5 @@ public class WingsOfSalvationItemImpl extends WingsOfSalvationItem implements Tr
         this.lastBoostTick = 20;
         FireworkRocketEntity entity = new FireworkRocketEntity(player.getWorld(), new ItemStack(Items.AIR), player);
         player.getWorld().spawnEntity(entity);
-    }
-
-    @Override
-    public boolean useCustomElytra(LivingEntity entity, ItemStack chestStack, boolean tickElytra) {
-        return true;
     }
 }

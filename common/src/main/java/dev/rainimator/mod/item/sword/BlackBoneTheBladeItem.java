@@ -51,7 +51,7 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
         double z = entity.getZ();
         ItemStack itemtack = ar.getValue();
         ManaData data = ComponentManager.getManaData(entity);
-        if (entity.isSneaking() && data.tryUseMana(ServerConfig.getInstance().blackbone_the_blade)) {
+        if (entity.isSneaking() && data.tryUseMana(entity,ServerConfig.getInstance().blackbone_the_blade)) {
             SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blackbone_living"), 10.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ParticleTypes.ELECTRIC_SPARK, x, y, z, 25, 1.0D, 1.0D, 1.0D, 1.0D);

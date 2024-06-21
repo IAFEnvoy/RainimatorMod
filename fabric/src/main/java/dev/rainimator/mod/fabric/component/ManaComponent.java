@@ -51,6 +51,6 @@ public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTi
 
     @Override
     public void tick() {
-        this.data.tick();
+        this.data.tick(this.entity);
     }
 }
