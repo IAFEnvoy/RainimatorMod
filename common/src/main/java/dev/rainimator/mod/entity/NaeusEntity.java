@@ -78,17 +78,17 @@ public class NaeusEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getAmbientSound() {
-        return Registries.SOUND_EVENT.get(new Identifier(RainimatorMod.MOD_ID, "nause"));
+        return Registries.SOUND_EVENT.get(Identifier.of(RainimatorMod.MOD_ID, "nause"));
     }
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
     }
 
     @Override
@@ -109,7 +109,7 @@ public class NaeusEntity extends MonsterEntityBase {
             else if (this.hasStatusEffect(StatusEffects.POISON))
                 this.clearStatusEffects();
             else if (Math.random() < 0.5D) {
-                SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "fire_soul"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "fire_soul"), 1.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld _level)
                     _level.spawnParticles((ParticleEffect) RainimatorParticles.RED_FLOWER, x, y, z, 20, 0.5D, 0.0D, 0.5D, 0.5D);
                 if (sourceentity instanceof LivingEntity _entity)
@@ -123,7 +123,7 @@ public class NaeusEntity extends MonsterEntityBase {
             }
             if (Math.random() < 0.5D) {
                 this.getNavigation().startMovingTo(this.getX() + RandomHelper.nextDouble(1.0D, 6.0D), y, this.getZ() + RandomHelper.nextDouble(1.0D, 6.0D), 10.0D);
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "naeus_roll"), 1, 1);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "naeus_roll"), 1, 1);
                 if (this.getWorld() instanceof ServerWorld _level)
                     _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 30, 0.5D, 0.5D, 0.5D, 0.5D);
             }
@@ -193,13 +193,13 @@ public class NaeusEntity extends MonsterEntityBase {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, new Identifier(RainimatorMod.MOD_ID, "naeus_living"), 1.0F, 1.0F);
+            SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_living"), 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) RainimatorParticles.RED_FLOWER, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "naeus_boss_music"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_boss_music"), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(4300, callback);
@@ -230,7 +230,7 @@ public class NaeusEntity extends MonsterEntityBase {
             }
         }
         if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "naeus_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "naeus_boss_music"));
     }
 
     @Override

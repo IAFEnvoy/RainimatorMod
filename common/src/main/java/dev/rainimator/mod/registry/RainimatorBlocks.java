@@ -31,7 +31,7 @@ public class RainimatorBlocks {
 
     private static <T extends Block> RegistrySupplier<T> register(String name, Supplier<T> block) {
         final Supplier<T> newBlock = new MemorizeSupplier<>(block);
-        RainimatorItems.REGISTRY.register(name, () -> new BlockItem(newBlock.get(), new Item.Settings()));
+        RainimatorItems.REGISTRY.register(name, () -> new BlockItem(newBlock.get(), new Item.Settings().arch$tab(RainimatorItemGroups.ITEM)));
         return REGISTRY.register(name, newBlock);
     }
 }

@@ -61,17 +61,17 @@ public class WitheredSkeletonsEntity extends MonsterEntityBase {
 
     @Override
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound(Registries.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.ambient")), 0.15F, 1.0F);
+        this.playSound(Registries.SOUND_EVENT.get(Identifier.tryParse("entity.wither_skeleton.ambient")), 0.15F, 1.0F);
     }
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.wither_skeleton.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.wither_skeleton.death"));
     }
 
     @Override

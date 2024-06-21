@@ -55,7 +55,7 @@ public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo {
         ItemStack itemtack = ar.getValue();
         ManaData data = ComponentManager.getManaData(entity);
         if (entity.isSneaking() && data.tryUseMana(ServerConfig.getInstance().nether_spear)) {
-            SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "naeus_sword_1"), 5.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_sword_1"), 5.0F, 1.0F);
             BlockPos pos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             if (world instanceof ServerWorld _level) {
                 LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);

@@ -33,7 +33,7 @@ public class NetherTheCrownRenderer implements TrinketRenderer {
     }
 
     private Identifier getTexture() {
-        return new Identifier("textures/models/armor/nether_the_crown.png");
+        return Identifier.tryParse("textures/models/armor/nether_the_crown.png");
     }
 
     @Override

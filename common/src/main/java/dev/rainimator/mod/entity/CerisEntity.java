@@ -92,7 +92,7 @@ public class CerisEntity extends MonsterEntityBase {
                 this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION.get(), 100, 0));
 
             if (Math.random() < 0.3D) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier("entity.enderman.teleport"), 4.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.enderman.teleport"), 4.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld _level)
                     _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
                 this.getNavigation().startMovingTo(this.getX() + RandomHelper.nextInt(3, 9), this.getY(), this.getZ() + RandomHelper.nextInt(3, 9), 20.0D);
@@ -102,7 +102,7 @@ public class CerisEntity extends MonsterEntityBase {
                     if (!livingEntity.getWorld().isClient())
                         livingEntity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.FEAR_DARK.get(), 200, 0));
                     if (!livingEntity.hasStatusEffect(StatusEffects.GLOWING)) {
-                        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "ceris_f"), 1.0F, 1.0F);
+                        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_f"), 1.0F, 1.0F);
                         if (livingEntity instanceof LivingEntity)
                             if (!livingEntity.getWorld().isClient())
                                 livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100, 0));
@@ -117,7 +117,7 @@ public class CerisEntity extends MonsterEntityBase {
                             sourceentity.requestTeleport(blockPos.getX(), this.getY(), blockPos.getZ());
                             if (sourceentity instanceof ServerPlayerEntity _serverPlayer)
                                 _serverPlayer.networkHandler.requestTeleport(blockPos.getX(), this.getY(), blockPos.getZ(), sourceentity.getYaw(), sourceentity.getPitch());
-                            SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "ceris_skill"), 1.0F, 1.0F);
+                            SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_skill"), 1.0F, 1.0F);
                             if (this.getWorld() instanceof ServerWorld _level)
                                 _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
                         });
@@ -154,18 +154,18 @@ public class CerisEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
     }
 
     @Override
     public void onDeath(DamageSource source) {
         super.onDeath(source);
-        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "ceris_death"), 1.0F, 1.0F);
+        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_death"), 1.0F, 1.0F);
         if (this.getWorld() instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, this.getX(), this.getY(), this.getZ(), 60, 0.5D, 1.0D, 0.5D, 0.5D);
     }
@@ -173,14 +173,14 @@ public class CerisEntity extends MonsterEntityBase {
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData ret_val = super.initialize(world, difficulty, reason, livingdata, tag);
-        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "ceris_live"), 1.0F, 1.0F);
+        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_live"), 1.0F, 1.0F);
 
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.5D, 0.5D, 0.5D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "ceris_boss_music"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_boss_music"), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(4700, callback);
@@ -203,7 +203,7 @@ public class CerisEntity extends MonsterEntityBase {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 1));
         }
         if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "ceris_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "ceris_boss_music"));
     }
 
     @Override

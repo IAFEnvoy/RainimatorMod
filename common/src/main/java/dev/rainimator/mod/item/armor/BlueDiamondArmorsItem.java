@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class BlueDiamondArmorsItem extends ArmorWithTickItem {
     public BlueDiamondArmorsItem(Type slot) {
-        super(ArmorMaterialUtil.of("blue_diamond_armors", new int[]{13, 15, 16, 11}, 70, new int[]{9, 13, 18, 10}, 40, Registries.SOUND_EVENT.get(new Identifier("item.armor.equip_diamond")), 5.0F, 0.3F, RainimatorItems.BLUE_DIAMOND), slot, new Settings().fireproof().arch$tab(RainimatorItemGroups.ITEM));
+        super(ArmorMaterialUtil.of("blue_diamond_armors", new int[]{13, 15, 16, 11}, 70, new int[]{9, 13, 18, 10}, 40, Registries.SOUND_EVENT.get(Identifier.tryParse("item.armor.equip_diamond")), 5.0F, 0.3F, RainimatorItems.BLUE_DIAMOND), slot, new Settings().fireproof().arch$tab(RainimatorItemGroups.ITEM));
     }
 
     @Override

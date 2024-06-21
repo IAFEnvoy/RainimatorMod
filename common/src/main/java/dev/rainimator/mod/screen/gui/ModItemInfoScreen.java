@@ -78,7 +78,7 @@ public class ModItemInfoScreen extends Screen {
                 200, 130, //Size
                 0, 0, //Texture Start
                 0,//DiffTex
-                new Identifier(RainimatorMod.MOD_ID, "textures/item_info/" + this.info.itemId + ".jpg"),
+                Identifier.of(RainimatorMod.MOD_ID, "textures/item_info/" + this.info.itemId + ".jpg"),
                 200, 130,//Texture size
                 e -> {//Do nothing
                 }));

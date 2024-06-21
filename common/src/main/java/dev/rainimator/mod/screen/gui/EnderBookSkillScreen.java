@@ -38,9 +38,9 @@ public class EnderBookSkillScreen extends HandledScreen<EnderBookSkillScreenHand
         int leftPos = (this.width - 300) / 2;
         int topPos = (this.height - 100) / 2;
 
-        this.addDrawableChild(new TexturedButtonWidget(leftPos + 32, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/overworld.png"), 64, 128, e -> NetworkManager.sendToServer(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, new PacketByteBuf(Unpooled.buffer()).writeString(World.OVERWORLD.getValue().toString()))));
-        this.addDrawableChild(new TexturedButtonWidget(leftPos + 118, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/nether.png"), 64, 128, e -> NetworkManager.sendToServer(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, new PacketByteBuf(Unpooled.buffer()).writeString(World.NETHER.getValue().toString()))));
-        this.addDrawableChild(new TexturedButtonWidget(leftPos + 203, topPos + 19, 64, 64, 0, 0, 64, new Identifier(RainimatorMod.MOD_ID, "textures/screens/atlas/end.png"), 64, 128, e -> NetworkManager.sendToServer(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, new PacketByteBuf(Unpooled.buffer()).writeString(World.END.getValue().toString()))));
+        this.addDrawableChild(new TexturedButtonWidget(leftPos + 32, topPos + 19, 64, 64, 0, 0, 64, Identifier.of(RainimatorMod.MOD_ID, "textures/screens/atlas/overworld.png"), 64, 128, e -> NetworkManager.sendToServer(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, new PacketByteBuf(Unpooled.buffer()).writeString(World.OVERWORLD.getValue().toString()))));
+        this.addDrawableChild(new TexturedButtonWidget(leftPos + 118, topPos + 19, 64, 64, 0, 0, 64, Identifier.of(RainimatorMod.MOD_ID, "textures/screens/atlas/nether.png"), 64, 128, e -> NetworkManager.sendToServer(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, new PacketByteBuf(Unpooled.buffer()).writeString(World.NETHER.getValue().toString()))));
+        this.addDrawableChild(new TexturedButtonWidget(leftPos + 203, topPos + 19, 64, 64, 0, 0, 64, Identifier.of(RainimatorMod.MOD_ID, "textures/screens/atlas/end.png"), 64, 128, e -> NetworkManager.sendToServer(ModConstants.ENDER_BOOK_SKILL_PACKET_ID, new PacketByteBuf(Unpooled.buffer()).writeString(World.END.getValue().toString()))));
     }
 
     @Override

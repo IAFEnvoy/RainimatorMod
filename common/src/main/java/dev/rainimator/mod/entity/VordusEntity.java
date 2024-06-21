@@ -79,12 +79,12 @@ public class VordusEntity extends EndermanEntity {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
     }
 
     @Override

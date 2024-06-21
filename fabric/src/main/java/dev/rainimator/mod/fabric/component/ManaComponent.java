@@ -14,7 +14,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ManaComponent implements ComponentV3, AutoSyncedComponent, CommonTickingComponent {
-    public static final ComponentKey<ManaComponent> MANA_COMPONENT = ComponentRegistryV3.INSTANCE.getOrCreate(new Identifier(RainimatorMod.MOD_ID, "mana"), ManaComponent.class);
+    public static final ComponentKey<ManaComponent> MANA_COMPONENT = ComponentRegistryV3.INSTANCE.getOrCreate(Identifier.of(RainimatorMod.MOD_ID, "mana"), ManaComponent.class);
 
     private final LivingEntity entity;
     private final ManaData data;

@@ -32,6 +32,6 @@ public class TrinketsRegistry {
     }
 
     public static void registerCommon() {
-        TrinketsApi.registerTrinket(RainimatorItems.WINGS_OF_SALVATION.get(), (Trinket) RainimatorItems.WINGS_OF_SALVATION);
+        TrinketsApi.registerTrinket(RainimatorItems.WINGS_OF_SALVATION.get(), (Trinket) RainimatorItems.WINGS_OF_SALVATION.get());
     }
 }

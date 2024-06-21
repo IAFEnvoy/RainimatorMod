@@ -19,7 +19,7 @@ public class EnderBookActionHandler implements NetworkManager.NetworkReceiver {
         if (context.getEnvironment() == Env.CLIENT) return;
         ServerPlayerEntity player = (ServerPlayerEntity) context.getPlayer();
         String target = buf.readString(100);
-        Identifier identifier = new Identifier(target);
+        Identifier identifier = Identifier.tryParse(target);
         RegistryKey<World> dimension;
         if (identifier.equals(World.OVERWORLD.getValue())) dimension = World.OVERWORLD;
         else if (identifier.equals(World.NETHER.getValue())) dimension = World.NETHER;

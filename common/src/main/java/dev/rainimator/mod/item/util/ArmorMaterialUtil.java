@@ -31,7 +31,7 @@ public class ArmorMaterialUtil {
 
     @SafeVarargs
     public static ArmorMaterial of(String name, EnumMap<ArmorItem.Type, Integer> baseDurability, int durabilityMul, EnumMap<ArmorItem.Type, Integer> protection, int enchantAbility, SoundEvent equipSound, float toughness, float knockBackResistance, Supplier<? extends ItemConvertible>... repairIngredients) {
-        if (equipSound == null) equipSound = Registries.SOUND_EVENT.get(new Identifier(""));
+        if (equipSound == null) equipSound = Registries.SOUND_EVENT.get(Identifier.tryParse(""));
         SoundEvent finalEquipSound = equipSound;
         return new ArmorMaterial() {
             @Override

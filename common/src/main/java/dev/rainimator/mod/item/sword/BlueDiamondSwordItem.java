@@ -86,7 +86,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                     if (entityiterator instanceof LivingEntity _livEnt && _livEnt.getGroup() == EntityGroup.ARTHROPOD) {
                         if (world instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
-                        SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5, 1);
+                        SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5, 1);
                         if (!_livEnt.getWorld().isClient())
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0));
                         entityiterator.setOnFireFor(10);
@@ -111,7 +111,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                     } else if ((entityiterator instanceof LivingEntity _livEnt && _livEnt.getGroup() == EntityGroup.DEFAULT)) {
                         if ((WorldAccess) world instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
-                        SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blue_diamond_skill_2"), 5, 1);
+                        SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blue_diamond_skill_2"), 5, 1);
                         if (!_livEnt.getWorld().isClient())
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0));
                         entityiterator.setOnFireFor(10);
@@ -140,7 +140,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 160, 2));
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 160, 0));
                         }
-                        SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blue_diamond_skill_3"), 5, 1);
+                        SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blue_diamond_skill_3"), 5, 1);
                         if (world instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
                         entity.getItemCooldownManager().set(itemtack.getItem(), 1000);
@@ -158,7 +158,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
                                 _serverPlayer.networkHandler.requestTeleport(x + RandomHelper.nextDouble(-1, 1), y + 2, z + RandomHelper.nextDouble(-1, 1), entityiterator.getYaw(), entityiterator.getPitch());
                         };
                         Runnable callback3 = () -> {
-                            SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blue_diamond_skill_4"), 5, 1);
+                            SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blue_diamond_skill_4"), 5, 1);
                             callback1.run();
                             entityiterator.requestTeleport(x + RandomHelper.nextDouble(-1, 1), y + 2, z + RandomHelper.nextDouble(-1, 1));
                             if (entityiterator instanceof ServerPlayerEntity _serverPlayer)

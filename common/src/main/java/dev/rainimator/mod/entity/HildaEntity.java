@@ -95,11 +95,11 @@ public class HildaEntity extends MonsterEntityBase implements RangedAttackMob {
 
     @Override
     public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
     }
 }

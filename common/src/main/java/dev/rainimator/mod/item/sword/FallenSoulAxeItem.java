@@ -82,7 +82,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
                             _serverPlayer.networkHandler.requestTeleport(x, y + finalI, z, entityiterator.getYaw(), entityiterator.getPitch());
                     });
                 }
-                SoundUtil.playSound(world, x, y, z, new Identifier("entity.wither.spawn"), 10.0F, 1.0F);
+                SoundUtil.playSound(world, x, y, z, Identifier.tryParse("entity.wither.spawn"), 10.0F, 1.0F);
                 if (world instanceof ServerWorld _level)
                     _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 1.0E-4D);
                 entity.getItemCooldownManager().set(itemtack.getItem(), 600);

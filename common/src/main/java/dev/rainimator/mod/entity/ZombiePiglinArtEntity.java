@@ -62,11 +62,11 @@ public class ZombiePiglinArtEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.zombified_piglin.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.zombified_piglin.death"));
     }
 }

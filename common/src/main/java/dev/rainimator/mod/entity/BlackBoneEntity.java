@@ -97,7 +97,7 @@ public class BlackBoneEntity extends MonsterEntityBase {
                     }
                 } else {
                     if (!(sourceentity instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(RainimatorEffects.FEAR_DARK.get()))) {
-                        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "blackbone_skill"), 1, 1);
+                        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_skill"), 1, 1);
                         if (this.getWorld() instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 50, 1, 1, 1, 1);
                         if (sourceentity instanceof LivingEntity _entity && !_entity.getWorld().isClient())
@@ -165,14 +165,14 @@ public class BlackBoneEntity extends MonsterEntityBase {
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "blackbone_living"), 1.0F, 1.0F);
+            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_living"), 1.0F, 1.0F);
 
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 50, 1.0D, 1.0D, 1.0D, 1.0D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "blackbone_boss_music"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_boss_music"), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(3960, callback);
@@ -195,7 +195,7 @@ public class BlackBoneEntity extends MonsterEntityBase {
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 2));
             }
         if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "blackbone_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_boss_music"));
     }
 
     @Override
@@ -223,16 +223,16 @@ public class BlackBoneEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getAmbientSound() {
-        return Registries.SOUND_EVENT.get(new Identifier(RainimatorMod.MOD_ID, "blackbone"));
+        return Registries.SOUND_EVENT.get(Identifier.of(RainimatorMod.MOD_ID, "blackbone"));
     }
 
     @Override
     public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
     }
 }

@@ -33,7 +33,7 @@ public class GluttonArmorHelmetRenderer implements TrinketRenderer {
     }
 
     private Identifier getTexture() {
-        return new Identifier("textures/models/armor/glutton_armors_layer_1.png");
+        return Identifier.tryParse("textures/models/armor/glutton_armors_layer_1.png");
     }
 
     @Override

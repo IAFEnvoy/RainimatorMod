@@ -85,12 +85,12 @@ public class KralosEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.wither_skeleton.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.wither_skeleton.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.wither_skeleton.death"));
     }
 
     @Override
@@ -114,7 +114,7 @@ public class KralosEntity extends MonsterEntityBase {
                     if (this.getWorld() instanceof ServerWorld _level)
                         EntityUtil.lightening(_level, x, y, z);
                     this.getWorld().setBlockState(VecUtil.createBlockPos(x, y, z), Blocks.FIRE.getDefaultState(), 3);
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier("entity.enderman.scream"), 1.0F, 1.0F);
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.enderman.scream"), 1.0F, 1.0F);
                     if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, x, y, z, 200, 2.0D, 3.0D, 2.0D, 0.001D);
                     if (!this.getWorld().isClient() && this.getWorld().getServer() != null)
@@ -151,13 +151,13 @@ public class KralosEntity extends MonsterEntityBase {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new Identifier("entity.wither.ambient"), 1.0F, 1.0F);
+            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.wither.ambient"), 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.001D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "kralos_boss_music"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "kralos_boss_music"), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(2480, callback);
@@ -180,7 +180,7 @@ public class KralosEntity extends MonsterEntityBase {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 0));
         }
         if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "kralos_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "kralos_boss_music"));
     }
 
     @Override

@@ -43,7 +43,7 @@ public class EnderBigSwordItem extends SwordItemBase {
             entity.requestTeleport(blockPos1.getX(), blockPos2.getY(), blockPos1.getZ());
             if ((Entity) entity instanceof ServerPlayerEntity _serverPlayer)
                 _serverPlayer.networkHandler.requestTeleport(blockPos1.getX(), blockPos2.getY(), blockPos1.getZ(), entity.getYaw(), entity.getPitch());
-            SoundUtil.playSound(world, x, y, z, new Identifier("entity.enderman.teleport"), 1.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, Identifier.tryParse("entity.enderman.teleport"), 1.0F, 1.0F);
             if (world instanceof ServerWorld _level) {
                 _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, x, y, z, 50, 0.5D, 0.0D, 0.5D, 0.2D);
                 entity.getItemCooldownManager().set(itemtack.getItem(), 300);

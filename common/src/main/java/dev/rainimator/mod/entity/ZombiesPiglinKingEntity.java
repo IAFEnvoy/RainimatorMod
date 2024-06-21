@@ -79,12 +79,12 @@ public class ZombiesPiglinKingEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.piglin.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.piglin.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.piglin.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.piglin.death"));
     }
 
     @Override
@@ -105,13 +105,13 @@ public class ZombiesPiglinKingEntity extends MonsterEntityBase {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, new Identifier("entity.wither.ambient"), 1.0F, 1.0F);
+            SoundUtil.playSound(_level, x, y, z, Identifier.tryParse("entity.wither.ambient"), 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, x, y, z, 200, 1.0D, 2.0D, 1.0D, 0.02D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "piglin_king_boss_music"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "piglin_king_boss_music"), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(3480, callback);
@@ -130,7 +130,7 @@ public class ZombiesPiglinKingEntity extends MonsterEntityBase {
         if (!this.getWorld().isClient())
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 0));
         if (!((Entity) this).isAlive())
-            SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "piglin_king_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "piglin_king_boss_music"));
     }
 
     @Override

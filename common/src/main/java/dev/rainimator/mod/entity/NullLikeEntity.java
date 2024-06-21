@@ -78,12 +78,12 @@ public class NullLikeEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
     }
 
     @Override
@@ -156,13 +156,13 @@ public class NullLikeEntity extends MonsterEntityBase {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5.0F, 1.0F);
+            SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5.0F, 1.0F);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles(RainimatorParticles.FLOWER_WHITE, x, y, z, 300, 2.0D, 3.0D, 2.0D, 0.3D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "null_boss_music"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "null_boss_music"), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(6420, callback);
@@ -182,7 +182,7 @@ public class NullLikeEntity extends MonsterEntityBase {
         if (!this.getWorld().isClient())
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 1));
         if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "null_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "null_boss_music"));
     }
 
     @Override

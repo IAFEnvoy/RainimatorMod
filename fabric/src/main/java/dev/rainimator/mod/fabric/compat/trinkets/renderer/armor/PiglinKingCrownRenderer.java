@@ -33,7 +33,7 @@ public class PiglinKingCrownRenderer implements TrinketRenderer {
     }
 
     private Identifier getTexture() {
-        return new Identifier("textures/models/armor/piglin_king_crown.png");
+        return Identifier.tryParse("textures/models/armor/piglin_king_crown.png");
     }
 
     @Override

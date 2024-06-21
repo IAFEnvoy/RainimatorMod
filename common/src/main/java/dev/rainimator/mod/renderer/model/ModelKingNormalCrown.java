@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ModelKingNormalCrown<T extends Entity> extends EntityModel<T> {
-    public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(new Identifier(RainimatorMod.MOD_ID, "modelking_nomal_crown"), "main");
+    public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(Identifier.of(RainimatorMod.MOD_ID, "modelking_nomal_crown"), "main");
     public final ModelPart Head;
 
     public ModelKingNormalCrown(ModelPart root) {

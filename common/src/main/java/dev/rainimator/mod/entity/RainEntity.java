@@ -84,12 +84,12 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
     }
 
     @Override
@@ -152,7 +152,7 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 1.0F, 1.0F);
+            SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) RainimatorParticles.SNOW, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         return retval;

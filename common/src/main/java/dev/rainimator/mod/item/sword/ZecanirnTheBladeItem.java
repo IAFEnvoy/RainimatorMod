@@ -50,13 +50,13 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
                 if (entity.getWorld() instanceof ServerWorld _level)
                     _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ(), 50, 0.5D, 1.0D, 0.5D, 0.2D);
                 if (Math.random() < 0.5D)
-                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "sword_teleport1"), 4.0F, 1.0F);
+                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "sword_teleport1"), 4.0F, 1.0F);
                 else if (Math.random() < 0.5D)
-                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "sword_teleport2"), 4.0F, 1.0F);
+                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "sword_teleport2"), 4.0F, 1.0F);
                 else if (Math.random() < 0.5D)
-                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "sword_teleport3"), 4.0F, 1.0F);
+                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "sword_teleport3"), 4.0F, 1.0F);
                 else
-                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "sword_teleport4"), 4.0F, 1.0F);
+                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "sword_teleport4"), 4.0F, 1.0F);
 
                 BlockPos blockPos = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(-2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
                 sourceentity.requestTeleport(blockPos.getX(), entity.getY() + 0.5D, blockPos.getZ());
@@ -113,7 +113,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
                     entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 10.0F);
                     if (world instanceof ServerWorld _level)
                         _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ(), 40, 0.5D, 0.5D, 0.5D, 0.5D);
-                    SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
+                    SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
 
                     Runnable callback = () -> {
                         entity.requestTeleport(entity.getX(), entity.getY(), entity.getZ());
@@ -127,7 +127,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
                             for (double x = -7; x <= 7; x++)
                                 _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, entity.getX() + x, entity.getY(), entity.getZ(), 20, 0.2D, 0.5D, 0.2D, 0.2D);
                         }
-                        SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
+                        SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
                     };
                     Timeout.create(5, callback);
                     Timeout.create(10, callback);

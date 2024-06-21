@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ModelEnderman<T extends Entity> extends EntityModel<T> {
-    public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(new Identifier(RainimatorMod.MOD_ID, "modelenderman"), "main");
+    public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(Identifier.of(RainimatorMod.MOD_ID, "modelenderman"), "main");
     public final ModelPart body;
     public final ModelPart head;
     public final ModelPart headwear;

@@ -39,9 +39,9 @@ public class BlackDeathSwordItem extends SwordItemBase implements IRainimatorInf
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 2));
             }
             if (Math.random() < 0.7D)
-                SoundUtil.playSound(entity.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
+                SoundUtil.playSound(entity.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
             else
-                SoundUtil.playSound(entity.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "black_death_sword_skill_3"), 4.0F, 1.0F);
+                SoundUtil.playSound(entity.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "black_death_sword_skill_3"), 4.0F, 1.0F);
             if (entity.getWorld() instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) RainimatorParticles.FLOWER_WHITE, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         } else {

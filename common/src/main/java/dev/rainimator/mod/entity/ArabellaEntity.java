@@ -78,7 +78,7 @@ public class ArabellaEntity extends MonsterEntityBase {
         List<Entity> _entfound = this.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(3.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
             if (entityiterator instanceof PlayerEntity && Math.random() < 0.3D) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), new Identifier(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
                 ParticleUtil.spawn3x3Particles(this.getWorld(), (ParticleEffect) RainimatorParticles.ENDER_DAGGER, this.getX(), this.getY(), this.getZ());
                 entityiterator.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 6.0F);
             }
@@ -88,12 +88,12 @@ public class ArabellaEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
     }
 
     @Override

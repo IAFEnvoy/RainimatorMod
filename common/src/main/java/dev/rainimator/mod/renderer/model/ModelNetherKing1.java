@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ModelNetherKing1<T extends Entity> extends EntityModel<T> {
-    public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(new Identifier(RainimatorMod.MOD_ID, "modelnether_king_1"), "main");
+    public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(Identifier.of(RainimatorMod.MOD_ID, "modelnether_king_1"), "main");
     public final ModelPart Head;
 
     public ModelNetherKing1(ModelPart root) {

@@ -34,7 +34,7 @@ public class DarkObsidianBlockEntity extends BlockEntity {
         if (name.isBlank())
             this.setBiome(current.getKey().orElse(RegistryKey.of(RegistryKeys.BIOME, null)));
         else
-            this.setBiome(RegistryKey.of(RegistryKeys.BIOME, new Identifier(name)));
+            this.setBiome(RegistryKey.of(RegistryKeys.BIOME, Identifier.tryParse(name)));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class DarkObsidianBlockEntity extends BlockEntity {
         super.readNbt(nbt);
         String biomeKey = nbt.getString(DarkObsidianBlock.NBT_KEY);
         if (!biomeKey.isBlank())
-            this.setBiome(RegistryKey.of(RegistryKeys.BIOME, new Identifier(biomeKey)));
+            this.setBiome(RegistryKey.of(RegistryKeys.BIOME, Identifier.tryParse(biomeKey)));
     }
 
     @Override

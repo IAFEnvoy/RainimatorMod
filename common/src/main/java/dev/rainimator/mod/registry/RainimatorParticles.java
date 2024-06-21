@@ -39,7 +39,7 @@ public class RainimatorParticles {
     });
 
     private static DefaultParticleType register(String name, DefaultParticleType obj) {
-        return Registry.register(Registries.PARTICLE_TYPE, new Identifier(RainimatorMod.MOD_ID, name), obj);
+        return Registry.register(Registries.PARTICLE_TYPE, Identifier.of(RainimatorMod.MOD_ID, name), obj);
     }
 
     @Environment(EnvType.CLIENT)

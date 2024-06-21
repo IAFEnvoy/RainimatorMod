@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ModelLearSword<T extends Entity> extends EntityModel<T> {
-    public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(new Identifier(RainimatorMod.MOD_ID, "modellearsword"), "main");
+    public static final EntityModelLayer LAYER_LOCATION = new EntityModelLayer(Identifier.of(RainimatorMod.MOD_ID, "modellearsword"), "main");
     public final ModelPart Body;
 
     public ModelLearSword(ModelPart root) {

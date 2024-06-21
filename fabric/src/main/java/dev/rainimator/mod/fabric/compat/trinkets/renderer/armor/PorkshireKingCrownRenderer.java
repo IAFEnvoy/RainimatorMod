@@ -34,7 +34,7 @@ public class PorkshireKingCrownRenderer implements TrinketRenderer {
     }
 
     private Identifier getTexture() {
-        return new Identifier("textures/models/armor/porkshire_king_crown.png");
+        return Identifier.tryParse("textures/models/armor/porkshire_king_crown.png");
     }
 
     @Override

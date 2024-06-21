@@ -1,11 +1,15 @@
 package dev.rainimator.mod.registry;
 
+import dev.architectury.hooks.level.biome.SpawnProperties;
+import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
+import dev.architectury.registry.level.biome.BiomeModifications;
+import dev.architectury.registry.level.entity.EntityAttributeRegistry;
+import dev.architectury.registry.level.entity.SpawnPlacementsRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import dev.rainimator.mod.ModConstants;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.entity.*;
-import dev.rainimator.mod.impl.RainimatorRegistryManager;
 import dev.rainimator.mod.util.SpawnBiome;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -21,6 +25,7 @@ import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.biome.SpawnSettings;
 
 import java.util.function.Supplier;
 
@@ -88,143 +93,153 @@ public class RainimatorEntities {
     }
 
     public static void registerAttributes() {
-        RainimatorRegistryManager.registerDefaultAttribute(HEROBRINE.get(), HerobrineEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(CERIS.get(), CerisEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(ZOMBIES.get(), ZombiesEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(NAEUS.get(), NaeusEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(RAIN.get(), RainEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(ABIGAIL.get(), AbigailEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(PATRICK.get(), PatrickEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(BLACKBONE.get(), BlackBoneEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(HOGSWORTH.get(), HogsworthEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(CIARA.get(), CiaraEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(HILDA.get(), HildaEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(SOLDIERS.get(), SoldiersEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(WITHERED_SKELETONS.get(), WitheredSkeletonsEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(DARK_SHIELD.get(), DarkShieldEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(DARK_ZOMBIE.get(), DarkZombieEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(VORDUS.get(), VordusEntity.createEndermanAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(WITHER_SHIELD.get(), WitherShieldEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(SKELETON_SNOW.get(), SkeletonSnowEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(ZOMBIE_PIGLIN_KING.get(), ZombiesPiglinKingEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(PIGLIN_KING_ZOMBIES.get(), PiglinKingZombiesEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(PIGLIN_KING_ZOMBIE.get(), PiglinKingZombieEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(PIGLIN_COMMANDER.get(), PiglinCommanderEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(NAEUS_KING.get(), NaeusKingEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(TUSK.get(), TuskEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(BROTS.get(), BrotsEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(ZOMBIE_PIGLIN_ART.get(), ZombiePiglinArtEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(MUTATED.get(), MutatedEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(NAMTAR.get(), NamtarEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(AGETHA.get(), AgethaEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(TRICER.get(), TricerEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(BIG_UNDEAD_SKELETON.get(), BigUndeadSkeletonEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(ARCHER.get(), ArcherEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(DARYLL.get(), DaryllEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(NULL_LIKE.get(), NullLikeEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(GIGABONE.get(), GigaBoneEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(KLAUS.get(), KlausEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(KLAUS_2.get(), Klaus2Entity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(KRALOS.get(), KralosEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(ARABELLA.get(), ArabellaEntity.createAttributes());
-        RainimatorRegistryManager.registerDefaultAttribute(AZALEA.get(), AzaleaEntity.createAttributes());
+        EntityAttributeRegistry.register(HEROBRINE, HerobrineEntity::createAttributes);
+        EntityAttributeRegistry.register(CERIS, CerisEntity::createAttributes);
+        EntityAttributeRegistry.register(ZOMBIES, ZombiesEntity::createAttributes);
+        EntityAttributeRegistry.register(NAEUS, NaeusEntity::createAttributes);
+        EntityAttributeRegistry.register(RAIN, RainEntity::createAttributes);
+        EntityAttributeRegistry.register(ABIGAIL, AbigailEntity::createAttributes);
+        EntityAttributeRegistry.register(PATRICK, PatrickEntity::createAttributes);
+        EntityAttributeRegistry.register(BLACKBONE, BlackBoneEntity::createAttributes);
+        EntityAttributeRegistry.register(HOGSWORTH, HogsworthEntity::createAttributes);
+        EntityAttributeRegistry.register(CIARA, CiaraEntity::createAttributes);
+        EntityAttributeRegistry.register(HILDA, HildaEntity::createAttributes);
+        EntityAttributeRegistry.register(SOLDIERS, SoldiersEntity::createAttributes);
+        EntityAttributeRegistry.register(WITHERED_SKELETONS, WitheredSkeletonsEntity::createAttributes);
+        EntityAttributeRegistry.register(DARK_SHIELD, DarkShieldEntity::createAttributes);
+        EntityAttributeRegistry.register(DARK_ZOMBIE, DarkZombieEntity::createAttributes);
+        EntityAttributeRegistry.register(VORDUS, VordusEntity::createEndermanAttributes);
+        EntityAttributeRegistry.register(WITHER_SHIELD, WitherShieldEntity::createAttributes);
+        EntityAttributeRegistry.register(SKELETON_SNOW, SkeletonSnowEntity::createAttributes);
+        EntityAttributeRegistry.register(ZOMBIE_PIGLIN_KING, ZombiesPiglinKingEntity::createAttributes);
+        EntityAttributeRegistry.register(PIGLIN_KING_ZOMBIES, PiglinKingZombiesEntity::createAttributes);
+        EntityAttributeRegistry.register(PIGLIN_KING_ZOMBIE, PiglinKingZombieEntity::createAttributes);
+        EntityAttributeRegistry.register(PIGLIN_COMMANDER, PiglinCommanderEntity::createAttributes);
+        EntityAttributeRegistry.register(NAEUS_KING, NaeusKingEntity::createAttributes);
+        EntityAttributeRegistry.register(TUSK, TuskEntity::createAttributes);
+        EntityAttributeRegistry.register(BROTS, BrotsEntity::createAttributes);
+        EntityAttributeRegistry.register(ZOMBIE_PIGLIN_ART, ZombiePiglinArtEntity::createAttributes);
+        EntityAttributeRegistry.register(MUTATED, MutatedEntity::createAttributes);
+        EntityAttributeRegistry.register(NAMTAR, NamtarEntity::createAttributes);
+        EntityAttributeRegistry.register(AGETHA, AgethaEntity::createAttributes);
+        EntityAttributeRegistry.register(TRICER, TricerEntity::createAttributes);
+        EntityAttributeRegistry.register(BIG_UNDEAD_SKELETON, BigUndeadSkeletonEntity::createAttributes);
+        EntityAttributeRegistry.register(ARCHER, ArcherEntity::createAttributes);
+        EntityAttributeRegistry.register(DARYLL, DaryllEntity::createAttributes);
+        EntityAttributeRegistry.register(NULL_LIKE, NullLikeEntity::createAttributes);
+        EntityAttributeRegistry.register(GIGABONE, GigaBoneEntity::createAttributes);
+        EntityAttributeRegistry.register(KLAUS, KlausEntity::createAttributes);
+        EntityAttributeRegistry.register(KLAUS_2, Klaus2Entity::createAttributes);
+        EntityAttributeRegistry.register(KRALOS, KralosEntity::createAttributes);
+        EntityAttributeRegistry.register(ARABELLA, ArabellaEntity::createAttributes);
+        EntityAttributeRegistry.register(AZALEA, AzaleaEntity::createAttributes);
     }
 
     public static void addSpawner() {
-        RainimatorRegistryManager.registerSpawner(ZOMBIES.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(ZOMBIES, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
 //        DungeonHooks.addDungeonMob(ZOMBIES, 180);
-        RainimatorRegistryManager.registerSpawner(SOLDIERS.get(), SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(SOLDIERS, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL);
-        RainimatorRegistryManager.registerSpawner(HILDA.get(), SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(HILDA, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL);
-        RainimatorRegistryManager.registerSpawner(WITHERED_SKELETONS.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(WITHERED_SKELETONS, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
-        RainimatorRegistryManager.registerSpawner(DARK_ZOMBIE.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(DARK_ZOMBIE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
-        RainimatorRegistryManager.registerSpawner(DARK_SHIELD.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(DARK_SHIELD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
 //        DungeonHooks.addDungeonMob(DARK_SHIELD, 180);
-        RainimatorRegistryManager.registerSpawner(WITHER_SHIELD.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(WITHER_SHIELD, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
 //        DungeonHooks.addDungeonMob(WITHER_SHIELD, 180);
-        RainimatorRegistryManager.registerSpawner(SKELETON_SNOW.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(SKELETON_SNOW, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
-        RainimatorRegistryManager.registerSpawner(TUSK.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(TUSK, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
 //        DungeonHooks.addDungeonMob(TUSK, 180);
-        RainimatorRegistryManager.registerSpawner(BROTS.get(), SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(BROTS, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
-        RainimatorRegistryManager.registerSpawner(AGETHA.get(), SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(AGETHA, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL);
-        RainimatorRegistryManager.registerSpawner(ARCHER.get(), SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(ARCHER, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getFluidState(pos.down()).isIn(FluidTags.WATER) && pos.getY() >= ModConstants.SEA_LEVEL - 13 && pos.getY() <= ModConstants.SEA_LEVEL);
     }
 
     public static void addLivingEntityToBiomes() {
-        RainimatorRegistryManager.addSpawnToBiome(SpawnBiome.COMMON_SPAWN_BIOMES::contains, SpawnGroup.UNDERGROUND_WATER_CREATURE, RainimatorEntities.AGETHA.get(), 10, 1, 1);
-        RainimatorRegistryManager.addSpawnToBiome(SpawnBiome.COMMON_SPAWN_BIOMES::contains, SpawnGroup.UNDERGROUND_WATER_CREATURE, RainimatorEntities.ARCHER.get(), 10, 1, 1);
-        RainimatorRegistryManager.addSpawnToBiome(SpawnBiome.COMMON_SPAWN_BIOMES::contains, SpawnGroup.MONSTER, RainimatorEntities.BROTS.get(), 5, 1, 1);
-        RainimatorRegistryManager.addSpawnToBiome(SpawnBiome.END_SPAWN_BIOMES::contains, SpawnGroup.MONSTER, RainimatorEntities.DARK_SHIELD.get(), 1, 1, 1);
-        RainimatorRegistryManager.addSpawnToBiome(SpawnBiome.COMMON_SPAWN_BIOMES::contains, SpawnGroup.MONSTER, RainimatorEntities.DARK_ZOMBIE.get(), 10, 1, 1);
-        RainimatorRegistryManager.addSpawnToBiome(SpawnBiome.COMMON_SPAWN_BIOMES::contains, SpawnGroup.UNDERGROUND_WATER_CREATURE, RainimatorEntities.HILDA.get(), 10, 1, 1);
-        RainimatorRegistryManager.addSpawnToBiome(SpawnBiome.SNOW_SPAWN_BIOMES::contains, SpawnGroup.MONSTER, RainimatorEntities.SKELETON_SNOW.get(), 10, 1, 1);
-        RainimatorRegistryManager.addSpawnToBiome(SpawnBiome.COMMON_SPAWN_BIOMES::contains, SpawnGroup.UNDERGROUND_WATER_CREATURE, RainimatorEntities.SOLDIERS.get(), 10, 1, 1);
-        RainimatorRegistryManager.addSpawnToBiome(SpawnBiome.COMMON_SPAWN_BIOMES::contains, SpawnGroup.MONSTER, RainimatorEntities.TUSK.get(), 5, 1, 1);
-        RainimatorRegistryManager.addSpawnToBiome(identifier -> new Identifier("nether_wastes").equals(identifier), SpawnGroup.MONSTER, RainimatorEntities.WITHERED_SKELETONS.get(), 19, 2, 2);
-        RainimatorRegistryManager.addSpawnToBiome(SpawnBiome.COMMON_SPAWN_BIOMES::contains, SpawnGroup.MONSTER, RainimatorEntities.WITHER_SHIELD.get(), 3, 1, 1);
-        RainimatorRegistryManager.addSpawnToBiome(SpawnBiome.COMMON_SPAWN_BIOMES::contains, SpawnGroup.MONSTER, RainimatorEntities.ZOMBIES.get(), 10, 1, 1);
+        BiomeModifications.addProperties((context, mutable) -> {
+            Identifier biomeKey = context.getKey().orElse(Identifier.tryParse("invalid"));
+            if (biomeKey == null) return;
+            SpawnProperties.Mutable spawnProperties = mutable.getSpawnProperties();
+            if (SpawnBiome.COMMON_SPAWN_BIOMES.contains(biomeKey)) {
+                spawnProperties.addSpawn(SpawnGroup.UNDERGROUND_WATER_CREATURE, new SpawnSettings.SpawnEntry(RainimatorEntities.AGETHA.get(), 10, 1, 1));
+                spawnProperties.addSpawn(SpawnGroup.UNDERGROUND_WATER_CREATURE, new SpawnSettings.SpawnEntry(RainimatorEntities.ARCHER.get(), 10, 1, 1));
+                spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.BROTS.get(), 5, 1, 1));
+                spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.DARK_ZOMBIE.get(), 10, 1, 1));
+                spawnProperties.addSpawn(SpawnGroup.UNDERGROUND_WATER_CREATURE, new SpawnSettings.SpawnEntry(RainimatorEntities.HILDA.get(), 10, 1, 1));
+                spawnProperties.addSpawn(SpawnGroup.UNDERGROUND_WATER_CREATURE, new SpawnSettings.SpawnEntry(RainimatorEntities.SOLDIERS.get(), 10, 1, 1));
+                spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.TUSK.get(), 5, 1, 1));
+                spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.WITHER_SHIELD.get(), 3, 1, 1));
+                spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.ZOMBIES.get(), 10, 1, 1));
+            }
+            if (SpawnBiome.END_SPAWN_BIOMES.contains(biomeKey))
+                spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.DARK_SHIELD.get(), 1, 1, 1));
+            if (SpawnBiome.SNOW_SPAWN_BIOMES.contains(biomeKey))
+                spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.SKELETON_SNOW.get(), 10, 1, 1));
+            if (biomeKey.equals(Identifier.tryParse("nether_wastes")))
+                spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.WITHERED_SKELETONS.get(), 19, 2, 2));
+        });
     }
 
     @Environment(EnvType.CLIENT)
     public static void registerEntityRenderers() {
-        RainimatorRegistryManager.registerRenderer(HEROBRINE.get(), HerobrineEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(CERIS.get(), CerisEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(ZOMBIES.get(), ZombiesEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(NAEUS.get(), NaeusEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(RAIN.get(), RainEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(RAIN_PROJECTILE.get(), FlyingItemEntityRenderer::new);
-        RainimatorRegistryManager.registerRenderer(ABIGAIL.get(), AbigailEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(ABIGAIL_PROJECTILE.get(), FlyingItemEntityRenderer::new);
-        RainimatorRegistryManager.registerRenderer(PATRICK.get(), PatrickEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(PATRICK_PROJECTILE.get(), FlyingItemEntityRenderer::new);
-        RainimatorRegistryManager.registerRenderer(BLACKBONE.get(), BlackBoneEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(HOGSWORTH.get(), HogsworthEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(SOLDIERS.get(), SoldiersEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(SOLDIERS_PROJECTILE.get(), FlyingItemEntityRenderer::new);
-        RainimatorRegistryManager.registerRenderer(CIARA.get(), CiaraEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(CIARA_PROJECTILE.get(), FlyingItemEntityRenderer::new);
-        RainimatorRegistryManager.registerRenderer(HILDA.get(), HildaEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(HILDA_PROJECTILE.get(), FlyingItemEntityRenderer::new);
-        RainimatorRegistryManager.registerRenderer(WITHERED_SKELETONS.get(), WitheredSkeletonsEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(END_STAFF.get(), FlyingItemEntityRenderer::new);
-        RainimatorRegistryManager.registerRenderer(VORDUS.get(), VordusEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(DARK_ZOMBIE.get(), DarkZombieEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(DARK_SHIELD.get(), DarkShieldEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(WITHER_SHIELD.get(), WitherShieldEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(SKELETON_SNOW.get(), SkeletonSnowEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(ARABELLA.get(), ArabellaEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(AZALEA.get(), AzaleaEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(NULL_LIKE.get(), NullLikeEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(ZOMBIE_PIGLIN_KING.get(), ZombiesPiglinKingEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(PIGLIN_KING_ZOMBIES.get(), PiglinKingZombiesEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(PIGLIN_KING_ZOMBIE.get(), PiglinKingZombieEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(PIGLIN_COMMANDER.get(), PiglinCommanderEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(DARYLL.get(), DaryllEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(DARYLL_PROJECTILE.get(), FlyingItemEntityRenderer::new);
-        RainimatorRegistryManager.registerRenderer(NAEUS_KING.get(), NaeusKingEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(TUSK.get(), TuskEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(BROTS.get(), BrotsEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(ZOMBIE_PIGLIN_ART.get(), ZombiePiglinArtEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(MUTATED.get(), MutatedEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(NAMTAR.get(), NamtarEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(AGETHA.get(), AgethaEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(TRICER.get(), TricerEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(BIG_UNDEAD_SKELETON.get(), BigUndeadSkeletonEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(ARCHER.get(), ArcherEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(GIGABONE.get(), GigaBoneEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(KLAUS.get(), KlausEntity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(KLAUS_2.get(), Klaus2Entity.texture::createRenderer);
-        RainimatorRegistryManager.registerRenderer(KRALOS.get(), KralosEntity.texture::createRenderer);
+        EntityRendererRegistry.register(HEROBRINE, HerobrineEntity.texture::createRenderer);
+        EntityRendererRegistry.register(CERIS, CerisEntity.texture::createRenderer);
+        EntityRendererRegistry.register(ZOMBIES, ZombiesEntity.texture::createRenderer);
+        EntityRendererRegistry.register(NAEUS, NaeusEntity.texture::createRenderer);
+        EntityRendererRegistry.register(RAIN, RainEntity.texture::createRenderer);
+        EntityRendererRegistry.register(RAIN_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(ABIGAIL, AbigailEntity.texture::createRenderer);
+        EntityRendererRegistry.register(ABIGAIL_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(PATRICK, PatrickEntity.texture::createRenderer);
+        EntityRendererRegistry.register(PATRICK_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(BLACKBONE, BlackBoneEntity.texture::createRenderer);
+        EntityRendererRegistry.register(HOGSWORTH, HogsworthEntity.texture::createRenderer);
+        EntityRendererRegistry.register(SOLDIERS, SoldiersEntity.texture::createRenderer);
+        EntityRendererRegistry.register(SOLDIERS_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(CIARA, CiaraEntity.texture::createRenderer);
+        EntityRendererRegistry.register(CIARA_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(HILDA, HildaEntity.texture::createRenderer);
+        EntityRendererRegistry.register(HILDA_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(WITHERED_SKELETONS, WitheredSkeletonsEntity.texture::createRenderer);
+        EntityRendererRegistry.register(END_STAFF, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(VORDUS, VordusEntity.texture::createRenderer);
+        EntityRendererRegistry.register(DARK_ZOMBIE, DarkZombieEntity.texture::createRenderer);
+        EntityRendererRegistry.register(DARK_SHIELD, DarkShieldEntity.texture::createRenderer);
+        EntityRendererRegistry.register(WITHER_SHIELD, WitherShieldEntity.texture::createRenderer);
+        EntityRendererRegistry.register(SKELETON_SNOW, SkeletonSnowEntity.texture::createRenderer);
+        EntityRendererRegistry.register(ARABELLA, ArabellaEntity.texture::createRenderer);
+        EntityRendererRegistry.register(AZALEA, AzaleaEntity.texture::createRenderer);
+        EntityRendererRegistry.register(NULL_LIKE, NullLikeEntity.texture::createRenderer);
+        EntityRendererRegistry.register(ZOMBIE_PIGLIN_KING, ZombiesPiglinKingEntity.texture::createRenderer);
+        EntityRendererRegistry.register(PIGLIN_KING_ZOMBIES, PiglinKingZombiesEntity.texture::createRenderer);
+        EntityRendererRegistry.register(PIGLIN_KING_ZOMBIE, PiglinKingZombieEntity.texture::createRenderer);
+        EntityRendererRegistry.register(PIGLIN_COMMANDER, PiglinCommanderEntity.texture::createRenderer);
+        EntityRendererRegistry.register(DARYLL, DaryllEntity.texture::createRenderer);
+        EntityRendererRegistry.register(DARYLL_PROJECTILE, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(NAEUS_KING, NaeusKingEntity.texture::createRenderer);
+        EntityRendererRegistry.register(TUSK, TuskEntity.texture::createRenderer);
+        EntityRendererRegistry.register(BROTS, BrotsEntity.texture::createRenderer);
+        EntityRendererRegistry.register(ZOMBIE_PIGLIN_ART, ZombiePiglinArtEntity.texture::createRenderer);
+        EntityRendererRegistry.register(MUTATED, MutatedEntity.texture::createRenderer);
+        EntityRendererRegistry.register(NAMTAR, NamtarEntity.texture::createRenderer);
+        EntityRendererRegistry.register(AGETHA, AgethaEntity.texture::createRenderer);
+        EntityRendererRegistry.register(TRICER, TricerEntity.texture::createRenderer);
+        EntityRendererRegistry.register(BIG_UNDEAD_SKELETON, BigUndeadSkeletonEntity.texture::createRenderer);
+        EntityRendererRegistry.register(ARCHER, ArcherEntity.texture::createRenderer);
+        EntityRendererRegistry.register(GIGABONE, GigaBoneEntity.texture::createRenderer);
+        EntityRendererRegistry.register(KLAUS, KlausEntity.texture::createRenderer);
+        EntityRendererRegistry.register(KLAUS_2, Klaus2Entity.texture::createRenderer);
+        EntityRendererRegistry.register(KRALOS, KralosEntity.texture::createRenderer);
     }
 }

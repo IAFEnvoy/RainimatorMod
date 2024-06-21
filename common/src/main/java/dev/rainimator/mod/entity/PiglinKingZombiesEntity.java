@@ -77,12 +77,12 @@ public class PiglinKingZombiesEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.hurt"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.zombified_piglin.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.zombified_piglin.death"));
+        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.zombified_piglin.death"));
     }
 
     @Override
@@ -109,17 +109,17 @@ public class PiglinKingZombiesEntity extends MonsterEntityBase {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blackbone_skill"), 5, 1);
+            SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blackbone_skill"), 5, 1);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((DefaultParticleType) (RainimatorParticles.YELLOW_STARS), x, y, z, 100, 1, 2, 1, 1);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Timeout.create(30, () -> {
                 if (world instanceof World _level)
-                    SoundUtil.playSound(_level, x, y, z, new Identifier(RainimatorMod.MOD_ID, "blackbone_living"), 5, 1);
+                    SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blackbone_living"), 5, 1);
             });
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, new Identifier(RainimatorMod.MOD_ID, "glutton_boss_music"), 5, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "glutton_boss_music"), 5, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(5520, callback);
@@ -136,7 +136,7 @@ public class PiglinKingZombiesEntity extends MonsterEntityBase {
     public void baseTick() {
         super.baseTick();
         if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), new Identifier(RainimatorMod.MOD_ID, "glutton_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "glutton_boss_music"));
     }
 
     @Override

@@ -33,7 +33,7 @@ public class KingNormalCrownRenderer implements TrinketRenderer {
     }
 
     private Identifier getTexture() {
-        return new Identifier("textures/models/armor/king_normal_crown.png");
+        return Identifier.tryParse("textures/models/armor/king_normal_crown.png");
     }
 
     @Override

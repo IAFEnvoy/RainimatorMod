@@ -24,8 +24,8 @@ import net.minecraft.util.math.RotationAxis;
 
 @Environment(EnvType.CLIENT)
 public class WingsOfSalvationRenderer implements TrinketRenderer {
-    private static final Identifier WINGS_LOCATION = new Identifier(RainimatorMod.MOD_ID, "textures/wings/tech_wings.png");
-    private static final Identifier WINGS_LOCATION2 = new Identifier(RainimatorMod.MOD_ID, "textures/wings/tech_wings_2.png");
+    private static final Identifier WINGS_LOCATION = Identifier.of(RainimatorMod.MOD_ID, "textures/wings/tech_wings.png");
+    private static final Identifier WINGS_LOCATION2 = Identifier.of(RainimatorMod.MOD_ID, "textures/wings/tech_wings_2.png");
 
     @Override
     public void render(ItemStack itemtack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {

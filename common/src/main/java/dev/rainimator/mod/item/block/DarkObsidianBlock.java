@@ -184,7 +184,7 @@ public class DarkObsidianBlock extends BlockWithEntity {
         String t = compound.getString(NBT_KEY);
         if (t.isBlank())
             t = RainimatorMod.MOD_ID + ":unknown";
-        Identifier biome = new Identifier(t);
+        Identifier biome = Identifier.tryParse(t);
         tooltip.add(Text.literal(I18n.translate("block.rainimator.dark_obsidian_block.tooltip.biome") + I18n.translate(String.format("biome.%s.%s", biome.getNamespace(), biome.getPath()))));
     }
 
@@ -208,7 +208,7 @@ public class DarkObsidianBlock extends BlockWithEntity {
                 _level.spawnParticles(ParticleTypes.FLAME, ((double) x + 2), y, ((double) z - 2), 150, 0, 6, 0, 0.0002);
                 _level.spawnParticles(ParticleTypes.FLAME, ((double) x - 2), y, ((double) z + 2), 150, 0, 6, 0, 0.0002);
             }
-            SoundUtil.playSound(world, x, y, z, new Identifier("block.portal.travel"), 1, 1);
+            SoundUtil.playSound(world, x, y, z, Identifier.tryParse("block.portal.travel"), 1, 1);
             if (!world.isClient() && world.getServer() != null)
                 world.getServer().getPlayerManager().broadcast(Text.translatable("block.rainimator.dark_obsidian_block.running"), false);
             entity.getMainHandStack().decrement(1);

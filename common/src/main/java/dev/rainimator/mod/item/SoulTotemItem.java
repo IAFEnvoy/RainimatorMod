@@ -50,7 +50,7 @@ public class SoulTotemItem extends FoilItemBase {
         if (entity.isOnGround()) {
             if (world.isClient())
                 (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemtack);
-            SoundUtil.playSound(world, x, y, z, new Identifier("block.anvil.land"), 5.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, Identifier.tryParse("block.anvil.land"), 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
             if (!entity.getWorld().isClient())
@@ -64,7 +64,7 @@ public class SoulTotemItem extends FoilItemBase {
         } else {
             if (((WorldAccess) world).isClient())
                 (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemtack);
-            SoundUtil.playSound(world, x, y, z, new Identifier("block.anvil.land"), 5.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, Identifier.tryParse("block.anvil.land"), 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles((ParticleEffect) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
             if (!entity.getWorld().isClient())

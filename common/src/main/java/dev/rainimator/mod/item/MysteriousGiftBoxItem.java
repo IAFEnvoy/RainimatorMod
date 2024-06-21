@@ -124,7 +124,7 @@ public class MysteriousGiftBoxItem extends ItemBase {
         double z = entity.getZ();
 
         if (entity instanceof PlayerEntity _player) {
-            SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "gift_box"), 15.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "gift_box"), 15.0F, 1.0F);
             ItemStack _stktoremove = new ItemStack(RainimatorItems.MYSTERIOUS_GIFT_BOX.get());
             _player.getInventory().remove(p -> (_stktoremove.getItem() == p.getItem()), 0, _player.playerScreenHandler.getCraftingInput());
             ItemStack stack = new ItemStack(Items.AIR);

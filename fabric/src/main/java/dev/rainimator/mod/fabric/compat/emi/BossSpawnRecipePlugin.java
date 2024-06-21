@@ -24,8 +24,8 @@ import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class BossSpawnRecipePlugin implements EmiPlugin {
-    private static final Identifier BOSS_SPAWN = new Identifier(RainimatorMod.MOD_ID, "boss_spawn_recipe");
-    private static final EmiTexture TEXTURE = new EmiTexture(new Identifier(RainimatorMod.MOD_ID, "textures/gui/gui_boss_spawn_recipe.png"), 0, 0, 140, 44);
+    private static final Identifier BOSS_SPAWN = Identifier.of(RainimatorMod.MOD_ID, "boss_spawn_recipe");
+    private static final EmiTexture TEXTURE = new EmiTexture(Identifier.of(RainimatorMod.MOD_ID, "textures/gui/gui_boss_spawn_recipe.png"), 0, 0, 140, 44);
     private static final EmiStack WORKSTATION = EmiStack.of(RainimatorBlocks.DARK_OBSIDIAN_BLOCK.get());
     private static final EmiRecipeCategory BOSS_SPAWN_CATEGORY = new EmiRecipeCategory(BOSS_SPAWN, WORKSTATION, TEXTURE);
     private static final List<BossSpawnRecipe> RECIPES = List.of(
@@ -63,7 +63,7 @@ public class BossSpawnRecipePlugin implements EmiPlugin {
 
         @Override
         public @NotNull Identifier getId() {
-            return new Identifier(RainimatorMod.MOD_ID, this.id);
+            return Identifier.of(RainimatorMod.MOD_ID, this.id);
         }
 
         @Override

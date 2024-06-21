@@ -33,7 +33,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
         double y = entity.getY();
         double z = entity.getZ();
 
-        SoundUtil.playSound(world, x, y, z, new Identifier("entity.ender_pearl.throw"), 1, 1);
+        SoundUtil.playSound(world, x, y, z, Identifier.tryParse("entity.ender_pearl.throw"), 1, 1);
 
         if (world instanceof ServerWorld _level)
             _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, x, y, z, 30, 0.5D, 1.0D, 0.5D, 0.02D);
@@ -94,7 +94,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
                 entity.requestTeleport(x, y, z);
                 if ((Entity) entity instanceof ServerPlayerEntity _serverPlayer)
                     _serverPlayer.networkHandler.requestTeleport(x, y, z, entity.getYaw(), entity.getPitch());
-                SoundUtil.playSound(world, x, y, z, new Identifier("entity.enderman.teleport"), 1.0F, 1.0F);
+                SoundUtil.playSound(world, x, y, z, Identifier.tryParse("entity.enderman.teleport"), 1.0F, 1.0F);
                 if (world instanceof ServerWorld) {
                     ((ServerWorld) world).spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.02D);
                 }

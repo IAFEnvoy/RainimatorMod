@@ -112,7 +112,7 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
             if (entity.isSneaking()) {
                 if ((Entity) entity instanceof PlayerEntity _player)
                     _player.getItemCooldownManager().set(itemtack.getItem(), 300);
-                SoundUtil.playSound(world, x, y, z, new Identifier("entity.evoker.cast_spell"), 1, 1);
+                SoundUtil.playSound(world, x, y, z, Identifier.tryParse("entity.evoker.cast_spell"), 1, 1);
                 Runnable callback = () -> {
                     if (world instanceof ServerWorld _level)
                         for (int i = -2; i <= 2; i += 2)
@@ -144,12 +144,12 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
         ItemStack itemtack = context.getStack();
         if (entity != null) {
             if (entity.isSneaking()) {
-                SoundUtil.playSound((World) world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "fire_soul"), 1, 1);
+                SoundUtil.playSound((World) world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "fire_soul"), 1, 1);
                 if (world instanceof ServerWorld _level)
                     _level.spawnParticles(ParticleTypes.DRAGON_BREATH, x, y, z, 500, 0, 20, 0, 0.0001);
                 entity.getItemCooldownManager().set(itemtack.getItem(), 300);
                 Timeout.create(60, () -> {
-                    SoundUtil.playSound((World) world, x, y, z, new Identifier("entity.ender_dragon.shoot"), 1, 1);
+                    SoundUtil.playSound((World) world, x, y, z, Identifier.tryParse("entity.ender_dragon.shoot"), 1, 1);
                     if (world instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 200, 0, 10, 0, 0.001);
                     if (world instanceof ServerWorld projectileLevel) {

@@ -9,6 +9,6 @@ import net.minecraft.util.Identifier;
 
 public class RainArmorItem extends ArmorItem {
     public RainArmorItem(Type slot) {
-        super(ArmorMaterialUtil.of("rain_armors", new int[]{13, 15, 16, 11}, 20, new int[]{0, 0, 20, 0}, 30, Registries.SOUND_EVENT.get(new Identifier("item.armor.equip_diamond")), 0.0F, 0.0F, RainimatorItems.SUPER_SAPPHIRE, RainimatorItems.RAIN_CHESTPLATE), slot, new Settings().arch$tab(RainimatorItemGroups.MAIN));
+        super(ArmorMaterialUtil.of("rain_armors", new int[]{13, 15, 16, 11}, 20, new int[]{0, 0, 20, 0}, 30, Registries.SOUND_EVENT.get(Identifier.tryParse("item.armor.equip_diamond")), 0.0F, 0.0F, RainimatorItems.SUPER_SAPPHIRE, RainimatorItems.RAIN_CHESTPLATE), slot, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
 }

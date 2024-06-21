@@ -49,7 +49,7 @@ public class EndStaffEntity extends PersistentProjectileEntity implements Flying
         entityarrow.setPunch(knockback);
         entityarrow.setOnFireFor(100);
         world.spawnEntity(entityarrow);
-        SoundUtil.playPlayerSound(world, entity.getX(), entity.getY(), entity.getZ(), new Identifier("entity.arrow.shoot"), 1.0F, 1.0F / (random.nextFloat() * 0.5F + 1.0F) + power / 2.0F);
+        SoundUtil.playPlayerSound(world, entity.getX(), entity.getY(), entity.getZ(), Identifier.tryParse("entity.arrow.shoot"), 1.0F, 1.0F / (random.nextFloat() * 0.5F + 1.0F) + power / 2.0F);
         return entityarrow;
     }
 

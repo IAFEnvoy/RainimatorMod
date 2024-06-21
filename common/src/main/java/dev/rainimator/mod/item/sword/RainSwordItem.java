@@ -80,7 +80,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo {
                 }
                 if (entityiterator instanceof MobEntity _entity)
                     _entity.getNavigation().stop();
-                SoundUtil.playSound(world, _center.x, _center.y, _center.z, new Identifier(RainimatorMod.MOD_ID, "rain_sword_skill"), 1.0F, 1.0F);
+                SoundUtil.playSound(world, _center.x, _center.y, _center.z, Identifier.of(RainimatorMod.MOD_ID, "rain_sword_skill"), 1.0F, 1.0F);
 
                 for (Triple<Integer, Integer, Integer> place : places)
                     world.setBlockState(new BlockPos((int) (entityiterator.getX() + place.getLeft()), (int) (entityiterator.getY() + place.getMiddle()), (int) (entityiterator.getZ() + place.getRight())), Blocks.ICE.getDefaultState(), 3);
@@ -92,7 +92,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo {
                     entity.getItemCooldownManager().set(ar.getValue().getItem(), 1200);
 
                 Timeout.create(500, () -> {
-                    SoundUtil.playSound(world, _center.x, _center.y, _center.z, new Identifier(RainimatorMod.MOD_ID, "rain_sword_skill_2"), 5.0F, 1.0F);
+                    SoundUtil.playSound(world, _center.x, _center.y, _center.z, Identifier.of(RainimatorMod.MOD_ID, "rain_sword_skill_2"), 5.0F, 1.0F);
                     for (Triple<Integer, Integer, Integer> place : places)
                         world.setBlockState(new BlockPos((int) (entityiterator.getX() + place.getLeft()), (int) (entityiterator.getY() + place.getMiddle()), (int) (entityiterator.getZ() + place.getRight())), Blocks.AIR.getDefaultState(), 3);
                     entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 5.0F);
@@ -150,7 +150,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo {
                                 _livEnt.addStatusEffect(new StatusEffectInstance(RainimatorEffects.ICE_PEOPLE.get(), 100, 0));
                                 _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 4));
                             }
-                            SoundUtil.playSound(world, _center.x, _center.y, _center.z, new Identifier("block.conduit.activate"), 1.0F, 1.0F);
+                            SoundUtil.playSound(world, _center.x, _center.y, _center.z, Identifier.tryParse("block.conduit.activate"), 1.0F, 1.0F);
                             entityIterator.setFrozenTicks(10);
                         });
                     }

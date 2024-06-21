@@ -33,7 +33,7 @@ public class MagicHatRenderer implements TrinketRenderer {
     }
 
     private Identifier getTexture() {
-        return new Identifier("textures/models/armor/magic_hat.png");
+        return Identifier.tryParse("textures/models/armor/magic_hat.png");
     }
 
     @Override

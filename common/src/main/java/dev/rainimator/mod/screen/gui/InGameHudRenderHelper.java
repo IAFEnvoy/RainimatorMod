@@ -14,7 +14,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class InGameHudRenderHelper {
-    public static final Identifier MANA_ICON = new Identifier(RainimatorMod.MOD_ID, "textures/gui/bars.png");
+    public static final Identifier MANA_ICON = Identifier.of(RainimatorMod.MOD_ID, "textures/gui/bars.png");
 
     private static String formatNumber(double number) {
         if (number < 10) return String.format("%.2f", number);

@@ -42,7 +42,7 @@ public class UnderFlowerItem extends FoilItemBase {
                 _bs = Blocks.SOUL_FIRE.getDefaultState();
             else
                 _bs = Blocks.FIRE.getDefaultState();
-            SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "under_flower"), 1.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "under_flower"), 1.0F, 1.0F);
             BlockPos _bp = new BlockPos((int) x, (int) (y + 1.0D), (int) z);
             world.setBlockState(_bp, _bs, 3);
             entity.getItemCooldownManager().set(itemtack.getItem(), 400);
