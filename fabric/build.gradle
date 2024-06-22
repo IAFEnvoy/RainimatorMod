@@ -35,10 +35,6 @@ dependencies {
     // Don't need this. Trinkets has embedded version 5.2.0.
 
     // Optional dependencies
-    // EMI
-    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
-    modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
-
     // Asteor Bar
     modImplementation "curse.maven:asteorbar-959237:5212120"
 }

@@ -24,6 +24,10 @@ dependencies {
 
     // Curios
     modImplementation "top.theillusivec4.curios:curios-forge:${curios_version}"
+
+    // Optional dependencies
+    // Asteor Bar
+    modImplementation "curse.maven:asteorbar-959237:5373051"
 }
 
 processResources {
