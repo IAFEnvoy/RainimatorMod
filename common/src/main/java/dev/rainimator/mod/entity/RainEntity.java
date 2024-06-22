@@ -22,7 +22,6 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -154,7 +153,7 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
         if (world instanceof World _level)
             SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) RainimatorParticles.SNOW, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
+            _level.spawnParticles(RainimatorParticles.SNOW.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         return retval;
     }
 

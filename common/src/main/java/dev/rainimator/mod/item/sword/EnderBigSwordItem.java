@@ -13,7 +13,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
@@ -37,7 +36,7 @@ public class EnderBigSwordItem extends SwordItemBase {
         ItemStack itemtack = ar.getValue();
         double ender_1 = 0.0D;
         ManaData data = ComponentManager.getManaData(entity);
-        if (entity.isSneaking() && data.tryUseMana(entity,ServerConfig.getInstance().ender_big_sword)) {
+        if (entity.isSneaking() && data.tryUseMana(entity, ServerConfig.getInstance().ender_big_sword)) {
             BlockPos blockPos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(ender_1 + 6.0D)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             BlockPos blockPos2 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(ender_1)), RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             entity.requestTeleport(blockPos1.getX(), blockPos2.getY(), blockPos1.getZ());
@@ -45,7 +44,7 @@ public class EnderBigSwordItem extends SwordItemBase {
                 _serverPlayer.networkHandler.requestTeleport(blockPos1.getX(), blockPos2.getY(), blockPos1.getZ(), entity.getYaw(), entity.getPitch());
             SoundUtil.playSound(world, x, y, z, Identifier.tryParse("entity.enderman.teleport"), 1.0F, 1.0F);
             if (world instanceof ServerWorld _level) {
-                _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, x, y, z, 50, 0.5D, 0.0D, 0.5D, 0.2D);
+                _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), x, y, z, 50, 0.5D, 0.0D, 0.5D, 0.2D);
                 entity.getItemCooldownManager().set(itemtack.getItem(), 300);
             }
         }

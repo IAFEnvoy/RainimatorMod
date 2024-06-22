@@ -12,6 +12,7 @@ import net.minecraft.item.Items;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+@SuppressWarnings("unused")
 public class WingsOfSalvationItemImpl extends WingsOfSalvationItem implements ICurioItem {
     protected int lastBoostTick = 0;
 

@@ -22,7 +22,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -168,7 +167,7 @@ public class BlackBoneEntity extends MonsterEntityBase {
             SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_living"), 1.0F, 1.0F);
 
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 50, 1.0D, 1.0D, 1.0D, 1.0D);
+            _level.spawnParticles(ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 50, 1.0D, 1.0D, 1.0D, 1.0D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())

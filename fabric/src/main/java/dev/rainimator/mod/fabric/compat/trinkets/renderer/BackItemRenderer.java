@@ -36,7 +36,7 @@ public class BackItemRenderer implements TrinketRenderer {
 
     @Override
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        if (specialItemPose.size() == 0) initPoseConsumers();
+        if (specialItemPose.isEmpty()) initPoseConsumers();
         matrices.push();
 //        matrices.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees(entity.bodyYaw));
         matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-90));

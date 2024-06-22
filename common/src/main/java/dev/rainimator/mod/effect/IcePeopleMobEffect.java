@@ -9,7 +9,6 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 
 public class IcePeopleMobEffect extends StatusEffect {
@@ -30,7 +29,7 @@ public class IcePeopleMobEffect extends StatusEffect {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 500, 0));
         }
         if (entity.getWorld() instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) RainimatorParticles.SNOW, entity.getX(), entity.getY(), entity.getZ(), 100, 0.0D, 20.0D, 0.0D, 0.001D);
+            _level.spawnParticles(RainimatorParticles.SNOW.get(), entity.getX(), entity.getY(), entity.getZ(), 100, 0.0D, 20.0D, 0.0D, 0.001D);
         entity.damage(DamageUtil.build(entity, DamageTypes.FREEZE), 1.0F);
     }
 

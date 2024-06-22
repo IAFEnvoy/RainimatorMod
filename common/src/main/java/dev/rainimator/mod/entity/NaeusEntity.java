@@ -22,7 +22,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -111,7 +110,7 @@ public class NaeusEntity extends MonsterEntityBase {
             else if (Math.random() < 0.5D) {
                 SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "fire_soul"), 1.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld _level)
-                    _level.spawnParticles((ParticleEffect) RainimatorParticles.RED_FLOWER, x, y, z, 20, 0.5D, 0.0D, 0.5D, 0.5D);
+                    _level.spawnParticles(RainimatorParticles.RED_FLOWER.get(), x, y, z, 20, 0.5D, 0.0D, 0.5D, 0.5D);
                 if (sourceentity instanceof LivingEntity _entity)
                     if (!_entity.getWorld().isClient())
                         _entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.SOUL_DEATH.get(), 100, 1));
@@ -125,7 +124,7 @@ public class NaeusEntity extends MonsterEntityBase {
                 this.getNavigation().startMovingTo(this.getX() + RandomHelper.nextDouble(1.0D, 6.0D), y, this.getZ() + RandomHelper.nextDouble(1.0D, 6.0D), 10.0D);
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "naeus_roll"), 1, 1);
                 if (this.getWorld() instanceof ServerWorld _level)
-                    _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 30, 0.5D, 0.5D, 0.5D, 0.5D);
+                    _level.spawnParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 30, 0.5D, 0.5D, 0.5D, 0.5D);
             }
             if (Math.random() < 0.1D) {
                 if (!this.getWorld().isClient())
@@ -195,7 +194,7 @@ public class NaeusEntity extends MonsterEntityBase {
         if (world instanceof World _level)
             SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_living"), 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) RainimatorParticles.RED_FLOWER, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
+            _level.spawnParticles(RainimatorParticles.RED_FLOWER.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
@@ -218,7 +217,7 @@ public class NaeusEntity extends MonsterEntityBase {
         double y = this.getY();
         if (this.getWorld() instanceof ServerWorld _level) {
             BlockPos blockPos = this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(-1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, this)).getBlockPos();
-            _level.spawnParticles((ParticleEffect) RainimatorParticles.RED_FLOWER, blockPos.getX(), y + 1.4D, blockPos.getZ(), 5, 0.5D, 0.0D, 0.5D, 0.1D);
+            _level.spawnParticles(RainimatorParticles.RED_FLOWER.get(), blockPos.getX(), y + 1.4D, blockPos.getZ(), 5, 0.5D, 0.0D, 0.5D, 0.1D);
         }
         if (this.getHealth() <= 75.0F) {
             if (!this.getWorld().isClient())

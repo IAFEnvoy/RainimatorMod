@@ -32,7 +32,7 @@ public class RainimatorMod {
         RainimatorParticles.registerParticles();
     }
 
-    public static void process(){
+    public static void process() {
         RainimatorEntities.addLivingEntityToBiomes();
         RainimatorItemGroups.init();
         RainimatorItems.init();
@@ -47,7 +47,7 @@ public class RainimatorMod {
         RainimatorModels.registerLayerDefinitions();
     }
 
-    public static void processClient(){
+    public static void processClient() {
         RainimatorScreenHandlers.registerGui();
         RainimatorSkulls.clientInit();
     }

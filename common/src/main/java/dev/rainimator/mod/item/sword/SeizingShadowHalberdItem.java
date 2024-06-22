@@ -63,7 +63,7 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
         ItemStack itemtack = ar.getValue();
 
         ManaData data = ComponentManager.getManaData(entity);
-        if (!data.tryUseMana(entity,ServerConfig.getInstance().seizing_shadow_halberd))
+        if (!data.tryUseMana(entity, ServerConfig.getInstance().seizing_shadow_halberd))
             return ar;
         final Vec3d _center = new Vec3d(x, y, z);
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(12 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();

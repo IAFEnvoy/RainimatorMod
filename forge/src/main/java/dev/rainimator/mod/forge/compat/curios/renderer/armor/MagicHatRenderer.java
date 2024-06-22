@@ -1,26 +1,26 @@
-package dev.rainimator.mod.forge.compat.trinkets.renderer.armor;
+package dev.rainimator.mod.forge.compat.curios.renderer.armor;
 
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.client.TrinketRenderer;
 import dev.rainimator.mod.renderer.model.ModelMagic;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.client.ICurioRenderer;
 
 import java.util.Collections;
 import java.util.Map;
 
-@Environment(EnvType.CLIENT)
-public class MagicHatRenderer implements TrinketRenderer {
+@OnlyIn(Dist.CLIENT)
+public class MagicHatRenderer implements ICurioRenderer {
     private BipedEntityModel<LivingEntity> getArmorModel(LivingEntity living) {
         BipedEntityModel<LivingEntity> armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(), Map.of("head", (new ModelMagic<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(ModelMagic.LAYER_LOCATION))).Head, "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body", new ModelPart(
                 Collections.emptyList(), Collections.emptyMap()), "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm", new ModelPart(
@@ -37,10 +37,11 @@ public class MagicHatRenderer implements TrinketRenderer {
     }
 
     @Override
-    public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+    public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, MatrixStack matrices, FeatureRendererContext<T, M> renderLayerParent, VertexConsumerProvider vertexConsumers, int light, float limbAngle, float limbDistance, float animationProgress, float ageInTicks, float headYaw, float headPitch) {
+        LivingEntity entity = slotContext.entity();
         BipedEntityModel<LivingEntity> model = this.getArmorModel(entity);
         model.head.pitch = headPitch * 0.01745329f;
         model.head.yaw = headYaw * 0.01745329f;
-        ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, this.getArmorModel(entity), this.getTexture());
+        IArmorRenderHelper.renderPart(matrices, vertexConsumers, light, stack, this.getArmorModel(entity), this.getTexture());
     }
 }

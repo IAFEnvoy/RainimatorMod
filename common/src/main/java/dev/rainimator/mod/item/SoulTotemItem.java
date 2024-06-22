@@ -17,7 +17,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
@@ -41,7 +40,7 @@ public class SoulTotemItem extends FoilItemBase {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
         ManaData data = ComponentManager.getManaData(entity);
-        if (!data.tryUseMana(entity,ServerConfig.getInstance().soul_totem)) return ar;
+        if (!data.tryUseMana(entity, ServerConfig.getInstance().soul_totem)) return ar;
         ItemStack itemtack = ar.getValue();
         double x = entity.getX();
         double y = entity.getY();
@@ -52,7 +51,7 @@ public class SoulTotemItem extends FoilItemBase {
                 (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemtack);
             SoundUtil.playSound(world, x, y, z, Identifier.tryParse("block.anvil.land"), 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
-                _level.spawnParticles((ParticleEffect) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
+                _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
             if (!entity.getWorld().isClient())
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 140, 4));
             entity.getItemCooldownManager().set(itemtack.getItem(), 400);
@@ -66,7 +65,7 @@ public class SoulTotemItem extends FoilItemBase {
                 (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemtack);
             SoundUtil.playSound(world, x, y, z, Identifier.tryParse("block.anvil.land"), 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
-                _level.spawnParticles((ParticleEffect) ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
+                _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
             if (!entity.getWorld().isClient())
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 400, 0));
             entity.getItemCooldownManager().set(itemtack.getItem(), 600);

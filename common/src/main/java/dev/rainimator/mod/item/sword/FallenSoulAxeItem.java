@@ -15,7 +15,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -51,7 +50,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
         ItemStack itemtack = ar.getValue();
         Vec3d _center = new Vec3d(x, y, z);
         ManaData data = ComponentManager.getManaData(entity);
-        if (entity.isSneaking() && data.tryUseMana(entity,ServerConfig.getInstance().fallen_soul_axe)) {
+        if (entity.isSneaking() && data.tryUseMana(entity, ServerConfig.getInstance().fallen_soul_axe)) {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(5.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 LivingEntity _livEnt = (LivingEntity) entityiterator;
@@ -84,7 +83,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
                 }
                 SoundUtil.playSound(world, x, y, z, Identifier.tryParse("entity.wither.spawn"), 10.0F, 1.0F);
                 if (world instanceof ServerWorld _level)
-                    _level.spawnParticles((ParticleEffect) ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 1.0E-4D);
+                    _level.spawnParticles(ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 1.0E-4D);
                 entity.getItemCooldownManager().set(itemtack.getItem(), 600);
             }
         }

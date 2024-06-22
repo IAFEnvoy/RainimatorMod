@@ -14,7 +14,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
@@ -43,7 +42,7 @@ public class BlackDeathSwordItem extends SwordItemBase implements IRainimatorInf
             else
                 SoundUtil.playSound(entity.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "black_death_sword_skill_3"), 4.0F, 1.0F);
             if (entity.getWorld() instanceof ServerWorld _level)
-                _level.spawnParticles((ParticleEffect) RainimatorParticles.FLOWER_WHITE, x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
+                _level.spawnParticles(RainimatorParticles.FLOWER_WHITE.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         } else {
             if (!sourceentity.getWorld().isClient())
                 sourceentity.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 1));

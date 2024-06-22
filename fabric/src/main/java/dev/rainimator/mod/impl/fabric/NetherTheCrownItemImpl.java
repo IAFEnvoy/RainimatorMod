@@ -16,6 +16,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Comparator;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class NetherTheCrownItemImpl extends NetherTheCrownItem implements Trinket {
     public NetherTheCrownItemImpl() {
         super();
@@ -32,33 +33,27 @@ public class NetherTheCrownItemImpl extends NetherTheCrownItem implements Trinke
         List<Entity> _entfound = entity.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(16.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
             if (entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.NETHER_THE_CROWN.get()) {
-                if (entityiterator instanceof WitheredSkeletonsEntity) {
-                    MobEntity _entity = (MobEntity) entityiterator;
+                if (entityiterator instanceof WitheredSkeletonsEntity _entity) {
                     _entity.getNavigation().stop();
                     continue;
                 }
-                if (entityiterator instanceof WitherSkeletonEntity) {
-                    MobEntity _entity = (MobEntity) entityiterator;
+                if (entityiterator instanceof WitherSkeletonEntity _entity) {
                     _entity.getNavigation().stop();
                     continue;
                 }
-                if (entityiterator instanceof PiglinEntity) {
-                    MobEntity _entity = (MobEntity) entityiterator;
+                if (entityiterator instanceof PiglinEntity _entity) {
                     _entity.getNavigation().stop();
                     continue;
                 }
-                if (entityiterator instanceof PiglinBruteEntity) {
-                    MobEntity _entity = (MobEntity) entityiterator;
+                if (entityiterator instanceof PiglinBruteEntity _entity) {
                     _entity.getNavigation().stop();
                     continue;
                 }
-                if (entityiterator instanceof ZombifiedPiglinEntity) {
-                    MobEntity _entity = (MobEntity) entityiterator;
+                if (entityiterator instanceof ZombifiedPiglinEntity _entity) {
                     _entity.getNavigation().stop();
                     continue;
                 }
-                if (entityiterator instanceof ZoglinEntity) {
-                    MobEntity _entity = (MobEntity) entityiterator;
+                if (entityiterator instanceof ZoglinEntity _entity) {
                     _entity.getNavigation().stop();
                 }
             }

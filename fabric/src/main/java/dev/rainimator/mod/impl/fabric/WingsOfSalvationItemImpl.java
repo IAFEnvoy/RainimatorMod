@@ -13,6 +13,7 @@ import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
+@SuppressWarnings("unused")
 public class WingsOfSalvationItemImpl extends WingsOfSalvationItem implements Trinket, FabricElytraItem {
     protected int lastBoostTick = 0;
 

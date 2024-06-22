@@ -20,10 +20,6 @@ public enum Stage {
         this.index = index;
     }
 
-    public int getIndex() {
-        return this.index;
-    }
-
     public static Stage getByIndex(int index) {
         for (Stage s : Stage.values())
             if (s.index == index)
@@ -33,6 +29,10 @@ public enum Stage {
 
     public static StagedEntityTextureProvider ofProvider(String modId, String... textures) {
         return new StagedEntityTextureProvider(modId, textures);
+    }
+
+    public int getIndex() {
+        return this.index;
     }
 
     public interface StagedEntity {

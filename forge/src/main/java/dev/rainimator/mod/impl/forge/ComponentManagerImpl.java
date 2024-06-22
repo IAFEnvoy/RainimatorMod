@@ -9,6 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
+@SuppressWarnings("unused")
 public class ComponentManagerImpl {
     @Nullable
     public static ManaData getManaData(LivingEntity entity) {

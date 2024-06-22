@@ -12,7 +12,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
@@ -37,7 +36,7 @@ public class EndStaffEntity extends PersistentProjectileEntity implements Flying
             if (!_level.isClient())
                 _level.createExplosion(null, x, y, z, 3.0F, World.ExplosionSourceType.NONE);
         if (world instanceof ServerWorld _level)
-            _level.spawnParticles((ParticleEffect) RainimatorParticles.LIGHTENING_ARC, x, y, z, 250, 0.5D, 1.0D, 0.5D, 0.5D);
+            _level.spawnParticles(RainimatorParticles.LIGHTENING_ARC.get(), x, y, z, 250, 0.5D, 1.0D, 0.5D, 0.5D);
     }
 
     public static EndStaffEntity shoot(World world, LivingEntity entity, Random random, float power, double damage, int knockback) {

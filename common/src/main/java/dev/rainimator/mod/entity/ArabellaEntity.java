@@ -18,7 +18,6 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
@@ -79,7 +78,7 @@ public class ArabellaEntity extends MonsterEntityBase {
         for (Entity entityiterator : _entfound) {
             if (entityiterator instanceof PlayerEntity && Math.random() < 0.3D) {
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
-                ParticleUtil.spawn3x3Particles(this.getWorld(), (ParticleEffect) RainimatorParticles.ENDER_DAGGER, this.getX(), this.getY(), this.getZ());
+                ParticleUtil.spawn3x3Particles(this.getWorld(), RainimatorParticles.ENDER_DAGGER.get(), this.getX(), this.getY(), this.getZ());
                 entityiterator.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 6.0F);
             }
         }

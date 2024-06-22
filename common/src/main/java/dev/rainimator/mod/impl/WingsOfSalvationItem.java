@@ -30,7 +30,7 @@ public class WingsOfSalvationItem extends ItemBase {
     public void keyPress(PlayerEntity player, ItemStack stack) {
         if (player.isFallFlying()) {
             ManaData data = ComponentManager.getManaData(player);
-            if (this.lastBoostTick <= 0 && data.tryUseMana(player,ServerConfig.getInstance().wings_of_salvation_boost))
+            if (this.lastBoostTick <= 0 && data.tryUseMana(player, ServerConfig.getInstance().wings_of_salvation_boost))
                 this.speedUp(player);
         }
     }

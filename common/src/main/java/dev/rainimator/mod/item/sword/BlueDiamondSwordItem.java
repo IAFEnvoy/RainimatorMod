@@ -74,7 +74,7 @@ public class BlueDiamondSwordItem extends SwordItemBase implements IRainimatorIn
         ItemStack itemtack = ar.getValue();
         final Vec3d _center = new Vec3d(x, y, z);
         ManaData data = ComponentManager.getManaData(entity);
-        if (entity.isSneaking() && data.tryUseMana(entity,ServerConfig.getInstance().blue_diamond_sword)) {
+        if (entity.isSneaking() && data.tryUseMana(entity, ServerConfig.getInstance().blue_diamond_sword)) {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(16 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
                 if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == RainimatorItems.BLUE_DIAMOND_SWORD.get()) {

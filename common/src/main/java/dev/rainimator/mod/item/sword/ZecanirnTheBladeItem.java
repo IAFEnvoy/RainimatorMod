@@ -20,7 +20,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -48,7 +47,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
         if (sourceentity.getMainHandStack().getItem() == RainimatorItems.ZECANIRN_THE_BLADE.get())
             if (Math.random() < 0.9D) {
                 if (entity.getWorld() instanceof ServerWorld _level)
-                    _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ(), 50, 0.5D, 1.0D, 0.5D, 0.2D);
+                    _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), entity.getX(), entity.getY(), entity.getZ(), 50, 0.5D, 1.0D, 0.5D, 0.2D);
                 if (Math.random() < 0.5D)
                     SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "sword_teleport1"), 4.0F, 1.0F);
                 else if (Math.random() < 0.5D)
@@ -95,7 +94,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
         ManaData data = ComponentManager.getManaData(entity);
-        if (entity.isSneaking() && data.tryUseMana(entity,ServerConfig.getInstance().zecanirn_the_blade)) {
+        if (entity.isSneaking() && data.tryUseMana(entity, ServerConfig.getInstance().zecanirn_the_blade)) {
             Vec3d _center = entity.getPos();
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(8.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityiterator : _entfound) {
@@ -112,7 +111,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
                     entity.getInventory().markDirty();
                     entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 10.0F);
                     if (world instanceof ServerWorld _level)
-                        _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ(), 40, 0.5D, 0.5D, 0.5D, 0.5D);
+                        _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), entity.getX(), entity.getY(), entity.getZ(), 40, 0.5D, 0.5D, 0.5D, 0.5D);
                     SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
 
                     Runnable callback = () -> {
@@ -123,9 +122,9 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
                         entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 15.0F);
                         if (world instanceof ServerWorld _level) {
                             for (double z = -7; z <= 7; z++)
-                                _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, entity.getX(), entity.getY(), entity.getZ() + z, 20, 0.2D, 0.5D, 0.2D, 0.2D);
+                                _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), entity.getX(), entity.getY(), entity.getZ() + z, 20, 0.2D, 0.5D, 0.2D, 0.2D);
                             for (double x = -7; x <= 7; x++)
-                                _level.spawnParticles((ParticleEffect) RainimatorParticles.PURPLE_LIGHT, entity.getX() + x, entity.getY(), entity.getZ(), 20, 0.2D, 0.5D, 0.2D, 0.2D);
+                                _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), entity.getX() + x, entity.getY(), entity.getZ(), 20, 0.2D, 0.5D, 0.2D, 0.2D);
                         }
                         SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
                     };

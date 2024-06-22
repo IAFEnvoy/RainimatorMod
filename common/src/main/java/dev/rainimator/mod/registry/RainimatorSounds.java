@@ -26,7 +26,7 @@ public class RainimatorSounds {
     };
     public static final Map<String, Supplier<SoundEvent>> REGISTRY_MAP = new HashMap<>();
 
-    static{
+    static {
         for (String id : idMap) {
             Identifier location = Identifier.of(RainimatorMod.MOD_ID, id);
             MemorizeSupplier<SoundEvent> soundEvent = new MemorizeSupplier<>(() -> SoundEvent.of(location));

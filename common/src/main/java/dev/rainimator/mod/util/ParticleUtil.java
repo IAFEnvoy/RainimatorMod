@@ -1,16 +1,10 @@
 package dev.rainimator.mod.util;
 
-import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 
 public class ParticleUtil {
-    public static void spawn3x3Particles(World level, ParticleType<DefaultParticleType> particle, double x, double y, double z) {
-        spawn3x3Particles(level, (ParticleEffect) particle, x, y, z);
-    }
-
     public static void spawn3x3Particles(World level, ParticleEffect particle, double x, double y, double z) {
         for (double i = -3; i <= 3; i += 3)
             for (double j = -3; j <= 3; j += 3)

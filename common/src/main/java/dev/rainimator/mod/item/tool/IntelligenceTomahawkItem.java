@@ -33,7 +33,7 @@ public class IntelligenceTomahawkItem extends AxeItem {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity entity, Hand hand) {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
         ManaData data = ComponentManager.getManaData(entity);
-        if (!data.tryUseMana(entity,ServerConfig.getInstance().intelligence_tomahawk))
+        if (!data.tryUseMana(entity, ServerConfig.getInstance().intelligence_tomahawk))
             return ar;
         ItemStack itemtack = ar.getValue();
         Vec3d _center = new Vec3d(entity.getX(), entity.getY(), entity.getZ());

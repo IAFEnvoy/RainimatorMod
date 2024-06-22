@@ -45,7 +45,7 @@ public class NaeusSwordItem extends SwordItemBase {
         TypedActionResult<ItemStack> ar = super.use(world, entity, hand);
         Vec3d _center = entity.getPos();
         ManaData data = ComponentManager.getManaData(entity);
-        if (entity.isSneaking() && data.tryUseMana(entity,ServerConfig.getInstance().naeus_sword)) {
+        if (entity.isSneaking() && data.tryUseMana(entity, ServerConfig.getInstance().naeus_sword)) {
             List<Entity> _entfound = world.getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(6.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
             for (Entity entityIterator : _entfound) {
                 if (entityIterator instanceof PlayerEntity)

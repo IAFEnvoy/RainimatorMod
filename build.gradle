@@ -20,7 +20,6 @@ subprojects {
         mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
         // The following line declares the yarn mappings you may select this one as well.
         // mappings "net.fabricmc:yarn:@YARN_MAPPINGS@:v2"
-        modCompileOnly "dev.emi:emi-xplat-intermediary:${emi_version}:api"
     }
 }
 
@@ -74,4 +73,25 @@ allprojects {
     java {
         withSourcesJar()
     }
+}
+
+tasks.register('copyJars', Copy) {
+//    from('common/build/libs') {
+//        rename { String fileName ->
+//            fileName.replace(rootProject.mod_version, "${rootProject.mod_version}-common")
+//        }
+//    }
+    from('fabric/build/libs') {
+        include "${rootProject.archives_base_name}-${rootProject.mod_version}.jar"
+        rename { String fileName ->
+            "${rootProject.archives_base_name}-${rootProject.mod_version}-fabric.jar"
+        }
+    }
+    from('forge/build/libs') {
+        include "${rootProject.archives_base_name}-${rootProject.mod_version}.jar"
+        rename { String fileName ->
+            "${rootProject.archives_base_name}-${rootProject.mod_version}-forge.jar"
+        }
+    }
+    into 'build/libs'
 }

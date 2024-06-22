@@ -27,7 +27,6 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -205,7 +204,7 @@ public class Klaus2Entity extends MonsterEntityBase {
                 if (world instanceof World _level)
                     SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "block.beacon.activate"), 5.0F, 1.0F);
                 if (world instanceof ServerWorld _level)
-                    _level.spawnParticles((ParticleEffect) RainimatorParticles.LIGHTENING_ARC, x, y, z, 100, 2.0D, 3.0D, 2.0D, 0.001D);
+                    _level.spawnParticles(RainimatorParticles.LIGHTENING_ARC.get(), x, y, z, 100, 2.0D, 3.0D, 2.0D, 0.001D);
                 this.getMainHandStack().addEnchantment(Enchantments.SHARPNESS, 4);
                 this.getEquippedStack(EquipmentSlot.HEAD).addEnchantment(Enchantments.PROTECTION, 4);
             }

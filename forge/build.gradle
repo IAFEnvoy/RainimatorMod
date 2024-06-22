@@ -28,6 +28,9 @@ dependencies {
     // Optional dependencies
     // Asteor Bar
     modImplementation "curse.maven:asteorbar-959237:5373051"
+
+    // EMI
+    modImplementation "dev.emi:emi-forge:${emi_version}"
 }
 
 processResources {
