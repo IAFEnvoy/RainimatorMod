@@ -2,7 +2,7 @@ package dev.rainimator.mod.entity;
 
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.item.util.MonsterEntityBase;
+import dev.rainimator.mod.registry.util.MonsterEntityBase;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.renderer.util.Stage;
 import dev.rainimator.mod.util.EntityUtil;

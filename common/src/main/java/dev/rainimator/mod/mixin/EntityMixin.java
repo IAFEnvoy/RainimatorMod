@@ -1,6 +1,6 @@
 package dev.rainimator.mod.mixin;
 
-import dev.rainimator.mod.item.util.ItemBase;
+import dev.rainimator.mod.registry.util.ItemBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;

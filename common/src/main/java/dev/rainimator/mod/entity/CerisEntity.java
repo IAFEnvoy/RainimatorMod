@@ -2,10 +2,11 @@ package dev.rainimator.mod.entity;
 
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.item.util.MonsterEntityBase;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.util.EntityWithBossBar;
+import dev.rainimator.mod.renderer.BossBarRenderHelper;
 import dev.rainimator.mod.renderer.util.Stage;
 import dev.rainimator.mod.util.RandomHelper;
 import dev.rainimator.mod.util.SoundUtil;
@@ -15,7 +16,6 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.BossBar;
-import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -33,12 +33,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.NotNull;
 
-public class CerisEntity extends MonsterEntityBase {
+public class CerisEntity extends EntityWithBossBar {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "ceris").setEyeTextureId("textures/entities/ceris_eye.png");
-    private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.PURPLE, BossBar.Style.PROGRESS);
 
     public CerisEntity(EntityType<CerisEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT);
+        super(type, world, EntityGroup.DEFAULT, BossBar.Color.PURPLE);
         this.experiencePoints = 0;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.ENDER_BIG_SWORD.get()));
@@ -210,21 +209,7 @@ public class CerisEntity extends MonsterEntityBase {
         return false;
     }
 
-    @Override
-    public void onStartedTrackingBy(ServerPlayerEntity player) {
-        super.onStartedTrackingBy(player);
-        this.bossInfo.addPlayer(player);
-    }
-
-    @Override
-    public void onStoppedTrackingBy(ServerPlayerEntity player) {
-        super.onStoppedTrackingBy(player);
-        this.bossInfo.removePlayer(player);
-    }
-
-    @Override
-    public void mobTick() {
-        super.mobTick();
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+    static {
+        BossBarRenderHelper.addBossBarType(CerisEntity.class, new Identifier(RainimatorMod.MOD_ID, "textures/bossbar/ceris.png"), true);
     }
 }

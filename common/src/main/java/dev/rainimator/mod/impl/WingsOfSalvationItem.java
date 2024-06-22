@@ -3,7 +3,7 @@ package dev.rainimator.mod.impl;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
-import dev.rainimator.mod.item.util.ItemBase;
+import dev.rainimator.mod.registry.util.ItemBase;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;

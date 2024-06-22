@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BlockEntityTypeMixin",
+    "BossBarHudMixin",
     "DamageSourceAccessor",
     "EntityMixin",
     "LivingEntityMixin",

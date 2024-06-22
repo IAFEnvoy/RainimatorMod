@@ -1,4 +1,4 @@
-package dev.rainimator.mod.item.util;
+package dev.rainimator.mod.registry.util;
 
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import net.minecraft.entity.Entity;

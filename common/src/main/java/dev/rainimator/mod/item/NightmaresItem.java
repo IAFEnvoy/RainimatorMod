@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item;
 
-import dev.rainimator.mod.item.util.ItemBase;
+import dev.rainimator.mod.registry.util.ItemBase;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

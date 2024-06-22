@@ -4,7 +4,7 @@ import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
-import dev.rainimator.mod.item.util.FoilItemBase;
+import dev.rainimator.mod.registry.util.FoilItemBase;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.util.SoundUtil;
 import net.minecraft.block.BlockState;

@@ -1,4 +1,4 @@
-package dev.rainimator.mod.item.util;
+package dev.rainimator.mod.registry.util;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

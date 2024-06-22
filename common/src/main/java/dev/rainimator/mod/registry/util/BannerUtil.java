@@ -1,4 +1,4 @@
-package dev.rainimator.mod.item.util;
+package dev.rainimator.mod.registry.util;
 
 import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.block.entity.BlockEntityType;

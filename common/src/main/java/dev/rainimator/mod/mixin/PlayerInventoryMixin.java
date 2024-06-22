@@ -1,6 +1,6 @@
 package dev.rainimator.mod.mixin;
 
-import dev.rainimator.mod.item.util.ArmorWithTickItem;
+import dev.rainimator.mod.registry.util.ArmorWithTickItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import org.spongepowered.asm.mixin.Final;

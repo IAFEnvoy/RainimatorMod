@@ -3,7 +3,7 @@ package dev.rainimator.mod.item;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
-import dev.rainimator.mod.item.util.FoilItemBase;
+import dev.rainimator.mod.registry.util.FoilItemBase;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.util.RandomHelper;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item;
 
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.item.util.ItemBase;
+import dev.rainimator.mod.registry.util.ItemBase;
 import dev.rainimator.mod.registry.RainimatorBlocks;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;

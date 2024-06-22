@@ -1,7 +1,7 @@
 package dev.rainimator.mod.registry;
 
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.item.util.BannerUtil;
+import dev.rainimator.mod.registry.util.BannerUtil;
 import net.minecraft.block.entity.BannerPatterns;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item.armor;
 
-import dev.rainimator.mod.item.util.ArmorMaterialUtil;
+import dev.rainimator.mod.registry.util.ArmorMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.item.ArmorItem;

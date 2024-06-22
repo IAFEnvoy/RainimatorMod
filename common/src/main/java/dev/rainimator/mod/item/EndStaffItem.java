@@ -3,7 +3,7 @@ package dev.rainimator.mod.item;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import dev.rainimator.mod.entity.EndStaffEntity;
-import dev.rainimator.mod.item.util.ItemBase;
+import dev.rainimator.mod.registry.util.ItemBase;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EquipmentSlot;
