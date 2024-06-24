@@ -2,18 +2,22 @@ package dev.rainimator.mod;
 
 import com.mojang.logging.LogUtils;
 import dev.architectury.networking.NetworkManager;
+import dev.architectury.platform.Mod;
+import dev.architectury.platform.Platform;
 import dev.rainimator.mod.network.EnderBookActionHandler;
 import dev.rainimator.mod.registry.*;
 import dev.rainimator.mod.util.Timeout;
 import org.slf4j.Logger;
+
+import java.util.List;
 
 public class RainimatorMod {
     public static final String MOD_ID = "rainimator";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static void init() {
+        checkMods();
         Timeout.startTimeout();
-
         RainimatorSkulls.init();
 
         RainimatorEntities.REGISTRY.register();
@@ -29,7 +33,6 @@ public class RainimatorMod {
         RainimatorEntities.registerAttributes();
         RainimatorEntities.addSpawner();
         RainimatorFeatures.init();
-        RainimatorParticles.registerParticles();
     }
 
     public static void process() {
@@ -45,10 +48,21 @@ public class RainimatorMod {
     public static void initClient() {
         RainimatorEntities.registerEntityRenderers();
         RainimatorModels.registerLayerDefinitions();
+        RainimatorParticles.registerParticles();
     }
 
     public static void processClient() {
         RainimatorScreenHandlers.registerGui();
         RainimatorSkulls.clientInit();
+    }
+
+    public static void checkMods() {
+        List<String> mods = Platform.getMods().stream().map(Mod::getModId).toList();
+        if (mods.contains("epicfight") || mods.contains("epic_fight"))
+            throw new RuntimeException("Incapable mod detected! Please remove Epic Fight to continue.");
+        if (mods.stream().anyMatch(x -> x.contains("annoying")))
+            throw new RuntimeException("Incapable mod detected! Please remove Annoying Villagers to continue.");
+        if (mods.stream().anyMatch(x -> x.contains("opti") && x.contains("village")))
+            throw new RuntimeException("Incapable mod detected! Please remove Opti-Villagers to continue.");
     }
 }

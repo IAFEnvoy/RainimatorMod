@@ -15,6 +15,7 @@
   "client": [
     "DrawContextMixin",
     "InGameHudMixin",
+    "PlayerEntityRendererMixin",
     "SkullBlockEntityRendererMixin"
   ],
   "injectors": {

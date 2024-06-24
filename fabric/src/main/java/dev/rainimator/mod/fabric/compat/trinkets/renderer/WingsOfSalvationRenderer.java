@@ -28,8 +28,8 @@ public class WingsOfSalvationRenderer implements TrinketRenderer {
     private static final Identifier WINGS_LOCATION2 = Identifier.of(RainimatorMod.MOD_ID, "textures/wings/tech_wings_2.png");
 
     @Override
-    public void render(ItemStack itemtack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        if (itemtack.getItem() == RainimatorItems.WINGS_OF_SALVATION.get() && entity instanceof AbstractClientPlayerEntity player) {
+    public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+        if (stack.getItem() == RainimatorItems.WINGS_OF_SALVATION.get() && entity instanceof AbstractClientPlayerEntity player) {
             WingsOfSalvationModel<AbstractClientPlayerEntity> wingModel = new WingsOfSalvationModel<>(WingsOfSalvationModel.createLayer().createModel());
             PlayerEntityModel<AbstractClientPlayerEntity> model = (PlayerEntityModel<AbstractClientPlayerEntity>) contextModel;
             matrices.push();
@@ -46,9 +46,9 @@ public class WingsOfSalvationRenderer implements TrinketRenderer {
             if (player.getEquippedStack(EquipmentSlot.CHEST) != ItemStack.EMPTY)
                 matrices.translate(0, 0, -0.03);
             wingModel.setAngles(player, limbAngle, limbDistance, animationProgress, headYaw, headPitch);
-            VertexConsumer vertexconsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, RenderLayer.getArmorCutoutNoCull(WINGS_LOCATION), false, itemtack.hasGlint());
+            VertexConsumer vertexconsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, RenderLayer.getArmorCutoutNoCull(WINGS_LOCATION), false, stack.hasGlint());
             wingModel.render(matrices, vertexconsumer, light, OverlayTexture.DEFAULT_UV, 0, 1.0F, 1.0F, 0.5F);
-            vertexconsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, RenderLayer.getArmorCutoutNoCull(WINGS_LOCATION2), false, itemtack.hasGlint());
+            vertexconsumer = ItemRenderer.getArmorGlintConsumer(vertexConsumers, RenderLayer.getArmorCutoutNoCull(WINGS_LOCATION2), false, stack.hasGlint());
             wingModel.render(matrices, vertexconsumer, light, OverlayTexture.DEFAULT_UV, 1.0F, 1.0F, 1.0F, 1.0F);
             matrices.pop();
         }

@@ -1,5 +1,6 @@
 package dev.rainimator.mod.forge.compat.curios.renderer.armor;
 
+import dev.rainimator.mod.renderer.IArmorRenderHelper;
 import dev.rainimator.mod.renderer.model.ModelMagic;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.ModelPart;

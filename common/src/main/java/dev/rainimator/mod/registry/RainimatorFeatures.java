@@ -20,9 +20,13 @@ public class RainimatorFeatures {
         BiomeModifications.addProperties(context -> context.hasTag(BiomeTags.IS_OVERWORLD), (context, mutable) -> {
             mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, RainimatorFeatures.RUBY_ORE);
             mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, RainimatorFeatures.SAPPHIRE_ORE);
-            mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, RainimatorFeatures.SUGILITE_ORE);
-            mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, RainimatorFeatures.TOPAZ_ORE);
             mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, RainimatorFeatures.MYSTIC_ORE);
+        });
+        BiomeModifications.addProperties(context -> context.hasTag(BiomeTags.IS_END), (context, mutable) -> {
+            mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, RainimatorFeatures.SUGILITE_ORE);
+        });
+        BiomeModifications.addProperties(context -> context.hasTag(BiomeTags.IS_NETHER), (context, mutable) -> {
+            mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, RainimatorFeatures.TOPAZ_ORE);
         });
     }
 }

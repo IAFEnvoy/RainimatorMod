@@ -16,9 +16,23 @@ And this mod adds the elements appear in them.
 
 ## Dependencies
 
+### Fabric
+
 `Fabric API`(**Required**): Common toolkits.
 
+`Architectury API`(**Required**): Multi-Platform API.
+
 `Trinkets`(**Required**): Used for more item slots. (Such as back / belt)
+
+`EMI`(**Optional**): Boss summon recipes view.
+
+`Asteor Bar`(**Optional**): A better GUI for status bars.
+
+### Forge
+
+`Architectury API`(**Required**): Multi-Platform API.
+
+`Curios`(**Required**): Used for more item slots. (Such as back / belt)
 
 `EMI`(**Optional**): Boss summon recipes view.
 
@@ -39,13 +53,6 @@ Add part of them firstly since the skins are hard to find.
 
 Summon them by using the `Dark Obsidian Block`.
 See summon recipes with `EMI`.
-
-### Item Description (Not Work **NOW**)
-
-Some items with `Press [LALT] for more info` in tooltip have an in-game description.
-Press Left ALT button when hover it to open.
-
-**Known Problem: Hot key only works in inventories.**
 
 ## Contribute
 

@@ -3,19 +3,20 @@ package dev.rainimator.mod.impl;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
-import dev.rainimator.mod.registry.util.ItemBase;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
+import net.minecraft.item.ElytraItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.Rarity;
 import org.apache.commons.lang3.NotImplementedException;
 
-public class WingsOfSalvationItem extends ItemBase {
+public class WingsOfSalvationItem extends ElytraItem {
     protected int lastBoostTick = 0;
 
     public WingsOfSalvationItem() {
-        super(p -> p.arch$tab(RainimatorItemGroups.MAIN));
+        super(new Settings().rarity(Rarity.EPIC).maxCount(1).arch$tab(RainimatorItemGroups.MAIN));
     }
 
     protected static void noEnoughEnergy(PlayerEntity player) {

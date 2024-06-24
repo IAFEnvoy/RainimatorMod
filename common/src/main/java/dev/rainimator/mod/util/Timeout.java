@@ -30,8 +30,8 @@ public class Timeout {
     }
 
     public static void startTimeout() {
-        TickEvent.ServerLevelTick.SERVER_LEVEL_POST.register(instance -> {
-            timeouts.forEach(x -> x.tick(instance.getServer()));
+        TickEvent.ServerLevelTick.SERVER_POST.register(instance -> {
+            timeouts.forEach(x -> x.tick(instance));
             timeouts.removeAll(timeouts.stream().filter(timeout -> timeout.shouldRemove).toList());
         });
     }

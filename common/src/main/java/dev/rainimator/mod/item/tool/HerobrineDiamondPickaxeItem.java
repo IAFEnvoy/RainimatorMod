@@ -38,8 +38,7 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
                 for (double j = -1; j <= 1; j++)
                     if (i != 0 || j != 0) {
                         BlockPos _pos = new BlockPos((int) (x + i), (int) y, (int) (z + j));
-                        Block.dropStacks(((WorldAccess) world).getBlockState(_pos), world, new BlockPos((int) x, (int) y, (int) z), null);
-                        world.breakBlock(_pos, false);
+                        world.breakBlock(_pos, true);
                     }
         return retval;
     }
