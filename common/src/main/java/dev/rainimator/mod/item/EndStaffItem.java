@@ -2,31 +2,22 @@ package dev.rainimator.mod.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import dev.rainimator.mod.entity.EndStaffEntity;
 import dev.rainimator.mod.registry.util.ItemBase;
-import dev.rainimator.mod.registry.RainimatorItemGroups;
-import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.RangedWeaponItem;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
 public class EndStaffItem extends ItemBase {
     public EndStaffItem() {
-        super(p -> p.maxDamage(10000).arch$tab(RainimatorItemGroups.MAIN));
+        super(p -> p.maxDamage(10000));
     }
 
     @Override

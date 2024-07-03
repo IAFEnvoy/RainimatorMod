@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 public class RainSwordItem extends SwordItemBase implements IRainimatorInfo {
     public RainSwordItem() {
-        super(ToolMaterialUtil.of(2000, 4.0F, 11.0F, 0, 20), 3, -2.0F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(2000, 4.0F, 11.0F, 0, 20), 3, -2.0F, new Settings().group(RainimatorItemGroups.MAIN));
     }
 
     @Override

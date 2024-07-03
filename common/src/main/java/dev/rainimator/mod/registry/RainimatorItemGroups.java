@@ -15,12 +15,10 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 public class RainimatorItemGroups {
     public static final ItemGroup MAIN = CreativeTabs.create(
-            new Identifier("itemGroup." + RainimatorMod.MOD_ID + ".rainimator"),
+            new Identifier(RainimatorMod.MOD_ID, "rainimator"),
             () -> new ItemStack(RainimatorItems.RAIN_SWORD.get())
     );
-    public static final List<Supplier<? extends Item>> ITEMS = new ArrayList<>();
 
     public static void init() {
-        MAIN.appendStacks(DefaultedList.copyOf(ItemStack.EMPTY, ITEMS.stream().map(Supplier::get).map(ItemStack::new).toArray(x -> new ItemStack[]{})));
     }
 }

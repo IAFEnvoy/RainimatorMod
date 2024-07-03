@@ -21,9 +21,6 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
-
-    // Curios
-    modImplementation "top.theillusivec4.curios:curios-forge:${curios_forge_version}"
 }
 
 processResources {

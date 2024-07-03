@@ -1,7 +1,7 @@
 package dev.rainimator.mod.renderer.model.wing;
 
 import com.google.common.collect.ImmutableList;
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.model.AnimalModel;
 import net.minecraft.entity.LivingEntity;
@@ -13,19 +13,9 @@ public class WingEntityModel<T extends LivingEntity> extends AnimalModel<T> {
     public final ModelPart leftWing;
     public State state = State.IDLE;
 
-    public WingEntityModel(ModelPart root) {
-        this.rightWing = root.getChild("rightWing");
-        this.leftWing = root.getChild("leftWing");
-    }
-
-    public static ModelData getModelData() {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
-
-        modelPartData.addChild("rightWing", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 5.0F, 0.0F));
-        modelPartData.addChild("leftWing", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 5.0F, 0.0F));
-
-        return modelData;
+    public WingEntityModel() {
+        this.rightWing = new ModelPart(this);
+        this.leftWing = new ModelPart(this);
     }
 
     @Override
@@ -67,7 +57,8 @@ public class WingEntityModel<T extends LivingEntity> extends AnimalModel<T> {
         this.leftWing.pivotY = m;
         this.leftWing.pivotZ = -2.7F;
 
-        if (entity instanceof AbstractClientPlayerEntity player) {
+        if (entity instanceof AbstractClientPlayerEntity) {
+            AbstractClientPlayerEntity player = (AbstractClientPlayerEntity) entity;
             player.elytraPitch = (player.elytraPitch + (n - player.elytraPitch) * 0.1F);
             player.elytraYaw = (player.elytraYaw + (k - player.elytraYaw) * 0.1F);
             player.elytraRoll = (player.elytraRoll + (l - player.elytraRoll) * 0.1F);

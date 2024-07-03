@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[47,)"
+loaderVersion = "[36,)"
 license = "GNU LGPL 3.0"
 issueTrackerURL = "https://github.com/ArkTechMC/RainimatorMod/issues"
 [[mods]]
@@ -7,30 +7,24 @@ modId = "rainimator"
 version = "${version}"
 displayName = "Rainimator Mod"
 logoFile = "logo.jpg"
-authors = "Triceratops, IAFEnvoy"
+authors = "IAFEnvoy"
 description = '''
 Rainimator Minecraft Animation mod. @Rainimator @Rainolaguer
 '''
 [[dependencies.rainimator]]
 modId = "forge"
 mandatory = true
-versionRange = "[47,)"
+versionRange = "[36,)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.rainimator]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.20.1,1.21)"
+versionRange = "[1.16.5,1.17)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.rainimator]]
 modId = "architectury"
-mandatory = true
-versionRange = "[0,)"
-ordering = "NONE"
-side = "BOTH"
-[[dependencies.rainimator]]
-modId = "curios"
 mandatory = true
 versionRange = "[0,)"
 ordering = "NONE"

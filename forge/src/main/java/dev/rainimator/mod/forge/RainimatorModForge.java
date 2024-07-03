@@ -1,7 +1,6 @@
 package dev.rainimator.mod.forge;
 
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.forge.compat.curios.CuriosRegistry;
 import me.shedaniel.architectury.platform.Platform;
 import me.shedaniel.architectury.platform.forge.EventBuses;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,23 +17,10 @@ public class RainimatorModForge {
         // Submit our event bus to let architectury register our content on the right time
         EventBuses.registerModEventBus(RainimatorMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
         RainimatorMod.init();
-        if (Platform.getEnv() == Dist.CLIENT)
-            RainimatorMod.initClient();
     }
 
     @SubscribeEvent
     public static void onInit(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            RainimatorMod.process();
-            CuriosRegistry.registerCommon();
-        });
-    }
-
-    @SubscribeEvent
-    public static void onClientInit(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-            RainimatorMod.processClient();
-            CuriosRegistry.registerClient();
-        });
+        event.enqueueWork(RainimatorMod::process);
     }
 }

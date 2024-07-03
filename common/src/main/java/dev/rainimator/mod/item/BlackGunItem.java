@@ -3,7 +3,6 @@ package dev.rainimator.mod.item;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import dev.rainimator.mod.registry.util.ItemBase;
-import dev.rainimator.mod.registry.RainimatorItemGroups;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -16,7 +15,7 @@ import net.minecraft.world.World;
 
 public class BlackGunItem extends ItemBase {
     public BlackGunItem() {
-        super(p -> p.maxDamage(800).arch$tab(RainimatorItemGroups.MAIN));
+        super(p -> p.maxDamage(800));
     }
 
     @Override

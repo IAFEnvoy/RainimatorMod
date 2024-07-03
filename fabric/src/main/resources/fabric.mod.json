@@ -5,7 +5,6 @@
   "name": "Rainimator Mod",
   "description": "Rainimator Minecraft Animation mod. @Rainimator @Rainolaguer",
   "authors": [
-    "Triceratops",
     {
       "name": "IAFEnvoy",
       "contact": {
@@ -25,9 +24,6 @@
   "entrypoints": {
     "main": [
       "dev.rainimator.mod.fabric.RainimatorModFabric"
-    ],
-    "client": [
-      "dev.rainimator.mod.fabric.RainimatorModFabricClient"
     ]
   },
   "accessWidener": "rainimator.accesswidener",
@@ -37,9 +33,8 @@
   ],
   "depends": {
     "fabricloader": "*",
-    "minecraft": "1.20.1",
+    "minecraft": "1.16.5",
     "fabric": "*",
-    "architectury": "*",
-    "trinkets": "*"
+    "architectury": "*"
   }
 }

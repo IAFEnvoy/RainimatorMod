@@ -10,7 +10,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
@@ -24,7 +23,7 @@ public class NetheriteShieldItem extends ShieldItem {
     protected static final UUID MAIN_HAND_MODIFIER = UUID.fromString("7d766720-0695-46c6-b320-44529f3da63f");
 
     public NetheriteShieldItem() {
-        super(new Settings().maxCount(1).maxDamage(2500).rarity(Rarity.UNCOMMON).arch$tab(RainimatorItemGroups.MAIN));
+        super(new Settings().maxCount(1).maxDamage(2500).rarity(Rarity.UNCOMMON).group(RainimatorItemGroups.MAIN));
     }
 
     @Override
@@ -37,11 +36,6 @@ public class NetheriteShieldItem extends ShieldItem {
         ItemStack itemtack = playerIn.getStackInHand(hand);
         playerIn.setCurrentHand(hand);
         return TypedActionResult.consume(itemtack);
-    }
-
-    @Override
-    public boolean canRepair(ItemStack itemStack, ItemStack itemStack2) {
-        return (itemStack2.isIn(ItemTags.PLANKS) || super.canRepair(itemStack, itemStack2));
     }
 
     @Override

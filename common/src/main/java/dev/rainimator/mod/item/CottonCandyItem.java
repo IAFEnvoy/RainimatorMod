@@ -1,7 +1,6 @@
 package dev.rainimator.mod.item;
 
 import dev.rainimator.mod.registry.util.ItemBase;
-import dev.rainimator.mod.registry.RainimatorItemGroups;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -13,7 +12,7 @@ import net.minecraft.world.World;
 
 public class CottonCandyItem extends ItemBase {
     public CottonCandyItem() {
-        super(p -> p.food((new FoodComponent.Builder()).hunger(3).saturationModifier(0.1F).alwaysEdible().build()).arch$tab(RainimatorItemGroups.MAIN));
+        super(p -> p.food((new FoodComponent.Builder()).hunger(3).saturationModifier(0.1F).alwaysEdible().build()));
     }
 
     @Override
@@ -21,7 +20,8 @@ public class CottonCandyItem extends ItemBase {
         ItemStack ret_val = super.finishUsing(itemtack, world, entity);
         if (!entity.world.isClient())
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 200, 0));
-        if (entity instanceof PlayerEntity player) {
+        if (entity instanceof PlayerEntity) {
+            PlayerEntity player = (PlayerEntity) entity;
             ItemStack stack = new ItemStack(Items.STICK);
             stack.setCount(1);
             player.inventory.insertStack(stack);

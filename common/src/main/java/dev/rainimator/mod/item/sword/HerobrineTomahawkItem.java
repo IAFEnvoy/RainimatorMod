@@ -1,9 +1,8 @@
 package dev.rainimator.mod.item.sword;
 
+import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.util.SwordItemBase;
 import dev.rainimator.mod.registry.util.ToolMaterialUtil;
-import dev.rainimator.mod.registry.RainimatorItemGroups;
-import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -11,13 +10,13 @@ import net.minecraft.item.ItemStack;
 
 public class HerobrineTomahawkItem extends SwordItemBase {
     public HerobrineTomahawkItem() {
-        super(ToolMaterialUtil.of(2500, 12.0F, 11.0F, 0, 20, RainimatorItems.SUPER_RUBY, RainimatorItems.SUPER_SAPPHIRE), 3, -2.2F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(2500, 12.0F, 11.0F, 0, 20), 3, -2.2F, new Settings().fireproof().group(RainimatorItemGroups.MAIN));
     }
 
     @Override
     public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
         boolean ret_val = super.postHit(itemtack, entity, sourceentity);
-        if (entity.getWorld().isClient()) return ret_val;
+        if (entity.world.isClient()) return ret_val;
         entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 0));
         if (Math.random() < 0.5D) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60, 0));

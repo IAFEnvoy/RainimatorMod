@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class HerobrineDiamondPickaxeItem extends PickaxeItem {
     public HerobrineDiamondPickaxeItem() {
-        super(ToolMaterialUtil.of(2500, 20.0F, 5.0F, 4, 25, () -> Items.DIAMOND), 1, -2.2F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(2500, 20.0F, 5.0F, 4, 25, () -> Items.DIAMOND), 1, -2.2F, new Settings().fireproof().group(RainimatorItemGroups.MAIN));
     }
 
     @Override
