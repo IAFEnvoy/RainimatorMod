@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 
 public class RedGoldDaggerItem extends SwordItemBase {
     public RedGoldDaggerItem() {
-        super(ToolMaterialUtil.of(1000, 4.0F, 6.0F, 0, 3, RainimatorItems.RUBY), 3, -2.0F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(1000, 4.0F, 6.0F, 0, 3), 3, -2.0F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

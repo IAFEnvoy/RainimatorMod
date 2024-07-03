@@ -1,18 +1,18 @@
 package dev.rainimator.mod.registry;
 
-import dev.architectury.registry.registries.DeferredRegister;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.util.MemorizeSupplier;
-import net.minecraft.registry.RegistryKeys;
+import me.shedaniel.architectury.registry.DeferredRegister;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
 public class RainimatorSounds {
-    public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(RainimatorMod.MOD_ID, RegistryKeys.SOUND_EVENT);
+    public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(RainimatorMod.MOD_ID, Registry.SOUND_EVENT_KEY);
 
     public static final String[] idMap = new String[]{
             "blackbone", "ceris_live", "ceris_skill", "ceris_f", "him_skill", "naeus_living", "fire_soul", "rain_sword_skill", "rain_sword_skill_2",
@@ -28,8 +28,8 @@ public class RainimatorSounds {
 
     static {
         for (String id : idMap) {
-            Identifier location = Identifier.of(RainimatorMod.MOD_ID, id);
-            MemorizeSupplier<SoundEvent> soundEvent = new MemorizeSupplier<>(() -> SoundEvent.of(location));
+            Identifier location = new Identifier(RainimatorMod.MOD_ID, id);
+            MemorizeSupplier<SoundEvent> soundEvent = new MemorizeSupplier<>(() -> new SoundEvent(location));
             REGISTRY.register(id, soundEvent);
             REGISTRY_MAP.put(id, soundEvent);
         }

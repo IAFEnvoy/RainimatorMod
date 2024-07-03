@@ -29,7 +29,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(method = "onDeath", at = @At("TAIL"))
     private void dropBox(DamageSource damageSource, CallbackInfo ci) {
-        if (Math.random() < 0.05 && this.getWorld() instanceof ServerWorld serverWorld)
+        if (Math.random() < 0.05 && this.world instanceof ServerWorld serverWorld)
             EntityUtil.item(serverWorld, this.getX(), this.getY(), this.getZ(), RainimatorItems.MYSTERIOUS_GIFT_BOX.get(), 10);
     }
 

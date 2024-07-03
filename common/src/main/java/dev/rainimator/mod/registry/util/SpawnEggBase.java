@@ -1,19 +1,21 @@
 package dev.rainimator.mod.registry.util;
 
-import dev.architectury.core.item.ArchitecturySpawnEggItem;
-import dev.architectury.registry.registries.RegistrySupplier;
+import me.shedaniel.architectury.core.item.ArchitecturySpawnEggItem;
+import me.shedaniel.architectury.registry.RegistrySupplier;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.util.Episode;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SpawnEggItem;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class SpawnEggBase extends ArchitecturySpawnEggItem implements IRainimatorInfo {
+public class SpawnEggBase extends SpawnEggItem implements IRainimatorInfo {
     private final Episode episode;
 
     public SpawnEggBase(Episode episode, RegistrySupplier<? extends EntityType<? extends MobEntity>> type, int backgroundColor, int highlightColor) {
@@ -25,7 +27,7 @@ public class SpawnEggBase extends ArchitecturySpawnEggItem implements IRainimato
     public void appendTooltip(ItemStack itemtack, World world, List<Text> list, TooltipContext flag) {
         super.appendTooltip(itemtack, world, list, flag);
         if (this.episode != Episode.None)
-            list.add(Text.literal(RainimatorInfoManager.getHoverText()));
+            list.add(new LiteralText(RainimatorInfoManager.getHoverText()));
     }
 
     @Override

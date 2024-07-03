@@ -28,17 +28,6 @@
     ],
     "client": [
       "dev.rainimator.mod.fabric.RainimatorModFabricClient"
-    ],
-    "cardinal-components-entity": [
-      "dev.rainimator.mod.fabric.component.ModComponentEntry"
-    ],
-    "emi": [
-      "dev.rainimator.mod.fabric.compat.emi.BossSpawnRecipePlugin"
-    ]
-  },
-  "custom": {
-    "cardinal-components": [
-      "rainimator:mana"
     ]
   },
   "accessWidener": "rainimator.accesswidener",

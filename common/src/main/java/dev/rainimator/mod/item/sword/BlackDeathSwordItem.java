@@ -4,7 +4,6 @@ import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.util.SwordItemBase;
 import dev.rainimator.mod.registry.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
-import dev.rainimator.mod.registry.RainimatorParticles;
 import dev.rainimator.mod.registry.util.IRainimatorInfo;
 import dev.rainimator.mod.util.Episode;
 import dev.rainimator.mod.util.ParticleUtil;

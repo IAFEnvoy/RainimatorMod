@@ -1,49 +1,26 @@
 package dev.rainimator.mod.registry;
 
-import dev.architectury.registry.CreativeTabRegistry;
-import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.RegistrySupplier;
 import dev.rainimator.mod.RainimatorMod;
+import me.shedaniel.architectury.registry.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.collection.DefaultedList;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
 public class RainimatorItemGroups {
-    public static final DeferredRegister<ItemGroup> REGISTRY = DeferredRegister.create(RainimatorMod.MOD_ID, RegistryKeys.ITEM_GROUP);
-    public static final RegistrySupplier<ItemGroup> MAIN = register("main", () -> CreativeTabRegistry.create(
-            Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator"),
-            () -> new ItemStack(RainimatorItems.WARRIOR_HEART.get())
-    ));
-    public static final RegistrySupplier<ItemGroup> MOBS = register("mobs", () -> CreativeTabRegistry.create(
-            Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_mobs"),
-            () -> new ItemStack(RainimatorItems.ICE_HEART.get())
-    ));
-    public static final RegistrySupplier<ItemGroup> ITEM = register("item", () -> CreativeTabRegistry.create(
-            Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_item"),
-            () -> new ItemStack(RainimatorItems.ENDER_HEART.get())
-    ));
-
-    private static <T extends ItemGroup> RegistrySupplier<T> register(String name, Supplier<T> group) {
-        return REGISTRY.register(name, group);
-    }
+    public static final ItemGroup MAIN = CreativeTabs.create(
+            new Identifier("itemGroup." + RainimatorMod.MOD_ID + ".rainimator"),
+            () -> new ItemStack(RainimatorItems.RAIN_SWORD.get())
+    );
+    public static final List<Supplier<? extends Item>> ITEMS = new ArrayList<>();
 
     public static void init() {
-        CreativeTabRegistry.appendStack(MAIN,
-                RainimatorBanners.FROST,
-                RainimatorBanners.UNDEAD,
-                RainimatorBanners.NETHER,
-                RainimatorBanners.DRAGONSPIRE,
-                RainimatorBanners.ENDER_PIRATE,
-                RainimatorBanners.THE_GATEKEEPERS,
-                RainimatorBanners.ORCHID_CITY,
-                RainimatorBanners.LIGHTBORNE_ISLES,
-                RainimatorBanners.THE_UMBRAL_KINGDOM,
-                RainimatorBanners.CHORUS_BAY,
-                RainimatorBanners.VOID_ISLANDS
-        );
+        MAIN.appendStacks(DefaultedList.copyOf(ItemStack.EMPTY, ITEMS.stream().map(Supplier::get).map(ItemStack::new).toArray(x -> new ItemStack[]{})));
     }
 }

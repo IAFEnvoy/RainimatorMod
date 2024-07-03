@@ -56,38 +56,4 @@ public class EndStaffItem extends ItemBase {
         }
         return super.getAttributeModifiers(slot);
     }
-
-    @Override
-    public void onStoppedUsing(ItemStack itemtack, World world, LivingEntity entityLiving, int timeLeft) {
-        if (!world.isClient() && entityLiving instanceof ServerPlayerEntity entity) {
-            ItemStack stack = RangedWeaponItem.getHeldProjectile(entity, e -> (e.getItem() == RainimatorItems.MAGIC_STAR.get()));
-            if (stack == ItemStack.EMPTY)
-                for (int i = 0; i < (entity.getInventory()).main.size(); i++) {
-                    ItemStack teststack = (entity.getInventory()).main.get(i);
-                    if (teststack.getItem() == RainimatorItems.MAGIC_STAR.get()) {
-                        stack = teststack;
-                        break;
-                    }
-                }
-            if ((entity.getAbilities()).creativeMode || stack != ItemStack.EMPTY) {
-                EndStaffEntity entityarrow = EndStaffEntity.shoot(world, entity, new Random(), 1.2F, 7.0D, 0);
-                itemtack.damage(1, (LivingEntity) entity, e -> e.sendToolBreakStatus(entity.getActiveHand()));
-                if ((entity.getAbilities()).creativeMode) {
-                    entityarrow.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
-                } else if ((new ItemStack(RainimatorItems.MAGIC_STAR.get())).isDamageable()) {
-                    if (stack.damage(1, world.getRandom(), entity)) {
-                        stack.decrement(1);
-                        stack.setDamage(0);
-                        if (stack.isEmpty())
-                            entity.getInventory().removeOne(stack);
-                    }
-                } else {
-                    stack.decrement(1);
-                    if (stack.isEmpty())
-                        entity.getInventory().removeOne(stack);
-                }
-                entity.getItemCooldownManager().set(itemtack.getItem(), 100);
-            }
-        }
-    }
 }

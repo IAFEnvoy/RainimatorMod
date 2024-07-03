@@ -18,6 +18,6 @@ public class PlayerInventoryMixin {
 
     @Inject(method = "updateItems", at = @At("RETURN"))
     private void onInventoryTick(CallbackInfo ci) {
-        ArmorWithTickItem.doTick(this.player.getWorld(), this.player);
+        ArmorWithTickItem.doTick(this.player.world, this.player);
     }
 }

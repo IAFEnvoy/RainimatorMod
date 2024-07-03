@@ -17,20 +17,13 @@ configurations {
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
     // Remove the next line if you don't want to depend on the API
-    modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+    modApi "me.shedaniel:architectury-forge:${rootProject.architectury_version}"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 
     // Curios
-    modImplementation "top.theillusivec4.curios:curios-forge:${curios_version}"
-
-    // Optional dependencies
-    // Asteor Bar
-    modImplementation "curse.maven:asteorbar-959237:5373051"
-
-    // EMI
-    modImplementation "dev.emi:emi-forge:${emi_version}"
+    modImplementation "top.theillusivec4.curios:curios-forge:${curios_forge_version}"
 }
 
 processResources {

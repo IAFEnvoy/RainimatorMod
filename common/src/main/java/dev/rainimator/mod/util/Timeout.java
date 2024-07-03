@@ -1,6 +1,6 @@
 package dev.rainimator.mod.util;
 
-import dev.architectury.event.events.common.TickEvent;
+import me.shedaniel.architectury.event.events.common.TickEvent;
 import net.minecraft.server.MinecraftServer;
 
 import java.util.concurrent.CopyOnWriteArrayList;

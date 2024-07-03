@@ -1,26 +1,16 @@
 package dev.rainimator.mod.item.tool;
 
-import dev.rainimator.mod.data.component.ManaData;
-import dev.rainimator.mod.data.config.ServerConfig;
-import dev.rainimator.mod.impl.ComponentManager;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
-import dev.rainimator.mod.util.VecUtil;
+import dev.rainimator.mod.registry.util.ToolMaterialUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.item.PickaxeItem;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 
 public class HerobrineDiamondPickaxeItem extends PickaxeItem {
     public HerobrineDiamondPickaxeItem() {
@@ -41,29 +31,6 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
                         world.breakBlock(_pos, true);
                     }
         return retval;
-    }
-
-    @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        super.useOnBlock(context);
-        World world = context.getWorld();
-        double x = context.getBlockPos().getX();
-        double y = context.getBlockPos().getY();
-        double z = context.getBlockPos().getZ();
-        if (context.getPlayer() != null) {
-            BlockState blockState = world.getBlockState(VecUtil.createBlockPos(x, y, z));
-            ManaData data = ComponentManager.getManaData(context.getPlayer());
-            if (blockState.getBlock().getHardness() >= 0 && data.tryUseMana(context.getPlayer(), ServerConfig.getInstance().herobrine_diamond_pickaxe)) {
-                world.breakBlock(VecUtil.createBlockPos(x, y, z), false);
-                if (!world.isClient())
-                    world.spawnEntity(new ExperienceOrbEntity(world, x, y, z, 10));
-                if (!context.getPlayer().getWorld().isClient())
-                    context.getPlayer().sendMessage(Text.translatable("item.rainimator.herobrine_diamond_pickaxe.breakblock"), true);
-                context.getPlayer().getItemCooldownManager().set(context.getStack().getItem(), 60);
-            }
-        }
-
-        return ActionResult.SUCCESS;
     }
 
     @Override

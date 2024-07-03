@@ -1,8 +1,8 @@
 package dev.rainimator.mod.impl;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import dev.rainimator.mod.registry.util.ItemBase;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
+import dev.rainimator.mod.registry.util.ItemBase;
 import org.apache.commons.lang3.NotImplementedException;
 
 public class NetherTheCrownItem extends ItemBase {

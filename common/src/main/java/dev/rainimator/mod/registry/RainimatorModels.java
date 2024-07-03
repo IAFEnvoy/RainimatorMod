@@ -1,6 +1,5 @@
 package dev.rainimator.mod.registry;
 
-import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.rainimator.mod.renderer.model.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
