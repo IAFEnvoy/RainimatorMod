@@ -22,11 +22,7 @@ public class RainimatorFeatures {
             mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, RainimatorFeatures.SAPPHIRE_ORE);
             mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_ORES, RainimatorFeatures.MYSTIC_ORE);
         });
-        BiomeModifications.addProperties(context -> context.hasTag(BiomeTags.IS_END), (context, mutable) -> {
-            mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, RainimatorFeatures.SUGILITE_ORE);
-        });
-        BiomeModifications.addProperties(context -> context.hasTag(BiomeTags.IS_NETHER), (context, mutable) -> {
-            mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, RainimatorFeatures.TOPAZ_ORE);
-        });
+        BiomeModifications.addProperties(context -> context.hasTag(BiomeTags.IS_END), (context, mutable) -> mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, RainimatorFeatures.SUGILITE_ORE));
+        BiomeModifications.addProperties(context -> context.hasTag(BiomeTags.IS_NETHER), (context, mutable) -> mutable.getGenerationProperties().addFeature(GenerationStep.Feature.UNDERGROUND_DECORATION, RainimatorFeatures.TOPAZ_ORE));
     }
 }

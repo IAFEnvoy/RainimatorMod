@@ -1,7 +1,5 @@
 package dev.rainimator.mod.renderer;
 
-import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.entity.CerisEntity;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.BossBar;
