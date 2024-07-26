@@ -22,6 +22,8 @@ And this mod adds the elements appear in them.
 
 `Architectury API`(**Required**): Multi-Platform API.
 
+`Neptune`(**Required**): My cross-platform library.
+
 `Trinkets`(**Required**): Used for more item slots. (Such as back / belt)
 
 `EMI`(**Optional**): Boss summon recipes view.
@@ -31,6 +33,8 @@ And this mod adds the elements appear in them.
 ### Forge
 
 `Architectury API`(**Required**): Multi-Platform API.
+
+`Neptune`(**Required**): My cross-platform library.
 
 `Curios`(**Required**): Used for more item slots. (Such as back / belt)
 
