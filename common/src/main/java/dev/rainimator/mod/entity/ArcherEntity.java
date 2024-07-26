@@ -1,12 +1,12 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.EntityUtil;
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
+import com.iafenvoy.neptune.render.Stage;
+import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.util.MonsterEntityBase;
 import dev.rainimator.mod.registry.RainimatorEntities;
-import dev.rainimator.mod.renderer.util.Stage;
-import dev.rainimator.mod.util.EntityUtil;
-import dev.rainimator.mod.util.RandomHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;

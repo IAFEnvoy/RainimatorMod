@@ -34,6 +34,9 @@ dependencies {
     // Cardinal Components API
     // Don't need this. Trinkets has embedded version 5.2.0.
 
+    // Neptune cross-platform library
+    modImplementation "maven.modrinth:neptune:xatjxdAK"
+
     // Optional dependencies
     // Asteor Bar
     modImplementation "curse.maven:asteorbar-959237:5212120"

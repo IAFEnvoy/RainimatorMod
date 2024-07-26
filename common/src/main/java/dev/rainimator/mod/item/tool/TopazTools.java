@@ -1,8 +1,8 @@
 package dev.rainimator.mod.item.tool;
 
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
+import com.iafenvoy.neptune.object.DamageUtil;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
-import dev.rainimator.mod.util.DamageUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.item.*;

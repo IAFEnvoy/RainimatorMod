@@ -1,14 +1,14 @@
 package dev.rainimator.mod.item.sword;
 
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
-import dev.rainimator.mod.registry.util.SwordItemBase;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import dev.rainimator.mod.util.SoundUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 public class EnderBigSwordItem extends SwordItemBase {
     public EnderBigSwordItem() {
-        super(ToolMaterialUtil.of(2000, 4.0F, 9.0F, 1, 15, RainimatorItems.SUPER_SAPPHIRE, () -> Items.ENDER_EYE), 3, -2.2F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(2000, 4.0F, 9.0F, 1, 15, RainimatorItems.SUPER_SAPPHIRE::get, () -> Items.ENDER_EYE), 3, -2.2F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

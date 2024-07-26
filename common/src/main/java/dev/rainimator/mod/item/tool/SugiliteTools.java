@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item.tool;
 
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;

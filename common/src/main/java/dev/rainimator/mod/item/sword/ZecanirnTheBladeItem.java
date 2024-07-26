@@ -1,16 +1,19 @@
 package dev.rainimator.mod.item.sword;
 
+import com.iafenvoy.neptune.object.DamageUtil;
+import com.iafenvoy.neptune.object.ParticleUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
+import com.iafenvoy.neptune.util.RandomHelper;
+import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
-import dev.rainimator.mod.registry.util.SwordItemBase;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import dev.rainimator.mod.registry.util.IRainimatorInfo;
-import dev.rainimator.mod.util.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -35,9 +38,9 @@ import net.minecraft.world.World;
 import java.util.Comparator;
 import java.util.List;
 
-public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorInfo {
+public class ZecanirnTheBladeItem extends SwordItemBase {
     public ZecanirnTheBladeItem() {
-        super(ToolMaterialUtil.of(1500, 4.0F, 11.0F, 0, 20, RainimatorItems.SUPER_SAPPHIRE, RainimatorItems.SUPER_RUBY), 3, -2.2F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(1500, 4.0F, 11.0F, 0, 20, RainimatorItems.SUPER_SAPPHIRE::get, RainimatorItems.SUPER_RUBY::get), 3, -2.2F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override
@@ -149,10 +152,5 @@ public class ZecanirnTheBladeItem extends SwordItemBase implements IRainimatorIn
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, RainimatorParticles.PURPLE_LIGHT.get(), x, y, z, 4, 0, 50);
         return ret_val;
-    }
-
-    @Override
-    public Episode getEpisode() {
-        return Episode.Goodbye;
     }
 }

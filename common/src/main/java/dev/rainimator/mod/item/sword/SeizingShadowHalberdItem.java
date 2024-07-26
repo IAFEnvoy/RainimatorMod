@@ -1,18 +1,16 @@
 package dev.rainimator.mod.item.sword;
 
+import com.iafenvoy.neptune.object.ParticleUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
+import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
-import dev.rainimator.mod.registry.util.SwordItemBase;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
-import dev.rainimator.mod.registry.util.IRainimatorInfo;
-import dev.rainimator.mod.util.Episode;
-import dev.rainimator.mod.util.ParticleUtil;
-import dev.rainimator.mod.util.SoundUtil;
-import dev.rainimator.mod.util.Timeout;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -40,7 +38,7 @@ import net.minecraft.world.WorldAccess;
 import java.util.Comparator;
 import java.util.List;
 
-public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimatorInfo {
+public class SeizingShadowHalberdItem extends SwordItemBase {
     public SeizingShadowHalberdItem() {
         super(ToolMaterialUtil.of(2000, 0.0F, 13.0F, 0, 20), 3, -2.2F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }
@@ -180,10 +178,5 @@ public class SeizingShadowHalberdItem extends SwordItemBase implements IRainimat
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, ParticleTypes.END_ROD, x, y, z, 4, 0, 50);
         return retval;
-    }
-
-    @Override
-    public Episode getEpisode() {
-        return Episode.AlreadyDead;
     }
 }

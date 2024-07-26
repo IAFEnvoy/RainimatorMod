@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item.sword;
 
-import dev.rainimator.mod.registry.util.SwordItemBase;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
+import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.LivingEntity;
@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class BlackBoneTheBladeSingleHandItem extends SwordItemBase {
     public BlackBoneTheBladeSingleHandItem() {
-        super(ToolMaterialUtil.of(1500, 0.0F, 10.0F, 0, 0, RainimatorItems.RUBY), 3, -2.3F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(1500, 0.0F, 10.0F, 0, 0, RainimatorItems.RUBY::get), 3, -2.3F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

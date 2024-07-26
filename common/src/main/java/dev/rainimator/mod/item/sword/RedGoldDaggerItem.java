@@ -1,17 +1,17 @@
 package dev.rainimator.mod.item.sword;
 
-import dev.rainimator.mod.registry.util.SwordItemBase;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
+import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
+import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.util.RandomHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 
 public class RedGoldDaggerItem extends SwordItemBase {
     public RedGoldDaggerItem() {
-        super(ToolMaterialUtil.of(1000, 4.0F, 6.0F, 0, 3, RainimatorItems.RUBY), 3, -2.0F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(1000, 4.0F, 6.0F, 0, 3, RainimatorItems.RUBY::get), 3, -2.0F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

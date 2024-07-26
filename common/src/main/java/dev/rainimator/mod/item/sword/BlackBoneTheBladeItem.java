@@ -1,15 +1,18 @@
 package dev.rainimator.mod.item.sword;
 
+import com.iafenvoy.neptune.object.DamageUtil;
+import com.iafenvoy.neptune.object.ParticleUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.FoilSwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
+import com.iafenvoy.neptune.util.RandomHelper;
+import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
-import dev.rainimator.mod.registry.util.FoilSwordItemBase;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.util.IRainimatorInfo;
-import dev.rainimator.mod.util.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
@@ -23,9 +26,9 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainimatorInfo {
+public class BlackBoneTheBladeItem extends FoilSwordItemBase {
     public BlackBoneTheBladeItem() {
-        super(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 10, RainimatorItems.RUBY), 3, -2.4F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 10, RainimatorItems.RUBY::get), 3, -2.4F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override
@@ -85,10 +88,5 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase implements IRainima
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, ParticleTypes.LAVA, x, y, z, 4, 0, 50);
         return retval;
-    }
-
-    @Override
-    public Episode getEpisode() {
-        return Episode.WeAreTheDanger;
     }
 }

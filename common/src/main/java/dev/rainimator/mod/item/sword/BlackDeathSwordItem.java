@@ -1,14 +1,12 @@
 package dev.rainimator.mod.item.sword;
 
+import com.iafenvoy.neptune.object.ParticleUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.util.SwordItemBase;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import dev.rainimator.mod.registry.util.IRainimatorInfo;
-import dev.rainimator.mod.util.Episode;
-import dev.rainimator.mod.util.ParticleUtil;
-import dev.rainimator.mod.util.SoundUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -19,7 +17,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class BlackDeathSwordItem extends SwordItemBase implements IRainimatorInfo {
+public class BlackDeathSwordItem extends SwordItemBase {
     public BlackDeathSwordItem() {
         super(ToolMaterialUtil.of(1000, 0.0F, 9.0F, 0, 30), 3, -1.7F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }
@@ -57,10 +55,5 @@ public class BlackDeathSwordItem extends SwordItemBase implements IRainimatorInf
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, ParticleTypes.SOUL, x, y, z, 3, 0, 50);
         return retval;
-    }
-
-    @Override
-    public Episode getEpisode() {
-        return Episode.Unknown;
     }
 }

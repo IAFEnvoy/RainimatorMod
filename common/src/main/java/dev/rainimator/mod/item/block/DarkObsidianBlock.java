@@ -1,8 +1,12 @@
 package dev.rainimator.mod.item.block;
 
+import com.iafenvoy.neptune.object.EntityUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.util.RandomHelper;
+import com.iafenvoy.neptune.util.Timeout;
+import com.iafenvoy.neptune.util.function.consumer.Consumer5;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.util.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -146,7 +150,7 @@ public class DarkObsidianBlock extends Block {
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
-        if (consumers.size() == 0) initConsumers();
+        if (consumers.isEmpty()) initConsumers();
         Item used = entity.getMainHandStack().getItem();
         if (consumers.containsKey(used)) {
             if (world instanceof ServerWorld _level) {

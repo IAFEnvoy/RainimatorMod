@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item;
 
-import dev.rainimator.mod.registry.util.ItemBase;
+import com.iafenvoy.neptune.object.item.ItemBase;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.screen.handler.EnderBookSkillScreenHandler;
 import net.minecraft.client.item.TooltipContext;

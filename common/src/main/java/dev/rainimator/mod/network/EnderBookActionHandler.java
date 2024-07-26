@@ -2,7 +2,6 @@ package dev.rainimator.mod.network;
 
 import dev.architectury.networking.NetworkManager;
 import dev.architectury.utils.Env;
-import dev.rainimator.mod.util.Timeout;
 import net.minecraft.block.Blocks;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.registry.RegistryKey;

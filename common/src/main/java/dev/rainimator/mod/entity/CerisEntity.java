@@ -1,16 +1,16 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.entity.EntityWithBossBar;
+import com.iafenvoy.neptune.render.BossBarRenderHelper;
+import com.iafenvoy.neptune.render.Stage;
+import com.iafenvoy.neptune.util.RandomHelper;
+import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import dev.rainimator.mod.registry.util.EntityWithBossBar;
-import dev.rainimator.mod.renderer.BossBarRenderHelper;
-import dev.rainimator.mod.renderer.util.Stage;
-import dev.rainimator.mod.util.RandomHelper;
-import dev.rainimator.mod.util.SoundUtil;
-import dev.rainimator.mod.util.Timeout;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;

@@ -1,8 +1,8 @@
 package dev.rainimator.mod.item.armor;
 
+import com.iafenvoy.neptune.object.item.ArmorMaterialUtil;
+import com.iafenvoy.neptune.object.item.ArmorWithTickItem;
 import dev.rainimator.mod.data.config.ServerConfig;
-import dev.rainimator.mod.registry.util.ArmorMaterialUtil;
-import dev.rainimator.mod.registry.util.ArmorWithTickItem;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EquipmentSlot;
@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class SugiliteArmorItem extends ArmorWithTickItem {
     public SugiliteArmorItem(Type slot) {
-        super(ArmorMaterialUtil.of("topaz_armor", new int[]{13, 15, 16, 11}, 40, new int[]{5, 10, 12, 6}, 25, Registries.SOUND_EVENT.get(Identifier.tryParse("item.armor.equip_diamond")), 2.5F, 0.0F), slot, new Settings().arch$tab(RainimatorItemGroups.ITEM));
+        super(ArmorMaterialUtil.of("topaz_armor", new int[]{13, 15, 16, 11}, 40, new int[]{5, 10, 12, 6}, 25, Registries.SOUND_EVENT.get(Identifier.tryParse("item.armor.equip_diamond")), 2.5F, 0.0F, RainimatorItems.SUGILITE::get), slot, new Settings().arch$tab(RainimatorItemGroups.ITEM));
     }
 
     @Override

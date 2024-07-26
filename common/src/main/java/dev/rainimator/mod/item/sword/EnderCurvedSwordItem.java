@@ -1,11 +1,11 @@
 package dev.rainimator.mod.item.sword;
 
-import dev.rainimator.mod.registry.util.SwordItemBase;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
+import com.iafenvoy.neptune.object.DamageUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
+import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
-import dev.rainimator.mod.util.DamageUtil;
-import dev.rainimator.mod.util.RandomHelper;
-import dev.rainimator.mod.util.SoundUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;

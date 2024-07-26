@@ -1,8 +1,8 @@
 package dev.rainimator.mod.registry;
 
+import com.iafenvoy.neptune.util.function.MemorizeSupplier;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.util.MemorizeSupplier;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;

@@ -1,6 +1,6 @@
 package dev.rainimator.mod.item;
 
-import dev.rainimator.mod.registry.util.FoilItemBase;
+import com.iafenvoy.neptune.object.item.FoilItemBase;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;

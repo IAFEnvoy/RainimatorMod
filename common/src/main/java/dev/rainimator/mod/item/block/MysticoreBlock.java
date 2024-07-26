@@ -89,7 +89,7 @@ public class MysticoreBlock extends Block {
             if (!world.isClient())
                 world.spawnEntity(new ExperienceOrbEntity(world, x, y, z, 10));
             if (Math.random() < 0.8D) {
-                if (lootTable.size() == 0) initLootTable();
+                if (lootTable.isEmpty()) initLootTable();
                 for (int i = 0; i < 3; i++)
                     for (Pair<ItemConvertible, Double> itemLikeDoublePair : lootTable)
                         if (Math.random() < itemLikeDoublePair.getRight()) {

@@ -1,14 +1,16 @@
 package dev.rainimator.mod.item.sword;
 
+import com.iafenvoy.neptune.object.ParticleUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
+import com.iafenvoy.neptune.util.RandomHelper;
+import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
-import dev.rainimator.mod.registry.util.SwordItemBase;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
-import dev.rainimator.mod.registry.util.IRainimatorInfo;
-import dev.rainimator.mod.util.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -29,7 +31,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo {
+public class NetherSpearItem extends SwordItemBase {
     public NetherSpearItem() {
         super(ToolMaterialUtil.of(3000, 0.0F, 11.0F, 0, 25), 3, -2.2F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }
@@ -119,10 +121,5 @@ public class NetherSpearItem extends SwordItemBase implements IRainimatorInfo {
             else if (_livEnt.getArmor() <= 40)
                 _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 0));
         }
-    }
-
-    @Override
-    public Episode getEpisode() {
-        return Episode.HardPillToSwallow;
     }
 }

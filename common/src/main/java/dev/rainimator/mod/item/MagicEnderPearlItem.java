@@ -1,10 +1,10 @@
 package dev.rainimator.mod.item;
 
-import dev.rainimator.mod.registry.util.FoilItemBase;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.FoilItemBase;
+import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import dev.rainimator.mod.util.SoundUtil;
-import dev.rainimator.mod.util.Timeout;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;

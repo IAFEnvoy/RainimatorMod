@@ -20,12 +20,12 @@ public class RainimatorScreenHandlers {
 
     private static <T extends ScreenHandler> RegistrySupplier<ScreenHandlerType<T>> register(String name, Supplier<ScreenHandlerType<T>> type) {
         return REGISTRY.register(name, type);
-    }    public static final RegistrySupplier<ScreenHandlerType<EnderBookSkillScreenHandler>> ENDER_BOOK = register("ender_book", () -> new ScreenHandlerType<>(EnderBookSkillScreenHandler::new, FeatureFlags.VANILLA_FEATURES));
+    }
+
+    public static final RegistrySupplier<ScreenHandlerType<EnderBookSkillScreenHandler>> ENDER_BOOK = register("ender_book", () -> new ScreenHandlerType<>(EnderBookSkillScreenHandler::new, FeatureFlags.VANILLA_FEATURES));
 
     @Environment(EnvType.CLIENT)
     public static void registerGui() {
         MenuRegistry.registerScreenFactory(ENDER_BOOK.get(), EnderBookSkillScreen::new);
     }
-
-
 }

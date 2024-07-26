@@ -1,17 +1,19 @@
 package dev.rainimator.mod.item.sword;
 
 import com.google.common.collect.Lists;
+import com.iafenvoy.neptune.object.DamageUtil;
+import com.iafenvoy.neptune.object.ParticleUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
+import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
-import dev.rainimator.mod.registry.util.SwordItemBase;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.util.IRainimatorInfo;
-import dev.rainimator.mod.util.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -34,7 +36,7 @@ import org.apache.commons.lang3.tuple.Triple;
 import java.util.Comparator;
 import java.util.List;
 
-public class RainSwordItem extends SwordItemBase implements IRainimatorInfo {
+public class RainSwordItem extends SwordItemBase {
     private static final List<Triple<Integer, Integer, Integer>> places = Lists.newArrayList(
             Triple.of(0, 0, 0),
             Triple.of(1, 0, 0),
@@ -50,7 +52,7 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo {
     );
 
     public RainSwordItem() {
-        super(ToolMaterialUtil.of(2000, 4.0F, 11.0F, 0, 20, RainimatorItems.SUPER_SAPPHIRE), 3, -2.0F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(2000, 4.0F, 11.0F, 0, 20, RainimatorItems.SUPER_SAPPHIRE::get), 3, -2.0F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override
@@ -157,10 +159,5 @@ public class RainSwordItem extends SwordItemBase implements IRainimatorInfo {
                 }
             }
         }
-    }
-
-    @Override
-    public Episode getEpisode() {
-        return Episode.ColdAsIce;
     }
 }

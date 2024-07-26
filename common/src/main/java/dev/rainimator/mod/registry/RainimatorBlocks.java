@@ -1,10 +1,10 @@
 package dev.rainimator.mod.registry;
 
+import com.iafenvoy.neptune.util.function.MemorizeSupplier;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.item.block.*;
-import dev.rainimator.mod.util.MemorizeSupplier;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;

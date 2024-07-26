@@ -1,9 +1,9 @@
 package dev.rainimator.mod.item.tool;
 
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.block.Blocks;
@@ -26,7 +26,7 @@ import java.util.List;
 
 public class IntelligenceTomahawkItem extends AxeItem {
     public IntelligenceTomahawkItem() {
-        super(ToolMaterialUtil.of(8000, 4.0F, 8.0F, 1, 5, RainimatorItems.SAPPHIRE), 1.0F, -2.2F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(8000, 4.0F, 8.0F, 1, 5, RainimatorItems.SAPPHIRE::get), 1.0F, -2.2F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

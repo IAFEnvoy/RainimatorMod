@@ -4,19 +4,13 @@
   "package": "dev.rainimator.mod.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BlockEntityTypeMixin",
-    "BossBarHudMixin",
     "DamageSourceAccessor",
-    "EntityMixin",
     "LivingEntityMixin",
-    "MobEntityAccessor",
-    "PlayerInventoryMixin"
+    "MobEntityAccessor"
   ],
   "client": [
-    "DrawContextMixin",
     "InGameHudMixin",
-    "PlayerEntityRendererMixin",
-    "SkullBlockEntityRendererMixin"
+    "PlayerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

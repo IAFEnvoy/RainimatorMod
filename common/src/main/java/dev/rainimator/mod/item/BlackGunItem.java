@@ -2,7 +2,7 @@ package dev.rainimator.mod.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import dev.rainimator.mod.registry.util.ItemBase;
+import com.iafenvoy.neptune.object.item.ItemBase;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;

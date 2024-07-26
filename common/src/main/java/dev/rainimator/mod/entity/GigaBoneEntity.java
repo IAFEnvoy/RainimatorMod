@@ -1,12 +1,12 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.EntityUtil;
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
+import com.iafenvoy.neptune.render.Stage;
+import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.util.MonsterEntityBase;
 import dev.rainimator.mod.registry.RainimatorEntities;
-import dev.rainimator.mod.renderer.util.Stage;
-import dev.rainimator.mod.util.EntityUtil;
-import dev.rainimator.mod.util.RandomHelper;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -67,12 +67,11 @@ public class GigaBoneEntity extends MonsterEntityBase {
     @Override
     public boolean damage(DamageSource source, float amount) {
         LivingEntity _livEnt = this;
-        if (_livEnt.getHealth() <= 100.0F)
-            if (this.getWorld() instanceof ServerWorld _level)
-                if (Math.random() < 0.2D)
-                    EntityUtil.summon(EntityType.WITHER_SKELETON, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
-                else if (Math.random() < 0.2D)
-                    EntityUtil.summon(RainimatorEntities.WITHERED_SKELETONS.get(), _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+        if (_livEnt.getHealth() <= 100.0F && this.getWorld() instanceof ServerWorld _level)
+            if (Math.random() < 0.2D)
+                EntityUtil.summon(EntityType.WITHER_SKELETON, _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+            else if (Math.random() < 0.2D)
+                EntityUtil.summon(RainimatorEntities.WITHERED_SKELETONS.get(), _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
         return super.damage(source, amount);
     }
 

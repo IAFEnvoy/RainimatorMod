@@ -1,7 +1,7 @@
 package dev.rainimator.mod.item.sword;
 
-import dev.rainimator.mod.registry.util.SwordItemBase;
-import dev.rainimator.mod.registry.util.ToolMaterialUtil;
+import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;

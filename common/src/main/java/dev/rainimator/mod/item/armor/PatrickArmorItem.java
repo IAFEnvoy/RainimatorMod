@@ -1,8 +1,8 @@
 package dev.rainimator.mod.item.armor;
 
+import com.iafenvoy.neptune.object.item.ArmorMaterialUtil;
+import com.iafenvoy.neptune.object.item.ArmorWithTickItem;
 import dev.rainimator.mod.data.config.ServerConfig;
-import dev.rainimator.mod.registry.util.ArmorMaterialUtil;
-import dev.rainimator.mod.registry.util.ArmorWithTickItem;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EquipmentSlot;
@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class PatrickArmorItem extends ArmorWithTickItem {
     public PatrickArmorItem(Type slot) {
-        super(ArmorMaterialUtil.of("patrick_armor", new int[]{13, 15, 16, 11}, 25, new int[]{3, 8, 12, 5}, 20, Registries.SOUND_EVENT.get(Identifier.tryParse("item.armor.equip_diamond")), 3.0F, 0.0F, RainimatorItems.SUPER_SAPPHIRE), slot, new Settings().arch$tab(RainimatorItemGroups.MAIN));
+        super(ArmorMaterialUtil.of("patrick_armor", new int[]{13, 15, 16, 11}, 25, new int[]{3, 8, 12, 5}, 20, Registries.SOUND_EVENT.get(Identifier.tryParse("item.armor.equip_diamond")), 3.0F, 0.0F, RainimatorItems.SUPER_SAPPHIRE::get), slot, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

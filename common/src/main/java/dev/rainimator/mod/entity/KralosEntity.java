@@ -1,15 +1,15 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.EntityUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.VecUtil;
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
+import com.iafenvoy.neptune.render.Stage;
+import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.util.MonsterEntityBase;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.renderer.util.Stage;
-import dev.rainimator.mod.util.EntityUtil;
-import dev.rainimator.mod.util.SoundUtil;
-import dev.rainimator.mod.util.Timeout;
-import dev.rainimator.mod.util.VecUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;

@@ -1,9 +1,9 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.renderer.util.Stage;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;

@@ -35,3 +35,9 @@ mandatory = true
 versionRange = "[0,)"
 ordering = "NONE"
 side = "BOTH"
+[[dependencies.rainimator]]
+modId = "neptune"
+mandatory = true
+versionRange = "[0,)"
+ordering = "NONE"
+side = "BOTH"
