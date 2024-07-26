@@ -1,6 +1,6 @@
 package dev.rainimator.mod.forge.compat.curios.renderer.armor;
 
-import dev.rainimator.mod.renderer.IArmorRenderHelper;
+import com.iafenvoy.neptune.render.armor.IArmorRenderHelper;
 import dev.rainimator.mod.renderer.model.ModelNetherKing2;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.ModelPart;

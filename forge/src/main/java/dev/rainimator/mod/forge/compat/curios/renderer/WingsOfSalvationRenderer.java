@@ -1,8 +1,8 @@
 package dev.rainimator.mod.forge.compat.curios.renderer;
 
+import com.iafenvoy.neptune.render.armor.IArmorRenderHelper;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.renderer.IArmorRenderHelper;
 import dev.rainimator.mod.renderer.model.wing.WingsOfSalvationModel;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.OverlayTexture;

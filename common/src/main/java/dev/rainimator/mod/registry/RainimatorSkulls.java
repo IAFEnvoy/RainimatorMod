@@ -151,27 +151,27 @@ public class RainimatorSkulls {
 
     @Environment(EnvType.CLIENT)
     public static void clientInit() {
-        SkullRenderRegistry.register(SkullType.HEROBRINE, HerobrineEntity.texture.getTexture(), HEROBRINE_HEAD, HEROBRINE_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.CERIS, CerisEntity.texture.getTexture(), CERIS_HEAD, CERIS_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.ZOMBIES, ZombiesEntity.texture.getTexture(), ZOMBIES_HEAD, ZOMBIES_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.NAEUS, NaeusEntity.texture.getTexture(), NAEUS_HEAD, NAEUS_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.RAIN, RainEntity.texture.getTexture(), RAIN_HEAD, RAIN_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.ABIGAIL, AbigailEntity.texture.getTexture(), ABIGAIL_HEAD, ABIGAIL_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.PATRICK, PatrickEntity.texture.getTexture(), PATRICK_HEAD, PATRICK_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.BLACKBONE, BlackBoneEntity.texture.getTexture(), BLACKBONE_HEAD, BLACKBONE_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.HOGSWORTH, HogsworthEntity.texture.getTexture(), HOGSWORTH_HEAD, HOGSWORTH_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.CIARA, CiaraEntity.texture.getTexture(), CIARA_HEAD, CIARA_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.HILDA, HildaEntity.texture.getTexture(), HILDA_HEAD, HILDA_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.SOLDIERS, SoldiersEntity.texture.getTexture(), SOLDIERS_HEAD, SOLDIERS_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.WITHERED_SKELETONS, WitheredSkeletonsEntity.texture.getTexture(), WITHERED_SKELETONS_HEAD, WITHERED_SKELETONS_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.DARK_SHIELD, DarkShieldEntity.texture.getTexture(), DARK_SHIELD_HEAD, DARK_SHIELD_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.DARK_ZOMBIE, DarkZombieEntity.texture.getTexture(), DARK_ZOMBIE_HEAD, DARK_ZOMBIE_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.VORDUS, VordusEntity.texture.getTexture(), VORDUS_HEAD, VORDUS_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.WITHER_SHIELD, WitherShieldEntity.texture.getTexture(), WITHER_SHIELD_HEAD, WITHER_SHIELD_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.SKELETON_SNOW, SkeletonSnowEntity.texture.getTexture(), SKELETON_SNOW_HEAD, SKELETON_SNOW_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.PIGLIN_KING, ZombiesPiglinKingEntity.texture.getTexture(), PIGLIN_KING_HEAD, PIGLIN_KING_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.GLUTTON, PiglinKingZombiesEntity.texture.getTexture(), GLUTTON_HEAD, GLUTTON_WALL_HEAD);
-        SkullRenderRegistry.register(SkullType.GLUTTON_OLD, PiglinKingZombieEntity.texture.getTexture(), GLUTTON_OLD_HEAD, GLUTTON_OLD_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.HEROBRINE, HerobrineEntity.texture.getTexture(), HEROBRINE_HEAD.get(), HEROBRINE_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.CERIS, CerisEntity.texture.getTexture(), CERIS_HEAD.get(), CERIS_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.ZOMBIES, ZombiesEntity.texture.getTexture(), ZOMBIES_HEAD.get(), ZOMBIES_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.NAEUS, NaeusEntity.texture.getTexture(), NAEUS_HEAD.get(), NAEUS_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.RAIN, RainEntity.texture.getTexture(), RAIN_HEAD.get(), RAIN_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.ABIGAIL, AbigailEntity.texture.getTexture(), ABIGAIL_HEAD.get(), ABIGAIL_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.PATRICK, PatrickEntity.texture.getTexture(), PATRICK_HEAD.get(), PATRICK_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.BLACKBONE, BlackBoneEntity.texture.getTexture(), BLACKBONE_HEAD.get(), BLACKBONE_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.HOGSWORTH, HogsworthEntity.texture.getTexture(), HOGSWORTH_HEAD.get(), HOGSWORTH_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.CIARA, CiaraEntity.texture.getTexture(), CIARA_HEAD.get(), CIARA_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.HILDA, HildaEntity.texture.getTexture(), HILDA_HEAD.get(), HILDA_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.SOLDIERS, SoldiersEntity.texture.getTexture(), SOLDIERS_HEAD.get(), SOLDIERS_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.WITHERED_SKELETONS, WitheredSkeletonsEntity.texture.getTexture(), WITHERED_SKELETONS_HEAD.get(), WITHERED_SKELETONS_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.DARK_SHIELD, DarkShieldEntity.texture.getTexture(), DARK_SHIELD_HEAD.get(), DARK_SHIELD_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.DARK_ZOMBIE, DarkZombieEntity.texture.getTexture(), DARK_ZOMBIE_HEAD.get(), DARK_ZOMBIE_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.VORDUS, VordusEntity.texture.getTexture(), VORDUS_HEAD.get(), VORDUS_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.WITHER_SHIELD, WitherShieldEntity.texture.getTexture(), WITHER_SHIELD_HEAD.get(), WITHER_SHIELD_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.SKELETON_SNOW, SkeletonSnowEntity.texture.getTexture(), SKELETON_SNOW_HEAD.get(), SKELETON_SNOW_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.PIGLIN_KING, ZombiesPiglinKingEntity.texture.getTexture(), PIGLIN_KING_HEAD.get(), PIGLIN_KING_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.GLUTTON, PiglinKingZombiesEntity.texture.getTexture(), GLUTTON_HEAD.get(), GLUTTON_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.GLUTTON_OLD, PiglinKingZombieEntity.texture.getTexture(), GLUTTON_OLD_HEAD.get(), GLUTTON_OLD_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.PORKSHIRE, PiglinCommanderEntity.texture.getTexture(), PORKSHIRE_HEAD.get(), PORKSHIRE_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.NAEUS_KING, NaeusKingEntity.texture.getTexture(), NAEUS_KING_HEAD.get(), NAEUS_KING_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.TUSK, TuskEntity.texture.getTexture(), TUSK_HEAD.get(), TUSK_WALL_HEAD.get());

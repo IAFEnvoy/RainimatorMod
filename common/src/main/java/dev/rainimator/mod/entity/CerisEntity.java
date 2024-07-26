@@ -36,6 +36,10 @@ import org.jetbrains.annotations.NotNull;
 public class CerisEntity extends EntityWithBossBar {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "ceris").setEyeTextureId("textures/entities/ceris_eye.png");
 
+    static {
+        BossBarRenderHelper.addBossBarType(CerisEntity.class, new Identifier(RainimatorMod.MOD_ID, "textures/bossbar/ceris.png"), true);
+    }
+
     public CerisEntity(EntityType<CerisEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT, BossBar.Color.PURPLE);
         this.experiencePoints = 0;
@@ -207,9 +211,5 @@ public class CerisEntity extends EntityWithBossBar {
     @Override
     public boolean canUsePortals() {
         return false;
-    }
-
-    static {
-        BossBarRenderHelper.addBossBarType(CerisEntity.class, new Identifier(RainimatorMod.MOD_ID, "textures/bossbar/ceris.png"), true);
     }
 }

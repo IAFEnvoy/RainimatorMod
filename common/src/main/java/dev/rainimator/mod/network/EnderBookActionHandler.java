@@ -1,5 +1,6 @@
 package dev.rainimator.mod.network;
 
+import com.iafenvoy.neptune.util.Timeout;
 import dev.architectury.networking.NetworkManager;
 import dev.architectury.utils.Env;
 import net.minecraft.block.Blocks;

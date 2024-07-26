@@ -1,5 +1,6 @@
 package dev.rainimator.mod.registry;
 
+import com.iafenvoy.neptune.object.BannerUtil;
 import dev.rainimator.mod.RainimatorMod;
 import net.minecraft.block.entity.BannerPatterns;
 import net.minecraft.item.ItemStack;

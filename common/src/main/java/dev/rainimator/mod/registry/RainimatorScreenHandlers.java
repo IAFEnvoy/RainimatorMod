@@ -17,12 +17,11 @@ import java.util.function.Supplier;
 
 public class RainimatorScreenHandlers {
     public static final DeferredRegister<ScreenHandlerType<?>> REGISTRY = DeferredRegister.create(RainimatorMod.MOD_ID, RegistryKeys.SCREEN_HANDLER);
+    public static final RegistrySupplier<ScreenHandlerType<EnderBookSkillScreenHandler>> ENDER_BOOK = register("ender_book", () -> new ScreenHandlerType<>(EnderBookSkillScreenHandler::new, FeatureFlags.VANILLA_FEATURES));
 
     private static <T extends ScreenHandler> RegistrySupplier<ScreenHandlerType<T>> register(String name, Supplier<ScreenHandlerType<T>> type) {
         return REGISTRY.register(name, type);
     }
-
-    public static final RegistrySupplier<ScreenHandlerType<EnderBookSkillScreenHandler>> ENDER_BOOK = register("ender_book", () -> new ScreenHandlerType<>(EnderBookSkillScreenHandler::new, FeatureFlags.VANILLA_FEATURES));
 
     @Environment(EnvType.CLIENT)
     public static void registerGui() {

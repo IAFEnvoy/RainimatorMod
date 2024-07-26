@@ -1,5 +1,6 @@
 package dev.rainimator.mod.renderer;
 
+import com.iafenvoy.neptune.render.armor.IArmorRenderHelper;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.renderer.model.wing.WingsOfSalvationModel;
