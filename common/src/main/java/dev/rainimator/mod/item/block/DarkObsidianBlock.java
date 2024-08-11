@@ -45,7 +45,7 @@ public class DarkObsidianBlock extends Block {
     public static synchronized void initConsumers() {
         consumers.put(RainimatorItems.LIGHT_HEART.get(), (entity, world, x, y, z) -> {
             EntityUtil.summon(RainimatorEntities.HEROBRINE.get(), world, x, y, z);
-            EntityUtil.summon(RainimatorEntities.ZOMBIES.get(), world, x, y, z - RandomHelper.nextInt(1, 3));
+            EntityUtil.summon(RainimatorEntities.ELITE_ZOMBIE.get(), world, x, y, z - RandomHelper.nextInt(1, 3));
             EntityUtil.summon(RainimatorEntities.DARK_ZOMBIE.get(), world, x, y, z + RandomHelper.nextInt(1, 3));
             EntityUtil.summon(RainimatorEntities.AZALEA.get(), world, x + RandomHelper.nextInt(1, 3), y, z);
         });

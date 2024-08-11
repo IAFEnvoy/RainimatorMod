@@ -48,7 +48,7 @@ public class MutatedEntity extends MonsterEntityBase {
         Fraction.findAndAddTarget(this);
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
-                return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());
+                return this.mob.getWidth() * this.mob.getWidth() + entity.getWidth();
             }
         });
         this.goalSelector.add(3, new WanderAroundGoal(this, 1.0D));

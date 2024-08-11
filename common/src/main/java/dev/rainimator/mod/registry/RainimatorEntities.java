@@ -33,7 +33,7 @@ public class RainimatorEntities {
     public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(RainimatorMod.MOD_ID, RegistryKeys.ENTITY_TYPE);
     public static final RegistrySupplier<EntityType<HerobrineEntity>> HEROBRINE = build("herobrine", HerobrineEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<CerisEntity>> CERIS = build("ceris", CerisEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, true, 0.6F, 1.8F);
-    public static final RegistrySupplier<EntityType<ZombiesEntity>> ZOMBIES = build("zombies", ZombiesEntity::new, SpawnGroup.MONSTER, 32, 3, false, 0.6F, 1.8F);
+    public static final RegistrySupplier<EntityType<EliteZombieEntity>> ELITE_ZOMBIE = build("elite_zombie", EliteZombieEntity::new, SpawnGroup.MONSTER, 32, 3, false, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<NaeusEntity>> NAEUS = build("naeus", NaeusEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<RainEntity>> RAIN = build("rain", RainEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<RainEntityProjectile>> RAIN_PROJECTILE = build("rain_projectile", RainEntityProjectile::new, SpawnGroup.MISC, 64, 1, false, 0.5F, 0.5F);
@@ -79,6 +79,7 @@ public class RainimatorEntities {
     public static final RegistrySupplier<EntityType<KlausEntity>> KLAUS = build("klaus", KlausEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<Klaus2Entity>> KLAUS_2 = build("klaus_2", Klaus2Entity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<KralosEntity>> KRALOS = build("kralos", KralosEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
+    public static final RegistrySupplier<EntityType<KyleEntity>> KYLE = build("kyle", KyleEntity::new, SpawnGroup.MONSTER, 64, 3, false, 0.6F, 1.8F);
 
     private static <T extends Entity> RegistrySupplier<EntityType<T>> build(String name, EntityType.EntityFactory<T> constructor, SpawnGroup category, int trackingRange, int updateInterval, boolean fireImmune, float sizeX, float sizeY) {
         return register(name, () -> {
@@ -95,7 +96,7 @@ public class RainimatorEntities {
     public static void registerAttributes() {
         EntityAttributeRegistry.register(HEROBRINE, HerobrineEntity::createAttributes);
         EntityAttributeRegistry.register(CERIS, CerisEntity::createAttributes);
-        EntityAttributeRegistry.register(ZOMBIES, ZombiesEntity::createAttributes);
+        EntityAttributeRegistry.register(ELITE_ZOMBIE, EliteZombieEntity::createAttributes);
         EntityAttributeRegistry.register(NAEUS, NaeusEntity::createAttributes);
         EntityAttributeRegistry.register(RAIN, RainEntity::createAttributes);
         EntityAttributeRegistry.register(ABIGAIL, AbigailEntity::createAttributes);
@@ -133,10 +134,11 @@ public class RainimatorEntities {
         EntityAttributeRegistry.register(KRALOS, KralosEntity::createAttributes);
         EntityAttributeRegistry.register(ARABELLA, ArabellaEntity::createAttributes);
         EntityAttributeRegistry.register(AZALEA, AzaleaEntity::createAttributes);
+        EntityAttributeRegistry.register(KYLE, KyleEntity::createAttributes);
     }
 
     public static void addSpawner() {
-        SpawnPlacementsRegistry.register(ZOMBIES, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
+        SpawnPlacementsRegistry.register(ELITE_ZOMBIE, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
                 world.getDifficulty() != Difficulty.PEACEFUL && HostileEntity.isSpawnDark(world, pos, random) && MobEntity.canMobSpawn(entityType, world, reason, pos, random));
 //        DungeonHooks.addDungeonMob(ZOMBIES, 180);
         SpawnPlacementsRegistry.register(SOLDIERS, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) ->
@@ -180,7 +182,7 @@ public class RainimatorEntities {
                 spawnProperties.addSpawn(SpawnGroup.UNDERGROUND_WATER_CREATURE, new SpawnSettings.SpawnEntry(RainimatorEntities.SOLDIERS.get(), 10, 1, 1));
                 spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.TUSK.get(), 5, 1, 1));
                 spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.WITHER_SHIELD.get(), 3, 1, 1));
-                spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.ZOMBIES.get(), 10, 1, 1));
+                spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.ELITE_ZOMBIE.get(), 10, 1, 1));
             }
             if (SpawnBiome.END_SPAWN_BIOMES.contains(biomeKey))
                 spawnProperties.addSpawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(RainimatorEntities.DARK_SHIELD.get(), 1, 1, 1));
@@ -195,7 +197,7 @@ public class RainimatorEntities {
     public static void registerEntityRenderers() {
         EntityRendererRegistry.register(HEROBRINE, HerobrineEntity.texture::createRenderer);
         EntityRendererRegistry.register(CERIS, CerisEntity.texture::createRenderer);
-        EntityRendererRegistry.register(ZOMBIES, ZombiesEntity.texture::createRenderer);
+        EntityRendererRegistry.register(ELITE_ZOMBIE, EliteZombieEntity.texture::createRenderer);
         EntityRendererRegistry.register(NAEUS, NaeusEntity.texture::createRenderer);
         EntityRendererRegistry.register(RAIN, RainEntity.texture::createRenderer);
         EntityRendererRegistry.register(RAIN_PROJECTILE, FlyingItemEntityRenderer::new);
@@ -241,5 +243,6 @@ public class RainimatorEntities {
         EntityRendererRegistry.register(KLAUS, KlausEntity.texture::createRenderer);
         EntityRendererRegistry.register(KLAUS_2, Klaus2Entity.texture::createRenderer);
         EntityRendererRegistry.register(KRALOS, KralosEntity.texture::createRenderer);
+        EntityRendererRegistry.register(KYLE, KyleEntity.texture::createRenderer);
     }
 }

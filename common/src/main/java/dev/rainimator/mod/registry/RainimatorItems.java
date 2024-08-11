@@ -199,7 +199,7 @@ public class RainimatorItems {
     //entity
     public static final RegistrySupplier<Item> HEROBRINE_SPAWN_EGG = register("herobrine_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.HEROBRINE, -10092544, -65536, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> CERIS_SPAWN_EGG = register("ceris_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.CERIS, -10092442, -65281, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
-    public static final RegistrySupplier<Item> ZOMBIES_SPAWN_EGG = register("zombies_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.ZOMBIES, -16724941, -16751104, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
+    public static final RegistrySupplier<Item> ELITE_ZOMBIE_SPAWN_EGG = register("elite_zombie_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.ELITE_ZOMBIE, -16724941, -16751104, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> NAEUS_SPAWN_EGG = register("naeus_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.NAEUS, -10066330, -3355444, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> RAIN_SPAWN_EGG = register("rain_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.RAIN, -16777063, -13408513, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> ABIGAIL_SPAWN_EGG = register("abigail_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.ABIGAIL, -65332, -39169, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
@@ -237,6 +237,7 @@ public class RainimatorItems {
     public static final RegistrySupplier<Item> KRALOS_SPAWN_EGG = register("kralos_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.KRALOS, -16777165, -6750157, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> ARABELLA_SPAWN_EGG = register("arabella_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.ARABELLA, -3407668, -13369345, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> AZALEA_SPAWN_EGG = register("azalea_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.AZALEA, -256, -16738048, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
+    public static final RegistrySupplier<Item> KYLE_SPAWN_EGG = register("kyle_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.KYLE, -9038, -13685973, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
 
     private static <T extends Item> RegistrySupplier<T> register(String name, Supplier<T> item) {
         return REGISTRY.register(name, item);

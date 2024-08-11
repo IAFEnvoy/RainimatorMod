@@ -22,10 +22,10 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class ZombiesEntity extends MonsterEntityBase {
+public class EliteZombieEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "zombies");
 
-    public ZombiesEntity(EntityType<ZombiesEntity> type, World world) {
+    public EliteZombieEntity(EntityType<EliteZombieEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.IRON_LONG_SPEAR.get()));

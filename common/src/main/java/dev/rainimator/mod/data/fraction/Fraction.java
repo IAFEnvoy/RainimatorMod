@@ -20,7 +20,7 @@ public enum Fraction {
     static {
         UNDEAD.addMember(HerobrineEntity.class);
         ENDER.addMember(CerisEntity.class);
-        UNDEAD.addMember(ZombiesEntity.class);
+        UNDEAD.addMember(EliteZombieEntity.class);
         NETHER.addMember(NaeusEntity.class);
         FROST.addMember(RainEntity.class);
         NETHER.addMember(AbigailEntity.class);

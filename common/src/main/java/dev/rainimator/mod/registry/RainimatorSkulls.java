@@ -20,8 +20,8 @@ public class RainimatorSkulls {
     public static final RegistrySupplier<Block> HEROBRINE_WALL_HEAD = register("herobrine_wall_head", () -> new WallSkullBlock(SkullType.HEROBRINE, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> CERIS_HEAD = register("ceris_head", () -> new SkullBlock(SkullType.CERIS, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> CERIS_WALL_HEAD = register("ceris_wall_head", () -> new WallSkullBlock(SkullType.CERIS, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> ZOMBIES_HEAD = register("zombies_head", () -> new SkullBlock(SkullType.ZOMBIES, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> ZOMBIES_WALL_HEAD = register("zombies_wall_head", () -> new WallSkullBlock(SkullType.ZOMBIES, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> ELITE_ZOMBIE_HEAD = register("elite_zombie_head", () -> new SkullBlock(SkullType.ZOMBIES, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> ELITE_ZOMBIE_WALL_HEAD = register("elite_zombie_wall_head", () -> new WallSkullBlock(SkullType.ZOMBIES, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> NAEUS_HEAD = register("naeus_head", () -> new SkullBlock(SkullType.NAEUS, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> NAEUS_WALL_HEAD = register("naeus_wall_head", () -> new WallSkullBlock(SkullType.NAEUS, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> RAIN_HEAD = register("rain_head", () -> new SkullBlock(SkullType.RAIN, AbstractBlock.Settings.create()));
@@ -99,7 +99,7 @@ public class RainimatorSkulls {
 
     public static final RegistrySupplier<Item> HEROBRINE_HEAD_ITEM = register("herobrine", HEROBRINE_HEAD, HEROBRINE_WALL_HEAD);
     public static final RegistrySupplier<Item> CERIS_HEAD_ITEM = register("ceris", CERIS_HEAD, CERIS_WALL_HEAD);
-    public static final RegistrySupplier<Item> ZOMBIES_HEAD_ITEM = register("zombies", ZOMBIES_HEAD, ZOMBIES_WALL_HEAD);
+    public static final RegistrySupplier<Item> ELITE_ZOMBIE_HEAD_ITEM = register("elite_zombie", ELITE_ZOMBIE_HEAD, ELITE_ZOMBIE_WALL_HEAD);
     public static final RegistrySupplier<Item> NAEUS_HEAD_ITEM = register("naeus", NAEUS_HEAD, NAEUS_WALL_HEAD);
     public static final RegistrySupplier<Item> RAIN_HEAD_ITEM = register("rain", RAIN_HEAD, RAIN_WALL_HEAD);
     public static final RegistrySupplier<Item> ABIGAIL_HEAD_ITEM = register("abigail", ABIGAIL_HEAD, ABIGAIL_WALL_HEAD);
@@ -153,7 +153,7 @@ public class RainimatorSkulls {
     public static void clientInit() {
         SkullRenderRegistry.register(SkullType.HEROBRINE, HerobrineEntity.texture.getTexture(), HEROBRINE_HEAD.get(), HEROBRINE_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.CERIS, CerisEntity.texture.getTexture(), CERIS_HEAD.get(), CERIS_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.ZOMBIES, ZombiesEntity.texture.getTexture(), ZOMBIES_HEAD.get(), ZOMBIES_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.ZOMBIES, EliteZombieEntity.texture.getTexture(), ELITE_ZOMBIE_HEAD.get(), ELITE_ZOMBIE_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.NAEUS, NaeusEntity.texture.getTexture(), NAEUS_HEAD.get(), NAEUS_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.RAIN, RainEntity.texture.getTexture(), RAIN_HEAD.get(), RAIN_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.ABIGAIL, AbigailEntity.texture.getTexture(), ABIGAIL_HEAD.get(), ABIGAIL_WALL_HEAD.get());
