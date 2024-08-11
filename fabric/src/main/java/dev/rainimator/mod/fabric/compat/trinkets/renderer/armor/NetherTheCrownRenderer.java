@@ -41,6 +41,6 @@ public class NetherTheCrownRenderer implements TrinketRenderer {
         BipedEntityModel<LivingEntity> model = this.getArmorModel(entity);
         model.head.pitch = headPitch * 0.01745329f;
         model.head.yaw = headYaw * 0.01745329f;
-        ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, this.getArmorModel(entity), this.getTexture());
+        ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, model, this.getTexture());
     }
 }

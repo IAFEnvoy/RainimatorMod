@@ -45,6 +45,7 @@ public class RainimatorMod {
     }
 
     public static void processClient() {
+        RainimatorModels.registerArmorRenderers();
         RainimatorScreenHandlers.registerGui();
         RainimatorSkulls.clientInit();
     }

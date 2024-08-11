@@ -1,5 +1,6 @@
 package dev.rainimator.mod.fabric.compat.trinkets.renderer.armor;
 
+import com.iafenvoy.neptune.render.armor.IArmorRenderHelper;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.client.TrinketRenderer;
 import dev.rainimator.mod.renderer.model.ModelMagic;
@@ -41,6 +42,6 @@ public class MagicHatRenderer implements TrinketRenderer {
         BipedEntityModel<LivingEntity> model = this.getArmorModel(entity);
         model.head.pitch = headPitch * 0.01745329f;
         model.head.yaw = headYaw * 0.01745329f;
-        ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, this.getArmorModel(entity), this.getTexture());
+        ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, model, this.getTexture());
     }
 }

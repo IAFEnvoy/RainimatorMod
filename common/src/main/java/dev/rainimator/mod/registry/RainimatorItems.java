@@ -156,12 +156,12 @@ public class RainimatorItems {
     public static final RegistrySupplier<Item> SOLDIERS_ARMOR_LEGGINGS = register("soldiers_armor_leggings", () -> new SoldiersArmorItem(ArmorItem.Type.LEGGINGS));
     public static final RegistrySupplier<Item> SOLDIERS_ARMOR_BOOTS = register("soldiers_armor_boots", () -> new SoldiersArmorItem(ArmorItem.Type.BOOTS));
     public static final RegistrySupplier<Item> RAIN_CHESTPLATE = register("rain_chestplate", () -> new RainArmorItem(ArmorItem.Type.CHESTPLATE));
-    public static final RegistrySupplier<Item> MAGIC_HAT = register("magic_hat", () -> new ItemBase(p -> p.arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> MAGIC_HAT = register("magic_hat", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET,new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
     public static final RegistrySupplier<Item> NETHER_THE_CROWN = register("nether_the_crown", NetherTheCrownItem::create);
-    public static final RegistrySupplier<Item> GLUTTON_HELMET = register("glutton_helmet", () -> new ItemBase(p -> p.arch$tab(RainimatorItemGroups.MAIN)));
-    public static final RegistrySupplier<Item> PIGLIN_KING_CROWN = register("piglin_king_crown", () -> new ItemBase(p -> p.arch$tab(RainimatorItemGroups.MAIN)));
-    public static final RegistrySupplier<Item> KING_NORMAL_CROWN = register("king_normal_crown", () -> new ItemBase(p -> p.arch$tab(RainimatorItemGroups.MAIN)));
-    public static final RegistrySupplier<Item> PORKSHIRE_KING_CROWN = register("porkshire_king_crown", () -> new ItemBase(p -> p.arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> GLUTTON_HELMET = register("glutton_helmet", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET,new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> PIGLIN_KING_CROWN = register("piglin_king_crown", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET,new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> KING_NORMAL_CROWN = register("king_normal_crown", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET,new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> PORKSHIRE_KING_CROWN = register("porkshire_king_crown", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET,new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
     public static final RegistrySupplier<Item> HEROBRINE_DIAMOND_PICKAXE = register("herobrine_diamond_pickaxe", HerobrineDiamondPickaxeItem::new);
     public static final RegistrySupplier<Item> NAEUS_SWORD = register("naeus_sword", NaeusSwordItem::new);
     public static final RegistrySupplier<Item> NETHER_SPEAR = register("nether_spear", NetherSpearItem::new);

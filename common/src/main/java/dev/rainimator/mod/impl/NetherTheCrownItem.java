@@ -1,13 +1,15 @@
 package dev.rainimator.mod.impl;
 
-import com.iafenvoy.neptune.object.item.ItemBase;
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import dev.rainimator.mod.item.armor.DecoratingArmorItem;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.Item;
 import org.apache.commons.lang3.NotImplementedException;
 
-public class NetherTheCrownItem extends ItemBase {
+public class NetherTheCrownItem extends DecoratingArmorItem {
     public NetherTheCrownItem() {
-        super(p -> p.arch$tab(RainimatorItemGroups.MAIN));
+        super(ArmorItem.Type.HELMET, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @ExpectPlatform
