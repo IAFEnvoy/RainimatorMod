@@ -39,8 +39,7 @@ public enum Fraction {
         UNDEAD.addMember(SkeletonSnowEntity.class);
 
         NETHER.addMember(ZombiesPiglinKingEntity.class);
-        NETHER.addMember(PiglinKingZombiesEntity.class);
-        NETHER.addMember(PiglinKingZombieEntity.class);
+        NETHER.addMember(GluttonEntity.class);
         NETHER.addMember(PiglinCommanderEntity.class);
         NETHER.addMember(NaeusKingEntity.class);
         NETHER.addMember(TuskEntity.class);
@@ -62,6 +61,7 @@ public enum Fraction {
         NETHER.addMember(KralosEntity.class);
         ENDER.addMember(ArabellaEntity.class);
         UNDEAD.addMember(AzaleaEntity.class);
+        FROST.addMember(KyleEntity.class);
     }
 
     private final ItemStack banner;

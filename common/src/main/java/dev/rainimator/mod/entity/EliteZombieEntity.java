@@ -23,7 +23,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class EliteZombieEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "zombies");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "elite_zombie");
 
     public EliteZombieEntity(EntityType<EliteZombieEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

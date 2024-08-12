@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "rainimator:item/wings_of_salvation"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "rainimator:item/wings_of_salvation"
+  }
 }

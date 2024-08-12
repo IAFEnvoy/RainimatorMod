@@ -49,12 +49,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public class HerobrineEntity extends StagedMonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "him_1", "him_2").setEyeTextureId("textures/entities/him_eye.png");
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "herobrine_1", "herobrine_2").setEyeTextureId("textures/entities/him_eye.png");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
     private boolean hasSpawnBlackBone = false;
 
-    public HerobrineEntity(EntityType<HerobrineEntity> herobrineEntityEntityType, World level) {
-        this(herobrineEntityEntityType, level, Stage.First);
+    public HerobrineEntity(EntityType<HerobrineEntity> type, World level) {
+        this(type, level, Stage.First);
     }
 
     public HerobrineEntity(EntityType<HerobrineEntity> type, World world, Stage stage) {
@@ -131,7 +131,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
             }
             if (Math.random() < 0.1D) {
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
-                if (this.getWorld() instanceof ServerWorld _level)
+                if (this.getWorld() instanceof ServerWorld _level && Math.random() < 0.01D)
                     EntityUtil.lightening(_level, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ());
                 this.getWorld().setBlockState(VecUtil.createBlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
                 if (entityiterator instanceof LivingEntity _entity)

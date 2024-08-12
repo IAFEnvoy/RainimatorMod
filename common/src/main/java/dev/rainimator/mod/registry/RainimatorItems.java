@@ -156,12 +156,12 @@ public class RainimatorItems {
     public static final RegistrySupplier<Item> SOLDIERS_ARMOR_LEGGINGS = register("soldiers_armor_leggings", () -> new SoldiersArmorItem(ArmorItem.Type.LEGGINGS));
     public static final RegistrySupplier<Item> SOLDIERS_ARMOR_BOOTS = register("soldiers_armor_boots", () -> new SoldiersArmorItem(ArmorItem.Type.BOOTS));
     public static final RegistrySupplier<Item> RAIN_CHESTPLATE = register("rain_chestplate", () -> new RainArmorItem(ArmorItem.Type.CHESTPLATE));
-    public static final RegistrySupplier<Item> MAGIC_HAT = register("magic_hat", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET,new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> MAGIC_HAT = register("magic_hat", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
     public static final RegistrySupplier<Item> NETHER_THE_CROWN = register("nether_the_crown", NetherTheCrownItem::create);
-    public static final RegistrySupplier<Item> GLUTTON_HELMET = register("glutton_helmet", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET,new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
-    public static final RegistrySupplier<Item> PIGLIN_KING_CROWN = register("piglin_king_crown", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET,new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
-    public static final RegistrySupplier<Item> KING_NORMAL_CROWN = register("king_normal_crown", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET,new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
-    public static final RegistrySupplier<Item> PORKSHIRE_KING_CROWN = register("porkshire_king_crown", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET,new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> GLUTTON_HELMET = register("glutton_helmet", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> PIGLIN_KING_CROWN = register("piglin_king_crown", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> KING_NORMAL_CROWN = register("king_normal_crown", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> PORKSHIRE_KING_CROWN = register("porkshire_king_crown", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
     public static final RegistrySupplier<Item> HEROBRINE_DIAMOND_PICKAXE = register("herobrine_diamond_pickaxe", HerobrineDiamondPickaxeItem::new);
     public static final RegistrySupplier<Item> NAEUS_SWORD = register("naeus_sword", NaeusSwordItem::new);
     public static final RegistrySupplier<Item> NETHER_SPEAR = register("nether_spear", NetherSpearItem::new);
@@ -196,6 +196,8 @@ public class RainimatorItems {
     public static final RegistrySupplier<Item> SOUL_RAIDING_HAMMER = register("soul_raiding_hammer", () -> new SwordItem(ToolMaterialUtil.of(2000, 0.0F, 10.0F, 0, 20), 3, -2.2F, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
     public static final RegistrySupplier<Item> KATANA = register("katana", () -> new SwordItem(ToolMaterialUtil.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.0F, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
     public static final RegistrySupplier<Item> AMETHYST_WAR_HAMMER = register("amethyst_war_hammer", () -> new SwordItem(ToolMaterialUtil.of(1500, 0.0F, 9.0F, 0, 25), 3, -2.0F, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> DOUBLE_SIDED_AXE = register("double_sided_axe", () -> new SwordItem(ToolMaterialUtil.of(3200, 7.0F, 6.0F, 4, 8, () -> Blocks.IRON_BLOCK, () -> Items.IRON_INGOT), 3, -2.0F, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
+    public static final RegistrySupplier<Item> ARCANE_BLADES = register("arcane_blades", () -> new FoilSwordItemBase(ToolMaterialUtil.of(240, 4.0F, 4.0F, 1, 20), 3, -2.4F, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
     //entity
     public static final RegistrySupplier<Item> HEROBRINE_SPAWN_EGG = register("herobrine_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.HEROBRINE, -10092544, -65536, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> CERIS_SPAWN_EGG = register("ceris_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.CERIS, -10092442, -65281, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
@@ -216,8 +218,7 @@ public class RainimatorItems {
     public static final RegistrySupplier<Item> WITHER_SHIELD_SPAWN_EGG = register("wither_shield_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.WITHER_SHIELD, -16777216, -1, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> SKELETON_SNOW_SPAWN_EGG = register("skeleton_snow_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.SKELETON_SNOW, -1, -13369345, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> ZOMBIES_PIGLIN_KING_SPAWN_EGG = register("zombies_piglin_king_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.ZOMBIE_PIGLIN_KING, -39424, -256, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
-    public static final RegistrySupplier<Item> PIGLIN_KING_ZOMBIES_SPAWN_EGG = register("piglin_king_zombies_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.PIGLIN_KING_ZOMBIES, -26368, -52, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
-    public static final RegistrySupplier<Item> PIGLIN_KING_ZOMBIE_SPAWN_EGG = register("piglin_king_zombie_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.PIGLIN_KING_ZOMBIE, -256, -13108, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
+    public static final RegistrySupplier<Item> GLUTTON_SPAWN_EGG = register("glutton_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.GLUTTON, -26368, -52, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> PIGLIN_COMMANDER_SPAWN_EGG = register("piglin_commander_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.PIGLIN_COMMANDER, -52, -256, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> NAEUS_KING_SPAWN_EGG = register("naeus_king_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.NAEUS_KING, -6737152, -65536, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> TUSK_SPAWN_EGG = register("tusk_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.TUSK, -13159, -13108, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
@@ -238,6 +239,9 @@ public class RainimatorItems {
     public static final RegistrySupplier<Item> ARABELLA_SPAWN_EGG = register("arabella_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.ARABELLA, -3407668, -13369345, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> AZALEA_SPAWN_EGG = register("azalea_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.AZALEA, -256, -16738048, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
     public static final RegistrySupplier<Item> KYLE_SPAWN_EGG = register("kyle_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.KYLE, -9038, -13685973, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
+    public static final RegistrySupplier<Item> SCORCH_SPAWN_EGG = register("scorch_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.SCORCH, -10066432, -103, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
+    public static final RegistrySupplier<Item> STELLA_SPAWN_EGG = register("stella_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.STELLA, -10092340, -6736897, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
+    public static final RegistrySupplier<Item> STELLA_DEMON_SPAWN_EGG = register("stella_demon_spawn_egg", () -> new ArchitecturySpawnEggItem(RainimatorEntities.STELLA_DEMON, -10092340, -6750208, new Item.Settings().arch$tab(RainimatorItemGroups.MOBS)));
 
     private static <T extends Item> RegistrySupplier<T> register(String name, Supplier<T> item) {
         return REGISTRY.register(name, item);

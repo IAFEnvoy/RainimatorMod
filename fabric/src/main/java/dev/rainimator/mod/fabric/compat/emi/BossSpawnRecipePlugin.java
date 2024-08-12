@@ -36,7 +36,7 @@ public class BossSpawnRecipePlugin implements EmiPlugin {
             new BossSpawnRecipe("big_undead_skeleton", RainimatorItems.WITHER_BONE.get(), RainimatorItems.BIG_UNDEAD_SKELETON_SPAWN_EGG.get()),
             new BossSpawnRecipe("piglin_commander", Items.GOLDEN_SWORD, RainimatorItems.PIGLIN_COMMANDER_SPAWN_EGG.get()),
             new BossSpawnRecipe("zombie_piglin_king", Items.GOLD_INGOT, RainimatorItems.ZOMBIES_PIGLIN_KING_SPAWN_EGG.get()),
-            new BossSpawnRecipe("piglin_king_zombies", Blocks.GOLD_BLOCK, RainimatorItems.PIGLIN_KING_ZOMBIES_SPAWN_EGG.get()),
+            new BossSpawnRecipe("glutton", Blocks.GOLD_BLOCK, RainimatorItems.GLUTTON_SPAWN_EGG.get()),
             new BossSpawnRecipe("null_like", RainimatorItems.BAO_ZHU.get(), RainimatorItems.NULL_LIKE_SPAWN_EGG.get()),
             new BossSpawnRecipe("naeus", RainimatorItems.WARRIOR_HEART.get(), RainimatorItems.NAEUS_SPAWN_EGG.get()),
             new BossSpawnRecipe("ciara", RainimatorItems.ICE_HEART.get(), RainimatorItems.CIARA_SPAWN_EGG.get()),

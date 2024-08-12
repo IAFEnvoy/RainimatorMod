@@ -1,7 +1,7 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
+import com.iafenvoy.neptune.object.entity.StagedMonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
@@ -18,6 +18,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -29,17 +30,31 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
-public class PiglinKingZombiesEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "piglin_king_zombies");
+public class GluttonEntity extends StagedMonsterEntityBase {
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "glutton_1", "glutton_2");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
-    public PiglinKingZombiesEntity(EntityType<PiglinKingZombiesEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD);
+    public GluttonEntity(EntityType<GluttonEntity> type, World world) {
+        this(type, world, Stage.First);
+    }
+
+    public GluttonEntity(EntityType<GluttonEntity> type, World world, Stage stage) {
+        super(type, world, EntityGroup.UNDEAD, stage);
         this.experiencePoints = 0;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.GLUTTON_SLEDGE_HAMMER.get()));
-        this.equipStack(EquipmentSlot.HEAD, new ItemStack(RainimatorItems.GLUTTON_HELMET.get()));
-        this.equipStack(EquipmentSlot.CHEST, new ItemStack(RainimatorItems.HEROBRINE_CHESTPLATE.get()));
+        switch (stage) {
+            case First -> {
+                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.GLUTTON_SLEDGE_HAMMER.get()));
+                this.equipStack(EquipmentSlot.HEAD, new ItemStack(RainimatorItems.GLUTTON_HELMET.get()));
+                this.equipStack(EquipmentSlot.CHEST, new ItemStack(RainimatorItems.HEROBRINE_CHESTPLATE.get()));
+            }
+            case Second -> {
+                this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.GLUTTON_SLEDGE_HAMMER.get()));
+                this.equipStack(EquipmentSlot.HEAD, new ItemStack(RainimatorItems.GLUTTON_HELMET.get()));
+                this.equipStack(EquipmentSlot.LEGS, new ItemStack(Items.GOLDEN_LEGGINGS));
+                this.equipStack(EquipmentSlot.FEET, new ItemStack(Items.GOLDEN_BOOTS));
+            }
+        }
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {

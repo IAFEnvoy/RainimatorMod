@@ -4,6 +4,7 @@ import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -19,17 +20,17 @@ import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-public class KyleEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "kyle");
+public class ScorchEntity extends MonsterEntityBase {
+    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "scorch");
 
-    public KyleEntity(EntityType<KyleEntity> entityType, World world) {
+    public ScorchEntity(EntityType<ScorchEntity> entityType, World world) {
         super(entityType, world, EntityGroup.DEFAULT);
         this.setStepHeight(0.6f);
         this.experiencePoints = 0;
         this.setPersistent();
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_AXE));
-        this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(Items.CROSSBOW));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.DOUBLE_SIDED_AXE.get()));
     }
 
     @Override
@@ -44,11 +45,8 @@ public class KyleEntity extends MonsterEntityBase {
         });
         this.goalSelector.add(2, new WanderAroundGoal(this, 1.0));
         this.targetSelector.add(3, new RevengeGoal(this));
-        this.goalSelector.add(4, new LongDoorInteractGoal(this, false));
-        this.goalSelector.add(5, new LongDoorInteractGoal(this, true));
-        this.goalSelector.add(6, new BreakDoorGoal(this, e -> true));
-        this.goalSelector.add(7, new LookAroundGoal(this));
-        this.goalSelector.add(8, new SwimGoal(this));
+        this.goalSelector.add(4, new LookAroundGoal(this));
+        this.goalSelector.add(5, new SwimGoal(this));
     }
 
     @Override
@@ -61,24 +59,30 @@ public class KyleEntity extends MonsterEntityBase {
         return -0.35;
     }
 
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return Registries.SOUND_EVENT.get(new Identifier("entity.blaze.ambient"));
+    }
+
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.blaze.hurt"));
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return Registries.SOUND_EVENT.get(new Identifier("entity.blaze.death"));
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
         DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
         builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 10.0);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 4.0);
+        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 40.0);
+        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 15.0);
+        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0);
         builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0);
+        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0);
         builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0);
         return builder;
     }

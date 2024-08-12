@@ -72,7 +72,7 @@ public class DarkObsidianBlock extends Block {
             EntityUtil.summon(EntityType.ZOMBIFIED_PIGLIN, world, x, y, z + RandomHelper.nextInt(1, 3));
         });
         consumers.put(Blocks.GOLD_BLOCK.asItem(), (entity, world, x, y, z) -> {
-            EntityUtil.summon(RainimatorEntities.PIGLIN_KING_ZOMBIES.get(), world, x, y, z);
+            EntityUtil.summon(RainimatorEntities.GLUTTON.get(), world, x, y, z);
             EntityUtil.summon(RainimatorEntities.ZOMBIE_PIGLIN_ART.get(), world, x, y, z - RandomHelper.nextInt(1, 3));
             EntityUtil.summon(EntityType.ZOMBIFIED_PIGLIN, world, x, y, z + RandomHelper.nextInt(1, 3));
         });

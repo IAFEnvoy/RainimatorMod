@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/double_sided_axe",
+  "textures": {
+    "texture": "rainimator:block/double_sided_axe_unwrap",
+    "particle": "rainimator:item/double_sided_axe"
+  }
+}

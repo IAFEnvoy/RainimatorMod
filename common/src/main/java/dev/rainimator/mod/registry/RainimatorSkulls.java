@@ -1,6 +1,7 @@
 package dev.rainimator.mod.registry;
 
 import com.iafenvoy.neptune.render.SkullRenderRegistry;
+import com.iafenvoy.neptune.render.Stage;
 import dev.architectury.registry.registries.RegistrySupplier;
 import dev.rainimator.mod.entity.*;
 import net.fabricmc.api.EnvType;
@@ -16,8 +17,10 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
 public class RainimatorSkulls {
-    public static final RegistrySupplier<Block> HEROBRINE_HEAD = register("herobrine_head", () -> new SkullBlock(SkullType.HEROBRINE, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> HEROBRINE_WALL_HEAD = register("herobrine_wall_head", () -> new WallSkullBlock(SkullType.HEROBRINE, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> HEROBRINE_1_HEAD = register("herobrine_1_head", () -> new SkullBlock(SkullType.HEROBRINE_1, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> HEROBRINE_1_WALL_HEAD = register("herobrine_1_wall_head", () -> new WallSkullBlock(SkullType.HEROBRINE_1, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> HEROBRINE_2_HEAD = register("herobrine_2_head", () -> new SkullBlock(SkullType.HEROBRINE_2, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> HEROBRINE_2_WALL_HEAD = register("herobrine_2_wall_head", () -> new WallSkullBlock(SkullType.HEROBRINE_2, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> CERIS_HEAD = register("ceris_head", () -> new SkullBlock(SkullType.CERIS, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> CERIS_WALL_HEAD = register("ceris_wall_head", () -> new WallSkullBlock(SkullType.CERIS, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> ELITE_ZOMBIE_HEAD = register("elite_zombie_head", () -> new SkullBlock(SkullType.ZOMBIES, AbstractBlock.Settings.create()));
@@ -54,10 +57,10 @@ public class RainimatorSkulls {
     public static final RegistrySupplier<Block> SKELETON_SNOW_WALL_HEAD = register("skeleton_snow_wall_head", () -> new WallSkullBlock(SkullType.SKELETON_SNOW, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> PIGLIN_KING_HEAD = register("piglin_king_head", () -> new SkullBlock(SkullType.PIGLIN_KING, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> PIGLIN_KING_WALL_HEAD = register("piglin_king_wall_head", () -> new WallSkullBlock(SkullType.PIGLIN_KING, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> GLUTTON_HEAD = register("glutton_head", () -> new SkullBlock(SkullType.GLUTTON, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> GLUTTON_WALL_HEAD = register("glutton_wall_head", () -> new WallSkullBlock(SkullType.GLUTTON, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> GLUTTON_OLD_HEAD = register("glutton_old_head", () -> new SkullBlock(SkullType.GLUTTON_OLD, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> GLUTTON_OLD_WALL_HEAD = register("glutton_old_wall_head", () -> new WallSkullBlock(SkullType.GLUTTON_OLD, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> GLUTTON_1_HEAD = register("glutton_1_head", () -> new SkullBlock(SkullType.GLUTTON_1, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> GLUTTON_1_WALL_HEAD = register("glutton_1_wall_head", () -> new WallSkullBlock(SkullType.GLUTTON_1, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> GLUTTON_2_HEAD = register("glutton_2_head", () -> new SkullBlock(SkullType.GLUTTON_2, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> GLUTTON_2_WALL_HEAD = register("glutton_2_wall_head", () -> new WallSkullBlock(SkullType.GLUTTON_2, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> PORKSHIRE_HEAD = register("porkshire_head", () -> new SkullBlock(SkullType.PORKSHIRE, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> PORKSHIRE_WALL_HEAD = register("porkshire_wall_head", () -> new WallSkullBlock(SkullType.PORKSHIRE, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> NAEUS_KING_HEAD = register("naeus_king_head", () -> new SkullBlock(SkullType.NAEUS_KING, AbstractBlock.Settings.create()));
@@ -96,8 +99,17 @@ public class RainimatorSkulls {
     public static final RegistrySupplier<Block> ARABELLA_WALL_HEAD = register("arabella_wall_head", () -> new WallSkullBlock(SkullType.ARABELLA, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> AZALEA_HEAD = register("azalea_head", () -> new SkullBlock(SkullType.AZALEA, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> AZALEA_WALL_HEAD = register("azalea_wall_head", () -> new WallSkullBlock(SkullType.AZALEA, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> KYLE_HEAD = register("kyle_head", () -> new SkullBlock(SkullType.KYLE, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> KYLE_WALL_HEAD = register("kyle_wall_head", () -> new WallSkullBlock(SkullType.KYLE, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> SCORCH_HEAD = register("scorch_head", () -> new SkullBlock(SkullType.SCORCH, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> SCORCH_WALL_HEAD = register("scorch_wall_head", () -> new WallSkullBlock(SkullType.SCORCH, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> STELLA_HEAD = register("stella_head", () -> new SkullBlock(SkullType.STELLA, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> STELLA_WALL_HEAD = register("stella_wall_head", () -> new WallSkullBlock(SkullType.STELLA, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> STELLA_DEMON_HEAD = register("stella_demon_head", () -> new SkullBlock(SkullType.STELLA_DEMON, AbstractBlock.Settings.create()));
+    public static final RegistrySupplier<Block> STELLA_DEMON_WALL_HEAD = register("stella_demon_wall_head", () -> new WallSkullBlock(SkullType.STELLA_DEMON, AbstractBlock.Settings.create()));
 
-    public static final RegistrySupplier<Item> HEROBRINE_HEAD_ITEM = register("herobrine", HEROBRINE_HEAD, HEROBRINE_WALL_HEAD);
+    public static final RegistrySupplier<Item> HEROBRINE_1_HEAD_ITEM = register("herobrine_1", HEROBRINE_1_HEAD, HEROBRINE_1_WALL_HEAD);
+    public static final RegistrySupplier<Item> HEROBRINE_2_HEAD_ITEM = register("herobrine_2", HEROBRINE_2_HEAD, HEROBRINE_2_WALL_HEAD);
     public static final RegistrySupplier<Item> CERIS_HEAD_ITEM = register("ceris", CERIS_HEAD, CERIS_WALL_HEAD);
     public static final RegistrySupplier<Item> ELITE_ZOMBIE_HEAD_ITEM = register("elite_zombie", ELITE_ZOMBIE_HEAD, ELITE_ZOMBIE_WALL_HEAD);
     public static final RegistrySupplier<Item> NAEUS_HEAD_ITEM = register("naeus", NAEUS_HEAD, NAEUS_WALL_HEAD);
@@ -116,8 +128,8 @@ public class RainimatorSkulls {
     public static final RegistrySupplier<Item> WITHER_SHIELD_HEAD_ITEM = register("wither_shield", WITHER_SHIELD_HEAD, WITHER_SHIELD_WALL_HEAD);
     public static final RegistrySupplier<Item> SKELETON_SNOW_HEAD_ITEM = register("skeleton_snow", SKELETON_SNOW_HEAD, SKELETON_SNOW_WALL_HEAD);
     public static final RegistrySupplier<Item> PIGLIN_KING_HEAD_ITEM = register("piglin_king", PIGLIN_KING_HEAD, PIGLIN_KING_WALL_HEAD);
-    public static final RegistrySupplier<Item> GLUTTON_HEAD_ITEM = register("glutton", GLUTTON_HEAD, GLUTTON_WALL_HEAD);
-    public static final RegistrySupplier<Item> GLUTTON_OLD_HEAD_ITEM = register("glutton_old", GLUTTON_OLD_HEAD, GLUTTON_OLD_WALL_HEAD);
+    public static final RegistrySupplier<Item> GLUTTON_1_HEAD_ITEM = register("glutton_1", GLUTTON_1_HEAD, GLUTTON_1_WALL_HEAD);
+    public static final RegistrySupplier<Item> GLUTTON_2_HEAD_ITEM = register("glutton_2", GLUTTON_2_HEAD, GLUTTON_2_WALL_HEAD);
     public static final RegistrySupplier<Item> PORKSHIRE_HEAD_ITEM = register("porkshire", PORKSHIRE_HEAD, PORKSHIRE_WALL_HEAD);
     public static final RegistrySupplier<Item> NAEUS_KING_HEAD_ITEM = register("naeus_king", NAEUS_KING_HEAD, NAEUS_KING_WALL_HEAD);
     public static final RegistrySupplier<Item> TUSK_HEAD_ITEM = register("tusk", TUSK_HEAD, TUSK_WALL_HEAD);
@@ -137,6 +149,10 @@ public class RainimatorSkulls {
     public static final RegistrySupplier<Item> KRALOS_HEAD_ITEM = register("kralos", KRALOS_HEAD, KRALOS_WALL_HEAD);
     public static final RegistrySupplier<Item> ARABELLA_HEAD_ITEM = register("arabella", ARABELLA_HEAD, ARABELLA_WALL_HEAD);
     public static final RegistrySupplier<Item> AZALEA_HEAD_ITEM = register("azalea", AZALEA_HEAD, AZALEA_WALL_HEAD);
+    public static final RegistrySupplier<Item> KYLE_HEAD_ITEM = register("kyle", KYLE_HEAD, KYLE_WALL_HEAD);
+    public static final RegistrySupplier<Item> SCORCH_HEAD_ITEM = register("scorch", SCORCH_HEAD, SCORCH_WALL_HEAD);
+    public static final RegistrySupplier<Item> STELLA_HEAD_ITEM = register("stella", STELLA_HEAD, STELLA_WALL_HEAD);
+    public static final RegistrySupplier<Item> STELLA_DEMON_HEAD_ITEM = register("stella_demon", STELLA_DEMON_HEAD, STELLA_DEMON_WALL_HEAD);
 
     private static RegistrySupplier<Block> register(String name, Supplier<Block> block) {
         return RainimatorBlocks.REGISTRY.register(name, block);
@@ -151,7 +167,8 @@ public class RainimatorSkulls {
 
     @Environment(EnvType.CLIENT)
     public static void clientInit() {
-        SkullRenderRegistry.register(SkullType.HEROBRINE, HerobrineEntity.texture.getTexture(), HEROBRINE_HEAD.get(), HEROBRINE_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.HEROBRINE_1, HerobrineEntity.texture.getTexture(Stage.First), HEROBRINE_1_HEAD.get(), HEROBRINE_1_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.HEROBRINE_2, HerobrineEntity.texture.getTexture(Stage.Second), HEROBRINE_2_HEAD.get(), HEROBRINE_2_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.CERIS, CerisEntity.texture.getTexture(), CERIS_HEAD.get(), CERIS_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.ZOMBIES, EliteZombieEntity.texture.getTexture(), ELITE_ZOMBIE_HEAD.get(), ELITE_ZOMBIE_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.NAEUS, NaeusEntity.texture.getTexture(), NAEUS_HEAD.get(), NAEUS_WALL_HEAD.get());
@@ -170,8 +187,8 @@ public class RainimatorSkulls {
         SkullRenderRegistry.register(SkullType.WITHER_SHIELD, WitherShieldEntity.texture.getTexture(), WITHER_SHIELD_HEAD.get(), WITHER_SHIELD_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.SKELETON_SNOW, SkeletonSnowEntity.texture.getTexture(), SKELETON_SNOW_HEAD.get(), SKELETON_SNOW_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.PIGLIN_KING, ZombiesPiglinKingEntity.texture.getTexture(), PIGLIN_KING_HEAD.get(), PIGLIN_KING_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.GLUTTON, PiglinKingZombiesEntity.texture.getTexture(), GLUTTON_HEAD.get(), GLUTTON_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.GLUTTON_OLD, PiglinKingZombieEntity.texture.getTexture(), GLUTTON_OLD_HEAD.get(), GLUTTON_OLD_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.GLUTTON_1, GluttonEntity.texture.getTexture(Stage.First), GLUTTON_1_HEAD.get(), GLUTTON_1_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.GLUTTON_2, GluttonEntity.texture.getTexture(Stage.Second), GLUTTON_2_HEAD.get(), GLUTTON_2_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.PORKSHIRE, PiglinCommanderEntity.texture.getTexture(), PORKSHIRE_HEAD.get(), PORKSHIRE_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.NAEUS_KING, NaeusKingEntity.texture.getTexture(), NAEUS_KING_HEAD.get(), NAEUS_KING_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.TUSK, TuskEntity.texture.getTexture(), TUSK_HEAD.get(), TUSK_WALL_HEAD.get());
@@ -191,13 +208,17 @@ public class RainimatorSkulls {
         SkullRenderRegistry.register(SkullType.KRALOS, KralosEntity.texture.getTexture(), KRALOS_HEAD.get(), KRALOS_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.ARABELLA, ArabellaEntity.texture.getTexture(), ARABELLA_HEAD.get(), ARABELLA_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.AZALEA, AzaleaEntity.texture.getTexture(), AZALEA_HEAD.get(), AZALEA_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.KYLE, KyleEntity.texture.getTexture(), KYLE_HEAD.get(), KYLE_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.SCORCH, ScorchEntity.texture.getTexture(), SCORCH_HEAD.get(), SCORCH_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.STELLA, StellaEntity.texture.getTexture(), STELLA_HEAD.get(), STELLA_WALL_HEAD.get());
+        SkullRenderRegistry.register(SkullType.STELLA_DEMON, StellaDemonEntity.texture.getTexture(), STELLA_DEMON_HEAD.get(), STELLA_DEMON_WALL_HEAD.get());
     }
 
     public enum SkullType implements SkullBlock.SkullType {
-        HEROBRINE, CERIS, ZOMBIES, NAEUS, RAIN, ABIGAIL, PATRICK, BLACKBONE, HOGSWORTH,
+        HEROBRINE_1, HEROBRINE_2, CERIS, ZOMBIES, NAEUS, RAIN, ABIGAIL, PATRICK, BLACKBONE, HOGSWORTH,
         CIARA, HILDA, SOLDIERS, WITHERED_SKELETONS, DARK_SHIELD, DARK_ZOMBIE, VORDUS, WITHER_SHIELD, SKELETON_SNOW,
-        PIGLIN_KING, GLUTTON, GLUTTON_OLD, PORKSHIRE, NAEUS_KING, TUSK, BROTS, ZOMBIE_PIG, MUTATED,
+        PIGLIN_KING, GLUTTON_1, GLUTTON_2, PORKSHIRE, NAEUS_KING, TUSK, BROTS, ZOMBIE_PIG, MUTATED,
         NAMTAR, AGETHA, TRICER, BIG_BLACK_SKELETON, ARCHER, DARYLL, NULL_LIKE, GIGABONE, KLAUS,
-        KLAUS_2, KRALOS, ARABELLA, AZALEA
+        KLAUS_2, KRALOS, ARABELLA, AZALEA, KYLE, SCORCH, STELLA, STELLA_DEMON
     }
 }
