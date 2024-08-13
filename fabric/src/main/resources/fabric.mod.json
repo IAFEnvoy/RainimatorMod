@@ -38,7 +38,8 @@
   },
   "custom": {
     "cardinal-components": [
-      "rainimator:mana"
+      "rainimator:mana",
+      "rainimator:fraction"
     ]
   },
   "accessWidener": "rainimator.accesswidener",

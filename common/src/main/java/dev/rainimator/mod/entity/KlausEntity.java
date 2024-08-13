@@ -1,7 +1,6 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
@@ -9,6 +8,7 @@ import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
@@ -34,12 +34,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.*;
 
-public class KlausEntity extends MonsterEntityBase {
+public class KlausEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "klaus");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.BLUE, BossBar.Style.PROGRESS);
 
     public KlausEntity(EntityType<KlausEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT);
+        super(type, world, EntityGroup.DEFAULT, Fraction.UNDEAD);
         this.experiencePoints = 0;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.DEEP_WAR_HAMMER.get()));
@@ -61,7 +61,6 @@ public class KlausEntity extends MonsterEntityBase {
     @Override
     protected void initGoals() {
         super.initGoals();
-        Fraction.findAndAddTarget(this);
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());

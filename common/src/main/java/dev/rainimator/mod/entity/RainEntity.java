@@ -1,7 +1,6 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
@@ -9,6 +8,7 @@ import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -30,11 +30,11 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
-public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
+public class RainEntity extends MonsterFractionEntityBase implements RangedAttackMob {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "rain");
 
     public RainEntity(EntityType<RainEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT);
+        super(type, world, EntityGroup.DEFAULT, Fraction.FROST);
         this.experiencePoints = 0;
         this.setAiDisabled(false);
         this.setPersistent();
@@ -57,7 +57,6 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
     @Override
     protected void initGoals() {
         super.initGoals();
-        Fraction.findAndAddTarget(this);
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());

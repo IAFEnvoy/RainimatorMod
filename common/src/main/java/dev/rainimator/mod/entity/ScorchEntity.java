@@ -1,10 +1,10 @@
 package dev.rainimator.mod.entity;
 
-import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -15,18 +15,17 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class ScorchEntity extends MonsterEntityBase {
+public class ScorchEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "scorch");
 
     public ScorchEntity(EntityType<ScorchEntity> entityType, World world) {
-        super(entityType, world, EntityGroup.DEFAULT);
+        super(entityType, world, EntityGroup.DEFAULT, Fraction.NETHER);
         this.setStepHeight(0.6f);
         this.experiencePoints = 0;
         this.setPersistent();
@@ -36,7 +35,6 @@ public class ScorchEntity extends MonsterEntityBase {
     @Override
     protected void initGoals() {
         super.initGoals();
-        Fraction.findAndAddTarget(this);
         this.getNavigation().getNodeMaker().setCanOpenDoors(true);
         this.goalSelector.add(1, new MeleeAttackGoal(this, 1.2, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {

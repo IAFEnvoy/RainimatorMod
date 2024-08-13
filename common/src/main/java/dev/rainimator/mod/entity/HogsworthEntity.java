@@ -1,10 +1,10 @@
 package dev.rainimator.mod.entity;
 
-import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -21,11 +21,11 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class HogsworthEntity extends MonsterEntityBase {
+public class HogsworthEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "hogsworth");
 
     public HogsworthEntity(EntityType<HogsworthEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD);
+        super(type, world, EntityGroup.UNDEAD, Fraction.NETHER);
         this.experiencePoints = 0;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.NETHERITE_SWORD));
         this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.NETHERITE_SHIELD.get()));
@@ -46,7 +46,6 @@ public class HogsworthEntity extends MonsterEntityBase {
     @Override
     protected void initGoals() {
         super.initGoals();
-        Fraction.findAndAddTarget(this);
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());

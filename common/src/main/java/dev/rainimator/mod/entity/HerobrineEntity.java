@@ -3,7 +3,6 @@ package dev.rainimator.mod.entity;
 import com.iafenvoy.neptune.object.EntityUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.VecUtil;
-import com.iafenvoy.neptune.object.entity.StagedMonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
@@ -12,6 +11,7 @@ import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.util.StagedMonsterFractionEntityBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
@@ -48,7 +48,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Comparator;
 import java.util.List;
 
-public class HerobrineEntity extends StagedMonsterEntityBase {
+public class HerobrineEntity extends StagedMonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "herobrine_1", "herobrine_2").setEyeTextureId("textures/entities/him_eye.png");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
     private boolean hasSpawnBlackBone = false;
@@ -58,7 +58,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
     }
 
     public HerobrineEntity(EntityType<HerobrineEntity> type, World world, Stage stage) {
-        super(type, world, EntityGroup.UNDEAD, stage);
+        super(type, world, EntityGroup.UNDEAD, stage, Fraction.UNDEAD);
         this.experiencePoints = 0;
         this.setPersistent();
         switch (stage) {
@@ -88,7 +88,6 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
     @Override
     protected void initGoals() {
         super.initGoals();
-        Fraction.findAndAddTarget(this);
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, true) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());

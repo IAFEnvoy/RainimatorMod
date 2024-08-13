@@ -1,8 +1,7 @@
 package dev.rainimator.mod;
 
 import com.mojang.logging.LogUtils;
-import dev.architectury.networking.NetworkManager;
-import dev.rainimator.mod.network.EnderBookActionHandler;
+import dev.rainimator.mod.network.ServerNetworkHelper;
 import dev.rainimator.mod.registry.*;
 import org.slf4j.Logger;
 
@@ -35,13 +34,14 @@ public class RainimatorMod {
         RainimatorTrades.registerTrades();
 
 //        AbilityManager.init();
-        NetworkManager.registerReceiver(NetworkManager.Side.C2S, ModConstants.ENDER_BOOK_SKILL_PACKET_ID, new EnderBookActionHandler());
+        ServerNetworkHelper.register();
     }
 
     public static void initClient() {
         RainimatorEntities.registerEntityRenderers();
         RainimatorModels.registerLayerDefinitions();
         RainimatorParticles.registerParticles();
+        RainimatorKeyBindings.register();
     }
 
     public static void processClient() {

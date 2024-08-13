@@ -1,9 +1,9 @@
 package dev.rainimator.mod.entity;
 
-import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -20,11 +20,11 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class KyleEntity extends MonsterEntityBase {
+public class KyleEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "kyle");
 
     public KyleEntity(EntityType<KyleEntity> entityType, World world) {
-        super(entityType, world, EntityGroup.DEFAULT);
+        super(entityType, world, EntityGroup.DEFAULT, Fraction.FROST);
         this.setStepHeight(0.6f);
         this.experiencePoints = 0;
         this.setPersistent();
@@ -35,7 +35,6 @@ public class KyleEntity extends MonsterEntityBase {
     @Override
     protected void initGoals() {
         super.initGoals();
-        Fraction.findAndAddTarget(this);
         this.getNavigation().getNodeMaker().setCanOpenDoors(true);
         this.goalSelector.add(1, new MeleeAttackGoal(this, 1.2, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {

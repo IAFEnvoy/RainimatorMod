@@ -1,12 +1,13 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.data.fraction.FractionEntity;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -31,12 +32,12 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
-public class ZombiesPiglinKingEntity extends MonsterEntityBase {
+public class ZombiesPiglinKingEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "zombies_piglin_king");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
     public ZombiesPiglinKingEntity(EntityType<ZombiesPiglinKingEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD);
+        super(type, world, EntityGroup.UNDEAD, Fraction.NETHER);
         this.experiencePoints = 0;
         this.setAiDisabled(false);
         this.setPersistent();
@@ -59,7 +60,7 @@ public class ZombiesPiglinKingEntity extends MonsterEntityBase {
     @Override
     protected void initGoals() {
         super.initGoals();
-        Fraction.findAndAddTarget(this);
+        FractionEntity.addTarget(this);
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());

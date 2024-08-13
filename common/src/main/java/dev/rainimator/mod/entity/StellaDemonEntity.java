@@ -1,9 +1,10 @@
 package dev.rainimator.mod.entity;
 
-import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
+import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -11,7 +12,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -19,11 +19,11 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class StellaDemonEntity extends MonsterEntityBase {
+public class StellaDemonEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "stella_demon");
 
     public StellaDemonEntity(EntityType<StellaDemonEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT);
+        super(type, world, EntityGroup.DEFAULT, Fraction.NETHER);
         this.setStepHeight(0.7f);
         this.experiencePoints = 0;
         this.setAiDisabled(false);
@@ -35,9 +35,6 @@ public class StellaDemonEntity extends MonsterEntityBase {
     protected void initGoals() {
         super.initGoals();
         this.getNavigation().getNodeMaker().setCanOpenDoors(true);
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, RainEntity.class, true, true));
-//        this.targetSelector.add(2,  new ActiveTargetGoal<>( this, RainEnderEntity.class, true, true));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, PlayerEntity.class, true, true));
         this.goalSelector.add(4, new MeleeAttackGoal(this, 1.2, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return this.mob.getWidth() * this.mob.getWidth() + entity.getWidth();

@@ -1,10 +1,10 @@
 package dev.rainimator.mod.entity;
 
-import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -22,11 +22,11 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class EliteZombieEntity extends MonsterEntityBase {
+public class EliteZombieEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "elite_zombie");
 
     public EliteZombieEntity(EntityType<EliteZombieEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD);
+        super(type, world, EntityGroup.UNDEAD, Fraction.UNDEAD);
         this.experiencePoints = 0;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.IRON_LONG_SPEAR.get()));
         this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
@@ -49,7 +49,6 @@ public class EliteZombieEntity extends MonsterEntityBase {
     @Override
     protected void initGoals() {
         super.initGoals();
-        Fraction.findAndAddTarget(this);
         this.goalSelector.add(2, new AvoidSunlightGoal(this));
         this.goalSelector.add(3, new MeleeAttackGoal(this, 1.2D, true) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {

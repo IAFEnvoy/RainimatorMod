@@ -1,7 +1,6 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.entity.EntityWithBossBar;
 import com.iafenvoy.neptune.render.BossBarRenderHelper;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
@@ -11,6 +10,7 @@ import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.util.FractionEntityWithBossBar;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -33,7 +33,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.NotNull;
 
-public class CerisEntity extends EntityWithBossBar {
+public class CerisEntity extends FractionEntityWithBossBar {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "ceris").setEyeTextureId("textures/entities/ceris_eye.png");
 
     static {
@@ -41,7 +41,7 @@ public class CerisEntity extends EntityWithBossBar {
     }
 
     public CerisEntity(EntityType<CerisEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, BossBar.Color.PURPLE);
+        super(type, world, EntityGroup.DEFAULT, BossBar.Color.PURPLE, Fraction.ENDER);
         this.experiencePoints = 0;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.ENDER_BIG_SWORD.get()));
@@ -62,7 +62,6 @@ public class CerisEntity extends EntityWithBossBar {
     @Override
     protected void initGoals() {
         super.initGoals();
-        Fraction.findAndAddTarget(this);
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());

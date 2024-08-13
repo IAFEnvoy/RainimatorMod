@@ -141,6 +141,7 @@
   "item.rainimator.agetha_spawn_egg": "Agetha Spawn Egg",
   "item.rainimator.amethyst_war_hammer": "Amethyst War Hammer",
   "item.rainimator.arabella_spawn_egg": "Arabella Spawn Egg",
+  "item.rainimator.arcane_blades": "Arcane Blades",
   "item.rainimator.archer_spawn_egg": "Archer Spawn Egg",
   "item.rainimator.azalea_spawn_egg": "Azalea Spawn Egg",
   "item.rainimator.bao_zhu": "Poisonous Pearl",
@@ -390,5 +391,7 @@
   "keybinding.rainimator.category": "Rainimator Mod",
   "message.rainimator.mana.not_enough": "No enough mana",
   "patchouli.rainimator.book_landing_text": "Book Landing Text",
-  "patchouli.rainimator.book_name": "RainimatorMod Tutorial"
+  "patchouli.rainimator.book_name": "RainimatorMod Tutorial",
+  "category.rainimator": "Rainimator Mod",
+  "key.rainimator.fraction_ability": "Fraction Ability"
 }

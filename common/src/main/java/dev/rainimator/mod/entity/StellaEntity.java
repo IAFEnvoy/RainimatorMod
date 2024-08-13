@@ -3,15 +3,16 @@ package dev.rainimator.mod.entity;
 import com.iafenvoy.neptune.object.EntityUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.VecUtil;
-import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
+import dev.rainimator.mod.data.fraction.Fraction;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -37,11 +38,11 @@ import net.minecraft.world.World;
 import java.util.Comparator;
 import java.util.List;
 
-public class StellaEntity extends MonsterEntityBase {
+public class StellaEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "stella");
 
     public StellaEntity(EntityType<StellaEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT);
+        super(type, world, EntityGroup.DEFAULT, Fraction.FROST);
         this.setStepHeight(0.7f);
         this.experiencePoints = 0;
         this.setAiDisabled(false);
@@ -180,6 +181,7 @@ public class StellaEntity extends MonsterEntityBase {
                     EntityUtil.summon(RainimatorEntities.STELLA_DEMON.get(), world1, x, y, z);
             });
         }
+        this.dropStack(new ItemStack(RainimatorItems.MAGIC_HAT.get()));
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {

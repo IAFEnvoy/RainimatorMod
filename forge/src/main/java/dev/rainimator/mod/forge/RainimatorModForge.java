@@ -4,9 +4,11 @@ import com.afoxxvi.asteorbar.overlay.ForgeRenderGui;
 import dev.architectury.platform.Platform;
 import dev.architectury.platform.forge.EventBuses;
 import dev.rainimator.mod.RainimatorMod;
+import dev.rainimator.mod.data.component.FractionData;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.forge.compat.asteorbar.ManaHud;
 import dev.rainimator.mod.forge.compat.curios.CuriosRegistry;
+import dev.rainimator.mod.forge.component.FractionDataProvider;
 import dev.rainimator.mod.forge.component.ManaDataProvider;
 import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.registry.RainimatorItems;
@@ -47,7 +49,7 @@ public class RainimatorModForge {
         if (Platform.getEnv() == Dist.CLIENT) {
             RainimatorMod.initClient();
             if (ModList.get().isLoaded("asteorbar"))
-                FMLJavaModLoadingContext.get().getModEventBus().addListener(RainimatorModForge::registerOverlay);
+                FMLJavaModLoadingContext.get().getModEventBus().addListener(AsteorBarEvents::registerOverlay);
         }
     }
 
@@ -76,8 +78,10 @@ public class RainimatorModForge {
         });
     }
 
-    public static void registerOverlay(RegisterGuiOverlaysEvent event) {
-        event.registerBelow(VanillaGuiOverlay.PLAYER_HEALTH.id(), "mana_hud", new ForgeRenderGui(new ManaHud()));
+    public static class AsteorBarEvents{
+        public static void registerOverlay(RegisterGuiOverlaysEvent event) {
+            event.registerBelow(VanillaGuiOverlay.PLAYER_HEALTH.id(), "mana_hud", new ForgeRenderGui(new ManaHud()));
+        }
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -87,7 +91,9 @@ public class RainimatorModForge {
             if (event.getObject() instanceof PlayerEntity player) {
                 boolean isServerNotFake = player instanceof ServerPlayerEntity && !(player instanceof FakePlayer);
                 if ((isServerNotFake || player instanceof AbstractClientPlayerEntity) && !player.getCapability(ManaDataProvider.CAPABILITY).isPresent())
-                    event.addCapability(new Identifier(RainimatorMod.MOD_ID, "player_data"), new ManaDataProvider());
+                    event.addCapability(new Identifier(RainimatorMod.MOD_ID, "mana"), new ManaDataProvider());
+                if ((isServerNotFake || player instanceof AbstractClientPlayerEntity) && !player.getCapability(FractionDataProvider.CAPABILITY).isPresent())
+                    event.addCapability(new Identifier(RainimatorMod.MOD_ID, "fraction"), new FractionDataProvider());
             }
         }
 

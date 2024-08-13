@@ -33,7 +33,7 @@ public class RainimatorModFabric implements ModInitializer {
             Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(player);
             if (component.isPresent()) {
                 List<Pair<SlotReference, ItemStack>> stacks = component.get().getEquipped(RainimatorItems.WINGS_OF_SALVATION.get());
-                if (stacks.size() > 0) {
+                if (!stacks.isEmpty()) {
                     if (RainimatorItems.WINGS_OF_SALVATION instanceof WingsOfSalvationItem w)
                         w.keyPress(player, stacks.get(0).getRight());
                 }
