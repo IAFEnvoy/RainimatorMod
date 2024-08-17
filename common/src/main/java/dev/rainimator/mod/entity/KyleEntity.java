@@ -2,8 +2,8 @@ package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import dev.rainimator.mod.registry.RainimatorFractions;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -24,7 +24,7 @@ public class KyleEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "kyle");
 
     public KyleEntity(EntityType<KyleEntity> entityType, World world) {
-        super(entityType, world, EntityGroup.DEFAULT, Fraction.FROST);
+        super(entityType, world, EntityGroup.DEFAULT, RainimatorFractions.FROST);
         this.setStepHeight(0.6f);
         this.experiencePoints = 0;
         this.setPersistent();

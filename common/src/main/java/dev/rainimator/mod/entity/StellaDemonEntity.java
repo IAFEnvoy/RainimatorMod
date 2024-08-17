@@ -2,9 +2,9 @@ package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -23,7 +23,7 @@ public class StellaDemonEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "stella_demon");
 
     public StellaDemonEntity(EntityType<StellaDemonEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, Fraction.NETHER);
+        super(type, world, EntityGroup.DEFAULT, RainimatorFractions.NETHER);
         this.setStepHeight(0.7f);
         this.experiencePoints = 0;
         this.setAiDisabled(false);

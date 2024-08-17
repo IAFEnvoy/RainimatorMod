@@ -1,16 +1,16 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.entity.FractionEntityWithBossBar;
 import com.iafenvoy.neptune.render.BossBarRenderHelper;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import dev.rainimator.mod.registry.util.FractionEntityWithBossBar;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -41,7 +41,7 @@ public class CerisEntity extends FractionEntityWithBossBar {
     }
 
     public CerisEntity(EntityType<CerisEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, BossBar.Color.PURPLE, Fraction.ENDER);
+        super(type, world, EntityGroup.DEFAULT, BossBar.Color.PURPLE, RainimatorFractions.ENDER);
         this.experiencePoints = 0;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.ENDER_BIG_SWORD.get()));

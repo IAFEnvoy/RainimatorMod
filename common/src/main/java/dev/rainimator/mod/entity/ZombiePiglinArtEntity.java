@@ -2,8 +2,8 @@ package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import dev.rainimator.mod.registry.RainimatorFractions;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -24,7 +24,7 @@ public class ZombiePiglinArtEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "zombie_piglin_art");
 
     public ZombiePiglinArtEntity(EntityType<ZombiePiglinArtEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, Fraction.NETHER);
+        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.NETHER);
         this.experiencePoints = 15;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.GOLDEN_SWORD));

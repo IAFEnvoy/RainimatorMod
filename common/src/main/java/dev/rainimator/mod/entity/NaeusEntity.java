@@ -7,11 +7,11 @@ import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -41,7 +41,7 @@ public class NaeusEntity extends MonsterFractionEntityBase {
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.GREEN, BossBar.Style.PROGRESS);
 
     public NaeusEntity(EntityType<NaeusEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, Fraction.NETHER);
+        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.NETHER);
         this.experiencePoints = 0;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.NAEUS_SWORD.get()));

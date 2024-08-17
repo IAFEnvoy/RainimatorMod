@@ -4,10 +4,7 @@ import com.iafenvoy.neptune.util.Timeout;
 import dev.architectury.networking.NetworkManager;
 import dev.architectury.utils.Env;
 import dev.rainimator.mod.ModConstants;
-import dev.rainimator.mod.data.component.FractionData;
-import dev.rainimator.mod.impl.ComponentManager;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -43,11 +40,6 @@ public class ServerNetworkHelper {
                     player.sendMessage(Text.translatable("item.rainimator.ender_book.success"), false);
                 }
             }
-        });
-        NetworkManager.registerReceiver(NetworkManager.Side.C2S, ModConstants.FRACTION_ABILITY_PACKET_ID, (buf, context) -> {
-            PlayerEntity player = context.getPlayer();
-            FractionData data = ComponentManager.getFractionData(player);
-            if (data != null) data.getFraction().abilityHandler().accept(buf, player);
         });
     }
 }

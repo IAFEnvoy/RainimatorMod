@@ -53,6 +53,6 @@
     "fabric": "*",
     "architectury": "*",
     "trinkets": "*",
-    "neptune": "*"
+    "neptune": ">=0.3.1"
   }
 }

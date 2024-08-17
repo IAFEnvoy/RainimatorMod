@@ -4,11 +4,11 @@ import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
@@ -39,7 +39,7 @@ public class KlausEntity extends MonsterFractionEntityBase {
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.BLUE, BossBar.Style.PROGRESS);
 
     public KlausEntity(EntityType<KlausEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, Fraction.UNDEAD);
+        super(type, world, EntityGroup.DEFAULT, RainimatorFractions.UNDEAD);
         this.experiencePoints = 0;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.DEEP_WAR_HAMMER.get()));

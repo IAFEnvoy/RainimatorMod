@@ -2,9 +2,9 @@ package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -26,7 +26,7 @@ public class EliteZombieEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "elite_zombie");
 
     public EliteZombieEntity(EntityType<EliteZombieEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, Fraction.UNDEAD);
+        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.UNDEAD);
         this.experiencePoints = 0;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.IRON_LONG_SPEAR.get()));
         this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));

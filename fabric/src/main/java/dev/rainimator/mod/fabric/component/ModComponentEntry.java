@@ -8,6 +8,5 @@ public class ModComponentEntry implements EntityComponentInitializer {
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.registerForPlayers(ManaComponent.MANA_COMPONENT, ManaComponent::new, RespawnCopyStrategy.INVENTORY);
-        registry.registerForPlayers(FractionComponent.FRACTION_COMPONENT, FractionComponent::new, RespawnCopyStrategy.INVENTORY);
     }
 }

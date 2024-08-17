@@ -1,7 +1,6 @@
 package dev.rainimator.mod.impl;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import dev.rainimator.mod.data.component.FractionData;
 import dev.rainimator.mod.data.component.ManaData;
 import net.minecraft.entity.LivingEntity;
 import org.apache.commons.lang3.NotImplementedException;
@@ -11,12 +10,6 @@ public class ComponentManager {
     @ExpectPlatform
     @Nullable
     public static ManaData getManaData(LivingEntity entity) {
-        throw new NotImplementedException("This method should be replaced by Architectury.");
-    }
-
-    @ExpectPlatform
-    @Nullable
-    public static FractionData getFractionData(LivingEntity entity) {
         throw new NotImplementedException("This method should be replaced by Architectury.");
     }
 }

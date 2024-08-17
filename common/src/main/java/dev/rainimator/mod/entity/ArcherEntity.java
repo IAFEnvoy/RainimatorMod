@@ -4,9 +4,9 @@ import com.iafenvoy.neptune.object.EntityUtil;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -30,7 +30,7 @@ public class ArcherEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "archer");
 
     public ArcherEntity(EntityType<ArcherEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, Fraction.FROST);
+        super(type, world, EntityGroup.DEFAULT, RainimatorFractions.FROST);
         this.experiencePoints = 10;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
     }

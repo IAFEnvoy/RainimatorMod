@@ -5,10 +5,10 @@ import com.iafenvoy.neptune.object.ParticleUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -34,7 +34,7 @@ public class ArabellaEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "arabella");
 
     public ArabellaEntity(EntityType<ArabellaEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, Fraction.ENDER);
+        super(type, world, EntityGroup.DEFAULT, RainimatorFractions.ENDER);
         this.experiencePoints = 0;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.ENDER_CURVED_SWORD.get()));

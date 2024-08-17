@@ -2,9 +2,9 @@ package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -25,7 +25,7 @@ public class HogsworthEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "hogsworth");
 
     public HogsworthEntity(EntityType<HogsworthEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, Fraction.NETHER);
+        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.NETHER);
         this.experiencePoints = 0;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.NETHERITE_SWORD));
         this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.NETHERITE_SHIELD.get()));

@@ -392,6 +392,8 @@
   "message.rainimator.mana.not_enough": "No enough mana",
   "patchouli.rainimator.book_landing_text": "Book Landing Text",
   "patchouli.rainimator.book_name": "RainimatorMod Tutorial",
-  "category.rainimator": "Rainimator Mod",
-  "key.rainimator.fraction_ability": "Fraction Ability"
+  "fraction.rainimator.frost": "Frost",
+  "fraction.rainimator.undead": "Undead",
+  "fraction.rainimator.nether": "Nether",
+  "fraction.rainimator.ender": "Ender"
 }

@@ -2,10 +2,10 @@ package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -30,7 +30,7 @@ public class CiaraEntity extends MonsterFractionEntityBase implements RangedAtta
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "ciara");
 
     public CiaraEntity(EntityType<CiaraEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, Fraction.FROST);
+        super(type, world, EntityGroup.DEFAULT, RainimatorFractions.FROST);
         this.experiencePoints = 0;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.THE_BLUE_DAGGER.get()));
         this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.THE_BLUE_DAGGER.get()));

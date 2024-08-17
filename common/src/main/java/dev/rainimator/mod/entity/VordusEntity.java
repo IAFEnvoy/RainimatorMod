@@ -1,9 +1,10 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.fraction.Fraction;
+import com.iafenvoy.neptune.fraction.FractionEntity;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.data.fraction.FractionEntity;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -134,6 +135,6 @@ public class VordusEntity extends EndermanEntity implements FractionEntity {
 
     @Override
     public Fraction getFraction() {
-        return Fraction.ENDER;
+        return RainimatorFractions.ENDER;
     }
 }

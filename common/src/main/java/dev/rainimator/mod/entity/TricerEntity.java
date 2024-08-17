@@ -2,8 +2,8 @@ package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import dev.rainimator.mod.registry.RainimatorFractions;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -27,7 +27,7 @@ public class TricerEntity extends MonsterFractionEntityBase {
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.NOTCHED_6);
 
     public TricerEntity(EntityType<TricerEntity> type, World world) {
-        super(type, world, EntityGroup.AQUATIC, Fraction.UNDEAD);
+        super(type, world, EntityGroup.AQUATIC, RainimatorFractions.UNDEAD);
         this.experiencePoints = 100;
         this.setPersistent();
     }

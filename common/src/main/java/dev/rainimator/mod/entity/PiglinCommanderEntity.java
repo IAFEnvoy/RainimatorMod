@@ -4,10 +4,10 @@ import com.iafenvoy.neptune.object.EntityUtil;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -29,7 +29,7 @@ public class PiglinCommanderEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "piglin_commander");
 
     public PiglinCommanderEntity(EntityType<PiglinCommanderEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, Fraction.NETHER);
+        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.NETHER);
         this.experiencePoints = 20;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.THE_GOLDEN_SWORD.get()));

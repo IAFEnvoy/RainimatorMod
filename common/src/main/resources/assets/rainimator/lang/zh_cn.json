@@ -392,6 +392,8 @@
   "message.rainimator.mana.not_enough": "魔力值不足！",
   "patchouli.rainimator.book_landing_text": "这里是一段介绍文本",
   "patchouli.rainimator.book_name": "RainimatorMod 游玩指南",
-  "category.rainimator": "Rainimator Mod",
-  "key.rainimator.fraction_ability": "阵营能力"
+  "fraction.rainimator.frost": "人族",
+  "fraction.rainimator.undead": "不死族",
+  "fraction.rainimator.nether": "下界",
+  "fraction.rainimator.ender": "末地"
 }

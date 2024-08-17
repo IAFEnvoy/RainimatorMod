@@ -4,9 +4,9 @@ import com.iafenvoy.neptune.object.EntityUtil;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.data.fraction.Fraction;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
-import dev.rainimator.mod.registry.util.MonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -27,7 +27,7 @@ public class GigaBoneEntity extends MonsterFractionEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "gigabone");
 
     public GigaBoneEntity(EntityType<GigaBoneEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, Fraction.NETHER);
+        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.NETHER);
         this.experiencePoints = 100;
         this.setPersistent();
     }
