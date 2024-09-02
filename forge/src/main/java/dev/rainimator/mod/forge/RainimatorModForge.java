@@ -4,6 +4,7 @@ import com.afoxxvi.asteorbar.overlay.ForgeRenderGui;
 import dev.architectury.platform.Platform;
 import dev.architectury.platform.forge.EventBuses;
 import dev.rainimator.mod.RainimatorMod;
+import dev.rainimator.mod.RainimatorModClient;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.forge.compat.asteorbar.ManaHud;
 import dev.rainimator.mod.forge.compat.curios.CuriosRegistry;
@@ -23,7 +24,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -45,7 +45,7 @@ public class RainimatorModForge {
         EventBuses.registerModEventBus(RainimatorMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
         RainimatorMod.init();
         if (Platform.getEnv() == Dist.CLIENT) {
-            RainimatorMod.initClient();
+            RainimatorModClient.initClient();
             if (ModList.get().isLoaded("asteorbar"))
                 FMLJavaModLoadingContext.get().getModEventBus().addListener(AsteorBarEvents::registerOverlay);
         }
@@ -71,14 +71,14 @@ public class RainimatorModForge {
     @SubscribeEvent
     public static void onClientInit(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            RainimatorMod.processClient();
+            RainimatorModClient.processClient();
             CuriosRegistry.registerClient();
         });
     }
 
     public static class AsteorBarEvents{
         public static void registerOverlay(RegisterGuiOverlaysEvent event) {
-            event.registerBelow(VanillaGuiOverlay.PLAYER_HEALTH.id(), "mana_hud", new ForgeRenderGui(new ManaHud()));
+            event.registerAboveAll("mana_hud", new ForgeRenderGui(new ManaHud()));
         }
     }
 

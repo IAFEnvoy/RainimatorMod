@@ -77,8 +77,6 @@ public class RainimatorSkulls {
     public static final RegistrySupplier<Block> NAMTAR_WALL_HEAD = register("namtar_wall_head", () -> new WallSkullBlock(SkullType.NAMTAR, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> AGETHA_HEAD = register("agetha_head", () -> new SkullBlock(SkullType.AGETHA, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> AGETHA_WALL_HEAD = register("agetha_wall_head", () -> new WallSkullBlock(SkullType.AGETHA, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> TRICER_HEAD = register("tricer_head", () -> new SkullBlock(SkullType.TRICER, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> TRICER_WALL_HEAD = register("tricer_wall_head", () -> new WallSkullBlock(SkullType.TRICER, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> BIG_BLACK_SKELETON_HEAD = register("big_black_skeleton_head", () -> new SkullBlock(SkullType.BIG_BLACK_SKELETON, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> BIG_BLACK_SKELETON_WALL_HEAD = register("big_black_skeleton_wall_head", () -> new WallSkullBlock(SkullType.BIG_BLACK_SKELETON, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> ARCHER_HEAD = register("archer_head", () -> new SkullBlock(SkullType.ARCHER, AbstractBlock.Settings.create()));
@@ -138,7 +136,6 @@ public class RainimatorSkulls {
     public static final RegistrySupplier<Item> MUTATED_HEAD_ITEM = register("mutated", MUTATED_HEAD, MUTATED_WALL_HEAD);
     public static final RegistrySupplier<Item> NAMTAR_HEAD_ITEM = register("namtar", NAMTAR_HEAD, NAMTAR_WALL_HEAD);
     public static final RegistrySupplier<Item> AGETHA_HEAD_ITEM = register("agetha", AGETHA_HEAD, AGETHA_WALL_HEAD);
-    public static final RegistrySupplier<Item> TRICER_HEAD_ITEM = register("tricer", TRICER_HEAD, TRICER_WALL_HEAD);
     public static final RegistrySupplier<Item> BIG_BLACK_SKELETON_HEAD_ITEM = register("big_black_skeleton", BIG_BLACK_SKELETON_HEAD, BIG_BLACK_SKELETON_WALL_HEAD);
     public static final RegistrySupplier<Item> ARCHER_HEAD_ITEM = register("archer", ARCHER_HEAD, ARCHER_WALL_HEAD);
     public static final RegistrySupplier<Item> DARYLL_HEAD_ITEM = register("daryll", DARYLL_HEAD, DARYLL_WALL_HEAD);
@@ -197,7 +194,6 @@ public class RainimatorSkulls {
         SkullRenderRegistry.register(SkullType.MUTATED, MutatedEntity.texture.getTexture(), MUTATED_HEAD.get(), MUTATED_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.NAMTAR, NamtarEntity.texture.getTexture(), NAMTAR_HEAD.get(), NAMTAR_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.AGETHA, AgethaEntity.texture.getTexture(), AGETHA_HEAD.get(), AGETHA_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.TRICER, TricerEntity.texture.getTexture(), TRICER_HEAD.get(), TRICER_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.BIG_BLACK_SKELETON, BigUndeadSkeletonEntity.texture.getTexture(), BIG_BLACK_SKELETON_HEAD.get(), BIG_BLACK_SKELETON_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.ARCHER, ArcherEntity.texture.getTexture(), ARCHER_HEAD.get(), ARCHER_WALL_HEAD.get());
         SkullRenderRegistry.register(SkullType.DARYLL, DaryllEntity.texture.getTexture(), DARYLL_HEAD.get(), DARYLL_WALL_HEAD.get());
@@ -218,7 +214,7 @@ public class RainimatorSkulls {
         HEROBRINE_1, HEROBRINE_2, CERIS, ZOMBIES, NAEUS, RAIN, ABIGAIL, PATRICK, BLACKBONE, HOGSWORTH,
         CIARA, HILDA, SOLDIERS, WITHERED_SKELETONS, DARK_SHIELD, DARK_ZOMBIE, VORDUS, WITHER_SHIELD, SKELETON_SNOW,
         PIGLIN_KING, GLUTTON_1, GLUTTON_2, PORKSHIRE, NAEUS_KING, TUSK, BROTS, ZOMBIE_PIG, MUTATED,
-        NAMTAR, AGETHA, TRICER, BIG_BLACK_SKELETON, ARCHER, DARYLL, NULL_LIKE, GIGABONE, KLAUS,
+        NAMTAR, AGETHA, BIG_BLACK_SKELETON, ARCHER, DARYLL, NULL_LIKE, GIGABONE, KLAUS,
         KLAUS_2, KRALOS, ARABELLA, AZALEA, KYLE, SCORCH, STELLA, STELLA_DEMON
     }
 }

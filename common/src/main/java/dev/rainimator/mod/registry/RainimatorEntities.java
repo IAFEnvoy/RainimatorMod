@@ -71,7 +71,6 @@ public class RainimatorEntities {
     public static final RegistrySupplier<EntityType<MutatedEntity>> MUTATED = build("mutated", MutatedEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<NamtarEntity>> NAMTAR = build("namtar", NamtarEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<AgethaEntity>> AGETHA = build("agetha", AgethaEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
-    public static final RegistrySupplier<EntityType<TricerEntity>> TRICER = build("tricer", TricerEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<BigUndeadSkeletonEntity>> BIG_UNDEAD_SKELETON = build("big_undead_skeleton", BigUndeadSkeletonEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<ArcherEntity>> ARCHER = build("archer", ArcherEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<GigaBoneEntity>> GIGABONE = build("gigabone", GigaBoneEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
@@ -124,7 +123,6 @@ public class RainimatorEntities {
         EntityAttributeRegistry.register(MUTATED, MutatedEntity::createAttributes);
         EntityAttributeRegistry.register(NAMTAR, NamtarEntity::createAttributes);
         EntityAttributeRegistry.register(AGETHA, AgethaEntity::createAttributes);
-        EntityAttributeRegistry.register(TRICER, TricerEntity::createAttributes);
         EntityAttributeRegistry.register(BIG_UNDEAD_SKELETON, BigUndeadSkeletonEntity::createAttributes);
         EntityAttributeRegistry.register(ARCHER, ArcherEntity::createAttributes);
         EntityAttributeRegistry.register(DARYLL, DaryllEntity::createAttributes);
@@ -239,7 +237,6 @@ public class RainimatorEntities {
         EntityRendererRegistry.register(MUTATED, MutatedEntity.texture::createRenderer);
         EntityRendererRegistry.register(NAMTAR, NamtarEntity.texture::createRenderer);
         EntityRendererRegistry.register(AGETHA, AgethaEntity.texture::createRenderer);
-        EntityRendererRegistry.register(TRICER, TricerEntity.texture::createRenderer);
         EntityRendererRegistry.register(BIG_UNDEAD_SKELETON, BigUndeadSkeletonEntity.texture::createRenderer);
         EntityRendererRegistry.register(ARCHER, ArcherEntity.texture::createRenderer);
         EntityRendererRegistry.register(GIGABONE, GigaBoneEntity.texture::createRenderer);
