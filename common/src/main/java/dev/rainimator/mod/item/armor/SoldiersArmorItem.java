@@ -22,7 +22,7 @@ public class SoldiersArmorItem extends ArmorWithTickItem {
     public void onArmorTick(World world, PlayerEntity entity) {
         if (entity == null)
             return;
-        if (!entity.getWorld().isClient() && ServerConfig.getInstance().enableArmorEffect &&
+        if (!entity.getWorld().isClient && ServerConfig.getInstance().enableArmorEffect &&
                 entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.SOLDIERS_ARMOR_HELMET.get() &&
                 entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == RainimatorItems.SOLDIERS_ARMOR_CHESTPLATE.get() &&
                 entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == RainimatorItems.SOLDIERS_ARMOR_LEGGINGS.get() &&

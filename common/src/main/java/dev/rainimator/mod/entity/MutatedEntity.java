@@ -31,15 +31,14 @@ public class MutatedEntity extends MonsterFractionEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 50.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 20.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 2.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 50.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 20.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 2.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
     }
 
     @Override

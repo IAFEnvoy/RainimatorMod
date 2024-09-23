@@ -1,11 +1,11 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -37,14 +37,14 @@ public class CiaraEntity extends MonsterFractionEntityBase implements RangedAtta
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 30.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
+        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 30.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
         return builder;
     }
 
@@ -86,10 +86,8 @@ public class CiaraEntity extends MonsterFractionEntityBase implements RangedAtta
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.DROWN))
-            return true;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.DROWN)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
@@ -104,12 +102,12 @@ public class CiaraEntity extends MonsterFractionEntityBase implements RangedAtta
     }
 
     @Override
-    public void attack(LivingEntity target, float flval) {
-        CiaraEntityProjectile entityarrow = new CiaraEntityProjectile(RainimatorEntities.CIARA_PROJECTILE.get(), this, this.getWorld());
+    public void attack(LivingEntity target, float pullProgress) {
+        CiaraEntityProjectile projectile = new CiaraEntityProjectile(RainimatorEntities.CIARA_PROJECTILE.get(), this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();
-        entityarrow.setVelocity(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
-        this.getWorld().spawnEntity(entityarrow);
+        projectile.setVelocity(d1, d0 - projectile.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
+        this.getWorld().spawnEntity(projectile);
     }
 }

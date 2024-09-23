@@ -11,7 +11,6 @@ import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
 public class DaryllEntityProjectile extends PersistentProjectileEntity implements FlyingItemEntity {
-
     public DaryllEntityProjectile(EntityType<? extends DaryllEntityProjectile> type, World world) {
         super(type, world);
     }

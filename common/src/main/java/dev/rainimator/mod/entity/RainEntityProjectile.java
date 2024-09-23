@@ -10,9 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
-public class RainEntityProjectile
-        extends PersistentProjectileEntity implements FlyingItemEntity {
-
+public class RainEntityProjectile extends PersistentProjectileEntity implements FlyingItemEntity {
     public RainEntityProjectile(EntityType<? extends RainEntityProjectile> type, World world) {
         super(type, world);
     }

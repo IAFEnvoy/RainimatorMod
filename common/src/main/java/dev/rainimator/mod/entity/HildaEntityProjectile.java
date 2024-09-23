@@ -11,7 +11,6 @@ import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
 public class HildaEntityProjectile extends PersistentProjectileEntity implements FlyingItemEntity {
-
     public HildaEntityProjectile(EntityType<? extends HildaEntityProjectile> type, World world) {
         super(type, world);
     }

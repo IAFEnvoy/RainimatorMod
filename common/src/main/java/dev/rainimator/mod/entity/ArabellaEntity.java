@@ -3,12 +3,13 @@ package dev.rainimator.mod.entity;
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.object.ParticleUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -41,14 +42,14 @@ public class ArabellaEntity extends MonsterFractionEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 20.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
+        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 20.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
         return builder;
     }
 
@@ -74,14 +75,13 @@ public class ArabellaEntity extends MonsterFractionEntityBase {
     @Override
     public boolean damage(DamageSource source, float amount) {
         Vec3d _center = this.getPos();
-        List<Entity> _entfound = this.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(3.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
-        for (Entity entityiterator : _entfound) {
-            if (entityiterator instanceof PlayerEntity && Math.random() < 0.3D) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
+        List<Entity> entities = this.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(3.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
+        for (Entity it : entities)
+            if (it instanceof PlayerEntity && Math.random() < 0.3D) {
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.NAEUS_SWORD_1.get(), 1.0F, 1.0F);
                 ParticleUtil.spawn3x3Particles(this.getWorld(), (ParticleEffect) RainimatorParticles.ENDER_DAGGER.get(), this.getX(), this.getY(), this.getZ());
-                entityiterator.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 6.0F);
+                it.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 6.0F);
             }
-        }
         return super.damage(source, amount);
     }
 
@@ -97,16 +97,11 @@ public class ArabellaEntity extends MonsterFractionEntityBase {
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.DROWN))
-            return true;
-        if (damageSource.isOf(DamageTypes.DRAGON_BREATH))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
-            return true;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.DROWN)) return true;
+        if (damageSource.isOf(DamageTypes.DRAGON_BREATH)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 }

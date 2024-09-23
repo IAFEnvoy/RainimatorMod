@@ -1,14 +1,14 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -44,15 +44,14 @@ public class NullLikeEntity extends MonsterFractionEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 120.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 30.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 2.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 120.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 30.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 2.0D);
     }
 
     @Override
@@ -89,14 +88,10 @@ public class NullLikeEntity extends MonsterFractionEntityBase {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (this.hasStatusEffect(RainimatorEffects.FEAR_DARK.get()))
-            this.clearStatusEffects();
-        else if (this.hasStatusEffect(RainimatorEffects.SOUL_DEATH.get()))
-            this.clearStatusEffects();
-        else if (this.hasStatusEffect(StatusEffects.POISON))
-            this.clearStatusEffects();
-        else if (this.hasStatusEffect(StatusEffects.WEAKNESS))
-            this.clearStatusEffects();
+        if (this.hasStatusEffect(RainimatorEffects.FEAR_DARK.get())) this.clearStatusEffects();
+        else if (this.hasStatusEffect(RainimatorEffects.SOUL_DEATH.get())) this.clearStatusEffects();
+        else if (this.hasStatusEffect(StatusEffects.POISON)) this.clearStatusEffects();
+        else if (this.hasStatusEffect(StatusEffects.WEAKNESS)) this.clearStatusEffects();
         else if (Math.random() < 0.3D) {//TODO: Optimize
             this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x, y + 0.5D, z + 0.5D, 0.0D, 0.0D, 0.0D);
             this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x + 0.5D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
@@ -119,7 +114,7 @@ public class NullLikeEntity extends MonsterFractionEntityBase {
             this.getWorld().addParticle(RainimatorParticles.SWEATER_SNOW.get(), x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
         }
         if (Math.random() < 0.7D)
-            if (!this.getWorld().isClient()) {
+            if (!this.getWorld().isClient) {
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 1));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 1));
             }
@@ -128,35 +123,26 @@ public class NullLikeEntity extends MonsterFractionEntityBase {
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.CACTUS))
-            return true;
-        if (damageSource.isOf(DamageTypes.DROWN))
-            return true;
-        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT))
-            return true;
-        if (damageSource.isOf(DamageTypes.EXPLOSION))
-            return true;
-        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
-            return true;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.CACTUS)) return true;
+        if (damageSource.isOf(DamageTypes.DROWN)) return true;
+        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT)) return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION)) return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
-        EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
+        EntityData data = super.initialize(world, difficulty, reason, livingdata, tag);
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5.0F, 1.0F);
-        if (world instanceof ServerWorld _level)
-            _level.spawnParticles(RainimatorParticles.FLOWER_WHITE.get(), x, y, z, 300, 2.0D, 3.0D, 2.0D, 0.3D);
+        ServerWorld serverWorld = world.toServerWorld();
+        SoundUtil.playSound(serverWorld, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5.0F, 1.0F);
+        serverWorld.spawnParticles(RainimatorParticles.FLOWER_WHITE.get(), x, y, z, 300, 2.0D, 3.0D, 2.0D, 0.3D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
@@ -171,13 +157,13 @@ public class NullLikeEntity extends MonsterFractionEntityBase {
             Timeout.create(38520, callback);
         }
 
-        return retval;
+        return data;
     }
 
     @Override
     public void baseTick() {
         super.baseTick();
-        if (!this.getWorld().isClient())
+        if (!this.getWorld().isClient)
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 1));
         if (!this.isAlive())
             SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "null_boss_music"));

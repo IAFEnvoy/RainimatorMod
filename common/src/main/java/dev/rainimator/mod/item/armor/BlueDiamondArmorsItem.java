@@ -22,7 +22,7 @@ public class BlueDiamondArmorsItem extends ArmorWithTickItem {
     public void onArmorTick(World world, PlayerEntity entity) {
         if (entity == null)
             return;
-        if (!entity.getWorld().isClient() && ServerConfig.getInstance().enableArmorEffect &&
+        if (!entity.getWorld().isClient && ServerConfig.getInstance().enableArmorEffect &&
                 entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.BLUE_DIAMOND_HELMET.get() &&
                 entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == RainimatorItems.BLUE_DIAMOND_CHESTPLATE.get() &&
                 entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == RainimatorItems.BLUE_DIAMOND_LEGGINGS.get() &&

@@ -1,10 +1,10 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -35,15 +35,14 @@ public class DaryllEntity extends MonsterFractionEntityBase implements RangedAtt
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 80.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 20.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 80.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 20.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
     }
 
     @Override
@@ -74,21 +73,19 @@ public class DaryllEntity extends MonsterFractionEntityBase implements RangedAtt
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
-            return true;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
     @Override
-    public void attack(LivingEntity target, float flval) {
-        DaryllEntityProjectile entityarrow = new DaryllEntityProjectile(RainimatorEntities.DARYLL_PROJECTILE.get(), this, this.getWorld());
+    public void attack(LivingEntity target, float pullProgress) {
+        DaryllEntityProjectile projectile = new DaryllEntityProjectile(RainimatorEntities.DARYLL_PROJECTILE.get(), this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();
-        entityarrow.setVelocity(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
-        this.getWorld().spawnEntity(entityarrow);
+        projectile.setVelocity(d1, d0 - projectile.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
+        this.getWorld().spawnEntity(projectile);
     }
 
     @Override

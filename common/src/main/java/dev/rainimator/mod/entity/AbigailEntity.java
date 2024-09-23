@@ -5,8 +5,8 @@ import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -37,14 +37,14 @@ public class AbigailEntity extends MonsterFractionEntityBase implements RangedAt
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 30.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
+        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 30.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
         return builder;
     }
 
@@ -93,22 +93,19 @@ public class AbigailEntity extends MonsterFractionEntityBase implements RangedAt
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.getSource() instanceof PersistentProjectileEntity)
-            return true;
-        if (damageSource.isOf(DamageTypes.EXPLOSION))
-            return true;
-        if (damageSource.isOf(DamageTypes.TRIDENT))
-            return true;
+        if (damageSource.getSource() instanceof PersistentProjectileEntity) return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION)) return true;
+        if (damageSource.isOf(DamageTypes.TRIDENT)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
     @Override
     public void attack(LivingEntity target, float flval) {
-        AbigailEntityProjectile entityarrow = new AbigailEntityProjectile(RainimatorEntities.ABIGAIL_PROJECTILE.get(), this, this.getWorld());
+        AbigailEntityProjectile projectile = new AbigailEntityProjectile(RainimatorEntities.ABIGAIL_PROJECTILE.get(), this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();
-        entityarrow.setVelocity(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
-        this.getWorld().spawnEntity(entityarrow);
+        projectile.setVelocity(d1, d0 - projectile.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
+        this.getWorld().spawnEntity(projectile);
     }
 }

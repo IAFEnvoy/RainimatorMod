@@ -3,13 +3,13 @@ package dev.rainimator.mod.entity;
 import com.iafenvoy.neptune.object.EntityUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.VecUtil;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -51,15 +51,14 @@ public class KralosEntity extends MonsterFractionEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 25.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 25.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
     }
 
     @Override
@@ -98,24 +97,24 @@ public class KralosEntity extends MonsterFractionEntityBase {
         double z = this.getZ();
         Entity sourceentity = source.getAttacker();
         if (sourceentity != null) {
-            if (sourceentity instanceof LivingEntity _entity) {
-                this.setTarget(_entity);
+            if (sourceentity instanceof LivingEntity living) {
+                this.setTarget(living);
                 if (Math.random() < 0.2D)
-                    if (!_entity.getWorld().isClient())
-                        _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 1));
+                    if (!living.getWorld().isClient)
+                        living.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 1));
             }
             if (this.getHealth() < 60.0F) {
                 if (EnchantmentHelper.getLevel(Enchantments.SHARPNESS, this.getMainHandStack()) == 0) {
-                    if (!this.getWorld().isClient())
+                    if (!this.getWorld().isClient)
                         this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION.get(), 9999, 0));
                     this.getMainHandStack().addEnchantment(Enchantments.SHARPNESS, 4);
                     if (this.getWorld() instanceof ServerWorld _level)
                         EntityUtil.lightening(_level, x, y, z);
                     this.getWorld().setBlockState(VecUtil.createBlockPos(x, y, z), Blocks.FIRE.getDefaultState(), 3);
                     SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.enderman.scream"), 1.0F, 1.0F);
-                    if (this.getWorld() instanceof ServerWorld _level)
-                        _level.spawnParticles(ParticleTypes.SOUL, x, y, z, 200, 2.0D, 3.0D, 2.0D, 0.001D);
-                    if (!this.getWorld().isClient() && this.getWorld().getServer() != null)
+                    if (this.getWorld() instanceof ServerWorld serverWorld)
+                        serverWorld.spawnParticles(ParticleTypes.SOUL, x, y, z, 200, 2.0D, 3.0D, 2.0D, 0.001D);
+                    if (!this.getWorld().isClient && this.getWorld().getServer() != null)
                         this.getWorld().getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.kralos.message"), false);
                 }
             }
@@ -125,33 +124,25 @@ public class KralosEntity extends MonsterFractionEntityBase {
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.getSource() instanceof PersistentProjectileEntity)
-            return true;
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.CACTUS))
-            return true;
-        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT))
-            return true;
-        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
-            return true;
+        if (damageSource.getSource() instanceof PersistentProjectileEntity) return true;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.CACTUS)) return true;
+        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT)) return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
-        EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
+        EntityData data = super.initialize(world, difficulty, reason, livingdata, tag);
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (world instanceof World _level)
-            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.wither.ambient"), 1.0F, 1.0F);
-        if (world instanceof ServerWorld _level)
-            _level.spawnParticles(ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.001D);
+        ServerWorld serverWorld = world.toServerWorld();
+        SoundUtil.playSound(serverWorld, this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.wither.ambient"), 1.0F, 1.0F);
+        serverWorld.spawnParticles(ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.001D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
@@ -167,13 +158,13 @@ public class KralosEntity extends MonsterFractionEntityBase {
             Timeout.create(17360, callback);
             Timeout.create(19840, callback);
         }
-        return retval;
+        return data;
     }
 
     @Override
     public void baseTick() {
         super.baseTick();
-        if (!this.getWorld().isClient()) {
+        if (!this.getWorld().isClient) {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 0));
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 0));
         }

@@ -1,13 +1,13 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.EntityUtil;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -37,15 +37,14 @@ public class PiglinCommanderEntity extends MonsterFractionEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 80.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 20.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 4.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 80.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 20.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 4.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
     }
 
     @Override
@@ -79,16 +78,14 @@ public class PiglinCommanderEntity extends MonsterFractionEntityBase {
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
-            return true;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
-        EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
+        EntityData data = super.initialize(world, difficulty, reason, livingdata, tag);
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
@@ -97,6 +94,6 @@ public class PiglinCommanderEntity extends MonsterFractionEntityBase {
             if (Math.random() < 0.4D)
                 EntityUtil.summon(RainimatorEntities.ZOMBIE_PIGLIN_ART.get(), _level, x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2));
         }
-        return retval;
+        return data;
     }
 }

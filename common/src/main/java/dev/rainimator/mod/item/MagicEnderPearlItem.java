@@ -38,7 +38,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
             _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), x, y, z, 30, 0.5D, 1.0D, 0.5D, 0.02D);
         if (entity.isSprinting()) {
             World projectileLevel = entity.getWorld();
-            if (!projectileLevel.isClient()) {
+            if (!projectileLevel.isClient) {
                 ProjectileEntity _entityToSpawn = new EnderPearlEntity(EntityType.ENDER_PEARL, projectileLevel);
                 _entityToSpawn.setOwner(entity);
                 _entityToSpawn.setPosition(entity.getX(), entity.getEyeY() - 0.1D, entity.getZ());
@@ -55,7 +55,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
 
         } else {
             World projectileLevel = entity.getWorld();
-            if (!projectileLevel.isClient()) {
+            if (!projectileLevel.isClient) {
                 ProjectileEntity _entityToSpawn = new EnderPearlEntity(EntityType.ENDER_PEARL, projectileLevel);
                 _entityToSpawn.setOwner(entity);
                 _entityToSpawn.setPosition(entity.getX(), entity.getEyeY() - 0.1D, entity.getZ());
@@ -74,7 +74,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
         if (entity.isSneaking()) {
 
             World projectileLevel = entity.getWorld();
-            if (!projectileLevel.isClient()) {
+            if (!projectileLevel.isClient) {
                 ProjectileEntity _entityToSpawn = new EnderPearlEntity(EntityType.ENDER_PEARL, projectileLevel);
                 _entityToSpawn.setOwner(entity);
                 _entityToSpawn.setPosition(entity.getX(), entity.getEyeY() - 0.1D, entity.getZ());

@@ -31,7 +31,7 @@ public class BlackDeathSwordItem extends SwordItemBase {
         if (entity instanceof MobEntity _entity)
             _entity.setTarget(sourceentity);
         if (Math.random() < 0.7D) {
-            if (!entity.getWorld().isClient()) {
+            if (!entity.getWorld().isClient) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 2));
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 2));
             }
@@ -42,7 +42,7 @@ public class BlackDeathSwordItem extends SwordItemBase {
             if (entity.getWorld() instanceof ServerWorld _level)
                 _level.spawnParticles(RainimatorParticles.FLOWER_WHITE.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         } else {
-            if (!sourceentity.getWorld().isClient())
+            if (!sourceentity.getWorld().isClient)
                 sourceentity.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 300, 1));
         }
 

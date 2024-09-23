@@ -25,7 +25,7 @@ public class NetherNuclearReactorItem extends ItemBase {
         if (!data.tryUseMana(entity, ServerConfig.getInstance().nether_nuclear_reactor))
             return ar;
         ItemStack itemtack = ar.getValue();
-        if (!entity.getWorld().isClient())
+        if (!entity.getWorld().isClient)
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 400, 0));
         entity.getItemCooldownManager().set(itemtack.getItem(), 800);
         return ar;

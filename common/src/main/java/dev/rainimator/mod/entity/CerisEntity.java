@@ -7,10 +7,7 @@ import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
-import dev.rainimator.mod.registry.RainimatorEffects;
-import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -48,14 +45,14 @@ public class CerisEntity extends FractionEntityWithBossBar {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 200.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 35.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 5.0D);
+        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 200.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 35.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 5.0D);
         return builder;
     }
 
@@ -84,44 +81,42 @@ public class CerisEntity extends FractionEntityWithBossBar {
         if (sourceentity instanceof LivingEntity _ent)
             this.setTarget(_ent);
         if (this.hasStatusEffect(RainimatorEffects.STUNNED.get())) {
-            if (!this.getWorld().isClient()) {
+            if (!this.getWorld().isClient) {
                 this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION.get(), 100, 0));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 3));
             }
         } else {
-            if (!this.getWorld().isClient())
+            if (!this.getWorld().isClient)
                 this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION.get(), 100, 0));
 
             if (Math.random() < 0.3D) {
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.enderman.teleport"), 4.0F, 1.0F);
-                if (this.getWorld() instanceof ServerWorld _level)
-                    _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
+                if (this.getWorld() instanceof ServerWorld serverWorld)
+                    serverWorld.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
                 this.getNavigation().startMovingTo(this.getX() + RandomHelper.nextInt(3, 9), this.getY(), this.getZ() + RandomHelper.nextInt(3, 9), 20.0D);
-                if (!this.getWorld().isClient())
+                if (!this.getWorld().isClient)
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 2));
                 if (sourceentity instanceof LivingEntity livingEntity) {
-                    if (!livingEntity.getWorld().isClient())
+                    if (!livingEntity.getWorld().isClient)
                         livingEntity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.FEAR_DARK.get(), 200, 0));
-                    if (!livingEntity.hasStatusEffect(StatusEffects.GLOWING)) {
-                        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_f"), 1.0F, 1.0F);
-                        if (livingEntity instanceof LivingEntity)
-                            if (!livingEntity.getWorld().isClient())
-                                livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100, 0));
-                    }
                     if (livingEntity.hasStatusEffect(StatusEffects.GLOWING)) {
-                        if (!livingEntity.getWorld().isClient()) {
+                        if (!livingEntity.getWorld().isClient) {
                             livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 3));
                             livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 100, 0));
                         }
                         Timeout.create(60, () -> {
                             BlockPos blockPos = this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(1.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, this)).getBlockPos();
                             sourceentity.requestTeleport(blockPos.getX(), this.getY(), blockPos.getZ());
-                            if (sourceentity instanceof ServerPlayerEntity _serverPlayer)
-                                _serverPlayer.networkHandler.requestTeleport(blockPos.getX(), this.getY(), blockPos.getZ(), sourceentity.getYaw(), sourceentity.getPitch());
-                            SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_skill"), 1.0F, 1.0F);
-                            if (this.getWorld() instanceof ServerWorld _level)
-                                _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
+                            if (sourceentity instanceof ServerPlayerEntity serverPlayer)
+                                serverPlayer.networkHandler.requestTeleport(blockPos.getX(), this.getY(), blockPos.getZ(), sourceentity.getYaw(), sourceentity.getPitch());
+                            SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.CERIS_SKILL.get(), 1.0F, 1.0F);
+                            if (this.getWorld() instanceof ServerWorld serverWorld)
+                                serverWorld.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
                         });
+                    } else {
+                        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.CERIS_F.get(), 1.0F, 1.0F);
+                        if (!livingEntity.getWorld().isClient)
+                            livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100, 0));
                     }
                 }
             }
@@ -132,24 +127,15 @@ public class CerisEntity extends FractionEntityWithBossBar {
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.getSource() instanceof PersistentProjectileEntity)
-            return true;
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.DROWN))
-            return true;
-        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT))
-            return true;
-        if (damageSource.isOf(DamageTypes.EXPLOSION))
-            return true;
-        if (damageSource.isOf(DamageTypes.TRIDENT))
-            return true;
-        if (damageSource.isOf(DamageTypes.DRAGON_BREATH))
-            return true;
-        if (damageSource.isOf(DamageTypes.DRAGON_BREATH))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
-            return true;
+        if (damageSource.getSource() instanceof PersistentProjectileEntity) return true;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.DROWN)) return true;
+        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT)) return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION)) return true;
+        if (damageSource.isOf(DamageTypes.TRIDENT)) return true;
+        if (damageSource.isOf(DamageTypes.DRAGON_BREATH)) return true;
+        if (damageSource.isOf(DamageTypes.DRAGON_BREATH)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
@@ -166,22 +152,22 @@ public class CerisEntity extends FractionEntityWithBossBar {
     @Override
     public void onDeath(DamageSource source) {
         super.onDeath(source);
-        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_death"), 1.0F, 1.0F);
-        if (this.getWorld() instanceof ServerWorld _level)
-            _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 60, 0.5D, 1.0D, 0.5D, 0.5D);
+        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.CERIS_DEATH.get(), 1.0F, 1.0F);
+        if (this.getWorld() instanceof ServerWorld serverWorld)
+            serverWorld.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 60, 0.5D, 1.0D, 0.5D, 0.5D);
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData ret_val = super.initialize(world, difficulty, reason, livingdata, tag);
-        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_live"), 1.0F, 1.0F);
+        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.CERIS_LIVE.get(), 1.0F, 1.0F);
 
-        if (world instanceof ServerWorld _level)
-            _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.5D, 0.5D, 0.5D);
+        if (world instanceof ServerWorld serverWorld)
+            serverWorld.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.5D, 0.5D, 0.5D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_boss_music"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.CERIS_BOSS_MUSIC.get(), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(4700, callback);
@@ -199,7 +185,7 @@ public class CerisEntity extends FractionEntityWithBossBar {
     @Override
     public void baseTick() {
         super.baseTick();
-        if (!this.getWorld().isClient()) {
+        if (!this.getWorld().isClient) {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 80, 1));
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 1));
         }

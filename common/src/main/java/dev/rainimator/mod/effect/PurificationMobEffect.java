@@ -1,5 +1,6 @@
 package dev.rainimator.mod.effect;
 
+import com.iafenvoy.neptune.util.function.MemorizeSupplier;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import net.minecraft.entity.LivingEntity;
@@ -11,40 +12,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurificationMobEffect extends StatusEffect {
-    private static final List<StatusEffect> effects = new ArrayList<>();
+    private static final MemorizeSupplier<List<StatusEffect>> effects = new MemorizeSupplier<>(() -> {
+        List<StatusEffect> list = new ArrayList<>();
+        list.add(RainimatorEffects.FEAR_DARK.get());
+        list.add(RainimatorEffects.SOUL_DEATH.get());
+        list.add(RainimatorEffects.STUNNED.get());
+        list.add(RainimatorEffects.ICE_PEOPLE.get());
+        list.add(StatusEffects.BAD_OMEN);
+        list.add(StatusEffects.BLINDNESS);
+        list.add(StatusEffects.HUNGER);
+        list.add(StatusEffects.INSTANT_DAMAGE);
+        list.add(StatusEffects.MINING_FATIGUE);
+        list.add(StatusEffects.POISON);
+        list.add(StatusEffects.SLOWNESS);
+        list.add(StatusEffects.UNLUCK);
+        list.add(StatusEffects.WEAKNESS);
+        list.add(StatusEffects.WITHER);
+        list.add(StatusEffects.NAUSEA);
+        list.add(StatusEffects.LEVITATION);
+        return list;
+    });
 
     public PurificationMobEffect() {
         super(StatusEffectCategory.BENEFICIAL, -10027009);
     }
 
-    public static synchronized void initEffectList() {
-        effects.add(RainimatorEffects.FEAR_DARK.get());
-        effects.add(RainimatorEffects.SOUL_DEATH.get());
-        effects.add(RainimatorEffects.STUNNED.get());
-        effects.add(RainimatorEffects.ICE_PEOPLE.get());
-        effects.add(StatusEffects.BAD_OMEN);
-        effects.add(StatusEffects.BLINDNESS);
-        effects.add(StatusEffects.HUNGER);
-        effects.add(StatusEffects.INSTANT_DAMAGE);
-        effects.add(StatusEffects.MINING_FATIGUE);
-        effects.add(StatusEffects.POISON);
-        effects.add(StatusEffects.SLOWNESS);
-        effects.add(StatusEffects.UNLUCK);
-        effects.add(StatusEffects.WEAKNESS);
-        effects.add(StatusEffects.WITHER);
-        effects.add(StatusEffects.NAUSEA);
-        effects.add(StatusEffects.LEVITATION);
-    }
-
-    @Override
-    public String getTranslationKey() {
-        return "effect." + RainimatorMod.MOD_ID + ".purification";
-    }
-
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (effects.size() == 0) initEffectList();
-        for (StatusEffect effect : effects)
+        for (StatusEffect effect : effects.get())
             if (entity.hasStatusEffect(effect)) {
                 entity.removeStatusEffect(effect);
                 break;

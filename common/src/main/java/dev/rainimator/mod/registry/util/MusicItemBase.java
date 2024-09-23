@@ -6,11 +6,12 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MusicDiscItem;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Rarity;
 
 public class MusicItemBase extends MusicDiscItem {
-    public MusicItemBase(String musicId) {
-        super(2, RainimatorSounds.REGISTRY_MAP.get(musicId).get(), new Settings().maxCount(1).rarity(Rarity.RARE).arch$tab(RainimatorItemGroups.ITEM), 0);
+    public MusicItemBase(SoundEvent soundEvent) {
+        super(2, soundEvent, new Settings().maxCount(1).rarity(Rarity.RARE).arch$tab(RainimatorItemGroups.ITEM), 0);
     }//TODO:LENGTH
 
     @Override

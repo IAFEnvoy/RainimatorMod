@@ -1,14 +1,14 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.EntityUtil;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -39,15 +39,14 @@ public class PatrickEntity extends MonsterFractionEntityBase implements RangedAt
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 120.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 30.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 120.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 30.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
     }
 
     @Override
@@ -108,7 +107,7 @@ public class PatrickEntity extends MonsterFractionEntityBase implements RangedAt
             this.getWorld().addParticle(RainimatorParticles.YELLOW_LIGHTENING.get(), x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
         }
         if (Math.random() < 0.7D)
-            if (!this.getWorld().isClient()) {
+            if (!this.getWorld().isClient) {
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 1));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 1));
             }
@@ -117,16 +116,16 @@ public class PatrickEntity extends MonsterFractionEntityBase implements RangedAt
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
-        EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
-        if (world instanceof ServerWorld _level)
-            EntityUtil.summon(RainimatorEntities.HILDA.get(), _level, this.getX() + RandomHelper.nextInt(1, 4), this.getY(), this.getZ() + RandomHelper.nextInt(1, 4));
-        return retval;
+        EntityData data = super.initialize(world, difficulty, reason, livingdata, tag);
+        ServerWorld serverWorld = world.toServerWorld();
+        EntityUtil.summon(RainimatorEntities.HILDA.get(), serverWorld, this.getX() + RandomHelper.nextInt(1, 4), this.getY(), this.getZ() + RandomHelper.nextInt(1, 4));
+        return data;
     }
 
     @Override
     public void baseTick() {
         super.baseTick();
-        if (!this.getWorld().isClient())
+        if (!this.getWorld().isClient)
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 0));
     }
 

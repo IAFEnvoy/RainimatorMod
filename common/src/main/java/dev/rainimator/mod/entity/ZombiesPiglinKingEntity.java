@@ -1,12 +1,12 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -45,15 +45,14 @@ public class ZombiesPiglinKingEntity extends MonsterFractionEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 120.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 30.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 2.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 120.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 30.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 2.0D);
     }
 
     @Override
@@ -87,25 +86,21 @@ public class ZombiesPiglinKingEntity extends MonsterFractionEntityBase {
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.CACTUS))
-            return true;
-        if (damageSource.isOf(DamageTypes.EXPLOSION))
-            return true;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.CACTUS)) return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
-        EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
+        EntityData data = super.initialize(world, difficulty, reason, livingdata, tag);
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, Identifier.tryParse("entity.wither.ambient"), 1.0F, 1.0F);
-        if (world instanceof ServerWorld _level)
-            _level.spawnParticles(ParticleTypes.SOUL, x, y, z, 200, 1.0D, 2.0D, 1.0D, 0.02D);
+        ServerWorld serverWorld = world.toServerWorld();
+        SoundUtil.playSound(serverWorld, x, y, z, Identifier.tryParse("entity.wither.ambient"), 1.0F, 1.0F);
+        serverWorld.spawnParticles(ParticleTypes.SOUL, x, y, z, 200, 1.0D, 2.0D, 1.0D, 0.02D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
@@ -119,13 +114,13 @@ public class ZombiesPiglinKingEntity extends MonsterFractionEntityBase {
             Timeout.create(17400, callback);
             Timeout.create(20880, callback);
         }
-        return retval;
+        return data;
     }
 
     @Override
     public void baseTick() {
         super.baseTick();
-        if (!this.getWorld().isClient())
+        if (!this.getWorld().isClient)
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 0));
         if (!((Entity) this).isAlive())
             SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "piglin_king_boss_music"));

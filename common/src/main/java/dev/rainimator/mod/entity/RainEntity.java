@@ -1,14 +1,10 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
-import dev.rainimator.mod.registry.RainimatorEffects;
-import dev.rainimator.mod.registry.RainimatorEntities;
-import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.RainimatorParticles;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
+import dev.rainimator.mod.registry.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -43,15 +39,14 @@ public class RainEntity extends MonsterFractionEntityBase implements RangedAttac
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 30.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 30.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
     }
 
     @Override
@@ -117,12 +112,12 @@ public class RainEntity extends MonsterFractionEntityBase implements RangedAttac
             this.getWorld().addParticle(RainimatorParticles.WHITE_CIRCLE.get(), x + 1.0D, y + 1.5D, z, 0.0D, 0.0D, 0.0D);
         }
         if (Math.random() < 0.7D)
-            if (!this.getWorld().isClient()) {
+            if (!this.getWorld().isClient) {
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 1));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 1));
             }
         if (this.hasStatusEffect(RainimatorEffects.STUNNED.get()))
-            if (!this.getWorld().isClient()) {
+            if (!this.getWorld().isClient) {
                 this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION.get(), 200, 0));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 3));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 3));
@@ -132,14 +127,10 @@ public class RainEntity extends MonsterFractionEntityBase implements RangedAttac
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.getSource() instanceof PersistentProjectileEntity)
-            return true;
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.EXPLOSION))
-            return true;
-        if (damageSource.isOf(DamageTypes.TRIDENT))
-            return true;
+        if (damageSource.getSource() instanceof PersistentProjectileEntity) return true;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION)) return true;
+        if (damageSource.isOf(DamageTypes.TRIDENT)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
@@ -149,20 +140,19 @@ public class RainEntity extends MonsterFractionEntityBase implements RangedAttac
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 1.0F, 1.0F);
-        if (world instanceof ServerWorld _level)
-            _level.spawnParticles(RainimatorParticles.SNOW.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
+        ServerWorld serverWorld = world.toServerWorld();
+        SoundUtil.playSound(serverWorld, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 1.0F, 1.0F);
+        serverWorld.spawnParticles(RainimatorParticles.SNOW.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         return retval;
     }
 
     @Override
-    public void attack(LivingEntity target, float flval) {
-        RainEntityProjectile entityarrow = new RainEntityProjectile(RainimatorEntities.RAIN_PROJECTILE.get(), this, this.getWorld());
+    public void attack(LivingEntity target, float pullProgress) {
+        RainEntityProjectile projectile = new RainEntityProjectile(RainimatorEntities.RAIN_PROJECTILE.get(), this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();
-        entityarrow.setVelocity(d1, d0 - entityarrow.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
-        this.getWorld().spawnEntity(entityarrow);
+        projectile.setVelocity(d1, d0 - projectile.getY() + Math.sqrt(d1 * d1 + d3 * d3) * 0.20000000298023224D, d3, 1.6F, 12.0F);
+        this.getWorld().spawnEntity(projectile);
     }
 }

@@ -132,13 +132,13 @@ public class MysteriousGiftBoxItem extends ItemBase {
             for (Triple<ItemConvertible, Integer, String> triple : lootTable) {
                 if (Math.random() < 0.1D) {
                     stack = new ItemStack(triple.getLeft(), triple.getMiddle());
-                    if (!triple.getRight().isBlank() && !_player.getWorld().isClient())
+                    if (!triple.getRight().isBlank() && !_player.getWorld().isClient)
                         _player.sendMessage(Text.translatable(triple.getRight()), true);
                     break;
                 }
             }
             if (stack.getItem() == Items.AIR)
-                if (!_player.getWorld().isClient())
+                if (!_player.getWorld().isClient)
                     _player.sendMessage(Text.translatable("item.rainimator.mysterious_gift_box.goodluck4"), true);
             _player.getInventory().insertStack(stack);
             _player.getInventory().markDirty();

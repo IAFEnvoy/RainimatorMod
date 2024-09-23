@@ -15,14 +15,9 @@ public class SoulDeathMobEffect extends StatusEffect {
     }
 
     @Override
-    public String getTranslationKey() {
-        return "effect." + RainimatorMod.MOD_ID + ".soul_death";
-    }
-
-    @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         entity.damage(DamageUtil.build(entity, DamageTypes.GENERIC), 1.0F);
-        if (!entity.getWorld().isClient()) {
+        if (!entity.getWorld().isClient) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 4));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60, 1));
         }

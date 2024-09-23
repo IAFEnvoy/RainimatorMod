@@ -26,7 +26,7 @@ import net.minecraft.util.Rarity;
 
 import java.util.function.Supplier;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 public class RainimatorItems {
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(RainimatorMod.MOD_ID, RegistryKeys.ITEM);
     //resources
@@ -131,16 +131,16 @@ public class RainimatorItems {
     public static final RegistrySupplier<Item> NETHERITE_NUCLEAR_REACTOR = register("netherite_nuclear_reactor", NetherNuclearReactorItem::new);
     public static final RegistrySupplier<Item> NIGHTMARES = register("nightmares", NightmaresItem::new);
     public static final RegistrySupplier<Item> DIVINE_CORE = register("divine_core", DivineCoreItem::new);
-    public static final RegistrySupplier<Item> HIM_MUSIC = register("him_music", () -> new MusicItemBase("him_music_boss"));
-    public static final RegistrySupplier<Item> CERIS_MUSIC = register("ceris_music", () -> new MusicItemBase("ceris_boss_music"));
-    public static final RegistrySupplier<Item> NULL_MUSIC = register("null_music", () -> new MusicItemBase("null_boss_music"));
-    public static final RegistrySupplier<Item> BLACKBONE_MUSIC = register("blackbone_music", () -> new MusicItemBase("blackbone_boss_music"));
-    public static final RegistrySupplier<Item> PIGLIN_KING_MUSIC = register("piglin_king_music", () -> new MusicItemBase("piglin_king_boss_music"));
-    public static final RegistrySupplier<Item> NAEUS_MUSIC = register("naeus_music", () -> new MusicItemBase("naeus_boss_music"));
-    public static final RegistrySupplier<Item> GLUTTON_MUSIC = register("glutton_music", () -> new MusicItemBase("glutton_boss_music"));
-    public static final RegistrySupplier<Item> HIM_ONE_LIVES = register("him_one_lives", () -> new MusicItemBase("him_one_lives"));
-    public static final RegistrySupplier<Item> KRALOS_MUSIC = register("kralos_music", () -> new MusicItemBase("kralos_boss_music"));
-    public static final RegistrySupplier<Item> KLAUS_MUSIC = register("klaus_music", () -> new MusicItemBase("klaus_boss_music"));
+    public static final RegistrySupplier<Item> HIM_MUSIC = register("him_music", () -> new MusicItemBase(RainimatorSounds.HIM_MUSIC_BOSS.get()));
+    public static final RegistrySupplier<Item> CERIS_MUSIC = register("ceris_music", () -> new MusicItemBase(RainimatorSounds.CERIS_BOSS_MUSIC.get()));
+    public static final RegistrySupplier<Item> NULL_MUSIC = register("null_music", () -> new MusicItemBase(RainimatorSounds.NULL_BOSS_MUSIC.get()));
+    public static final RegistrySupplier<Item> BLACKBONE_MUSIC = register("blackbone_music", () -> new MusicItemBase(RainimatorSounds.BLACKBONE_BOSS_MUSIC.get()));
+    public static final RegistrySupplier<Item> PIGLIN_KING_MUSIC = register("piglin_king_music", () -> new MusicItemBase(RainimatorSounds.PIGLIN_KING_BOSS_MUSIC.get()));
+    public static final RegistrySupplier<Item> NAEUS_MUSIC = register("naeus_music", () -> new MusicItemBase(RainimatorSounds.NAEUS_BOSS_MUSIC.get()));
+    public static final RegistrySupplier<Item> GLUTTON_MUSIC = register("glutton_music", () -> new MusicItemBase(RainimatorSounds.GLUTTON_BOSS_MUSIC.get()));
+    public static final RegistrySupplier<Item> HIM_ONE_LIVES = register("him_one_lives", () -> new MusicItemBase(RainimatorSounds.HIM_ONE_LIVES.get()));
+    public static final RegistrySupplier<Item> KRALOS_MUSIC = register("kralos_music", () -> new MusicItemBase(RainimatorSounds.KRALOS_BOSS_MUSIC.get()));
+    public static final RegistrySupplier<Item> KLAUS_MUSIC = register("klaus_music", () -> new MusicItemBase(RainimatorSounds.KLAUS_BOSS_MUSIC.get()));
     public static final RegistrySupplier<Item> PATRICK_HELMET = register("patrick_helmet", () -> new PatrickArmorItem(ArmorItem.Type.HELMET));
     public static final RegistrySupplier<Item> PATRICK_CHESTPLATE = register("patrick_chestplate", () -> new PatrickArmorItem(ArmorItem.Type.CHESTPLATE));
     public static final RegistrySupplier<Item> PATRICK_LEGGINGS = register("patrick_leggings", () -> new PatrickArmorItem(ArmorItem.Type.LEGGINGS));

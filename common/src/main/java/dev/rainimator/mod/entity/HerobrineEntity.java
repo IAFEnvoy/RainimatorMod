@@ -5,12 +5,13 @@ import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.VecUtil;
 import com.iafenvoy.neptune.object.entity.StagedMonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
+import com.iafenvoy.neptune.util.CommandHelper;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorEntities;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantments;
@@ -74,15 +75,14 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 200.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 25.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 10.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 200.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 25.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 10.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
     }
 
     @Override
@@ -110,8 +110,8 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
         double y = this.getY();
         double z = this.getZ();
         Vec3d _center = new Vec3d(x, y, z);
-        List<Entity> _entfound = this.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(4.5D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
-        for (Entity entityiterator : _entfound) {
+        List<Entity> list = this.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(4.5D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
+        for (Entity iterator : list) {
             if (this.hasStatusEffect(RainimatorEffects.ICE_PEOPLE.get())) {
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
                 this.requestTeleport(x, y + 4.0D, z);
@@ -122,7 +122,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
                 continue;
             }
             if (this.hasStatusEffect(RainimatorEffects.STUNNED.get())) {
-                if (!this.getWorld().isClient()) {
+                if (!this.getWorld().isClient) {
                     this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION.get(), 200, 0));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 3));
                 }
@@ -131,26 +131,26 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
             if (Math.random() < 0.1D) {
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld _level && Math.random() < 0.01D)
-                    EntityUtil.lightening(_level, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ());
-                this.getWorld().setBlockState(VecUtil.createBlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
-                if (entityiterator instanceof LivingEntity _entity)
-                    if (!_entity.getWorld().isClient())
+                    EntityUtil.lightening(_level, iterator.getX(), iterator.getY(), iterator.getZ());
+                this.getWorld().setBlockState(VecUtil.createBlockPos(iterator.getX(), iterator.getY(), iterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
+                if (iterator instanceof LivingEntity _entity)
+                    if (!_entity.getWorld().isClient)
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 1200, 2));
             } else if (Math.random() < 0.05D) {
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
-                if (this.getWorld() instanceof ServerWorld _level)
-                    _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 15, 0.5D, 0.5D, 0.5D, 0.5D);
+                if (this.getWorld() instanceof ServerWorld serverWorld)
+                    serverWorld.spawnParticles(ParticleTypes.END_ROD, x, y, z, 15, 0.5D, 0.5D, 0.5D, 0.5D);
                 this.getNavigation().startMovingTo(x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2), 20.0D);
-                if (!this.getWorld().isClient())
+                if (!this.getWorld().isClient)
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 0));
             }
             if (this.hasStatusEffect(StatusEffects.SPEED))
-                if (!this.getWorld().isClient()) {
+                if (!this.getWorld().isClient) {
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 2));
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 0));
                 }
             if (this.getHealth() <= 100.0F)
-                if (!this.getWorld().isClient())
+                if (!this.getWorld().isClient)
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 2));
         }
         return super.damage(source, amount);
@@ -158,28 +158,22 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.DROWN))
-            return true;
-        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT))
-            return true;
-        if (damageSource.isOf(DamageTypes.EXPLOSION))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
-            return true;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.DROWN)) return true;
+        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT)) return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
-        if (world instanceof ServerWorld _level)
-            EntityUtil.lightening(_level, this.getX(), this.getY(), this.getZ());
-        if (!world.isClient() && world.getServer() != null && this.getStage() == Stage.First)
-            world.getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.herobrine.stage1"), false);
+        ServerWorld serverWorld = world.toServerWorld();
+        EntityUtil.lightening(serverWorld, this.getX(), this.getY(), this.getZ());
+        if (this.getStage() == Stage.First)
+            serverWorld.getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.herobrine.stage1"), false);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
@@ -200,7 +194,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
     @Override
     public void baseTick() {
         super.baseTick();
-        if (!this.getWorld().isClient()) {
+        if (this.getWorld() instanceof ServerWorld serverWorld) {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 80, 0));
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 1));
             if (!this.isAlive()) {
@@ -210,48 +204,28 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
                         if (this.getOffHandStack().getItem() == Blocks.AIR.asItem()) {
                             this.getNavigation().stop();
                             this.requestTeleport(this.getX(), this.getY(), this.getZ());
-                            ItemStack _setstack = new ItemStack(RainimatorItems.SOUL_PEOPLE.get());
-                            _setstack.setCount(1);
-                            this.setStackInHand(Hand.OFF_HAND, _setstack);
-                            if (!this.getWorld().isClient()) {
-                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 4));
-                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 4));
-                            }
-                            if (this.getWorld() instanceof ServerWorld _level) {
-                                LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                                if (entityToSpawn != null) {
-                                    entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ())));
-                                    entityToSpawn.setCosmetic(true);
-                                    _level.spawnEntity(entityToSpawn);
-                                }
-                            }
+                            ItemStack stack = new ItemStack(RainimatorItems.SOUL_PEOPLE.get());
+                            stack.setCount(1);
+                            this.setStackInHand(Hand.OFF_HAND, stack);
+                            this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 4));
+                            this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 4));
+                            EntityUtil.lightening(serverWorld, this.getX(), this.getY(), this.getZ(), true);
                             this.getWorld().setBlockState(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ()), Blocks.FIRE.getDefaultState(), 3);
-                            if (!this.getWorld().isClient() && this.getServer() != null)
-                                this.getServer().getCommandManager().executeWithPrefix(this.getCommandSource().withSilent().withLevel(4),
-                                        "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:0,Flicker:1,Trail:0,Colors:[I;8073150],FadeColors:[I;2437522]}]}}}}");
+                            CommandHelper.execute(this, "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:0,Flicker:1,Trail:0,Colors:[I;8073150],FadeColors:[I;2437522]}]}}}}");
                             SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "fire_soul"), 5, 1);
 
-                            if (this.getWorld() instanceof ServerWorld _level)
-                                _level.spawnParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 400, 3, 4, 3, 0.002);
+                            serverWorld.spawnParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 400, 3, 4, 3, 0.002);
 
                             Runnable callback = () -> {
                                 this.getNavigation().stop();
                                 this.requestTeleport(this.getX(), this.getY(), this.getZ());
-                                if (this.getWorld() instanceof ServerWorld _level) {
-                                    LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                                    if (entityToSpawn != null) {
-                                        entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ())));
-                                        entityToSpawn.setCosmetic(true);
-                                        _level.spawnEntity(entityToSpawn);
-                                    }
-                                }
+                                EntityUtil.lightening(serverWorld, this.getX(), this.getY(), this.getZ(), true);
                                 this.getWorld().setBlockState(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ()), Blocks.FIRE.getDefaultState(), 3);
                                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("item.totem.use"), 5, 1);
-                                if (this.getWorld() instanceof ServerWorld _level)
-                                    _level.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.002);
-                                if (!this.getWorld().isClient() && this.getServer() != null)
-                                    this.getServer().getCommandManager().executeWithPrefix(this.getCommandSource().withSilent().withLevel(4),
-                                            "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2437522],FadeColors:[I;2651799]}]}}}}");
+                                if (this.getWorld() instanceof ServerWorld serverWorldlevel)
+                                    serverWorldlevel.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.002);
+                                if (!this.getWorld().isClient && this.getServer() != null)
+                                    CommandHelper.execute(this, "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2437522],FadeColors:[I;2651799]}]}}}}");
                             };
                             Timeout.create(30, callback);
                             Timeout.create(60, callback);
@@ -259,30 +233,19 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
                             Timeout.create(90, () -> {
                                 this.getNavigation().stop();
                                 this.requestTeleport(this.getX(), this.getY(), this.getZ());
-                                if (!this.getWorld().isClient())
+                                if (!this.getWorld().isClient)
                                     this.discard();
-                                if (this.getWorld() instanceof ServerWorld _level) {
-                                    LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                                    if (entityToSpawn != null) {
-                                        entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ())));
-                                        entityToSpawn.setCosmetic(true);
-                                        _level.spawnEntity(entityToSpawn);
-                                    }
-                                }
+                                EntityUtil.lightening(serverWorld, this.getX(), this.getY(), this.getZ());
                                 this.getWorld().setBlockState(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ()), Blocks.FIRE.getDefaultState(), 3);
                                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.wither.spawn"), 5, 1);
-                                if (this.getWorld() instanceof ServerWorld _level)
-                                    _level.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.05);
-                                if (!this.getWorld().isClient() && this.getServer() != null)
-                                    this.getServer().getCommandManager().executeWithPrefix(this.getCommandSource().withSilent().withLevel(4),
-                                            "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:2,Flicker:1,Trail:0,Colors:[I;6719955],FadeColors:[I;15790320]}]}}}}");
+                                serverWorld.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.05);
+                                CommandHelper.execute(this, "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:2,Flicker:1,Trail:0,Colors:[I;6719955],FadeColors:[I;15790320]}]}}}}");
                                 this.setHealth(this.getHealth() + 20);
-                                if (this.getWorld() instanceof ServerWorld _level) {
-                                    MobEntity entityToSpawn = new HerobrineEntity(RainimatorEntities.HEROBRINE.get(), _level, Stage.Second);
-                                    entityToSpawn.refreshPositionAndAngles(this.getX(), (this.getY() + 1), this.getZ(), this.getWorld().getRandom().nextFloat() * 360F, 0);
-                                    entityToSpawn.initialize(_level, this.getWorld().getLocalDifficulty(entityToSpawn.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-                                    this.getWorld().spawnEntity(entityToSpawn);
-                                }
+
+                                MobEntity entityToSpawn = new HerobrineEntity(RainimatorEntities.HEROBRINE.get(), serverWorld, Stage.Second);
+                                entityToSpawn.refreshPositionAndAngles(this.getX(), (this.getY() + 1), this.getZ(), this.getWorld().getRandom().nextFloat() * 360F, 0);
+                                entityToSpawn.initialize(serverWorld, this.getWorld().getLocalDifficulty(entityToSpawn.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
+                                this.getWorld().spawnEntity(entityToSpawn);
                             });
                         }
                     }
@@ -295,31 +258,19 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
                 this.getMainHandStack().addEnchantment(Enchantments.SHARPNESS, 5);
                 this.getOffHandStack().addEnchantment(Enchantments.SHARPNESS, 5);
                 SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.wither.spawn"), 1, 1);
-                if (!this.getWorld().isClient() && this.getServer() != null)
-                    this.getServer().getCommandManager().executeWithPrefix(this.getCommandSource().withSilent().withLevel(4),
-                            "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2651799],FadeColors:[I;6719955]}]}}}}");
+                if (!this.getWorld().isClient && this.getServer() != null)
+                    CommandHelper.execute(this, "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2651799],FadeColors:[I;6719955]}]}}}}");
 
-                if (this.getWorld() instanceof ServerWorld _level) {
-                    _level.spawnParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 400, 2, 3, 2, 0.002);
-                    LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);
-                    if (entityToSpawn != null) {
-                        entityToSpawn.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ())));
-                        entityToSpawn.setCosmetic(true);
-                        _level.spawnEntity(entityToSpawn);
-                    }
-                }
+                serverWorld.spawnParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 400, 2, 3, 2, 0.002);
+                EntityUtil.lightening(serverWorld, this.getX(), this.getY(), this.getZ());
+
                 this.getWorld().setBlockState(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ()), Blocks.FIRE.getDefaultState(), 3);
-                if (this.getWorld() instanceof ServerWorld _level) {
-                    MobEntity entityToSpawn = new BlackBoneEntity(RainimatorEntities.BLACKBONE.get(), _level);
-                    entityToSpawn.refreshPositionAndAngles(this.getX(), (this.getY() + 3), this.getZ(), this.getWorld().getRandom().nextFloat() * 360F, 0);
-                    entityToSpawn.initialize(_level, this.getWorld().getLocalDifficulty(entityToSpawn.getBlockPos()), SpawnReason.MOB_SUMMONED, null, null);
-                    this.getWorld().spawnEntity(entityToSpawn);
-                }
-                if (!this.getWorld().isClient() && this.getWorld().getServer() != null)
+                EntityUtil.summon(RainimatorEntities.BLACKBONE.get(), serverWorld, this.getX(), this.getY() + 3, this.getZ());
+                if (!this.getWorld().isClient && this.getWorld().getServer() != null) {
                     this.getWorld().getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.blackbone.summon"), false);
-                Timeout.create(40, () -> SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_boss_music")));
-                if (!this.getWorld().isClient() && this.getWorld().getServer() != null)
                     this.getWorld().getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.herobrine.summon1"), false);
+                }
+                Timeout.create(40, () -> SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_boss_music")));
             }
         }
     }

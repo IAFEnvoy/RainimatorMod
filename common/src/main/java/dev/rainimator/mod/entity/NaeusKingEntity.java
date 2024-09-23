@@ -4,14 +4,15 @@ import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.object.EntityUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.VecUtil;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
+import com.iafenvoy.neptune.util.CommandHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEffects;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -50,15 +51,14 @@ public class NaeusKingEntity extends MonsterFractionEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 250.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 50.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 10.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 5.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 250.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 50.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 10.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 5.0D);
     }
 
     @Override
@@ -104,20 +104,20 @@ public class NaeusKingEntity extends MonsterFractionEntityBase {
             else {
                 if (Math.random() < 0.5D) {
                     SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "fire_soul"), 1.0F, 1.0F);
-                    if (this.getWorld() instanceof ServerWorld _level)
-                        _level.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, x, y, z, 100, 1.0D, 2.0D, 1.0D, 2.0E-4D);
-                    if (!this.getWorld().isClient()) {
+                    if (this.getWorld() instanceof ServerWorld serverWorld)
+                        serverWorld.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, x, y, z, 100, 1.0D, 2.0D, 1.0D, 2.0E-4D);
+                    if (!this.getWorld().isClient) {
                         this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION.get(), 100, 0));
                         this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 2));
                         this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 1));
                     }
-                    if (sourceentity instanceof LivingEntity _entity)
-                        if (!_entity.getWorld().isClient())
-                            _entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.SOUL_DEATH.get(), 100, 0));
+                    if (sourceentity instanceof LivingEntity living)
+                        if (!living.getWorld().isClient)
+                            living.addStatusEffect(new StatusEffectInstance(RainimatorEffects.SOUL_DEATH.get(), 100, 0));
                     sourceentity.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 5.0F);
                 }
                 if (Math.random() < 0.1D) {
-                    if (!this.getWorld().isClient() && this.getWorld().getServer() != null)
+                    if (!this.getWorld().isClient && this.getWorld().getServer() != null)
                         if (Math.random() < 0.3D)
                             (this.getWorld()).getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.naeus_king.message1"), false);
                         else if (Math.random() < 0.4D)
@@ -128,16 +128,14 @@ public class NaeusKingEntity extends MonsterFractionEntityBase {
                             this.getWorld().getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.naeus_king.message4"), false);
                         else
                             this.getWorld().getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.naeus_king.message5"), false);
-
-                    if (!sourceentity.getWorld().isClient() && sourceentity.getServer() != null)
-                        sourceentity.getServer().getCommandManager().executeWithPrefix(sourceentity.getCommandSource().withSilent().withLevel(4), "title @p title {\"text\":\"！！！\",\"color\":\"red\"}");
+                    CommandHelper.execute(this, "title @p title {\"text\":\"！！！\",\"color\":\"red\"}");
 
                     BlockPos pos = this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, NaeusKingEntity.this)).getBlockPos();
                     Runnable callback = () -> {
                         BlockPos pos1 = this.getWorld().raycast(new RaycastContext(this.getCameraPosVec(1.0F), this.getCameraPosVec(1.0F).add(this.getRotationVec(1.0F).multiply(0.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, NaeusKingEntity.this)).getBlockPos();
-                        if (this.getWorld() instanceof ServerWorld _level) {
-                            EntityUtil.lightening(_level, pos.getX(), y, pos1.getZ());
-                            EntityUtil.lightening(_level, pos1.getX(), y, pos.getZ());
+                        if (this.getWorld() instanceof ServerWorld serverWorld) {
+                            EntityUtil.lightening(serverWorld, pos.getX(), y, pos1.getZ());
+                            EntityUtil.lightening(serverWorld, pos1.getX(), y, pos.getZ());
                         }
                         this.getWorld().setBlockState(VecUtil.createBlockPos(pos.getX(), y, pos1.getZ()), Blocks.FIRE.getDefaultState(), 3);
                         this.getWorld().setBlockState(VecUtil.createBlockPos(pos1.getX(), y, pos.getZ()), Blocks.FIRE.getDefaultState(), 3);
@@ -165,40 +163,29 @@ public class NaeusKingEntity extends MonsterFractionEntityBase {
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.getSource() instanceof PersistentProjectileEntity)
-            return true;
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.CACTUS))
-            return true;
-        if (damageSource.isOf(DamageTypes.DROWN))
-            return true;
-        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT))
-            return true;
-        if (damageSource.isOf(DamageTypes.EXPLOSION))
-            return true;
-        if (damageSource.isOf(DamageTypes.TRIDENT))
-            return true;
-        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
-            return true;
-        if (damageSource.isOf(DamageTypes.DRAGON_BREATH))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
-            return true;
+        if (damageSource.getSource() instanceof PersistentProjectileEntity) return true;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.CACTUS)) return true;
+        if (damageSource.isOf(DamageTypes.DROWN)) return true;
+        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT)) return true;
+        if (damageSource.isOf(DamageTypes.EXPLOSION)) return true;
+        if (damageSource.isOf(DamageTypes.TRIDENT)) return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL)) return true;
+        if (damageSource.isOf(DamageTypes.DRAGON_BREATH)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
-        EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
+        EntityData data = super.initialize(world, difficulty, reason, livingdata, tag);
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
+        ServerWorld serverWorld = world.toServerWorld();
         SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_living"), 1, 1);
-        if (world instanceof ServerWorld _level)
-            _level.spawnParticles(RainimatorParticles.RED_FLOWER.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
+        serverWorld.spawnParticles(RainimatorParticles.RED_FLOWER.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
@@ -213,7 +200,7 @@ public class NaeusKingEntity extends MonsterFractionEntityBase {
             Timeout.create(25800, callback);
         }
 
-        return retval;
+        return data;
     }
 
     @Override

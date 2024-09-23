@@ -7,6 +7,7 @@ import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,7 +43,7 @@ public class UnderFlowerItem extends FoilItemBase {
                 _bs = Blocks.SOUL_FIRE.getDefaultState();
             else
                 _bs = Blocks.FIRE.getDefaultState();
-            SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "under_flower"), 1.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, RainimatorSounds.UNDER_FLOWER.get(), 1.0F, 1.0F);
             BlockPos _bp = new BlockPos((int) x, (int) (y + 1.0D), (int) z);
             world.setBlockState(_bp, _bs, 3);
             entity.getItemCooldownManager().set(itemtack.getItem(), 400);

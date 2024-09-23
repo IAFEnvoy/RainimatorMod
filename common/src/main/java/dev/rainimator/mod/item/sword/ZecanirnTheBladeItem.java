@@ -77,7 +77,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase {
             } else {
                 entity.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 3.0F);
                 if (entity instanceof LivingEntity) {
-                    if (!entity.getWorld().isClient())
+                    if (!entity.getWorld().isClient)
                         entity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100, 0));
                 }
 
@@ -86,7 +86,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase {
                     itemtack.setDamage(0);
                 }
                 Timeout.create(100, () -> {
-                    if (!entity.getWorld().isClient())
+                    if (!entity.getWorld().isClient)
                         entity.getWorld().createExplosion(null, entity.getX(), entity.getY() + 1.0D, entity.getZ(), 1.0F, World.ExplosionSourceType.NONE);
                 });
             }
@@ -139,7 +139,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase {
                     entity.getItemCooldownManager().set(ar.getValue().getItem(), 1200);
                     continue;
                 }
-                if (!entity.getWorld().isClient())
+                if (!entity.getWorld().isClient)
                     entity.sendMessage(Text.translatable("item.rainimator.zecanirn_the_blade.error.health"), true);
             }
         }

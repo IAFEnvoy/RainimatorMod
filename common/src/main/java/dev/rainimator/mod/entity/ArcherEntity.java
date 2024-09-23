@@ -1,12 +1,12 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.EntityUtil;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
+import dev.rainimator.mod.registry.RainimatorFractions;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -36,14 +36,14 @@ public class ArcherEntity extends MonsterFractionEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 20.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
+        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 20.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
         return builder;
     }
 
@@ -66,21 +66,20 @@ public class ArcherEntity extends MonsterFractionEntityBase {
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.isOf(DamageTypes.DROWN))
-            return true;
+        if (damageSource.isOf(DamageTypes.DROWN)) return true;
         return super.isInvulnerableTo(damageSource);
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData ret_val = super.initialize(world, difficulty, reason, livingdata, tag);
-        if (!(world instanceof ServerWorld _level)) return ret_val;
+        if (!(world instanceof ServerWorld serverWorld)) return ret_val;
         if (Math.random() < 0.1D)
-            EntityUtil.summon(RainimatorEntities.SOLDIERS.get(), _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+            EntityUtil.summon(RainimatorEntities.SOLDIERS.get(), serverWorld, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
         else if (Math.random() < 0.1D)
-            EntityUtil.summon(RainimatorEntities.AGETHA.get(), _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+            EntityUtil.summon(RainimatorEntities.AGETHA.get(), serverWorld, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
         else if (Math.random() < 0.1D)
-            EntityUtil.summon(RainimatorEntities.ARCHER.get(), _level, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
+            EntityUtil.summon(RainimatorEntities.ARCHER.get(), serverWorld, this.getX() + RandomHelper.nextInt(-2, 2), this.getY() + 2.0D, this.getZ() + RandomHelper.nextInt(-2, 2));
         return ret_val;
     }
 

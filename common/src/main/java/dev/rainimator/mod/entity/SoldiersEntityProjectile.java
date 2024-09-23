@@ -11,7 +11,6 @@ import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
 public class SoldiersEntityProjectile extends PersistentProjectileEntity implements FlyingItemEntity {
-
     public SoldiersEntityProjectile(EntityType<? extends SoldiersEntityProjectile> type, World world) {
         super(type, world);
     }

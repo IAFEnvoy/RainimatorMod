@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
-license = "GNU LGPL 3.0"
+license = "All Right Reserved"
 issueTrackerURL = "https://github.com/ArkTechMC/RainimatorMod/issues"
 [[mods]]
 modId = "rainimator"

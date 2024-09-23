@@ -81,14 +81,13 @@ public class StellaDemonEntity extends MonsterFractionEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 35.0);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 7.0);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 30.0);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 43.0);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0)
+                .add(EntityAttributes.GENERIC_ARMOR, 35.0)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 7.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 30.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 43.0);
     }
 }

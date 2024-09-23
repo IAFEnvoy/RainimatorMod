@@ -111,7 +111,7 @@ public class NetherSpearItem extends SwordItemBase {
     @Override
     public void inventoryTick(ItemStack itemtack, World world, Entity entity, int slot, boolean selected) {
         super.inventoryTick(itemtack, world, entity, slot, selected);
-        if (selected && entity instanceof LivingEntity _livEnt && !_livEnt.getWorld().isClient()) {
+        if (selected && entity instanceof LivingEntity _livEnt && !_livEnt.getWorld().isClient) {
             if (_livEnt.getArmor() <= 10)
                 _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 100, 3));
             else if (_livEnt.getArmor() <= 20)

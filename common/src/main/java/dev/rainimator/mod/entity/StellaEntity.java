@@ -3,16 +3,12 @@ package dev.rainimator.mod.entity;
 import com.iafenvoy.neptune.object.EntityUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.VecUtil;
+import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
-import dev.rainimator.mod.registry.RainimatorEffects;
-import dev.rainimator.mod.registry.RainimatorEntities;
-import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.RainimatorParticles;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
+import dev.rainimator.mod.registry.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -90,8 +86,8 @@ public class StellaEntity extends MonsterFractionEntityBase {
     @Override
     protected void applyDamage(DamageSource source, float amount) {
         Vec3d _center = new Vec3d(this.getX(), this.getY(), this.getZ());
-        List<Entity> _entfound = this.getWorld().getEntitiesByClass(Entity.class, new Box(_center, _center).expand(4.5), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
-        for (Entity entityiterator : _entfound) {
+        List<Entity> entities = this.getWorld().getEntitiesByClass(Entity.class, new Box(_center, _center).expand(4.5), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
+        for (Entity iterator : entities) {
             if (this.hasStatusEffect(RainimatorEffects.ICE_PEOPLE.get())) {
                 this.teleport(this.getX(), this.getY() + 4.0, this.getZ());
                 continue;
@@ -116,14 +112,14 @@ public class StellaEntity extends MonsterFractionEntityBase {
                 continue;
             }
             if (Math.random() < 0.1) {
-                this.getWorld().setBlockState(VecUtil.createBlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
-                if (entityiterator instanceof LivingEntity living)
+                this.getWorld().setBlockState(VecUtil.createBlockPos(iterator.getX(), iterator.getY(), iterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
+                if (iterator instanceof LivingEntity living)
                     if (!living.getWorld().isClient)
                         living.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 1200, 2));
             } else if (Math.random() < 0.05) {
                 if (this.getWorld() instanceof ServerWorld world) {
                     world.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 15, 0.5, 0.5, 0.5, 0.5);
-                    EntityUtil.lightening(world, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), false);
+                    EntityUtil.lightening(world, iterator.getX(), iterator.getY(), iterator.getZ(), false);
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 0));
                 }
                 this.getNavigation().startMovingTo(this.getX() + RandomHelper.nextInt(-2, 2), this.getY(), this.getZ() + RandomHelper.nextInt(-2, 2), 20.0);
@@ -161,38 +157,35 @@ public class StellaEntity extends MonsterFractionEntityBase {
         if (itemStack.getItem() == Blocks.AIR.asItem()) {
             this.getNavigation().stop();
             this.teleport(x, y, z);
-            ItemStack _setstack = new ItemStack(RainimatorItems.SOUL_PEOPLE.get());
-            _setstack.setCount(1);
-            this.setStackInHand(Hand.OFF_HAND, _setstack);
+            ItemStack stack = new ItemStack(RainimatorItems.SOUL_PEOPLE.get());
+            stack.setCount(1);
+            this.setStackInHand(Hand.OFF_HAND, stack);
             if (!this.getWorld().isClient) {
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 4));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 4));
             }
-            if (world instanceof ServerWorld _level) {
-                EntityUtil.lightening(_level, x, y, z);
-            }
+            if (world instanceof ServerWorld _level) EntityUtil.lightening(_level, x, y, z);
+
             world.setBlockState(VecUtil.createBlockPos(x, y, z), Blocks.FIRE.getDefaultState(), 3);
             SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "naeus_roll"), 5, 1);
-            if (world instanceof ServerWorld _level) {
-                _level.spawnParticles(ParticleTypes.SOUL, x, y, z, 400, 3.0, 4.0, 3.0, 0.002);
-            }
+            if (world instanceof ServerWorld serverWorld)
+                serverWorld.spawnParticles(ParticleTypes.SOUL, x, y, z, 400, 3.0, 4.0, 3.0, 0.002);
             Timeout.create(30, () -> {
-                if (world instanceof ServerWorld world1)
-                    EntityUtil.summon(RainimatorEntities.STELLA_DEMON.get(), world1, x, y, z);
+                if (world instanceof ServerWorld serverWorld)
+                    EntityUtil.summon(RainimatorEntities.STELLA_DEMON.get(), serverWorld, x, y, z);
             });
         }
         this.dropStack(new ItemStack(RainimatorItems.MAGIC_HAT.get()));
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 40.0);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 40.0);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 3.0);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0)
+                .add(EntityAttributes.GENERIC_ARMOR, 40.0)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 40.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 3.0);
     }
 }
