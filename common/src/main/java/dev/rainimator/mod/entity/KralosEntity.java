@@ -10,6 +10,7 @@ import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -32,6 +33,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.Difficulty;
@@ -111,7 +113,7 @@ public class KralosEntity extends MonsterFractionEntityBase {
                     if (this.getWorld() instanceof ServerWorld _level)
                         EntityUtil.lightening(_level, x, y, z);
                     this.getWorld().setBlockState(VecUtil.createBlockPos(x, y, z), Blocks.FIRE.getDefaultState(), 3);
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.enderman.scream"), 1.0F, 1.0F);
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ENDERMAN_SCREAM, 1.0F, 1.0F);
                     if (this.getWorld() instanceof ServerWorld serverWorld)
                         serverWorld.spawnParticles(ParticleTypes.SOUL, x, y, z, 200, 2.0D, 3.0D, 2.0D, 0.001D);
                     if (!this.getWorld().isClient && this.getWorld().getServer() != null)
@@ -141,12 +143,12 @@ public class KralosEntity extends MonsterFractionEntityBase {
         double y = this.getY();
         double z = this.getZ();
         ServerWorld serverWorld = world.toServerWorld();
-        SoundUtil.playSound(serverWorld, this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.wither.ambient"), 1.0F, 1.0F);
+        SoundUtil.playSound(serverWorld, this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_WITHER_AMBIENT, 1.0F, 1.0F);
         serverWorld.spawnParticles(ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.001D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "kralos_boss_music"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.KRALOS_BOSS_MUSIC.get(), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(2480, callback);

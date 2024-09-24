@@ -9,10 +9,7 @@ import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.CommandHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorEffects;
-import dev.rainimator.mod.registry.RainimatorFractions;
-import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -103,7 +100,7 @@ public class NaeusKingEntity extends MonsterFractionEntityBase {
                 this.clearStatusEffects();
             else {
                 if (Math.random() < 0.5D) {
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "fire_soul"), 1.0F, 1.0F);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.FIRE_SOUL.get(), 1.0F, 1.0F);
                     if (this.getWorld() instanceof ServerWorld serverWorld)
                         serverWorld.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, x, y, z, 100, 1.0D, 2.0D, 1.0D, 2.0E-4D);
                     if (!this.getWorld().isClient) {
@@ -184,12 +181,12 @@ public class NaeusKingEntity extends MonsterFractionEntityBase {
         double y = this.getY();
         double z = this.getZ();
         ServerWorld serverWorld = world.toServerWorld();
-        SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_living"), 1, 1);
+        SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.NAEUS_LIVING.get(), 1, 1);
         serverWorld.spawnParticles(RainimatorParticles.RED_FLOWER.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_boss_music"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.NAEUS_BOSS_MUSIC.get(), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(4300, callback);

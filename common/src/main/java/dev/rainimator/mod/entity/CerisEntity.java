@@ -25,6 +25,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
@@ -45,7 +46,7 @@ public class CerisEntity extends FractionEntityWithBossBar {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes()
+        return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 200.0D)
                 .add(EntityAttributes.GENERIC_ARMOR, 35.0D)
@@ -53,7 +54,6 @@ public class CerisEntity extends FractionEntityWithBossBar {
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 5.0D)
                 .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 5.0D);
-        return builder;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class CerisEntity extends FractionEntityWithBossBar {
                 this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION.get(), 100, 0));
 
             if (Math.random() < 0.3D) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.enderman.teleport"), 4.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, 4.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld serverWorld)
                     serverWorld.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
                 this.getNavigation().startMovingTo(this.getX() + RandomHelper.nextInt(3, 9), this.getY(), this.getZ() + RandomHelper.nextInt(3, 9), 20.0D);

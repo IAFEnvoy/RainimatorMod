@@ -5,10 +5,7 @@ import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorEffects;
-import dev.rainimator.mod.registry.RainimatorFractions;
-import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -141,12 +138,12 @@ public class NullLikeEntity extends MonsterFractionEntityBase {
         double y = this.getY();
         double z = this.getZ();
         ServerWorld serverWorld = world.toServerWorld();
-        SoundUtil.playSound(serverWorld, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5.0F, 1.0F);
+        SoundUtil.playSound(serverWorld, x, y, z, RainimatorSounds.BLUED_DIAMOND_SKILL_1.get(), 5.0F, 1.0F);
         serverWorld.spawnParticles(RainimatorParticles.FLOWER_WHITE.get(), x, y, z, 300, 2.0D, 3.0D, 2.0D, 0.3D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "null_boss_music"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.NULL_BOSS_MUSIC.get(), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(6420, callback);

@@ -19,8 +19,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
@@ -49,7 +49,7 @@ public class SoulTotemItem extends FoilItemBase {
         if (entity.isOnGround()) {
             if (world.isClient)
                 (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemtack);
-            SoundUtil.playSound(world, x, y, z, Identifier.tryParse("block.anvil.land"), 5.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, SoundEvents.BLOCK_ANVIL_LAND, 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
             if (!entity.getWorld().isClient)
@@ -61,9 +61,9 @@ public class SoulTotemItem extends FoilItemBase {
                     entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 300, 1));
             });
         } else {
-            if (((WorldAccess) world).isClient)
+            if (world.isClient)
                 (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemtack);
-            SoundUtil.playSound(world, x, y, z, Identifier.tryParse("block.anvil.land"), 5.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, SoundEvents.BLOCK_ANVIL_LAND, 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
             if (!entity.getWorld().isClient)

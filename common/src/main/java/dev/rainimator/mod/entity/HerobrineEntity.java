@@ -9,10 +9,7 @@ import com.iafenvoy.neptune.util.CommandHelper;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorEffects;
-import dev.rainimator.mod.registry.RainimatorEntities;
-import dev.rainimator.mod.registry.RainimatorFractions;
-import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
@@ -34,6 +31,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -113,7 +111,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
         List<Entity> list = this.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(4.5D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity iterator : list) {
             if (this.hasStatusEffect(RainimatorEffects.ICE_PEOPLE.get())) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.HIM_SKILL.get(), 1.0F, 1.0F);
                 this.requestTeleport(x, y + 4.0D, z);
                 continue;
             }
@@ -129,7 +127,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
                 continue;
             }
             if (Math.random() < 0.1D) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.HIM_SKILL.get(), 1.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld _level && Math.random() < 0.01D)
                     EntityUtil.lightening(_level, iterator.getX(), iterator.getY(), iterator.getZ());
                 this.getWorld().setBlockState(VecUtil.createBlockPos(iterator.getX(), iterator.getY(), iterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
@@ -137,7 +135,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
                     if (!_entity.getWorld().isClient)
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 1200, 2));
             } else if (Math.random() < 0.05D) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.HIM_SKILL.get(), 1.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld serverWorld)
                     serverWorld.spawnParticles(ParticleTypes.END_ROD, x, y, z, 15, 0.5D, 0.5D, 0.5D, 0.5D);
                 this.getNavigation().startMovingTo(x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2), 20.0D);
@@ -169,7 +167,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
-        EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
+        EntityData data = super.initialize(world, difficulty, reason, livingdata, tag);
         ServerWorld serverWorld = world.toServerWorld();
         EntityUtil.lightening(serverWorld, this.getX(), this.getY(), this.getZ());
         if (this.getStage() == Stage.First)
@@ -177,7 +175,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_music_boss"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.HIM_MUSIC_BOSS.get(), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(5720, callback);
@@ -188,7 +186,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
             Timeout.create(34320, callback);
         }
 
-        return retval;
+        return data;
     }
 
     @Override
@@ -212,7 +210,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
                             EntityUtil.lightening(serverWorld, this.getX(), this.getY(), this.getZ(), true);
                             this.getWorld().setBlockState(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ()), Blocks.FIRE.getDefaultState(), 3);
                             CommandHelper.execute(this, "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:0,Flicker:1,Trail:0,Colors:[I;8073150],FadeColors:[I;2437522]}]}}}}");
-                            SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "fire_soul"), 5, 1);
+                            SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(),  RainimatorSounds.FIRE_SOUL.get(), 5, 1);
 
                             serverWorld.spawnParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 400, 3, 4, 3, 0.002);
 
@@ -221,7 +219,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
                                 this.requestTeleport(this.getX(), this.getY(), this.getZ());
                                 EntityUtil.lightening(serverWorld, this.getX(), this.getY(), this.getZ(), true);
                                 this.getWorld().setBlockState(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ()), Blocks.FIRE.getDefaultState(), 3);
-                                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("item.totem.use"), 5, 1);
+                                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_TOTEM_USE, 5, 1);
                                 if (this.getWorld() instanceof ServerWorld serverWorldlevel)
                                     serverWorldlevel.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.002);
                                 if (!this.getWorld().isClient && this.getServer() != null)
@@ -237,7 +235,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
                                     this.discard();
                                 EntityUtil.lightening(serverWorld, this.getX(), this.getY(), this.getZ());
                                 this.getWorld().setBlockState(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ()), Blocks.FIRE.getDefaultState(), 3);
-                                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.wither.spawn"), 5, 1);
+                                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_WITHER_SPAWN, 5, 1);
                                 serverWorld.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.05);
                                 CommandHelper.execute(this, "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:2,Flicker:1,Trail:0,Colors:[I;6719955],FadeColors:[I;15790320]}]}}}}");
                                 this.setHealth(this.getHealth() + 20);
@@ -257,7 +255,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
 
                 this.getMainHandStack().addEnchantment(Enchantments.SHARPNESS, 5);
                 this.getOffHandStack().addEnchantment(Enchantments.SHARPNESS, 5);
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.wither.spawn"), 1, 1);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_WITHER_SPAWN, 1, 1);
                 if (!this.getWorld().isClient && this.getServer() != null)
                     CommandHelper.execute(this, "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2651799],FadeColors:[I;6719955]}]}}}}");
 
@@ -270,7 +268,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
                     this.getWorld().getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.blackbone.summon"), false);
                     this.getWorld().getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.herobrine.summon1"), false);
                 }
-                Timeout.create(40, () -> SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_boss_music")));
+                Timeout.create(40, () -> SoundUtil.stopSound(this.getWorld(), RainimatorSounds.BLACKBONE_BOSS_MUSIC.getId()));
             }
         }
     }

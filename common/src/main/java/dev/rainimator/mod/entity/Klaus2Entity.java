@@ -5,10 +5,7 @@ import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorEffects;
-import dev.rainimator.mod.registry.RainimatorFractions;
-import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -32,6 +29,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.Difficulty;
@@ -121,7 +119,7 @@ public class Klaus2Entity extends MonsterFractionEntityBase {
                 if (Math.random() < 0.1) {
                     if (!this.getWorld().isClient)
                         this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 0));
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.tryParse("block.anvil.land"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, SoundEvents.BLOCK_ANVIL_LAND, 1, 1);
                     if (this.getWorld() instanceof ServerWorld serverWorld)
                         serverWorld.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, x, y, z, 200, 0, 10, 0, 0.002);
                 }
@@ -132,7 +130,7 @@ public class Klaus2Entity extends MonsterFractionEntityBase {
                 if (Math.random() < 0.1) {
                     if (sourceentity instanceof LivingEntity living && !living.getWorld().isClient)
                         living.addStatusEffect(new StatusEffectInstance(RainimatorEffects.STUNNED.get(), 100, 0));
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "stunned"), 5, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.STUNNED.get(), 5, 1);
                     if (this.getWorld() instanceof ServerWorld serverWorld)
                         serverWorld.spawnParticles(RainimatorParticles.YELLOW_STARS.get(), x, y, z, 50, 1, 2, 1, 1);
                 }
@@ -141,7 +139,7 @@ public class Klaus2Entity extends MonsterFractionEntityBase {
                 if (!this.getWorld().isClient)
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 1));
                 if (Math.random() < 0.1) {
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.tryParse("block.anvil.land"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, SoundEvents.BLOCK_ANVIL_LAND, 1, 1);
                     if (this.getWorld() instanceof ServerWorld serverWorld)
                         serverWorld.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 2, 3, 2, 0.002);
                     if (sourceentity instanceof LivingEntity living && !living.getWorld().isClient)
@@ -152,7 +150,7 @@ public class Klaus2Entity extends MonsterFractionEntityBase {
                 if (!this.getWorld().isClient)
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 2));
                 if (Math.random() < 0.1) {
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.tryParse("block.anvil.land"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, SoundEvents.BLOCK_ANVIL_LAND, 1, 1);
                     if (this.getWorld() instanceof ServerWorld serverWorld)
                         serverWorld.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 2, 3, 2, 0.002);
                     if (sourceentity instanceof LivingEntity living && !living.getWorld().isClient) {
@@ -190,7 +188,7 @@ public class Klaus2Entity extends MonsterFractionEntityBase {
         ServerWorld serverWorld = world.toServerWorld();
         if (EnchantmentHelper.getLevel(Enchantments.SHARPNESS, this.getMainHandStack()) == 0) {
             if (EnchantmentHelper.getLevel(Enchantments.PROTECTION, this.getEquippedStack(EquipmentSlot.HEAD)) == 0) {
-                SoundUtil.playSound(serverWorld, this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "block.beacon.activate"), 5.0F, 1.0F);
+                SoundUtil.playSound(serverWorld, this.getX(), this.getY(), this.getZ(), SoundEvents.BLOCK_BEACON_ACTIVATE, 5.0F, 1.0F);
                 serverWorld.spawnParticles(RainimatorParticles.LIGHTENING_ARC.get(), x, y, z, 100, 2.0D, 3.0D, 2.0D, 0.001D);
                 this.getMainHandStack().addEnchantment(Enchantments.SHARPNESS, 4);
                 this.getEquippedStack(EquipmentSlot.HEAD).addEnchantment(Enchantments.PROTECTION, 4);
@@ -199,7 +197,7 @@ public class Klaus2Entity extends MonsterFractionEntityBase {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "klaus_boss_music"), 1, 1F);
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.KLAUS_BOSS_MUSIC.get(), 1, 1F);
             };
             Timeout.create(0, callback);
             Timeout.create(6060, callback);

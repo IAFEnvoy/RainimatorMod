@@ -9,10 +9,7 @@ import com.iafenvoy.neptune.util.CommandHelper;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorEffects;
-import dev.rainimator.mod.registry.RainimatorFractions;
-import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -106,7 +103,7 @@ public class NaeusEntity extends MonsterFractionEntityBase {
             else if (this.hasStatusEffect(StatusEffects.WITHER)) this.clearStatusEffects();
             else if (this.hasStatusEffect(StatusEffects.POISON)) this.clearStatusEffects();
             else if (Math.random() < 0.5D) {
-                SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "fire_soul"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.FIRE_SOUL.get(), 1.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld serverWorld) {
                     serverWorld.spawnParticles(RainimatorParticles.RED_FLOWER.get(), x, y, z, 20, 0.5D, 0.0D, 0.5D, 0.5D);
                     if (sourceentity instanceof LivingEntity living)
@@ -118,7 +115,7 @@ public class NaeusEntity extends MonsterFractionEntityBase {
             }
             if (Math.random() < 0.5D) {
                 this.getNavigation().startMovingTo(this.getX() + RandomHelper.nextDouble(1.0D, 6.0D), y, this.getZ() + RandomHelper.nextDouble(1.0D, 6.0D), 10.0D);
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "naeus_roll"), 1, 1);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.NAEUS_ROLL.get(), 1, 1);
                 if (this.getWorld() instanceof ServerWorld serverWorld)
                     serverWorld.spawnParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 30, 0.5D, 0.5D, 0.5D, 0.5D);
             }
@@ -181,12 +178,12 @@ public class NaeusEntity extends MonsterFractionEntityBase {
         double y = this.getY();
         double z = this.getZ();
         ServerWorld serverWorld = world.toServerWorld();
-        SoundUtil.playSound(serverWorld, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_living"), 1.0F, 1.0F);
+        SoundUtil.playSound(serverWorld, x, y, z,RainimatorSounds.NAEUS_LIVING.get(), 1.0F, 1.0F);
         serverWorld.spawnParticles(RainimatorParticles.RED_FLOWER.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_boss_music"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.NAEUS_BOSS_MUSIC.get(), 1, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(4300, callback);
