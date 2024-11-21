@@ -16,12 +16,12 @@ public class RainimatorMod {
         RainimatorBlocks.REGISTRY.register();
         RainimatorEffects.REGISTRY.register();
         RainimatorEnchantments.REGISTRY.register();
+        RainimatorSounds.REGISTRY.register();
         RainimatorItems.REGISTRY.register();
         RainimatorPotions.REGISTRY.register();
         RainimatorItemGroups.REGISTRY.register();
         RainimatorParticles.REGISTRY.register();
         RainimatorScreenHandlers.REGISTRY.register();
-        RainimatorSounds.REGISTRY.register();
         RainimatorEntities.registerAttributes();
         RainimatorEntities.addSpawner();
         RainimatorFeatures.init();

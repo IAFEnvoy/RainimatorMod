@@ -119,7 +119,7 @@ public class BlueDiamondSwordItem extends SwordItemBase {
                         entity.getItemCooldownManager().set(itemtack.getItem(), 1000);
                         if (!entity.getWorld().isClient)
                             entity.sendMessage(Text.translatable("item.rainimator.blue_diamond_sword.skill2"), true);
-                        if (((WorldAccess) world).isClient)
+                        if (world.isClient)
                             MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemtack);
 
                         Runnable callback1 = () -> {
