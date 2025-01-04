@@ -53,9 +53,9 @@ public class HerobrineDiamondPickaxeItem extends PickaxeItem {
             ManaData data = ComponentManager.getManaData(context.getPlayer());
             if (blockState.getBlock().getHardness() >= 0 && data.tryUseMana(context.getPlayer(), ServerConfig.getInstance().herobrine_diamond_pickaxe)) {
                 world.breakBlock(VecUtil.createBlockPos(x, y, z), false);
-                if (!world.isClient())
+                if (!world.isClient)
                     world.spawnEntity(new ExperienceOrbEntity(world, x, y, z, 10));
-                if (!context.getPlayer().getWorld().isClient())
+                if (!context.getPlayer().getWorld().isClient)
                     context.getPlayer().sendMessage(Text.translatable("item.rainimator.herobrine_diamond_pickaxe.breakblock"), true);
                 context.getPlayer().getItemCooldownManager().set(context.getStack().getItem(), 60);
             }

@@ -165,7 +165,7 @@ public class DarkObsidianBlock extends Block {
                 _level.spawnParticles(ParticleTypes.FLAME, ((double) x - 2), y, ((double) z + 2), 150, 0, 6, 0, 0.0002);
             }
             SoundUtil.playSound(world, x, y, z, Identifier.tryParse("block.portal.travel"), 1, 1);
-            if (!world.isClient() && world.getServer() != null)
+            if (!world.isClient && world.getServer() != null)
                 world.getServer().getPlayerManager().broadcast(Text.translatable("block.rainimator.dark_obsidian_block.running"), false);
             entity.getMainHandStack().decrement(1);
             entity.getInventory().markDirty();

@@ -10,7 +10,7 @@ import net.minecraft.item.*;
 public class SapphireTools {
     private static void onPostHit(LivingEntity entity, LivingEntity sourceentity) {
         if (Math.random() < 0.5D)
-            if (!entity.getWorld().isClient()) {
+            if (!entity.getWorld().isClient) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 100, 0));
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 0));
             }

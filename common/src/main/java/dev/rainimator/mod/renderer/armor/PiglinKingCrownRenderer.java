@@ -20,10 +20,14 @@ import java.util.Map;
 public class PiglinKingCrownRenderer implements IArmorRendererBase<LivingEntity> {
     @Override
     public BipedEntityModel<LivingEntity> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, BipedEntityModel<LivingEntity> bipedEntityModel) {
-        BipedEntityModel<LivingEntity> armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(), Map.of("head", (new ModelNetherKing2<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(ModelNetherKing2.LAYER_LOCATION))).Head, "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body", new ModelPart(
-                Collections.emptyList(), Collections.emptyMap()), "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm", new ModelPart(
-                Collections.emptyList(), Collections.emptyMap()), "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_leg", new ModelPart(
-                Collections.emptyList(), Collections.emptyMap()))));
+        BipedEntityModel<LivingEntity> armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(), Map.of(
+                "head", new ModelNetherKing2<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(ModelNetherKing2.LAYER_LOCATION)).Head,
+                "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                "left_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()))));
         armorModel.sneaking = livingEntity.isSneaking();
         armorModel.riding = livingEntity.hasVehicle();
         armorModel.child = livingEntity.isBaby();

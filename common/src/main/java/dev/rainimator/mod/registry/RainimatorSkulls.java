@@ -1,11 +1,6 @@
 package dev.rainimator.mod.registry;
 
-import com.iafenvoy.neptune.render.SkullRenderRegistry;
-import com.iafenvoy.neptune.render.Stage;
 import dev.architectury.registry.registries.RegistrySupplier;
-import dev.rainimator.mod.entity.*;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SkullBlock;
@@ -77,8 +72,6 @@ public class RainimatorSkulls {
     public static final RegistrySupplier<Block> NAMTAR_WALL_HEAD = register("namtar_wall_head", () -> new WallSkullBlock(SkullType.NAMTAR, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> AGETHA_HEAD = register("agetha_head", () -> new SkullBlock(SkullType.AGETHA, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> AGETHA_WALL_HEAD = register("agetha_wall_head", () -> new WallSkullBlock(SkullType.AGETHA, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> TRICER_HEAD = register("tricer_head", () -> new SkullBlock(SkullType.TRICER, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> TRICER_WALL_HEAD = register("tricer_wall_head", () -> new WallSkullBlock(SkullType.TRICER, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> BIG_BLACK_SKELETON_HEAD = register("big_black_skeleton_head", () -> new SkullBlock(SkullType.BIG_BLACK_SKELETON, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> BIG_BLACK_SKELETON_WALL_HEAD = register("big_black_skeleton_wall_head", () -> new WallSkullBlock(SkullType.BIG_BLACK_SKELETON, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> ARCHER_HEAD = register("archer_head", () -> new SkullBlock(SkullType.ARCHER, AbstractBlock.Settings.create()));
@@ -138,7 +131,6 @@ public class RainimatorSkulls {
     public static final RegistrySupplier<Item> MUTATED_HEAD_ITEM = register("mutated", MUTATED_HEAD, MUTATED_WALL_HEAD);
     public static final RegistrySupplier<Item> NAMTAR_HEAD_ITEM = register("namtar", NAMTAR_HEAD, NAMTAR_WALL_HEAD);
     public static final RegistrySupplier<Item> AGETHA_HEAD_ITEM = register("agetha", AGETHA_HEAD, AGETHA_WALL_HEAD);
-    public static final RegistrySupplier<Item> TRICER_HEAD_ITEM = register("tricer", TRICER_HEAD, TRICER_WALL_HEAD);
     public static final RegistrySupplier<Item> BIG_BLACK_SKELETON_HEAD_ITEM = register("big_black_skeleton", BIG_BLACK_SKELETON_HEAD, BIG_BLACK_SKELETON_WALL_HEAD);
     public static final RegistrySupplier<Item> ARCHER_HEAD_ITEM = register("archer", ARCHER_HEAD, ARCHER_WALL_HEAD);
     public static final RegistrySupplier<Item> DARYLL_HEAD_ITEM = register("daryll", DARYLL_HEAD, DARYLL_WALL_HEAD);
@@ -165,60 +157,11 @@ public class RainimatorSkulls {
     public static void init() {
     }
 
-    @Environment(EnvType.CLIENT)
-    public static void clientInit() {
-        SkullRenderRegistry.register(SkullType.HEROBRINE_1, HerobrineEntity.texture.getTexture(Stage.First), HEROBRINE_1_HEAD.get(), HEROBRINE_1_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.HEROBRINE_2, HerobrineEntity.texture.getTexture(Stage.Second), HEROBRINE_2_HEAD.get(), HEROBRINE_2_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.CERIS, CerisEntity.texture.getTexture(), CERIS_HEAD.get(), CERIS_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.ZOMBIES, EliteZombieEntity.texture.getTexture(), ELITE_ZOMBIE_HEAD.get(), ELITE_ZOMBIE_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.NAEUS, NaeusEntity.texture.getTexture(), NAEUS_HEAD.get(), NAEUS_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.RAIN, RainEntity.texture.getTexture(), RAIN_HEAD.get(), RAIN_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.ABIGAIL, AbigailEntity.texture.getTexture(), ABIGAIL_HEAD.get(), ABIGAIL_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.PATRICK, PatrickEntity.texture.getTexture(), PATRICK_HEAD.get(), PATRICK_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.BLACKBONE, BlackBoneEntity.texture.getTexture(), BLACKBONE_HEAD.get(), BLACKBONE_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.HOGSWORTH, HogsworthEntity.texture.getTexture(), HOGSWORTH_HEAD.get(), HOGSWORTH_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.CIARA, CiaraEntity.texture.getTexture(), CIARA_HEAD.get(), CIARA_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.HILDA, HildaEntity.texture.getTexture(), HILDA_HEAD.get(), HILDA_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.SOLDIERS, SoldiersEntity.texture.getTexture(), SOLDIERS_HEAD.get(), SOLDIERS_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.WITHERED_SKELETONS, WitheredSkeletonsEntity.texture.getTexture(), WITHERED_SKELETONS_HEAD.get(), WITHERED_SKELETONS_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.DARK_SHIELD, DarkShieldEntity.texture.getTexture(), DARK_SHIELD_HEAD.get(), DARK_SHIELD_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.DARK_ZOMBIE, DarkZombieEntity.texture.getTexture(), DARK_ZOMBIE_HEAD.get(), DARK_ZOMBIE_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.VORDUS, VordusEntity.texture.getTexture(), VORDUS_HEAD.get(), VORDUS_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.WITHER_SHIELD, WitherShieldEntity.texture.getTexture(), WITHER_SHIELD_HEAD.get(), WITHER_SHIELD_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.SKELETON_SNOW, SkeletonSnowEntity.texture.getTexture(), SKELETON_SNOW_HEAD.get(), SKELETON_SNOW_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.PIGLIN_KING, ZombiesPiglinKingEntity.texture.getTexture(), PIGLIN_KING_HEAD.get(), PIGLIN_KING_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.GLUTTON_1, GluttonEntity.texture.getTexture(Stage.First), GLUTTON_1_HEAD.get(), GLUTTON_1_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.GLUTTON_2, GluttonEntity.texture.getTexture(Stage.Second), GLUTTON_2_HEAD.get(), GLUTTON_2_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.PORKSHIRE, PiglinCommanderEntity.texture.getTexture(), PORKSHIRE_HEAD.get(), PORKSHIRE_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.NAEUS_KING, NaeusKingEntity.texture.getTexture(), NAEUS_KING_HEAD.get(), NAEUS_KING_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.TUSK, TuskEntity.texture.getTexture(), TUSK_HEAD.get(), TUSK_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.BROTS, BrotsEntity.texture.getTexture(), BROTS_HEAD.get(), BROTS_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.ZOMBIE_PIG, ZombiePiglinArtEntity.texture.getTexture(), ZOMBIE_PIG_HEAD.get(), ZOMBIE_PIG_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.MUTATED, MutatedEntity.texture.getTexture(), MUTATED_HEAD.get(), MUTATED_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.NAMTAR, NamtarEntity.texture.getTexture(), NAMTAR_HEAD.get(), NAMTAR_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.AGETHA, AgethaEntity.texture.getTexture(), AGETHA_HEAD.get(), AGETHA_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.TRICER, TricerEntity.texture.getTexture(), TRICER_HEAD.get(), TRICER_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.BIG_BLACK_SKELETON, BigUndeadSkeletonEntity.texture.getTexture(), BIG_BLACK_SKELETON_HEAD.get(), BIG_BLACK_SKELETON_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.ARCHER, ArcherEntity.texture.getTexture(), ARCHER_HEAD.get(), ARCHER_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.DARYLL, DaryllEntity.texture.getTexture(), DARYLL_HEAD.get(), DARYLL_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.NULL_LIKE, NullLikeEntity.texture.getTexture(), NULL_LIKE_HEAD.get(), NULL_LIKE_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.GIGABONE, GigaBoneEntity.texture.getTexture(), GIGABONE_HEAD.get(), GIGABONE_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.KLAUS, KlausEntity.texture.getTexture(), KLAUS_HEAD.get(), KLAUS_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.KLAUS_2, Klaus2Entity.texture.getTexture(), KLAUS_2_HEAD.get(), KLAUS_2_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.KRALOS, KralosEntity.texture.getTexture(), KRALOS_HEAD.get(), KRALOS_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.ARABELLA, ArabellaEntity.texture.getTexture(), ARABELLA_HEAD.get(), ARABELLA_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.AZALEA, AzaleaEntity.texture.getTexture(), AZALEA_HEAD.get(), AZALEA_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.KYLE, KyleEntity.texture.getTexture(), KYLE_HEAD.get(), KYLE_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.SCORCH, ScorchEntity.texture.getTexture(), SCORCH_HEAD.get(), SCORCH_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.STELLA, StellaEntity.texture.getTexture(), STELLA_HEAD.get(), STELLA_WALL_HEAD.get());
-        SkullRenderRegistry.register(SkullType.STELLA_DEMON, StellaDemonEntity.texture.getTexture(), STELLA_DEMON_HEAD.get(), STELLA_DEMON_WALL_HEAD.get());
-    }
-
     public enum SkullType implements SkullBlock.SkullType {
         HEROBRINE_1, HEROBRINE_2, CERIS, ZOMBIES, NAEUS, RAIN, ABIGAIL, PATRICK, BLACKBONE, HOGSWORTH,
         CIARA, HILDA, SOLDIERS, WITHERED_SKELETONS, DARK_SHIELD, DARK_ZOMBIE, VORDUS, WITHER_SHIELD, SKELETON_SNOW,
         PIGLIN_KING, GLUTTON_1, GLUTTON_2, PORKSHIRE, NAEUS_KING, TUSK, BROTS, ZOMBIE_PIG, MUTATED,
-        NAMTAR, AGETHA, TRICER, BIG_BLACK_SKELETON, ARCHER, DARYLL, NULL_LIKE, GIGABONE, KLAUS,
+        NAMTAR, AGETHA, BIG_BLACK_SKELETON, ARCHER, DARYLL, NULL_LIKE, GIGABONE, KLAUS,
         KLAUS_2, KRALOS, ARABELLA, AZALEA, KYLE, SCORCH, STELLA, STELLA_DEMON
     }
 }

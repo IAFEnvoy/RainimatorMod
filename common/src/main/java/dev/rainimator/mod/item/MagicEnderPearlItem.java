@@ -13,6 +13,7 @@ import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -32,13 +33,13 @@ public class MagicEnderPearlItem extends FoilItemBase {
         double y = entity.getY();
         double z = entity.getZ();
 
-        SoundUtil.playSound(world, x, y, z, Identifier.tryParse("entity.ender_pearl.throw"), 1, 1);
+        SoundUtil.playSound(world, x, y, z, SoundEvents.ENTITY_ENDER_PEARL_THROW, 1, 1);
 
         if (world instanceof ServerWorld _level)
             _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), x, y, z, 30, 0.5D, 1.0D, 0.5D, 0.02D);
         if (entity.isSprinting()) {
             World projectileLevel = entity.getWorld();
-            if (!projectileLevel.isClient()) {
+            if (!projectileLevel.isClient) {
                 ProjectileEntity _entityToSpawn = new EnderPearlEntity(EntityType.ENDER_PEARL, projectileLevel);
                 _entityToSpawn.setOwner(entity);
                 _entityToSpawn.setPosition(entity.getX(), entity.getEyeY() - 0.1D, entity.getZ());
@@ -55,7 +56,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
 
         } else {
             World projectileLevel = entity.getWorld();
-            if (!projectileLevel.isClient()) {
+            if (!projectileLevel.isClient) {
                 ProjectileEntity _entityToSpawn = new EnderPearlEntity(EntityType.ENDER_PEARL, projectileLevel);
                 _entityToSpawn.setOwner(entity);
                 _entityToSpawn.setPosition(entity.getX(), entity.getEyeY() - 0.1D, entity.getZ());
@@ -74,7 +75,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
         if (entity.isSneaking()) {
 
             World projectileLevel = entity.getWorld();
-            if (!projectileLevel.isClient()) {
+            if (!projectileLevel.isClient) {
                 ProjectileEntity _entityToSpawn = new EnderPearlEntity(EntityType.ENDER_PEARL, projectileLevel);
                 _entityToSpawn.setOwner(entity);
                 _entityToSpawn.setPosition(entity.getX(), entity.getEyeY() - 0.1D, entity.getZ());
@@ -93,7 +94,7 @@ public class MagicEnderPearlItem extends FoilItemBase {
                 entity.requestTeleport(x, y, z);
                 if ((Entity) entity instanceof ServerPlayerEntity _serverPlayer)
                     _serverPlayer.networkHandler.requestTeleport(x, y, z, entity.getYaw(), entity.getPitch());
-                SoundUtil.playSound(world, x, y, z, Identifier.tryParse("entity.enderman.teleport"), 1.0F, 1.0F);
+                SoundUtil.playSound(world, x, y, z, SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
                 if (world instanceof ServerWorld) {
                     ((ServerWorld) world).spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.02D);
                 }

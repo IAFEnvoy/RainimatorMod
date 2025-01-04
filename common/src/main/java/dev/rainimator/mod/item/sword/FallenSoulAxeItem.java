@@ -36,7 +36,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
     @Override
     public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
         boolean retval = super.postHit(itemtack, entity, sourceentity);
-        if (!entity.getWorld().isClient())
+        if (!entity.getWorld().isClient)
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 80, 0));
         return retval;
     }
@@ -62,7 +62,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
                     continue;
                 }
                 if (entityiterator instanceof LivingEntity _entity)
-                    if (!_entity.getWorld().isClient())
+                    if (!_entity.getWorld().isClient)
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 60, 0));
 
                 entityiterator.requestTeleport(x, y + 1.0D, z);
@@ -70,7 +70,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
                     _serverPlayer.networkHandler.requestTeleport(x, y + 1.0D, z, entityiterator.getYaw(), entityiterator.getPitch());
 
                 if (entityiterator instanceof LivingEntity _entity)
-                    if (!_entity.getWorld().isClient())
+                    if (!_entity.getWorld().isClient)
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 50, 4));
 
                 for (double i = 2; i <= 5; i++) {

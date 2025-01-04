@@ -34,7 +34,7 @@ public class NaeusSwordItem extends SwordItemBase {
     @Override
     public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceEntity) {
         boolean ret_val = super.postHit(itemtack, entity, sourceEntity);
-        if (!entity.getWorld().isClient())
+        if (!entity.getWorld().isClient)
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0));
         entity.setOnFireFor(5);
         return ret_val;
@@ -53,7 +53,7 @@ public class NaeusSwordItem extends SwordItemBase {
                 else {
                     entityIterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 5.0F);
                     if (entityIterator instanceof LivingEntity _entity)
-                        if (!_entity.getWorld().isClient())
+                        if (!_entity.getWorld().isClient)
                             _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 300, 1));
                     entityIterator.setOnFireFor(10);
                     SoundUtil.playSound(world, _center.x, _center.y, _center.z, Identifier.of(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);

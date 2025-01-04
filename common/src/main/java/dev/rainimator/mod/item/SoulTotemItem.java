@@ -19,8 +19,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
@@ -47,26 +47,26 @@ public class SoulTotemItem extends FoilItemBase {
         double z = entity.getZ();
 
         if (entity.isOnGround()) {
-            if (world.isClient())
+            if (world.isClient)
                 (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemtack);
-            SoundUtil.playSound(world, x, y, z, Identifier.tryParse("block.anvil.land"), 5.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, SoundEvents.BLOCK_ANVIL_LAND, 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
-            if (!entity.getWorld().isClient())
+            if (!entity.getWorld().isClient)
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 140, 4));
             entity.getItemCooldownManager().set(itemtack.getItem(), 400);
 
             Timeout.create(100, () -> {
-                if (!entity.getWorld().isClient())
+                if (!entity.getWorld().isClient)
                     entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 300, 1));
             });
         } else {
-            if (((WorldAccess) world).isClient())
+            if (world.isClient)
                 (MinecraftClient.getInstance()).gameRenderer.showFloatingItem(itemtack);
-            SoundUtil.playSound(world, x, y, z, Identifier.tryParse("block.anvil.land"), 5.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, SoundEvents.BLOCK_ANVIL_LAND, 5.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.002D);
-            if (!entity.getWorld().isClient())
+            if (!entity.getWorld().isClient)
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 400, 0));
             entity.getItemCooldownManager().set(itemtack.getItem(), 600);
         }
@@ -83,10 +83,10 @@ public class SoulTotemItem extends FoilItemBase {
                 if ((WorldAccess) world instanceof World _lvl) {
                     if (_lvl.isDay()) {
                         if (entity1 instanceof PlayerEntity _entity) {
-                            if (!_entity.getWorld().isClient())
+                            if (!_entity.getWorld().isClient)
                                 _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 0));
                         } else if (entity1 instanceof HostileEntity _entity2)
-                            if (!_entity2.getWorld().isClient())
+                            if (!_entity2.getWorld().isClient)
                                 _entity2.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100, 0));
                     }
                 }
@@ -95,10 +95,10 @@ public class SoulTotemItem extends FoilItemBase {
         if (entity instanceof PlayerEntity _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(RainimatorItems.SOUL_TOTEM.get()))) {
             if (world.isDay()) {
                 LivingEntity _entity = (LivingEntity) entity;
-                if (!_entity.getWorld().isClient())
+                if (!_entity.getWorld().isClient)
                     _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 100, 1));
                 if (Math.random() < 0.005)
-                    if (!world.isClient())
+                    if (!world.isClient)
                         world.spawnEntity(new ExperienceOrbEntity(world, entity.getX(), entity.getY(), entity.getZ(), 1));
             }
         }

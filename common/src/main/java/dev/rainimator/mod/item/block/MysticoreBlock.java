@@ -86,14 +86,14 @@ public class MysticoreBlock extends Block {
         double y = pos.getY();
         double z = pos.getZ();
         if (player != null) {
-            if (!world.isClient())
+            if (!world.isClient)
                 world.spawnEntity(new ExperienceOrbEntity(world, x, y, z, 10));
             if (Math.random() < 0.8D) {
                 if (lootTable.isEmpty()) initLootTable();
                 for (int i = 0; i < 3; i++)
                     for (Pair<ItemConvertible, Double> itemLikeDoublePair : lootTable)
                         if (Math.random() < itemLikeDoublePair.getRight()) {
-                            if (!world.isClient()) {
+                            if (!world.isClient) {
                                 ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(itemLikeDoublePair.getLeft()));
                                 entityToSpawn.setPickupDelay(10);
                                 world.spawnEntity(entityToSpawn);
@@ -101,9 +101,9 @@ public class MysticoreBlock extends Block {
                             break;
                         }
             } else {
-                if (!player.getWorld().isClient())
+                if (!player.getWorld().isClient)
                     player.sendMessage(Text.translatable("block.rainimator.mystic_ore.nothing"), true);
-                if (!world.isClient()) {
+                if (!world.isClient) {
                     ItemEntity entityToSpawn = new ItemEntity(world, x, y, z, new ItemStack(Blocks.COBBLED_DEEPSLATE));
                     entityToSpawn.setPickupDelay(10);
                     world.spawnEntity(entityToSpawn);

@@ -59,7 +59,7 @@ public class EndStaffItem extends ItemBase {
 
     @Override
     public void onStoppedUsing(ItemStack itemtack, World world, LivingEntity entityLiving, int timeLeft) {
-        if (!world.isClient() && entityLiving instanceof ServerPlayerEntity entity) {
+        if (!world.isClient && entityLiving instanceof ServerPlayerEntity entity) {
             ItemStack stack = RangedWeaponItem.getHeldProjectile(entity, e -> (e.getItem() == RainimatorItems.MAGIC_STAR.get()));
             if (stack == ItemStack.EMPTY)
                 for (int i = 0; i < (entity.getInventory()).main.size(); i++) {

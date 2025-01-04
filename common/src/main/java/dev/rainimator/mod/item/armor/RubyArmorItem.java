@@ -22,7 +22,7 @@ public class RubyArmorItem extends ArmorWithTickItem {
     public void onArmorTick(World world, PlayerEntity entity) {
         if (entity == null)
             return;
-        if (!entity.getWorld().isClient() && ServerConfig.getInstance().enableArmorEffect &&
+        if (!entity.getWorld().isClient && ServerConfig.getInstance().enableArmorEffect &&
                 entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.RUBY_HELMET.get() &&
                 entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == RainimatorItems.RUBY_CHESTPLATE.get() &&
                 entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == RainimatorItems.RUBY_LEGGINGS.get() &&

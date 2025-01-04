@@ -8,7 +8,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Pair;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 public class RainimatorBanners {
     public static final ItemStack FROST = BannerUtil.create("itemStack." + RainimatorMod.MOD_ID + ".frost", Items.CYAN_BANNER,
             new Pair<>(BannerPatterns.CROSS, DyeColor.WHITE),

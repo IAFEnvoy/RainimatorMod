@@ -23,7 +23,7 @@ public class ZombieHeartItem extends ItemBase {
     public ItemStack finishUsing(ItemStack itemtack, World world, LivingEntity entity) {
         ItemStack retval = super.finishUsing(itemtack, world, entity);
         if (entity instanceof LivingEntity)
-            if (!entity.getWorld().isClient()) {
+            if (!entity.getWorld().isClient) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 200, 1));
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 200, 1));
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 200, 1));

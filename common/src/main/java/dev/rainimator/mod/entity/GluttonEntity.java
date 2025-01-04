@@ -7,6 +7,7 @@ import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -57,15 +58,14 @@ public class GluttonEntity extends StagedMonsterEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 20.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 6.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 2.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 20.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 6.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 2.0D);
     }
 
     @Override
@@ -99,18 +99,12 @@ public class GluttonEntity extends StagedMonsterEntityBase {
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.CACTUS))
-            return true;
-        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT))
-            return true;
-        if (damageSource.isOf(DamageTypes.FALLING_ANVIL))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
-            return false;
+        if (damageSource.isOf(DamageTypes.FALL)) return true;
+        if (damageSource.isOf(DamageTypes.CACTUS)) return true;
+        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT)) return true;
+        if (damageSource.isOf(DamageTypes.FALLING_ANVIL)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER)) return true;
+        if (damageSource.isOf(DamageTypes.WITHER_SKULL)) return false;
         return super.isInvulnerableTo(damageSource);
     }
 
@@ -120,18 +114,14 @@ public class GluttonEntity extends StagedMonsterEntityBase {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blackbone_skill"), 5, 1);
-        if (world instanceof ServerWorld _level)
-            _level.spawnParticles(RainimatorParticles.YELLOW_STARS.get(), x, y, z, 100, 1, 2, 1, 1);
+        ServerWorld serverWorld = world.toServerWorld();
+        SoundUtil.playSound(serverWorld, x, y, z, RainimatorSounds.BLACKBONE_LIVING.get(), 5, 1);
+        serverWorld.spawnParticles(RainimatorParticles.YELLOW_STARS.get(), x, y, z, 100, 1, 2, 1, 1);
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            Timeout.create(30, () -> {
-                if (world instanceof World _level)
-                    SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blackbone_living"), 5, 1);
-            });
+            Timeout.create(30, () -> SoundUtil.playSound(serverWorld, x, y, z, RainimatorSounds.BLACKBONE_LIVING.get(), 5, 1));
             Runnable callback = () -> {
                 if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "glutton_boss_music"), 5, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.GLUTTON_BOSS_MUSIC.get(), 5, 1);
             };
             Timeout.create(0, callback);
             Timeout.create(5520, callback);
@@ -148,7 +138,7 @@ public class GluttonEntity extends StagedMonsterEntityBase {
     public void baseTick() {
         super.baseTick();
         if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "glutton_boss_music"));
+            SoundUtil.stopSound(this.getWorld(), RainimatorSounds.GLUTTON_BOSS_MUSIC.getId());
     }
 
     @Override

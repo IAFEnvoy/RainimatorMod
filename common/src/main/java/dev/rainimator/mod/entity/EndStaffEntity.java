@@ -17,7 +17,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 
 import java.util.Random;
 
@@ -30,25 +29,24 @@ public class EndStaffEntity extends PersistentProjectileEntity implements Flying
         super(type, entity, world);
     }
 
-    public static void doHit(WorldAccess world, double x, double y, double z) {
-        if (world instanceof World _level)
-            if (!_level.isClient())
-                _level.createExplosion(null, x, y, z, 3.0F, World.ExplosionSourceType.NONE);
-        if (world instanceof ServerWorld _level)
-            _level.spawnParticles(RainimatorParticles.LIGHTENING_ARC.get(), x, y, z, 250, 0.5D, 1.0D, 0.5D, 0.5D);
+    public static void doHit(World world, double x, double y, double z) {
+        if (world instanceof ServerWorld serverWorld) {
+            serverWorld.createExplosion(null, x, y, z, 3.0F, World.ExplosionSourceType.NONE);
+            serverWorld.spawnParticles(RainimatorParticles.LIGHTENING_ARC.get(), x, y, z, 250, 0.5D, 1.0D, 0.5D, 0.5D);
+        }
     }
 
     public static EndStaffEntity shoot(World world, LivingEntity entity, Random random, float power, double damage, int knockback) {
-        EndStaffEntity entityarrow = new EndStaffEntity(RainimatorEntities.END_STAFF.get(), entity, world);
-        entityarrow.setVelocity((entity.getRotationVec(1.0F)).x, (entity.getRotationVec(1.0F)).y, (entity.getRotationVec(1.0F)).z, power * 2.0F, 0.0F);
-        entityarrow.setSilent(true);
-        entityarrow.setCritical(true);
-        entityarrow.setDamage(damage);
-        entityarrow.setPunch(knockback);
-        entityarrow.setOnFireFor(100);
-        world.spawnEntity(entityarrow);
+        EndStaffEntity staff = new EndStaffEntity(RainimatorEntities.END_STAFF.get(), entity, world);
+        staff.setVelocity((entity.getRotationVec(1.0F)).x, (entity.getRotationVec(1.0F)).y, (entity.getRotationVec(1.0F)).z, power * 2.0F, 0.0F);
+        staff.setSilent(true);
+        staff.setCritical(true);
+        staff.setDamage(damage);
+        staff.setPunch(knockback);
+        staff.setOnFireFor(100);
+        world.spawnEntity(staff);
         SoundUtil.playPlayerSound(world, entity.getX(), entity.getY(), entity.getZ(), Identifier.tryParse("entity.arrow.shoot"), 1.0F, 1.0F / (random.nextFloat() * 0.5F + 1.0F) + power / 2.0F);
-        return entityarrow;
+        return staff;
     }
 
     @Override

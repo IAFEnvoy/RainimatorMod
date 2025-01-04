@@ -47,7 +47,7 @@ public class SeizingShadowHalberdItem extends SwordItemBase {
     public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
         boolean retval = super.postHit(itemtack, entity, sourceentity);
         if (Math.random() < 0.1D)
-            if (!entity.getWorld().isClient())
+            if (!entity.getWorld().isClient)
                 entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.SHADOW_EROSION.get(), 200, 0));
         return retval;
     }

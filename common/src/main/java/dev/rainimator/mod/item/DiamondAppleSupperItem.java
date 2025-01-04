@@ -19,7 +19,7 @@ public class DiamondAppleSupperItem extends FoilItemBase {
     public ItemStack finishUsing(ItemStack itemtack, World world, LivingEntity entity) {
         ItemStack retval = super.finishUsing(itemtack, world, entity);
         if (entity instanceof LivingEntity)
-            if (!entity.getWorld().isClient()) {
+            if (!entity.getWorld().isClient) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 600, 2));
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 600, 2));
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 600, 4));

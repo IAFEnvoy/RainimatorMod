@@ -17,18 +17,13 @@ public class ShadowErosionMobEffect extends StatusEffect {
     }
 
     @Override
-    public String getTranslationKey() {
-        return "effect." + RainimatorMod.MOD_ID + ".shadow_erosion";
-    }
-
-    @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (Math.random() < 0.2D) {
             entity.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 3.0F);
-            if (!entity.getWorld().isClient())
+            if (entity.getWorld() instanceof ServerWorld _level) {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 100, 0));
-            if (entity.getWorld() instanceof ServerWorld _level)
                 _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), entity.getX(), entity.getY(), entity.getZ(), 100, 0.0D, 10.0D, 0.0D, 0.001D);
+            }
         }
     }
 

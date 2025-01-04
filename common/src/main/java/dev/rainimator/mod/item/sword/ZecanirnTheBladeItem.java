@@ -14,6 +14,7 @@ import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -77,7 +78,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase {
             } else {
                 entity.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 3.0F);
                 if (entity instanceof LivingEntity) {
-                    if (!entity.getWorld().isClient())
+                    if (!entity.getWorld().isClient)
                         entity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100, 0));
                 }
 
@@ -86,7 +87,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase {
                     itemtack.setDamage(0);
                 }
                 Timeout.create(100, () -> {
-                    if (!entity.getWorld().isClient())
+                    if (!entity.getWorld().isClient)
                         entity.getWorld().createExplosion(null, entity.getX(), entity.getY() + 1.0D, entity.getZ(), 1.0F, World.ExplosionSourceType.NONE);
                 });
             }
@@ -115,7 +116,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase {
                     entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 10.0F);
                     if (world instanceof ServerWorld _level)
                         _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), entity.getX(), entity.getY(), entity.getZ(), 40, 0.5D, 0.5D, 0.5D, 0.5D);
-                    SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
+                    SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), RainimatorSounds.BLACK_DEATH_SWORD_SKILL.get(), 4.0F, 1.0F);
 
                     Runnable callback = () -> {
                         entity.requestTeleport(entity.getX(), entity.getY(), entity.getZ());
@@ -129,7 +130,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase {
                             for (double x = -7; x <= 7; x++)
                                 _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), entity.getX() + x, entity.getY(), entity.getZ(), 20, 0.2D, 0.5D, 0.2D, 0.2D);
                         }
-                        SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "black_death_sword_skills"), 4.0F, 1.0F);
+                        SoundUtil.playSound(world, entity.getX(), entity.getY(), entity.getZ(), RainimatorSounds.BLACK_DEATH_SWORD_SKILL.get(), 4.0F, 1.0F);
                     };
                     Timeout.create(5, callback);
                     Timeout.create(10, callback);
@@ -139,7 +140,7 @@ public class ZecanirnTheBladeItem extends SwordItemBase {
                     entity.getItemCooldownManager().set(ar.getValue().getItem(), 1200);
                     continue;
                 }
-                if (!entity.getWorld().isClient())
+                if (!entity.getWorld().isClient)
                     entity.sendMessage(Text.translatable("item.rainimator.zecanirn_the_blade.error.health"), true);
             }
         }

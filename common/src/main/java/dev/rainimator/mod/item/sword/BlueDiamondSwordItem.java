@@ -88,13 +88,13 @@ public class BlueDiamondSwordItem extends SwordItemBase {
                         if (world instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
                         SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5, 1);
-                        if (!_livEnt.getWorld().isClient())
+                        if (!_livEnt.getWorld().isClient)
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0));
                         entityiterator.setOnFireFor(10);
                         entity.getItemCooldownManager().set(itemtack.getItem(), 1000);
-                        if (!entity.getWorld().isClient())
+                        if (!entity.getWorld().isClient)
                             entity.sendMessage(Text.translatable("item.rainimator.blue_diamond_sword.skill1"), true);
-                        if (world.isClient())
+                        if (world.isClient)
                             MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemtack);
                         Runnable callback = () -> {
                             if (entityiterator.isAlive()) {
@@ -113,18 +113,18 @@ public class BlueDiamondSwordItem extends SwordItemBase {
                         if ((WorldAccess) world instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
                         SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blue_diamond_skill_2"), 5, 1);
-                        if (!_livEnt.getWorld().isClient())
+                        if (!_livEnt.getWorld().isClient)
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0));
                         entityiterator.setOnFireFor(10);
                         entity.getItemCooldownManager().set(itemtack.getItem(), 1000);
-                        if (!entity.getWorld().isClient())
+                        if (!entity.getWorld().isClient)
                             entity.sendMessage(Text.translatable("item.rainimator.blue_diamond_sword.skill2"), true);
-                        if (((WorldAccess) world).isClient())
+                        if (world.isClient)
                             MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemtack);
 
                         Runnable callback1 = () -> {
                             if (entityiterator.isAlive()) {
-                                if (!world.isClient())
+                                if (!world.isClient)
                                     world.createExplosion(null, (entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), 2, World.ExplosionSourceType.NONE);
                                 entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 5);
                             }
@@ -136,7 +136,7 @@ public class BlueDiamondSwordItem extends SwordItemBase {
                         Timeout.create(200, callback1);
                     } else if (entityiterator instanceof LivingEntity _livEnt && (_livEnt.getGroup() == EntityGroup.UNDEAD || _livEnt.getGroup() == EntityGroup.ILLAGER)) {
                         entityiterator.setOnFireFor(10);
-                        if (!_livEnt.getWorld().isClient()) {
+                        if (!_livEnt.getWorld().isClient) {
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0));
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 160, 2));
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 160, 0));
@@ -145,9 +145,9 @@ public class BlueDiamondSwordItem extends SwordItemBase {
                         if (world instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 50, 0.5, 0.5, 0.5, 0.2);
                         entity.getItemCooldownManager().set(itemtack.getItem(), 1000);
-                        if (!entity.getWorld().isClient())
+                        if (!entity.getWorld().isClient)
                             entity.sendMessage(Text.translatable("item.rainimator.blue_diamond_sword.skill3"), true);
-                        if (world.isClient())
+                        if (world.isClient)
                             MinecraftClient.getInstance().gameRenderer.showFloatingItem(itemtack);
                         Runnable callback1 = () -> {
                             if (world instanceof ServerWorld _level)
@@ -183,7 +183,7 @@ public class BlueDiamondSwordItem extends SwordItemBase {
                                         _level.spawnEntity(entityToSpawn);
                                     }
                                 }
-                                if (!world.isClient())
+                                if (!world.isClient)
                                     world.createExplosion(null, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 8, World.ExplosionSourceType.NONE);
                                 if (world instanceof ServerWorld _level)
                                     _level.spawnParticles(RainimatorParticles.LIGHTENING_ARC.get(), entityiterator.getX(), entityiterator.getY(), entityiterator.getZ(), 50, 0.5, 1, 0.5, 0.2);

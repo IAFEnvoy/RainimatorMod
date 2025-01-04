@@ -60,7 +60,7 @@ public class RainSwordItem extends SwordItemBase {
         boolean ret_val = super.postHit(itemtack, entity, sourceentity);
         if (Math.random() < 0.1D)
             if (entity instanceof LivingEntity)
-                if (!entity.getWorld().isClient()) {
+                if (!entity.getWorld().isClient) {
                     entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.ICE_PEOPLE.get(), 100, 0));
                     entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 0));
                 }
@@ -86,7 +86,7 @@ public class RainSwordItem extends SwordItemBase {
 
                 for (Triple<Integer, Integer, Integer> place : places)
                     world.setBlockState(new BlockPos((int) (entityiterator.getX() + place.getLeft()), (int) (entityiterator.getY() + place.getMiddle()), (int) (entityiterator.getZ() + place.getRight())), Blocks.ICE.getDefaultState(), 3);
-                if (!_livEnt.getWorld().isClient()) {
+                if (!_livEnt.getWorld().isClient) {
                     _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 540, 4));
                     _livEnt.addStatusEffect(new StatusEffectInstance(RainimatorEffects.ICE_PEOPLE.get(), 500, 0));
                 }
@@ -131,24 +131,24 @@ public class RainSwordItem extends SwordItemBase {
                     continue;
                 }
                 if (!_livEnt.hasStatusEffect(StatusEffects.SLOWNESS)) {
-                    if (!_livEnt.getWorld().isClient()) {
+                    if (!_livEnt.getWorld().isClient) {
                         _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 0));
                         _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 60, 0));
                     }
                     entityIterator.setFrozenTicks(2);
                     if (Math.random() < 0.04D) {
-                        if (!_livEnt.getWorld().isClient())
+                        if (!_livEnt.getWorld().isClient)
                             _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 1));
                         entityIterator.setFrozenTicks(4);
                         Runnable callback = () -> {
-                            if (!_livEnt.getWorld().isClient())
+                            if (!_livEnt.getWorld().isClient)
                                 _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 2));
                             entityIterator.setFrozenTicks(6);
                         };
                         Timeout.create(60, callback);
                         Timeout.create(120, callback);
                         Timeout.create(180, () -> {
-                            if (!_livEnt.getWorld().isClient()) {
+                            if (!_livEnt.getWorld().isClient) {
                                 _livEnt.addStatusEffect(new StatusEffectInstance(RainimatorEffects.ICE_PEOPLE.get(), 100, 0));
                                 _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 4));
                             }

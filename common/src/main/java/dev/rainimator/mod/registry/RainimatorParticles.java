@@ -1,10 +1,8 @@
 package dev.rainimator.mod.registry;
 
-import dev.architectury.registry.client.particle.ParticleProviderRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.particle.*;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.RegistryKeys;
@@ -43,22 +41,6 @@ public class RainimatorParticles {
 
     private static RegistrySupplier<DefaultParticleType> register(String name, Supplier<DefaultParticleType> type) {
         return REGISTRY.register(name, type);
-    }
-
-    public static void registerParticles() {
-        ParticleProviderRegistry.register(RainimatorParticles.PURPLE_LIGHT, PurpleLightParticle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.RED_FLOWER, RedFlowerParticle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.SNOW, SnowParticle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.LIGHTING_1, Lighting1Particle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.LIGHTING_2, Lighting2Particle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.YELLOW_LIGHTENING, YellowLightingParticle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.LIGHTENING_ARC, LightingArcParticle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.ENDER_DAGGER, EnderDaggerParticle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.WHITE_CIRCLE, WhiteCircleParticle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.DARK_CIRCLE, DarkCircleParticle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.FLOWER_WHITE, FlowerWriteParticle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.SWEATER_SNOW, SweaterSnowParticle::provider);
-        ParticleProviderRegistry.register(RainimatorParticles.YELLOW_STARS, YellowStarsParticle::provider);
     }
 }
 
