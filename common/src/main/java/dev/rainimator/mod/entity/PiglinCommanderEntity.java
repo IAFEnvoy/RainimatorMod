@@ -1,13 +1,12 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.EntityUtil;
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -25,11 +24,11 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
-public class PiglinCommanderEntity extends MonsterFractionEntityBase {
+public class PiglinCommanderEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "piglin_commander");
 
     public PiglinCommanderEntity(EntityType<PiglinCommanderEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.NETHER);
+        super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 20;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.THE_GOLDEN_SWORD.get()));

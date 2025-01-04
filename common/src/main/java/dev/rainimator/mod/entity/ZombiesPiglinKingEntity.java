@@ -1,12 +1,11 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -31,12 +30,12 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
-public class ZombiesPiglinKingEntity extends MonsterFractionEntityBase {
+public class ZombiesPiglinKingEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "zombies_piglin_king");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
     public ZombiesPiglinKingEntity(EntityType<ZombiesPiglinKingEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.NETHER);
+        super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
         this.setAiDisabled(false);
         this.setPersistent();

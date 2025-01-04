@@ -1,12 +1,11 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.EntityUtil;
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -23,11 +22,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-public class BigUndeadSkeletonEntity extends MonsterFractionEntityBase {
+public class BigUndeadSkeletonEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "big_blackbone");
 
     public BigUndeadSkeletonEntity(EntityType<BigUndeadSkeletonEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.NETHER);
+        super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 200;
         this.setPersistent();
     }

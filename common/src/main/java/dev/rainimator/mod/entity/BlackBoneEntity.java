@@ -2,13 +2,12 @@ package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -33,12 +32,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.NotNull;
 
-public class BlackBoneEntity extends MonsterFractionEntityBase {
+public class BlackBoneEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "blackbone");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.WHITE, BossBar.Style.PROGRESS);
 
     public BlackBoneEntity(EntityType<BlackBoneEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.NETHER);
+        super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 0;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.BLACKBONE_THE_BLADE_SINGLE_HAND.get()));
     }

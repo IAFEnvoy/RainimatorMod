@@ -25,7 +25,6 @@ public class RainimatorMod {
         RainimatorEntities.registerAttributes();
         RainimatorEntities.addSpawner();
         RainimatorFeatures.init();
-        RainimatorFractions.init();
     }
 
     public static void process() {

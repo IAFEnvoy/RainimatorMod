@@ -1,10 +1,9 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -23,11 +22,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-public class DarkShieldEntity extends MonsterFractionEntityBase {
+public class DarkShieldEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "ender_shield");
 
     public DarkShieldEntity(EntityType<DarkShieldEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, RainimatorFractions.ENDER);
+        super(type, world, EntityGroup.DEFAULT);
         this.experiencePoints = 20;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.LIGHT_SWORD.get()));
         this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.LIGHT_SWORD.get()));

@@ -1,10 +1,9 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -24,11 +23,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-public class DaryllEntity extends MonsterFractionEntityBase implements RangedAttackMob {
+public class DaryllEntity extends MonsterEntityBase implements RangedAttackMob {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "daryll");
 
     public DaryllEntity(EntityType<DaryllEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, RainimatorFractions.FROST);
+        super(type, world, EntityGroup.DEFAULT);
         this.experiencePoints = 0;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_AXE));

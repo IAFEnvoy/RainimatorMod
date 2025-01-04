@@ -1,10 +1,9 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -19,11 +18,11 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class StellaDemonEntity extends MonsterFractionEntityBase {
+public class StellaDemonEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "stella_demon");
 
     public StellaDemonEntity(EntityType<StellaDemonEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, RainimatorFractions.NETHER);
+        super(type, world, EntityGroup.DEFAULT);
         this.setStepHeight(0.7f);
         this.experiencePoints = 0;
         this.setAiDisabled(false);

@@ -1,10 +1,9 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -21,11 +20,11 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class SkeletonSnowEntity extends MonsterFractionEntityBase {
+public class SkeletonSnowEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "skeleton_snow");
 
     public SkeletonSnowEntity(EntityType<SkeletonSnowEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.UNDEAD);
+        super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 20;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.SNOW_DIAMOND_SWORD.get()));
     }

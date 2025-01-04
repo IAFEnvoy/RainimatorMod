@@ -22,7 +22,6 @@ import net.minecraft.world.WorldAccess;
 import java.util.Random;
 
 public class EndStaffEntity extends PersistentProjectileEntity implements FlyingItemEntity {
-
     public EndStaffEntity(EntityType<? extends EndStaffEntity> type, World world) {
         super(type, world);
     }

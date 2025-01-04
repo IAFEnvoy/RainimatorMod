@@ -1,10 +1,7 @@
 package dev.rainimator.mod.entity;
 
-import com.iafenvoy.neptune.fraction.Fraction;
-import com.iafenvoy.neptune.fraction.FractionEntity;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -30,7 +27,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class VordusEntity extends EndermanEntity implements FractionEntity {
+public class VordusEntity extends EndermanEntity {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "vordus");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
@@ -58,7 +55,6 @@ public class VordusEntity extends EndermanEntity implements FractionEntity {
     @Override
     protected void initGoals() {
         super.initGoals();
-        FractionEntity.addTarget(this);
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());
@@ -131,10 +127,5 @@ public class VordusEntity extends EndermanEntity implements FractionEntity {
     public void mobTick() {
         super.mobTick();
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-    }
-
-    @Override
-    public Fraction getFraction() {
-        return RainimatorFractions.ENDER;
     }
 }

@@ -1,10 +1,9 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -21,11 +20,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class ScorchEntity extends MonsterFractionEntityBase {
+public class ScorchEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "scorch");
 
     public ScorchEntity(EntityType<ScorchEntity> entityType, World world) {
-        super(entityType, world, EntityGroup.DEFAULT, RainimatorFractions.NETHER);
+        super(entityType, world, EntityGroup.DEFAULT);
         this.setStepHeight(0.6f);
         this.experiencePoints = 0;
         this.setPersistent();

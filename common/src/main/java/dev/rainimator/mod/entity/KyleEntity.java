@@ -1,9 +1,8 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -20,11 +19,11 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class KyleEntity extends MonsterFractionEntityBase {
+public class KyleEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "kyle");
 
     public KyleEntity(EntityType<KyleEntity> entityType, World world) {
-        super(entityType, world, EntityGroup.DEFAULT, RainimatorFractions.FROST);
+        super(entityType, world, EntityGroup.DEFAULT);
         this.setStepHeight(0.6f);
         this.experiencePoints = 0;
         this.setPersistent();

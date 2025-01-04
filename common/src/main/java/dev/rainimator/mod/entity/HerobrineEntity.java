@@ -3,12 +3,11 @@ package dev.rainimator.mod.entity;
 import com.iafenvoy.neptune.object.EntityUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.VecUtil;
-import com.iafenvoy.neptune.object.entity.StagedMonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.StagedMonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
@@ -48,7 +47,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Comparator;
 import java.util.List;
 
-public class HerobrineEntity extends StagedMonsterFractionEntityBase {
+public class HerobrineEntity extends StagedMonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "herobrine_1", "herobrine_2").setEyeTextureId("textures/entities/him_eye.png");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
     private boolean hasSpawnBlackBone = false;
@@ -58,7 +57,7 @@ public class HerobrineEntity extends StagedMonsterFractionEntityBase {
     }
 
     public HerobrineEntity(EntityType<HerobrineEntity> type, World world, Stage stage) {
-        super(type, world, EntityGroup.UNDEAD, stage, RainimatorFractions.UNDEAD);
+        super(type, world, EntityGroup.UNDEAD, stage);
         this.experiencePoints = 0;
         this.setPersistent();
         switch (stage) {

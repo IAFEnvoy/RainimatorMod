@@ -1,11 +1,10 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
@@ -26,11 +25,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-public class CiaraEntity extends MonsterFractionEntityBase implements RangedAttackMob {
+public class CiaraEntity extends MonsterEntityBase implements RangedAttackMob {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "ciara");
 
     public CiaraEntity(EntityType<CiaraEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, RainimatorFractions.FROST);
+        super(type, world, EntityGroup.DEFAULT);
         this.experiencePoints = 0;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.THE_BLUE_DAGGER.get()));
         this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.THE_BLUE_DAGGER.get()));

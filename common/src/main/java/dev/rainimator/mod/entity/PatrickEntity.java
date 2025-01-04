@@ -1,14 +1,13 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.EntityUtil;
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -28,11 +27,11 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
-public class PatrickEntity extends MonsterFractionEntityBase implements RangedAttackMob {
+public class PatrickEntity extends MonsterEntityBase implements RangedAttackMob {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "patrick");
 
     public PatrickEntity(EntityType<PatrickEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, RainimatorFractions.FROST);
+        super(type, world, EntityGroup.DEFAULT);
         this.experiencePoints = 0;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.GENERAL_PATRICK_LONG_KNIVES.get()));
         this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.GENERAL_PATRICK_LONG_KNIVES.get()));

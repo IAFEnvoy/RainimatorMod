@@ -1,9 +1,8 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -22,12 +21,12 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class TricerEntity extends MonsterFractionEntityBase {
+public class TricerEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "tricer");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.NOTCHED_6);
 
     public TricerEntity(EntityType<TricerEntity> type, World world) {
-        super(type, world, EntityGroup.AQUATIC, RainimatorFractions.UNDEAD);
+        super(type, world, EntityGroup.AQUATIC);
         this.experiencePoints = 100;
         this.setPersistent();
     }

@@ -1,11 +1,10 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.entity.StagedMonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.StagedMonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
 import net.minecraft.entity.*;
@@ -30,7 +29,7 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
-public class GluttonEntity extends StagedMonsterFractionEntityBase {
+public class GluttonEntity extends StagedMonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "glutton_1", "glutton_2");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
@@ -39,7 +38,7 @@ public class GluttonEntity extends StagedMonsterFractionEntityBase {
     }
 
     public GluttonEntity(EntityType<GluttonEntity> type, World world, Stage stage) {
-        super(type, world, EntityGroup.UNDEAD, stage, RainimatorFractions.NETHER);
+        super(type, world, EntityGroup.UNDEAD, stage);
         this.experiencePoints = 0;
         this.setPersistent();
         switch (stage) {

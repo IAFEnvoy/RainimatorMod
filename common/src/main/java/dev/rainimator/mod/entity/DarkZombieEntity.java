@@ -1,10 +1,9 @@
 package dev.rainimator.mod.entity;
 
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorItems;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
 import net.minecraft.entity.EntityGroup;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -24,11 +23,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-public class DarkZombieEntity extends MonsterFractionEntityBase {
+public class DarkZombieEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "dark_zombie").setEyeTextureId("textures/entities/dark_zombie_eye.png");
 
     public DarkZombieEntity(EntityType<DarkZombieEntity> type, World world) {
-        super(type, world, EntityGroup.UNDEAD, RainimatorFractions.UNDEAD);
+        super(type, world, EntityGroup.UNDEAD);
         this.experiencePoints = 10;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.DIAMOND_LANCE.get()));
         this.equipStack(EquipmentSlot.HEAD, new ItemStack(Items.DIAMOND_HELMET));

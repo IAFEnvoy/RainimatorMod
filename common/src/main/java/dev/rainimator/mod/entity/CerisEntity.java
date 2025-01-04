@@ -1,13 +1,12 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.entity.FractionEntityWithBossBar;
+import com.iafenvoy.neptune.object.entity.EntityWithBossBar;
 import com.iafenvoy.neptune.render.BossBarRenderHelper;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
@@ -33,7 +32,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.NotNull;
 
-public class CerisEntity extends FractionEntityWithBossBar {
+public class CerisEntity extends EntityWithBossBar {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "ceris").setEyeTextureId("textures/entities/ceris_eye.png");
 
     static {
@@ -41,7 +40,7 @@ public class CerisEntity extends FractionEntityWithBossBar {
     }
 
     public CerisEntity(EntityType<CerisEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, BossBar.Color.PURPLE, RainimatorFractions.ENDER);
+        super(type, world, EntityGroup.DEFAULT, BossBar.Color.PURPLE);
         this.experiencePoints = 0;
         this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.ENDER_BIG_SWORD.get()));

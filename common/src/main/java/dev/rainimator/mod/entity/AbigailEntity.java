@@ -1,11 +1,10 @@
 package dev.rainimator.mod.entity;
 
 import com.iafenvoy.neptune.object.DamageUtil;
-import com.iafenvoy.neptune.object.entity.MonsterFractionEntityBase;
+import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorFractions;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EntityGroup;
@@ -27,11 +26,11 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-public class AbigailEntity extends MonsterFractionEntityBase implements RangedAttackMob {
+public class AbigailEntity extends MonsterEntityBase implements RangedAttackMob {
     public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "abigail");
 
     public AbigailEntity(EntityType<AbigailEntity> type, World world) {
-        super(type, world, EntityGroup.DEFAULT, RainimatorFractions.NETHER);
+        super(type, world, EntityGroup.DEFAULT);
         this.experiencePoints = 0;
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(RainimatorItems.ABIGAIL_SPEAR.get()));
     }
