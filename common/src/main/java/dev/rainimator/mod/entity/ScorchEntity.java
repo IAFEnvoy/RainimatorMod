@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class ScorchEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "scorch");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "scorch");
 
     public ScorchEntity(EntityType<ScorchEntity> entityType, World world) {
         super(entityType, world, EntityGroup.DEFAULT);

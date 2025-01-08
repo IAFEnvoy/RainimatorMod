@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class CiaraEntity extends MonsterEntityBase implements RangedAttackMob {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "ciara");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "ciara");
 
     public CiaraEntity(EntityType<CiaraEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);

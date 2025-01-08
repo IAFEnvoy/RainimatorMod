@@ -1,7 +1,6 @@
 package dev.rainimator.mod.effect;
 
 import com.iafenvoy.neptune.object.DamageUtil;
-import dev.rainimator.mod.RainimatorMod;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;

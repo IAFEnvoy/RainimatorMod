@@ -42,10 +42,8 @@
       "rainimator:fraction"
     ]
   },
-  "accessWidener": "rainimator.accesswidener",
   "mixins": [
-    "rainimator-common.mixins.json",
-    "rainimator-fabric.mixins.json"
+    "rainimator.mixins.json"
   ],
   "depends": {
     "fabricloader": "*",

@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class WitherShieldEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "wither_shield");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "wither_shield");
 
     public WitherShieldEntity(EntityType<WitherShieldEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

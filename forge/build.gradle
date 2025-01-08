@@ -1,9 +1,16 @@
 plugins {
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
+
 architectury {
     platformSetupLoomIde()
     forge()
+}
+
+loom {
+    forge {
+        mixinConfig "rainimator.mixins.json"
+    }
 }
 
 configurations {
@@ -25,8 +32,8 @@ dependencies {
     // Curios
     modImplementation "top.theillusivec4.curios:curios-forge:${curios_version}"
 
-    // Neptune cross-platform library
     modImplementation "maven.modrinth:neptune:x91KIxMv"
+    modImplementation "maven.modrinth:jupiter:quscWB5K"
 
     // Optional dependencies
     // Asteor Bar

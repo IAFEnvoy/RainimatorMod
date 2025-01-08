@@ -32,7 +32,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class NullLikeEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "null_like").setEyeTextureId("textures/entities/null_like_eye.png");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "null_like").setEyeTextureId("textures/entities/null_like_eye.png");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.WHITE, BossBar.Style.PROGRESS);
 
     public NullLikeEntity(EntityType<NullLikeEntity> type, World world) {

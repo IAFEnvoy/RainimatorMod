@@ -23,7 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class WitheredSkeletonsEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "withered_skeletons");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "withered_skeletons");
 
     public WitheredSkeletonsEntity(EntityType<WitheredSkeletonsEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

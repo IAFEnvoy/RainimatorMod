@@ -20,7 +20,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class NamtarEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "namtar");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "namtar");
 
     public NamtarEntity(EntityType<NamtarEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);

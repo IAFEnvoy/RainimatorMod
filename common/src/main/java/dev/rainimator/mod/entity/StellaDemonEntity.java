@@ -19,7 +19,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class StellaDemonEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "stella_demon");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "stella_demon");
 
     public StellaDemonEntity(EntityType<StellaDemonEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);

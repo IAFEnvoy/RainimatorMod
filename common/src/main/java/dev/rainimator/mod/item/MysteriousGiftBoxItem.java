@@ -128,7 +128,7 @@ public class MysteriousGiftBoxItem extends ItemBase {
             ItemStack _stktoremove = new ItemStack(RainimatorItems.MYSTERIOUS_GIFT_BOX.get());
             _player.getInventory().remove(p -> (_stktoremove.getItem() == p.getItem()), 0, _player.playerScreenHandler.getCraftingInput());
             ItemStack stack = new ItemStack(Items.AIR);
-            if (lootTable.size() == 0) initLootTable();
+            if (lootTable.isEmpty()) initLootTable();
             for (Triple<ItemConvertible, Integer, String> triple : lootTable) {
                 if (Math.random() < 0.1D) {
                     stack = new ItemStack(triple.getLeft(), triple.getMiddle());

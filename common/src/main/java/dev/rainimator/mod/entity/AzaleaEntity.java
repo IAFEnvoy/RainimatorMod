@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class AzaleaEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "azalea");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "azalea");
 
     public AzaleaEntity(EntityType<AzaleaEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

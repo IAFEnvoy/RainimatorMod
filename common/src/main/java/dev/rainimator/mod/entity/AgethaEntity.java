@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class AgethaEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "agetha");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "agetha");
 
     public AgethaEntity(EntityType<AgethaEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);

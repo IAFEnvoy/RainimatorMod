@@ -31,7 +31,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class ZombiesPiglinKingEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "zombies_piglin_king");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "zombies_piglin_king");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
     public ZombiesPiglinKingEntity(EntityType<ZombiesPiglinKingEntity> type, World world) {

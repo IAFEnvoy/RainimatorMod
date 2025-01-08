@@ -31,7 +31,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class GluttonEntity extends StagedMonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "glutton_1", "glutton_2");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "glutton_1", "glutton_2");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
     public GluttonEntity(EntityType<GluttonEntity> type, World world) {

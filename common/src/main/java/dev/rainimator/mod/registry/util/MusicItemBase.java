@@ -1,7 +1,6 @@
 package dev.rainimator.mod.registry.util;
 
 import dev.rainimator.mod.registry.RainimatorItemGroups;
-import dev.rainimator.mod.registry.RainimatorSounds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.item.ItemStack;

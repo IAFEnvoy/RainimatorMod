@@ -20,7 +20,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class TuskEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "tusk");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "tusk");
 
     public TuskEntity(EntityType<TuskEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

@@ -28,7 +28,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class VordusEntity extends EndermanEntity {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "vordus");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "vordus");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.YELLOW, BossBar.Style.PROGRESS);
 
     public VordusEntity(EntityType<VordusEntity> type, World world) {

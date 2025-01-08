@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class DarkZombieEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "dark_zombie").setEyeTextureId("textures/entities/dark_zombie_eye.png");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "dark_zombie").setEyeTextureId("textures/entities/dark_zombie_eye.png");
 
     public DarkZombieEntity(EntityType<DarkZombieEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

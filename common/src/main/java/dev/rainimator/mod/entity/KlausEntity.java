@@ -34,7 +34,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.*;
 
 public class KlausEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "klaus");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "klaus");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.BLUE, BossBar.Style.PROGRESS);
 
     public KlausEntity(EntityType<KlausEntity> type, World world) {

@@ -20,7 +20,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class ZombiePiglinArtEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "zombie_piglin_art");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "zombie_piglin_art");
 
     public ZombiePiglinArtEntity(EntityType<ZombiePiglinArtEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

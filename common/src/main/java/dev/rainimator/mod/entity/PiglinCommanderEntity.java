@@ -25,7 +25,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 
 public class PiglinCommanderEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "piglin_commander");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "piglin_commander");
 
     public PiglinCommanderEntity(EntityType<PiglinCommanderEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

@@ -23,7 +23,7 @@ public class FabricApiCall {
             Optional<TrinketComponent> optional = TrinketsApi.getTrinketComponent(entity);
             if (optional.isEmpty()) return false;
             List<Pair<SlotReference, ItemStack>> list = optional.get().getEquipped(RainimatorItems.WINGS_OF_SALVATION.get());
-            if (list.size() == 0) return false;
+            if (list.isEmpty()) return false;
             ItemStack stack = list.get(0).getRight();
             if (stack.getItem() instanceof FabricElytraItem fabricElytraItem)
                 return fabricElytraItem.useCustomElytra(entity, stack, tickElytra);

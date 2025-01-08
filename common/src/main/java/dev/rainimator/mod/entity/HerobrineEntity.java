@@ -48,7 +48,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class HerobrineEntity extends StagedMonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "herobrine_1", "herobrine_2").setEyeTextureId("textures/entities/him_eye.png");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "herobrine_1", "herobrine_2").setEyeTextureId("textures/entities/him_eye.png");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
     private boolean hasSpawnBlackBone = false;
 
