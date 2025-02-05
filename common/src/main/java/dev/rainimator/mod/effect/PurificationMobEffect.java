@@ -1,7 +1,6 @@
 package dev.rainimator.mod.effect;
 
 import com.iafenvoy.neptune.util.function.MemorizeSupplier;
-import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;

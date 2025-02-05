@@ -38,7 +38,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class StellaEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "stella");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "stella");
 
     public StellaEntity(EntityType<StellaEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);

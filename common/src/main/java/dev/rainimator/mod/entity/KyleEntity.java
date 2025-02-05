@@ -20,7 +20,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class KyleEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "kyle");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "kyle");
 
     public KyleEntity(EntityType<KyleEntity> entityType, World world) {
         super(entityType, world, EntityGroup.DEFAULT);

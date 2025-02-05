@@ -33,7 +33,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.NotNull;
 
 public class CerisEntity extends EntityWithBossBar {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "ceris").setEyeTextureId("textures/entities/ceris_eye.png");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "ceris").setEyeTextureId("textures/entities/ceris_eye.png");
 
     static {
         BossBarRenderHelper.addBossBarType(CerisEntity.class, new Identifier(RainimatorMod.MOD_ID, "textures/bossbar/ceris.png"), true);

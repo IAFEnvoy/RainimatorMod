@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class DarkShieldEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "ender_shield");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "ender_shield");
 
     public DarkShieldEntity(EntityType<DarkShieldEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);

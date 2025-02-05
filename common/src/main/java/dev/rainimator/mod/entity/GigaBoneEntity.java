@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class GigaBoneEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "gigabone");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "gigabone");
 
     public GigaBoneEntity(EntityType<GigaBoneEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

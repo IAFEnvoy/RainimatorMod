@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class SkeletonSnowEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "skeleton_snow");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "skeleton_snow");
 
     public SkeletonSnowEntity(EntityType<SkeletonSnowEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

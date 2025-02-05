@@ -29,6 +29,7 @@ public class WingsOfSalvationRenderer implements ICurioRenderer {
     private static final Identifier WINGS_LOCATION = Identifier.of(RainimatorMod.MOD_ID, "textures/wings/tech_wings.png");
     private static final Identifier WINGS_LOCATION2 = Identifier.of(RainimatorMod.MOD_ID, "textures/wings/tech_wings_2.png");
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, MatrixStack matrices, FeatureRendererContext<T, M> renderLayerParent, VertexConsumerProvider vertexConsumers, int light, float limbAngle, float limbDistance, float animationProgress, float ageInTicks, float headYaw, float headPitch) {
         LivingEntity entity = slotContext.entity();

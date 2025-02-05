@@ -27,6 +27,7 @@ public class WingsOfSalvationRenderer implements TrinketRenderer {
     private static final Identifier WINGS_LOCATION = Identifier.of(RainimatorMod.MOD_ID, "textures/wings/tech_wings.png");
     private static final Identifier WINGS_LOCATION2 = Identifier.of(RainimatorMod.MOD_ID, "textures/wings/tech_wings_2.png");
 
+    @SuppressWarnings("unchecked")
     @Override
     public void render(ItemStack stack, SlotReference slotReference, EntityModel<? extends LivingEntity> contextModel, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, LivingEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
         if (stack.getItem() == RainimatorItems.WINGS_OF_SALVATION.get() && entity instanceof AbstractClientPlayerEntity player) {

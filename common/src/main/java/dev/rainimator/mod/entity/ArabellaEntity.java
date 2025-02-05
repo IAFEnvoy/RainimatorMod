@@ -30,7 +30,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ArabellaEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "arabella");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "arabella");
 
     public ArabellaEntity(EntityType<ArabellaEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);

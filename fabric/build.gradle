@@ -7,10 +7,6 @@ architectury {
     fabric()
 }
 
-loom {
-    accessWidenerPath = file("src/main/resources/rainimator.accesswidener")
-}
-
 configurations {
     common
     shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
@@ -28,11 +24,8 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 
-    // Trinkets
     modImplementation "dev.emi:trinkets:${trinkets_version}"
-
-    // Cardinal Components API
-    // Don't need this. Trinkets has embedded version 5.2.0.
+    modImplementation "maven.modrinth:jupiter:nhqjUZZy"
 
     // Neptune cross-platform library
     modImplementation "maven.modrinth:neptune:o7GnNs4S"

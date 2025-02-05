@@ -1,6 +1,5 @@
 package dev.rainimator.mod.fabric.compat.trinkets.renderer.armor;
 
-import com.iafenvoy.neptune.render.armor.IArmorRenderHelper;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.client.TrinketRenderer;
 import dev.rainimator.mod.renderer.model.ModelMagic;

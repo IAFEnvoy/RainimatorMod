@@ -3,7 +3,6 @@ package dev.rainimator.mod.data.config;
 public class RainimatorConfig {
     private static RainimatorConfig INSTANCE = null;
 
-    public FractionType fraction = FractionType.OFF;
     public int manaHudX = 0;
     public int manaHudY = 0;
 

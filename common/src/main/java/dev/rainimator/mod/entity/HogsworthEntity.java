@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class HogsworthEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "hogsworth");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "hogsworth");
 
     public HogsworthEntity(EntityType<HogsworthEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

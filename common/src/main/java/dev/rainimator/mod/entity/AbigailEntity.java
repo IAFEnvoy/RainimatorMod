@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class AbigailEntity extends MonsterEntityBase implements RangedAttackMob {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "abigail");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "abigail");
 
     public AbigailEntity(EntityType<AbigailEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);
@@ -36,7 +36,7 @@ public class AbigailEntity extends MonsterEntityBase implements RangedAttackMob 
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes()
+        return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 100.0D)
                 .add(EntityAttributes.GENERIC_ARMOR, 30.0D)
@@ -44,7 +44,6 @@ public class AbigailEntity extends MonsterEntityBase implements RangedAttackMob 
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
                 .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 
     @Override

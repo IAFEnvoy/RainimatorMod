@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class DaryllEntity extends MonsterEntityBase implements RangedAttackMob {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "daryll");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "daryll");
 
     public DaryllEntity(EntityType<DaryllEntity> type, World world) {
         super(type, world, EntityGroup.DEFAULT);

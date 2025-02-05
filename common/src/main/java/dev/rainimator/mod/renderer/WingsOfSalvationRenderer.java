@@ -27,9 +27,9 @@ import net.minecraft.util.math.RotationAxis;
 public class WingsOfSalvationRenderer<T extends LivingEntity, M extends EntityModel<T>> extends FeatureRenderer<T, M> {
     private static final Identifier WINGS_LOCATION = Identifier.of(RainimatorMod.MOD_ID, "textures/wings/tech_wings.png");
     private static final Identifier WINGS_LOCATION2 = Identifier.of(RainimatorMod.MOD_ID, "textures/wings/tech_wings_2.png");
-    private final EntityModel<T> contextModel;
+    private final PlayerEntityModel<AbstractClientPlayerEntity> contextModel;
 
-    public WingsOfSalvationRenderer(FeatureRendererContext<T, M> context, EntityModel<T> contextModel) {
+    public WingsOfSalvationRenderer(FeatureRendererContext<T, M> context, PlayerEntityModel<AbstractClientPlayerEntity> contextModel) {
         super(context);
         this.contextModel = contextModel;
     }
@@ -39,7 +39,7 @@ public class WingsOfSalvationRenderer<T extends LivingEntity, M extends EntityMo
         ItemStack stack = entity.getEquippedStack(EquipmentSlot.CHEST);
         if (entity instanceof AbstractClientPlayerEntity player && stack.isOf(RainimatorItems.WINGS_OF_SALVATION.get())) {
             WingsOfSalvationModel<AbstractClientPlayerEntity> wingModel = new WingsOfSalvationModel<>(WingsOfSalvationModel.createLayer().createModel());
-            PlayerEntityModel<AbstractClientPlayerEntity> model = (PlayerEntityModel<AbstractClientPlayerEntity>) this.contextModel;
+            PlayerEntityModel<AbstractClientPlayerEntity> model = this.contextModel;
             matrices.push();
             matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(180));
             matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180));

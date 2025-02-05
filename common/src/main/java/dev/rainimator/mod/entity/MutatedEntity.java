@@ -20,7 +20,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class MutatedEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "mutated");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "mutated");
 
     public MutatedEntity(EntityType<MutatedEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

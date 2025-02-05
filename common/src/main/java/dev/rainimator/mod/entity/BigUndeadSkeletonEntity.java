@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class BigUndeadSkeletonEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "big_blackbone");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "big_blackbone");
 
     public BigUndeadSkeletonEntity(EntityType<BigUndeadSkeletonEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);

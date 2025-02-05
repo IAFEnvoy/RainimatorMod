@@ -33,7 +33,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.NotNull;
 
 public class BlackBoneEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "blackbone");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "blackbone");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.WHITE, BossBar.Style.PROGRESS);
 
     public BlackBoneEntity(EntityType<BlackBoneEntity> type, World world) {

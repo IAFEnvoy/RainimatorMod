@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class BrotsEntity extends MonsterEntityBase {
-    public static final Stage.StagedEntityTextureProvider texture = Stage.ofProvider(RainimatorMod.MOD_ID, "brots");
+    public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "brots");
 
     public BrotsEntity(EntityType<BrotsEntity> type, World world) {
         super(type, world, EntityGroup.UNDEAD);
@@ -30,7 +30,7 @@ public class BrotsEntity extends MonsterEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes()
+        return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 50.0D)
                 .add(EntityAttributes.GENERIC_ARMOR, 20.0D)
@@ -38,7 +38,6 @@ public class BrotsEntity extends MonsterEntityBase {
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16.0D)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 4.0D)
                 .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
-        return builder;
     }
 
     @Override
