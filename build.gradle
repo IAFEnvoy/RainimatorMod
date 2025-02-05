@@ -56,6 +56,11 @@ allprojects {
         maven {
             url = "https://api.modrinth.com/maven"
         }
+        repositories {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
     }
 
     tasks.withType(JavaCompile).configureEach {
