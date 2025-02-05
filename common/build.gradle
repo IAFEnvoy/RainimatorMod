@@ -5,7 +5,7 @@ dependencies {
     // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury:${rootProject.architectury_version}"
     // Neptune cross-platform library
-    modImplementation "maven.modrinth:neptune:AoaXlYhX"
+    modImplementation "maven.modrinth:neptune:o7GnNs4S"
 }
 
 architectury {
