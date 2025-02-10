@@ -3,7 +3,6 @@ package dev.rainimator.mod.data.config;
 public class ServerConfig {
     private static ServerConfig INSTANCE = null;
 
-    public boolean showModLightening = true;
     public double baseMaxMana = 100;
     public double baseRestoreSpeed = 3;
     public boolean enableWingsCreativeFly = false;

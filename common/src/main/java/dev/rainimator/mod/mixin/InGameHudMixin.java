@@ -1,6 +1,6 @@
 package dev.rainimator.mod.mixin;
 
-import dev.rainimator.mod.screen.gui.InGameHudRenderHelper;
+import dev.rainimator.mod.screen.InGameHudRenderHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;

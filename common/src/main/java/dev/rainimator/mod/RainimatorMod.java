@@ -1,7 +1,6 @@
 package dev.rainimator.mod;
 
 import com.mojang.logging.LogUtils;
-import dev.rainimator.mod.network.ServerNetworkHelper;
 import dev.rainimator.mod.registry.*;
 import org.slf4j.Logger;
 
@@ -21,7 +20,6 @@ public class RainimatorMod {
         RainimatorPotions.REGISTRY.register();
         RainimatorItemGroups.REGISTRY.register();
         RainimatorParticles.REGISTRY.register();
-        RainimatorScreenHandlers.REGISTRY.register();
         RainimatorEntities.registerAttributes();
         RainimatorEntities.addSpawner();
         RainimatorFeatures.init();
@@ -32,7 +30,5 @@ public class RainimatorMod {
         RainimatorItemGroups.init();
         RainimatorItems.init();
         RainimatorTrades.registerTrades();
-
-        ServerNetworkHelper.register();
     }
 }

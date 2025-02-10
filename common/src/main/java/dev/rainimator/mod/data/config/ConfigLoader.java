@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class ConfigLoader {
     private static final Gson GSON = new Gson();
@@ -16,7 +17,7 @@ public class ConfigLoader {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             try {
-                FileUtils.write(new File(path), GSON.toJson(defaultValue));
+                FileUtils.write(new File(path), GSON.toJson(defaultValue), StandardCharsets.UTF_8);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

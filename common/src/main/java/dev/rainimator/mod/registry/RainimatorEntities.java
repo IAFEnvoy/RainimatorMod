@@ -45,7 +45,6 @@ public class RainimatorEntities {
     public static final RegistrySupplier<EntityType<HildaEntityProjectile>> HILDA_PROJECTILE = build("hilda_projectile", HildaEntityProjectile::new, SpawnGroup.MISC, 64, 1, false, 0.5F, 0.5F);
     public static final RegistrySupplier<EntityType<WitheredSkeletonsEntity>> WITHERED_SKELETONS = build("withered_skeletons", WitheredSkeletonsEntity::new, SpawnGroup.MONSTER, 32, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<EndStaffEntity>> END_STAFF = build("end_staff", EndStaffEntity::new, SpawnGroup.MISC, 64, 1, false, 0.5F, 0.5F);
-    public static final RegistrySupplier<EntityType<VordusEntity>> VORDUS = build("vordus", VordusEntity::new, SpawnGroup.MONSTER, 64, 3, false, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<DarkZombieEntity>> DARK_ZOMBIE = build("dark_zombie", DarkZombieEntity::new, SpawnGroup.MONSTER, 32, 3, false, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<DarkShieldEntity>> DARK_SHIELD = build("dark_shield", DarkShieldEntity::new, SpawnGroup.MONSTER, 32, 3, false, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<WitherShieldEntity>> WITHER_SHIELD = build("wither_shield", WitherShieldEntity::new, SpawnGroup.MONSTER, 32, 3, true, 0.6F, 1.8F);
@@ -104,7 +103,6 @@ public class RainimatorEntities {
         EntityAttributeRegistry.register(WITHERED_SKELETONS, WitheredSkeletonsEntity::createAttributes);
         EntityAttributeRegistry.register(DARK_SHIELD, DarkShieldEntity::createAttributes);
         EntityAttributeRegistry.register(DARK_ZOMBIE, DarkZombieEntity::createAttributes);
-        EntityAttributeRegistry.register(VORDUS, VordusEntity::createEndermanAttributes);
         EntityAttributeRegistry.register(WITHER_SHIELD, WitherShieldEntity::createAttributes);
         EntityAttributeRegistry.register(SKELETON_SNOW, SkeletonSnowEntity::createAttributes);
         EntityAttributeRegistry.register(ZOMBIE_PIGLIN_KING, ZombiesPiglinKingEntity::createAttributes);

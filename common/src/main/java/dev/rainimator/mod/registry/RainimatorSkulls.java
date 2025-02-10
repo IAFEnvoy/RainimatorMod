@@ -44,8 +44,6 @@ public class RainimatorSkulls {
     public static final RegistrySupplier<Block> DARK_SHIELD_WALL_HEAD = register("dark_shield_wall_head", () -> new WallSkullBlock(SkullType.DARK_SHIELD, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> DARK_ZOMBIE_HEAD = register("dark_zombie_head", () -> new SkullBlock(SkullType.DARK_ZOMBIE, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> DARK_ZOMBIE_WALL_HEAD = register("dark_zombie_wall_head", () -> new WallSkullBlock(SkullType.DARK_ZOMBIE, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> VORDUS_HEAD = register("vordus_head", () -> new SkullBlock(SkullType.VORDUS, AbstractBlock.Settings.create()));
-    public static final RegistrySupplier<Block> VORDUS_WALL_HEAD = register("vordus_wall_head", () -> new WallSkullBlock(SkullType.VORDUS, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> WITHER_SHIELD_HEAD = register("wither_shield_head", () -> new SkullBlock(SkullType.WITHER_SHIELD, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> WITHER_SHIELD_WALL_HEAD = register("wither_shield_wall_head", () -> new WallSkullBlock(SkullType.WITHER_SHIELD, AbstractBlock.Settings.create()));
     public static final RegistrySupplier<Block> SKELETON_SNOW_HEAD = register("skeleton_snow_head", () -> new SkullBlock(SkullType.SKELETON_SNOW, AbstractBlock.Settings.create()));
@@ -117,7 +115,6 @@ public class RainimatorSkulls {
     public static final RegistrySupplier<Item> WITHERED_SKELETONS_HEAD_ITEM = register("withered_skeletons", WITHERED_SKELETONS_HEAD, WITHERED_SKELETONS_WALL_HEAD);
     public static final RegistrySupplier<Item> DARK_SHIELD_HEAD_ITEM = register("dark_shield", DARK_SHIELD_HEAD, DARK_SHIELD_WALL_HEAD);
     public static final RegistrySupplier<Item> DARK_ZOMBIE_HEAD_ITEM = register("dark_zombie", DARK_ZOMBIE_HEAD, DARK_ZOMBIE_WALL_HEAD);
-    public static final RegistrySupplier<Item> VORDUS_HEAD_ITEM = register("vordus", VORDUS_HEAD, VORDUS_WALL_HEAD);
     public static final RegistrySupplier<Item> WITHER_SHIELD_HEAD_ITEM = register("wither_shield", WITHER_SHIELD_HEAD, WITHER_SHIELD_WALL_HEAD);
     public static final RegistrySupplier<Item> SKELETON_SNOW_HEAD_ITEM = register("skeleton_snow", SKELETON_SNOW_HEAD, SKELETON_SNOW_WALL_HEAD);
     public static final RegistrySupplier<Item> PIGLIN_KING_HEAD_ITEM = register("piglin_king", PIGLIN_KING_HEAD, PIGLIN_KING_WALL_HEAD);
@@ -159,7 +156,7 @@ public class RainimatorSkulls {
 
     public enum SkullType implements SkullBlock.SkullType {
         HEROBRINE_1, HEROBRINE_2, CERIS, ZOMBIES, NAEUS, RAIN, ABIGAIL, PATRICK, BLACKBONE, HOGSWORTH,
-        CIARA, HILDA, SOLDIERS, WITHERED_SKELETONS, DARK_SHIELD, DARK_ZOMBIE, VORDUS, WITHER_SHIELD, SKELETON_SNOW,
+        CIARA, HILDA, SOLDIERS, WITHERED_SKELETONS, DARK_SHIELD, DARK_ZOMBIE, WITHER_SHIELD, SKELETON_SNOW,
         PIGLIN_KING, GLUTTON_1, GLUTTON_2, PORKSHIRE, NAEUS_KING, TUSK, BROTS, ZOMBIE_PIG, MUTATED,
         NAMTAR, AGETHA, BIG_BLACK_SKELETON, ARCHER, DARYLL, NULL_LIKE, GIGABONE, KLAUS,
         KLAUS_2, KRALOS, ARABELLA, AZALEA, KYLE, SCORCH, STELLA, STELLA_DEMON

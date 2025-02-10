@@ -11,7 +11,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class BlueDiamondBlock extends Block {
-
     public BlueDiamondBlock() {
         super(Settings.create().requiresTool().strength(6).sounds(BlockSoundGroup.METAL));
     }

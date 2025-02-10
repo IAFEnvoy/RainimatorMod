@@ -6,12 +6,10 @@ import com.iafenvoy.neptune.render.armor.IArmorRendererBase;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.particle.ParticleProviderRegistry;
-import dev.architectury.registry.menu.MenuRegistry;
 import dev.rainimator.mod.entity.*;
 import dev.rainimator.mod.particle.*;
 import dev.rainimator.mod.renderer.armor.*;
 import dev.rainimator.mod.renderer.model.*;
-import dev.rainimator.mod.screen.gui.EnderBookSkillScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
@@ -39,7 +37,6 @@ public class RainimatorRenderers {
         EntityRendererRegistry.register(RainimatorEntities.HILDA_PROJECTILE, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(RainimatorEntities.WITHERED_SKELETONS, WitheredSkeletonsEntity.TEXTURE::createRenderer);
         EntityRendererRegistry.register(RainimatorEntities.END_STAFF, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(RainimatorEntities.VORDUS, VordusEntity.TEXTURE::createRenderer);
         EntityRendererRegistry.register(RainimatorEntities.DARK_ZOMBIE, DarkZombieEntity.TEXTURE::createRenderer);
         EntityRendererRegistry.register(RainimatorEntities.DARK_SHIELD, DarkShieldEntity.TEXTURE::createRenderer);
         EntityRendererRegistry.register(RainimatorEntities.WITHER_SHIELD, WitherShieldEntity.TEXTURE::createRenderer);
@@ -123,7 +120,6 @@ public class RainimatorRenderers {
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.WITHERED_SKELETONS, WitheredSkeletonsEntity.TEXTURE.getTexture(), RainimatorSkulls.WITHERED_SKELETONS_HEAD.get(), RainimatorSkulls.WITHERED_SKELETONS_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.DARK_SHIELD, DarkShieldEntity.TEXTURE.getTexture(), RainimatorSkulls.DARK_SHIELD_HEAD.get(), RainimatorSkulls.DARK_SHIELD_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.DARK_ZOMBIE, DarkZombieEntity.TEXTURE.getTexture(), RainimatorSkulls.DARK_ZOMBIE_HEAD.get(), RainimatorSkulls.DARK_ZOMBIE_WALL_HEAD.get());
-        SkullRenderRegistry.register(RainimatorSkulls.SkullType.VORDUS, VordusEntity.TEXTURE.getTexture(), RainimatorSkulls.VORDUS_HEAD.get(), RainimatorSkulls.VORDUS_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.WITHER_SHIELD, WitherShieldEntity.TEXTURE.getTexture(), RainimatorSkulls.WITHER_SHIELD_HEAD.get(), RainimatorSkulls.WITHER_SHIELD_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.SKELETON_SNOW, SkeletonSnowEntity.TEXTURE.getTexture(), RainimatorSkulls.SKELETON_SNOW_HEAD.get(), RainimatorSkulls.SKELETON_SNOW_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.PIGLIN_KING, ZombiesPiglinKingEntity.TEXTURE.getTexture(), RainimatorSkulls.PIGLIN_KING_HEAD.get(), RainimatorSkulls.PIGLIN_KING_WALL_HEAD.get());
@@ -151,9 +147,5 @@ public class RainimatorRenderers {
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.SCORCH, ScorchEntity.TEXTURE.getTexture(), RainimatorSkulls.SCORCH_HEAD.get(), RainimatorSkulls.SCORCH_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.STELLA, StellaEntity.TEXTURE.getTexture(), RainimatorSkulls.STELLA_HEAD.get(), RainimatorSkulls.STELLA_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.STELLA_DEMON, StellaDemonEntity.TEXTURE.getTexture(), RainimatorSkulls.STELLA_DEMON_HEAD.get(), RainimatorSkulls.STELLA_DEMON_WALL_HEAD.get());
-    }
-
-    public static void registerGui() {
-        MenuRegistry.registerScreenFactory(RainimatorScreenHandlers.ENDER_BOOK.get(), EnderBookSkillScreen::new);
     }
 }

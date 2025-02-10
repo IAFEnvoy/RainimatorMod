@@ -16,15 +16,15 @@ public class RainimatorItemGroups {
     public static final DeferredRegister<ItemGroup> REGISTRY = DeferredRegister.create(RainimatorMod.MOD_ID, RegistryKeys.ITEM_GROUP);
     public static final RegistrySupplier<ItemGroup> MAIN = register("main", () -> CreativeTabRegistry.create(
             Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator"),
-            () -> new ItemStack(RainimatorItems.WARRIOR_HEART.get())
+            () -> new ItemStack(RainimatorBlocks.DARK_OBSIDIAN_BLOCK.get())
     ));
     public static final RegistrySupplier<ItemGroup> MOBS = register("mobs", () -> CreativeTabRegistry.create(
             Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_mobs"),
-            () -> new ItemStack(RainimatorItems.ICE_HEART.get())
+            () -> new ItemStack(RainimatorSkulls.RAIN_HEAD_ITEM.get())
     ));
     public static final RegistrySupplier<ItemGroup> ITEM = register("item", () -> CreativeTabRegistry.create(
             Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_item"),
-            () -> new ItemStack(RainimatorItems.ENDER_HEART.get())
+            () -> new ItemStack(RainimatorItems.ENDER_BIG_SWORD.get())
     ));
 
     private static <T extends ItemGroup> RegistrySupplier<T> register(String name, Supplier<T> group) {

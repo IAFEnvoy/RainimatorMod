@@ -1,4 +1,4 @@
-package dev.rainimator.mod.screen.gui;
+package dev.rainimator.mod.screen;
 
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaData;
