@@ -3,11 +3,11 @@ package dev.rainimator.mod.entity;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
-import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -26,7 +26,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -153,23 +152,9 @@ public class NullLikeEntity extends MonsterEntityBase {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 5.0F, 1.0F);
+            SoundUtil.playSound(_level, x, y, z, RainimatorSounds.BLUED_DIAMOND_SKILL_1.get(), 5.0F, 1.0F);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles(RainimatorParticles.FLOWER_WHITE.get(), x, y, z, 300, 2.0D, 3.0D, 2.0D, 0.3D);
-        if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            Runnable callback = () -> {
-                if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "null_boss_music"), 1, 1);
-            };
-            Timeout.create(0, callback);
-            Timeout.create(6420, callback);
-            Timeout.create(12840, callback);
-            Timeout.create(19260, callback);
-            Timeout.create(25680, callback);
-            Timeout.create(32100, callback);
-            Timeout.create(38520, callback);
-        }
-
         return retval;
     }
 
@@ -178,8 +163,6 @@ public class NullLikeEntity extends MonsterEntityBase {
         super.baseTick();
         if (!this.getWorld().isClient())
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 1));
-        if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "null_boss_music"));
     }
 
     @Override

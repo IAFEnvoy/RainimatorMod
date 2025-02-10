@@ -10,6 +10,7 @@ import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -27,9 +28,13 @@ import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.*;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.RaycastContext;
+import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 public class CerisEntity extends EntityWithBossBar {
@@ -92,7 +97,7 @@ public class CerisEntity extends EntityWithBossBar {
                 this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION.get(), 100, 0));
 
             if (Math.random() < 0.3D) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.enderman.teleport"), 4.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, 4.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld _level)
                     _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
                 this.getNavigation().startMovingTo(this.getX() + RandomHelper.nextInt(3, 9), this.getY(), this.getZ() + RandomHelper.nextInt(3, 9), 20.0D);
@@ -102,7 +107,7 @@ public class CerisEntity extends EntityWithBossBar {
                     if (!livingEntity.getWorld().isClient())
                         livingEntity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.FEAR_DARK.get(), 200, 0));
                     if (!livingEntity.hasStatusEffect(StatusEffects.GLOWING)) {
-                        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_f"), 1.0F, 1.0F);
+                        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.CERIS_F.get(), 1.0F, 1.0F);
                         if (livingEntity instanceof LivingEntity)
                             if (!livingEntity.getWorld().isClient())
                                 livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100, 0));
@@ -117,7 +122,7 @@ public class CerisEntity extends EntityWithBossBar {
                             sourceentity.requestTeleport(blockPos.getX(), this.getY(), blockPos.getZ());
                             if (sourceentity instanceof ServerPlayerEntity _serverPlayer)
                                 _serverPlayer.networkHandler.requestTeleport(blockPos.getX(), this.getY(), blockPos.getZ(), sourceentity.getYaw(), sourceentity.getPitch());
-                            SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_skill"), 1.0F, 1.0F);
+                            SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.CERIS_SKILL.get(), 1.0F, 1.0F);
                             if (this.getWorld() instanceof ServerWorld _level)
                                 _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.1D, 0.5D, 0.3D);
                         });
@@ -165,7 +170,7 @@ public class CerisEntity extends EntityWithBossBar {
     @Override
     public void onDeath(DamageSource source) {
         super.onDeath(source);
-        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_death"), 1.0F, 1.0F);
+        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.CERIS_DEATH.get(), 1.0F, 1.0F);
         if (this.getWorld() instanceof ServerWorld _level)
             _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 60, 0.5D, 1.0D, 0.5D, 0.5D);
     }
@@ -173,25 +178,9 @@ public class CerisEntity extends EntityWithBossBar {
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData ret_val = super.initialize(world, difficulty, reason, livingdata, tag);
-        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_live"), 1.0F, 1.0F);
-
+        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.CERIS_LIVE.get(), 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), this.getX(), this.getY(), this.getZ(), 50, 0.5D, 0.5D, 0.5D, 0.5D);
-        if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            Runnable callback = () -> {
-                if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "ceris_boss_music"), 1, 1);
-            };
-            Timeout.create(0, callback);
-            Timeout.create(4700, callback);
-            Timeout.create(9400, callback);
-            Timeout.create(14100, callback);
-            Timeout.create(18800, callback);
-            Timeout.create(23500, callback);
-            Timeout.create(28200, callback);
-            Timeout.create(32900, callback);
-        }
-
         return ret_val;
     }
 
@@ -202,8 +191,6 @@ public class CerisEntity extends EntityWithBossBar {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 80, 1));
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 1));
         }
-        if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "ceris_boss_music"));
     }
 
     @Override

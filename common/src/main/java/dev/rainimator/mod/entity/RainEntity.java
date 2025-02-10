@@ -4,10 +4,7 @@ import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorEffects;
-import dev.rainimator.mod.registry.RainimatorEntities;
-import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
@@ -149,7 +146,7 @@ public class RainEntity extends MonsterEntityBase implements RangedAttackMob {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blued_diamond_skill_1"), 1.0F, 1.0F);
+            SoundUtil.playSound(_level, x, y, z, RainimatorSounds.BLUED_DIAMOND_SKILL_1.get(), 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles(RainimatorParticles.SNOW.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.1D);
         return retval;

@@ -3,7 +3,6 @@ package dev.rainimator.mod.entity;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.entity.StagedMonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
-import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
@@ -25,7 +24,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -117,28 +115,7 @@ public class GluttonEntity extends StagedMonsterEntityBase {
         ServerWorld serverWorld = world.toServerWorld();
         SoundUtil.playSound(serverWorld, x, y, z, RainimatorSounds.BLACKBONE_LIVING.get(), 5, 1);
         serverWorld.spawnParticles(RainimatorParticles.YELLOW_STARS.get(), x, y, z, 100, 1, 2, 1, 1);
-        if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            Timeout.create(30, () -> SoundUtil.playSound(serverWorld, x, y, z, RainimatorSounds.BLACKBONE_LIVING.get(), 5, 1));
-            Runnable callback = () -> {
-                if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.GLUTTON_BOSS_MUSIC.get(), 5, 1);
-            };
-            Timeout.create(0, callback);
-            Timeout.create(5520, callback);
-            Timeout.create(11040, callback);
-            Timeout.create(16560, callback);
-            Timeout.create(22080, callback);
-            Timeout.create(27600, callback);
-            Timeout.create(33120, callback);
-        }
         return retval;
-    }
-
-    @Override
-    public void baseTick() {
-        super.baseTick();
-        if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), RainimatorSounds.GLUTTON_BOSS_MUSIC.getId());
     }
 
     @Override

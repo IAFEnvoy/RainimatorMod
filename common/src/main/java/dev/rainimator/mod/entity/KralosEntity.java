@@ -5,7 +5,6 @@ import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.VecUtil;
 import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
-import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
@@ -31,9 +30,9 @@ import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -111,7 +110,7 @@ public class KralosEntity extends MonsterEntityBase {
                     if (this.getWorld() instanceof ServerWorld _level)
                         EntityUtil.lightening(_level, x, y, z);
                     this.getWorld().setBlockState(VecUtil.createBlockPos(x, y, z), Blocks.FIRE.getDefaultState(), 3);
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.enderman.scream"), 1.0F, 1.0F);
+                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ENDERMAN_SCREAM, 1.0F, 1.0F);
                     if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.SOUL, x, y, z, 200, 2.0D, 3.0D, 2.0D, 0.001D);
                     if (!this.getWorld().isClient() && this.getWorld().getServer() != null)
@@ -148,24 +147,9 @@ public class KralosEntity extends MonsterEntityBase {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.wither.ambient"), 1.0F, 1.0F);
+            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_WITHER_AMBIENT, 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles(ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 0.001D);
-        if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            Runnable callback = () -> {
-                if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "kralos_boss_music"), 1, 1);
-            };
-            Timeout.create(0, callback);
-            Timeout.create(2480, callback);
-            Timeout.create(4960, callback);
-            Timeout.create(7440, callback);
-            Timeout.create(9920, callback);
-            Timeout.create(12400, callback);
-            Timeout.create(14880, callback);
-            Timeout.create(17360, callback);
-            Timeout.create(19840, callback);
-        }
         return retval;
     }
 
@@ -176,8 +160,6 @@ public class KralosEntity extends MonsterEntityBase {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 0));
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 0));
         }
-        if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "kralos_boss_music"));
     }
 
     @Override

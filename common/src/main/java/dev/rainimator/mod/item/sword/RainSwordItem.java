@@ -14,6 +14,7 @@ import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -24,6 +25,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
@@ -82,7 +84,7 @@ public class RainSwordItem extends SwordItemBase {
                 }
                 if (entityiterator instanceof MobEntity _entity)
                     _entity.getNavigation().stop();
-                SoundUtil.playSound(world, _center.x, _center.y, _center.z, Identifier.of(RainimatorMod.MOD_ID, "rain_sword_skill"), 1.0F, 1.0F);
+                SoundUtil.playSound(world, _center.x, _center.y, _center.z, RainimatorSounds.RAIN_SWORD_SKILL.get(), 1.0F, 1.0F);
 
                 for (Triple<Integer, Integer, Integer> place : places)
                     world.setBlockState(new BlockPos((int) (entityiterator.getX() + place.getLeft()), (int) (entityiterator.getY() + place.getMiddle()), (int) (entityiterator.getZ() + place.getRight())), Blocks.ICE.getDefaultState(), 3);
@@ -94,7 +96,7 @@ public class RainSwordItem extends SwordItemBase {
                     entity.getItemCooldownManager().set(ar.getValue().getItem(), 1200);
 
                 Timeout.create(500, () -> {
-                    SoundUtil.playSound(world, _center.x, _center.y, _center.z, Identifier.of(RainimatorMod.MOD_ID, "rain_sword_skill_2"), 5.0F, 1.0F);
+                    SoundUtil.playSound(world, _center.x, _center.y, _center.z, RainimatorSounds.RAIN_SWORD_SKILL_2.get(), 5.0F, 1.0F);
                     for (Triple<Integer, Integer, Integer> place : places)
                         world.setBlockState(new BlockPos((int) (entityiterator.getX() + place.getLeft()), (int) (entityiterator.getY() + place.getMiddle()), (int) (entityiterator.getZ() + place.getRight())), Blocks.AIR.getDefaultState(), 3);
                     entityiterator.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 5.0F);
@@ -152,7 +154,7 @@ public class RainSwordItem extends SwordItemBase {
                                 _livEnt.addStatusEffect(new StatusEffectInstance(RainimatorEffects.ICE_PEOPLE.get(), 100, 0));
                                 _livEnt.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 4));
                             }
-                            SoundUtil.playSound(world, _center.x, _center.y, _center.z, Identifier.tryParse("block.conduit.activate"), 1.0F, 1.0F);
+                            SoundUtil.playSound(world, _center.x, _center.y, _center.z, SoundEvents.BLOCK_CONDUIT_ACTIVATE, 1.0F, 1.0F);
                             entityIterator.setFrozenTicks(10);
                         });
                     }

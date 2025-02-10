@@ -3,11 +3,11 @@ package dev.rainimator.mod.entity;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.entity.MonsterEntityBase;
 import com.iafenvoy.neptune.render.Stage;
-import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
@@ -23,15 +23,16 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.*;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 
 public class KlausEntity extends MonsterEntityBase {
     public static final Stage.StagedEntityTextureProvider TEXTURE = Stage.ofProvider(RainimatorMod.MOD_ID, "klaus");
@@ -116,7 +117,7 @@ public class KlausEntity extends MonsterEntityBase {
                 if (Math.random() < 0.1) {
                     if (!this.getWorld().isClient())
                         this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 0));
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.tryParse("block.anvil.land"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, SoundEvents.BLOCK_ANVIL_LAND, 1, 1);
                     if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, x, y, z, 200, 0, 10, 0, 0.002);
                 }
@@ -127,7 +128,7 @@ public class KlausEntity extends MonsterEntityBase {
                 if (Math.random() < 0.1) {
                     if (sourceentity instanceof LivingEntity _entity && !_entity.getWorld().isClient())
                         _entity.addStatusEffect(new StatusEffectInstance(RainimatorEffects.STUNNED.get(), 100, 0));
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "stunned"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.STUNNED.get(), 1, 1);
                     if ((WorldAccess) this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles(RainimatorParticles.YELLOW_STARS.get(), x, y, z, 50, 1, 2, 1, 1);
                 }
@@ -136,7 +137,7 @@ public class KlausEntity extends MonsterEntityBase {
                 if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 1));
                 if (Math.random() < 0.1) {
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.tryParse("block.anvil.land"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, SoundEvents.BLOCK_ANVIL_LAND, 1, 1);
                     if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 2, 3, 2, 0.002);
                     if (sourceentity instanceof LivingEntity _entity && !_entity.getWorld().isClient())
@@ -147,7 +148,7 @@ public class KlausEntity extends MonsterEntityBase {
                 if (!this.getWorld().isClient())
                     this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 2));
                 if (Math.random() < 0.1) {
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.tryParse("block.anvil.land"), 1, 1);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, SoundEvents.BLOCK_ANVIL_LAND, 1, 1);
                     if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 100, 2, 3, 2, 0.002);
                     if (sourceentity instanceof LivingEntity _entity && !_entity.getWorld().isClient()) {
@@ -187,29 +188,8 @@ public class KlausEntity extends MonsterEntityBase {
     }
 
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
-        EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
-        if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            Runnable callback = () -> {
-                if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "klaus_boss_music"), 1, 1F);
-            };
-            Timeout.create(0, callback);
-            Timeout.create(6060, callback);
-            Timeout.create(12120, callback);
-            Timeout.create(18180, callback);
-            Timeout.create(24240, callback);
-            Timeout.create(30300, callback);
-            Timeout.create(36360, callback);
-        }
-        return retval;
-    }
-
-    @Override
     public void baseTick() {
         super.baseTick();
-        if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "klaus_boss_music"));
         if (!this.getWorld().isClient())
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 0));
     }

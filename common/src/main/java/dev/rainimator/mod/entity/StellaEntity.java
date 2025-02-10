@@ -8,10 +8,7 @@ import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
-import dev.rainimator.mod.registry.RainimatorEffects;
-import dev.rainimator.mod.registry.RainimatorEntities;
-import dev.rainimator.mod.registry.RainimatorItems;
-import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.*;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -171,7 +168,7 @@ public class StellaEntity extends MonsterEntityBase {
                 EntityUtil.lightening(_level, x, y, z);
             }
             world.setBlockState(VecUtil.createBlockPos(x, y, z), Blocks.FIRE.getDefaultState(), 3);
-            SoundUtil.playSound(world, x, y, z, new Identifier(RainimatorMod.MOD_ID, "naeus_roll"), 5, 1);
+            SoundUtil.playSound(world, x, y, z, RainimatorSounds.NAEUS_ROLL.get(), 5, 1);
             if (world instanceof ServerWorld _level) {
                 _level.spawnParticles(ParticleTypes.SOUL, x, y, z, 400, 3.0, 4.0, 3.0, 0.002);
             }

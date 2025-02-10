@@ -11,6 +11,7 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
 public class EnderCurvedSwordItem extends SwordItemBase {
@@ -37,7 +38,7 @@ public class EnderCurvedSwordItem extends SwordItemBase {
             entity.damage(DamageUtil.build(sourceentity, DamageTypes.MAGIC), 10.0F);
         else hurted = false;
         if (hurted) {
-            SoundUtil.playSound(entity.getWorld(), x, y, z, Identifier.tryParse("block.anvil.land"), 5.0F, 1.0F);
+            SoundUtil.playSound(entity.getWorld(), x, y, z, SoundEvents.BLOCK_ANVIL_LAND, 5.0F, 1.0F);
             if (itemtack.damage(1, entity.getRandom(), null)) {
                 itemtack.decrement(1);
                 itemtack.setDamage(0);

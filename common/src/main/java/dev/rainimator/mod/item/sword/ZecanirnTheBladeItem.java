@@ -7,7 +7,6 @@ import com.iafenvoy.neptune.object.item.SwordItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
-import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
@@ -26,9 +25,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -38,6 +37,7 @@ import net.minecraft.world.World;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ZecanirnTheBladeItem extends SwordItemBase {
     public ZecanirnTheBladeItem() {
@@ -52,20 +52,12 @@ public class ZecanirnTheBladeItem extends SwordItemBase {
             if (Math.random() < 0.9D) {
                 if (entity.getWorld() instanceof ServerWorld _level)
                     _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), entity.getX(), entity.getY(), entity.getZ(), 50, 0.5D, 1.0D, 0.5D, 0.2D);
-                if (Math.random() < 0.5D)
-                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "sword_teleport1"), 4.0F, 1.0F);
-                else if (Math.random() < 0.5D)
-                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "sword_teleport2"), 4.0F, 1.0F);
-                else if (Math.random() < 0.5D)
-                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "sword_teleport3"), 4.0F, 1.0F);
-                else
-                    SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), Identifier.of(RainimatorMod.MOD_ID, "sword_teleport4"), 4.0F, 1.0F);
+                SoundUtil.playSound(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), RainimatorSounds.SWORD_TELEPORT.get(), 4.0F, 1.0F);
 
                 BlockPos blockPos = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(-2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
                 sourceentity.requestTeleport(blockPos.getX(), entity.getY() + 0.5D, blockPos.getZ());
-                if (sourceentity instanceof ServerPlayerEntity _serverPlayer) {
+                if (sourceentity instanceof ServerPlayerEntity _serverPlayer)
                     _serverPlayer.networkHandler.requestTeleport(blockPos.getX(), entity.getY() + 0.5D, blockPos.getZ(), sourceentity.getYaw(), sourceentity.getPitch());
-                }
 
                 entity.getWorld().breakBlock(new BlockPos((int) sourceentity.getX(), (int) entity.getY(), (int) sourceentity.getZ()), false);
                 entity.getWorld().breakBlock(new BlockPos((int) sourceentity.getX(), (int) (entity.getY() + 1.0D), (int) sourceentity.getZ()), false);

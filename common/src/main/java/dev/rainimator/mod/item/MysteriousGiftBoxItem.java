@@ -6,6 +6,7 @@ import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorBlocks;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -124,7 +125,7 @@ public class MysteriousGiftBoxItem extends ItemBase {
         double z = entity.getZ();
 
         if (entity instanceof PlayerEntity _player) {
-            SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "gift_box"), 15.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, RainimatorSounds.GIFT_BOX.get(), 15.0F, 1.0F);
             ItemStack _stktoremove = new ItemStack(RainimatorItems.MYSTERIOUS_GIFT_BOX.get());
             _player.getInventory().remove(p -> (_stktoremove.getItem() == p.getItem()), 0, _player.playerScreenHandler.getCraftingInput());
             ItemStack stack = new ItemStack(Items.AIR);

@@ -11,6 +11,7 @@ import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -57,7 +58,7 @@ public class NetherSpearItem extends SwordItemBase {
         ItemStack itemtack = ar.getValue();
         ManaData data = ComponentManager.getManaData(entity);
         if (entity.isSneaking() && data.tryUseMana(entity, ServerConfig.getInstance().nether_spear)) {
-            SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_sword_1"), 5.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, RainimatorSounds.NAEUS_SWORD_1.get(), 5.0F, 1.0F);
             BlockPos pos1 = entity.getWorld().raycast(new RaycastContext(entity.getCameraPosVec(1.0F), entity.getCameraPosVec(1.0F).add(entity.getRotationVec(1.0F).multiply(2.0D)), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, entity)).getBlockPos();
             if (world instanceof ServerWorld _level) {
                 LightningEntity entityToSpawn = EntityType.LIGHTNING_BOLT.create(_level);

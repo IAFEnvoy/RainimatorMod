@@ -13,6 +13,7 @@ import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
@@ -54,7 +55,7 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase {
         ItemStack itemtack = ar.getValue();
         ManaData data = ComponentManager.getManaData(entity);
         if (entity.isSneaking() && data.tryUseMana(entity, ServerConfig.getInstance().blackbone_the_blade)) {
-            SoundUtil.playSound(world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "blackbone_living"), 10.0F, 1.0F);
+            SoundUtil.playSound(world, x, y, z, RainimatorSounds.BLACKBONE_LIVING.get(), 10.0F, 1.0F);
             if (world instanceof ServerWorld _level)
                 _level.spawnParticles(ParticleTypes.ELECTRIC_SPARK, x, y, z, 25, 1.0D, 1.0D, 1.0D, 1.0D);
             if (!world.isClient)

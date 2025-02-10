@@ -8,6 +8,7 @@ import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -94,7 +95,7 @@ public class BlackBoneEntity extends MonsterEntityBase {
                     }
                 } else {
                     if (!(sourceentity instanceof LivingEntity _livEnt && _livEnt.hasStatusEffect(RainimatorEffects.FEAR_DARK.get()))) {
-                        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_skill"), 1, 1);
+                        SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.BLACKBONE_SKILL.get(), 1, 1);
                         if (this.getWorld() instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 50, 1, 1, 1, 1);
                         if (sourceentity instanceof LivingEntity _entity && !_entity.getWorld().isClient())
@@ -162,24 +163,9 @@ public class BlackBoneEntity extends MonsterEntityBase {
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_living"), 1.0F, 1.0F);
-
+            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), RainimatorSounds.BLACKBONE_LIVING.get(), 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles(ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 50, 1.0D, 1.0D, 1.0D, 1.0D);
-        if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            Runnable callback = () -> {
-                if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_boss_music"), 1, 1);
-            };
-            Timeout.create(0, callback);
-            Timeout.create(3960, callback);
-            Timeout.create(7920, callback);
-            Timeout.create(11880, callback);
-            Timeout.create(15840, callback);
-            Timeout.create(19800, callback);
-            Timeout.create(23760, callback);
-        }
-
         return retval;
     }
 
@@ -191,8 +177,6 @@ public class BlackBoneEntity extends MonsterEntityBase {
                 this.addStatusEffect(new StatusEffectInstance(RainimatorEffects.PURIFICATION.get(), 200, 0));
                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 200, 2));
             }
-        if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_boss_music"));
     }
 
     @Override

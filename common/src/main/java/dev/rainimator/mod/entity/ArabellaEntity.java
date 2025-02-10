@@ -8,6 +8,7 @@ import com.iafenvoy.neptune.render.Stage;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -76,7 +77,7 @@ public class ArabellaEntity extends MonsterEntityBase {
         List<Entity> _entfound = this.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(3.0D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
             if (entityiterator instanceof PlayerEntity && Math.random() < 0.3D) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.NAEUS_SWORD_1.get(), 1.0F, 1.0F);
                 ParticleUtil.spawn3x3Particles(this.getWorld(), (ParticleEffect) RainimatorParticles.ENDER_DAGGER.get(), this.getX(), this.getY(), this.getZ());
                 entityiterator.damage(DamageUtil.build(this.getWorld(), source, DamageTypes.MAGIC), 6.0F);
             }

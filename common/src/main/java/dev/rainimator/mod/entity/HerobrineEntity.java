@@ -11,6 +11,7 @@ import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorEntities;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
@@ -32,6 +33,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -112,7 +114,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
         List<Entity> _entfound = this.getWorld().getEntitiesByClass(Entity.class, (new Box(_center, _center)).expand(4.5D), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
             if (this.hasStatusEffect(RainimatorEffects.ICE_PEOPLE.get())) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.HIM_SKILL.get(), 1.0F, 1.0F);
                 this.requestTeleport(x, y + 4.0D, z);
                 continue;
             }
@@ -128,7 +130,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
                 continue;
             }
             if (Math.random() < 0.1D) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.HIM_SKILL.get(), 1.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld _level && Math.random() < 0.01D)
                     EntityUtil.lightening(_level, entityiterator.getX(), entityiterator.getY(), entityiterator.getZ());
                 this.getWorld().setBlockState(VecUtil.createBlockPos(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), Blocks.FIRE.getDefaultState(), 3);
@@ -136,7 +138,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
                     if (!_entity.getWorld().isClient())
                         _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 1200, 2));
             } else if (Math.random() < 0.05D) {
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_skill"), 1.0F, 1.0F);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.HIM_SKILL.get(), 1.0F, 1.0F);
                 if (this.getWorld() instanceof ServerWorld _level)
                     _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 15, 0.5D, 0.5D, 0.5D, 0.5D);
                 this.getNavigation().startMovingTo(x + RandomHelper.nextInt(-2, 2), y, z + RandomHelper.nextInt(-2, 2), 20.0D);
@@ -179,20 +181,6 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
             EntityUtil.lightening(_level, this.getX(), this.getY(), this.getZ());
         if (!world.isClient() && world.getServer() != null && this.getStage() == Stage.First)
             world.getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.herobrine.stage1"), false);
-        if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            Runnable callback = () -> {
-                if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "him_music_boss"), 1, 1);
-            };
-            Timeout.create(0, callback);
-            Timeout.create(5720, callback);
-            Timeout.create(11440, callback);
-            Timeout.create(17160, callback);
-            Timeout.create(22880, callback);
-            Timeout.create(28600, callback);
-            Timeout.create(34320, callback);
-        }
-
         return retval;
     }
 
@@ -203,7 +191,6 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 80, 0));
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 1));
             if (!this.isAlive()) {
-                SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "him_music_boss"));
                 if (this.getStage() == Stage.First) {
                     if (this.getHealth() < 50) {
                         if (this.getOffHandStack().getItem() == Blocks.AIR.asItem()) {
@@ -228,7 +215,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
                             if (!this.getWorld().isClient() && this.getServer() != null)
                                 this.getServer().getCommandManager().executeWithPrefix(this.getCommandSource().withSilent().withLevel(4),
                                         "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:0,Flicker:1,Trail:0,Colors:[I;8073150],FadeColors:[I;2437522]}]}}}}");
-                            SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.of(RainimatorMod.MOD_ID, "fire_soul"), 5, 1);
+                            SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), RainimatorSounds.FIRE_SOUL.get(), 5, 1);
 
                             if (this.getWorld() instanceof ServerWorld _level)
                                 _level.spawnParticles(ParticleTypes.SOUL, this.getX(), this.getY(), this.getZ(), 400, 3, 4, 3, 0.002);
@@ -245,7 +232,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
                                     }
                                 }
                                 this.getWorld().setBlockState(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ()), Blocks.FIRE.getDefaultState(), 3);
-                                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("item.totem.use"), 5, 1);
+                                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_TOTEM_USE, 5, 1);
                                 if (this.getWorld() instanceof ServerWorld _level)
                                     _level.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.002);
                                 if (!this.getWorld().isClient() && this.getServer() != null)
@@ -254,7 +241,6 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
                             };
                             Timeout.create(30, callback);
                             Timeout.create(60, callback);
-                            Timeout.create(80, () -> SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "him_music_boss")));
                             Timeout.create(90, () -> {
                                 this.getNavigation().stop();
                                 this.requestTeleport(this.getX(), this.getY(), this.getZ());
@@ -269,7 +255,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
                                     }
                                 }
                                 this.getWorld().setBlockState(new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ()), Blocks.FIRE.getDefaultState(), 3);
-                                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.wither.spawn"), 5, 1);
+                                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_WITHER_SPAWN, 5, 1);
                                 if (this.getWorld() instanceof ServerWorld _level)
                                     _level.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, this.getX(), this.getY(), this.getZ(), 300, 2, 3, 2, 0.05);
                                 if (!this.getWorld().isClient() && this.getServer() != null)
@@ -293,7 +279,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
 
                 this.getMainHandStack().addEnchantment(Enchantments.SHARPNESS, 5);
                 this.getOffHandStack().addEnchantment(Enchantments.SHARPNESS, 5);
-                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), Identifier.tryParse("entity.wither.spawn"), 1, 1);
+                SoundUtil.playSound(this.getWorld(), this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_WITHER_SPAWN, 1, 1);
                 if (!this.getWorld().isClient() && this.getServer() != null)
                     this.getServer().getCommandManager().executeWithPrefix(this.getCommandSource().withSilent().withLevel(4),
                             "summon firework_rocket ~ ~1 ~ {LifeTime:4,FireworksItem:{itemId:firework_rocket,Count:1,tag:{Fireworks:{Flight:1,Explosions:[{Type:1,Flicker:1,Trail:0,Colors:[I;2651799],FadeColors:[I;6719955]}]}}}}");
@@ -316,7 +302,6 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
                 }
                 if (!this.getWorld().isClient() && this.getWorld().getServer() != null)
                     this.getWorld().getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.blackbone.summon"), false);
-                Timeout.create(40, () -> SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "blackbone_boss_music")));
                 if (!this.getWorld().isClient() && this.getWorld().getServer() != null)
                     this.getWorld().getServer().getPlayerManager().broadcast(Text.translatable("entity.rainimator.herobrine.summon1"), false);
             }

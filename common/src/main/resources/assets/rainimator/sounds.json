@@ -1,20 +1,4 @@
 {
-  "blackbone": {
-    "sounds": [
-      {
-        "name": "rainimator:hei_gu_1",
-        "stream": false
-      },
-      {
-        "name": "rainimator:hei_gu_2",
-        "stream": false
-      },
-      {
-        "name": "rainimator:hei_gu_3",
-        "stream": false
-      }
-    ]
-  },
   "ceris_live": {
     "sounds": [
       {
@@ -119,14 +103,6 @@
       }
     ]
   },
-  "power_skill": {
-    "sounds": [
-      {
-        "name": "rainimator:power_skill",
-        "stream": false
-      }
-    ]
-  },
   "under_flower": {
     "sounds": [
       {
@@ -135,32 +111,20 @@
       }
     ]
   },
-  "sword_teleport1": {
+  "sword_teleport": {
     "sounds": [
       {
         "name": "rainimator:sword_teleport1",
         "stream": false
-      }
-    ]
-  },
-  "sword_teleport2": {
-    "sounds": [
+      },
       {
         "name": "rainimator:sword_teleport2",
         "stream": false
-      }
-    ]
-  },
-  "sword_teleport3": {
-    "sounds": [
+      },
       {
         "name": "rainimator:sword_teleport3",
         "stream": false
-      }
-    ]
-  },
-  "sword_teleport4": {
-    "sounds": [
+      },
       {
         "name": "rainimator:sword_teleport4",
         "stream": false
@@ -195,34 +159,6 @@
     "sounds": [
       {
         "name": "rainimator:gift_box",
-        "stream": false
-      }
-    ]
-  },
-  "him": {
-    "sounds": [
-      {
-        "name": "rainimator:hb1",
-        "stream": false
-      },
-      {
-        "name": "rainimator:hb2",
-        "stream": false
-      },
-      {
-        "name": "rainimator:hb3",
-        "stream": false
-      },
-      {
-        "name": "rainimator:hb4",
-        "stream": false
-      },
-      {
-        "name": "rainimator:hb5",
-        "stream": false
-      },
-      {
-        "name": "rainimator:hb6",
         "stream": false
       }
     ]
@@ -263,86 +199,6 @@
     "sounds": [
       {
         "name": "rainimator:blue_diamond_skill_4",
-        "stream": false
-      }
-    ]
-  },
-  "ceris_boss_music": {
-    "sounds": [
-      {
-        "name": "rainimator:ceris_boss_music",
-        "stream": false
-      }
-    ]
-  },
-  "null_boss_music": {
-    "sounds": [
-      {
-        "name": "rainimator:null_boss_music",
-        "stream": false
-      }
-    ]
-  },
-  "blackbone_boss_music": {
-    "sounds": [
-      {
-        "name": "rainimator:blackbone_boss_music",
-        "stream": false
-      }
-    ]
-  },
-  "piglin_king_boss_music": {
-    "sounds": [
-      {
-        "name": "rainimator:piglin_king_boss_music",
-        "stream": false
-      }
-    ]
-  },
-  "naeus_boss_music": {
-    "sounds": [
-      {
-        "name": "rainimator:naeus_boss_music",
-        "stream": false
-      }
-    ]
-  },
-  "glutton_boss_music": {
-    "sounds": [
-      {
-        "name": "rainimator:glutton_boss_music",
-        "stream": false
-      }
-    ]
-  },
-  "him_music_boss": {
-    "sounds": [
-      {
-        "name": "rainimator:him_boss_music",
-        "stream": false
-      }
-    ]
-  },
-  "him_one_lives": {
-    "sounds": [
-      {
-        "name": "rainimator:him_one_lives",
-        "stream": false
-      }
-    ]
-  },
-  "kralos_boss_music": {
-    "sounds": [
-      {
-        "name": "rainimator:kralos_boss_music",
-        "stream": false
-      }
-    ]
-  },
-  "klaus_boss_music": {
-    "sounds": [
-      {
-        "name": "rainimator:klaus_boss_music",
         "stream": false
       }
     ]

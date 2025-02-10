@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
@@ -81,7 +82,7 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
                             _serverPlayer.networkHandler.requestTeleport(x, y + finalI, z, entityiterator.getYaw(), entityiterator.getPitch());
                     });
                 }
-                SoundUtil.playSound(world, x, y, z, Identifier.tryParse("entity.wither.spawn"), 10.0F, 1.0F);
+                SoundUtil.playSound(world, x, y, z, SoundEvents.ENTITY_WITHER_SPAWN, 10.0F, 1.0F);
                 if (world instanceof ServerWorld _level)
                     _level.spawnParticles(ParticleTypes.SOUL, x, y, z, 100, 3.0D, 4.0D, 3.0D, 1.0E-4D);
                 entity.getItemCooldownManager().set(itemtack.getItem(), 600);

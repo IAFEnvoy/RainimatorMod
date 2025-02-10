@@ -11,6 +11,7 @@ import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -24,6 +25,7 @@ import net.minecraft.item.ItemUsageContext;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -110,7 +112,7 @@ public class SeizingShadowHalberdItem extends SwordItemBase {
             if (entity.isSneaking()) {
                 if ((Entity) entity instanceof PlayerEntity _player)
                     _player.getItemCooldownManager().set(itemtack.getItem(), 300);
-                SoundUtil.playSound(world, x, y, z, Identifier.tryParse("entity.evoker.cast_spell"), 1, 1);
+                SoundUtil.playSound(world, x, y, z, SoundEvents.ENTITY_EVOKER_CAST_SPELL, 1, 1);
                 Runnable callback = () -> {
                     if (world instanceof ServerWorld _level)
                         for (int i = -2; i <= 2; i += 2)
@@ -142,12 +144,12 @@ public class SeizingShadowHalberdItem extends SwordItemBase {
         ItemStack itemtack = context.getStack();
         if (entity != null) {
             if (entity.isSneaking()) {
-                SoundUtil.playSound((World) world, x, y, z, Identifier.of(RainimatorMod.MOD_ID, "fire_soul"), 1, 1);
+                SoundUtil.playSound((World) world, x, y, z, RainimatorSounds.FIRE_SOUL.get(), 1, 1);
                 if (world instanceof ServerWorld _level)
                     _level.spawnParticles(ParticleTypes.DRAGON_BREATH, x, y, z, 500, 0, 20, 0, 0.0001);
                 entity.getItemCooldownManager().set(itemtack.getItem(), 300);
                 Timeout.create(60, () -> {
-                    SoundUtil.playSound((World) world, x, y, z, Identifier.tryParse("entity.ender_dragon.shoot"), 1, 1);
+                    SoundUtil.playSound((World) world, x, y, z, SoundEvents.ENTITY_ENDER_DRAGON_SHOOT, 1, 1);
                     if (world instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.END_ROD, x, y, z, 200, 0, 10, 0, 0.001);
                     if (world instanceof ServerWorld projectileLevel) {

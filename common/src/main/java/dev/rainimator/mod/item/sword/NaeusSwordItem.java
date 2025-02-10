@@ -9,6 +9,7 @@ import dev.rainimator.mod.data.component.ManaData;
 import dev.rainimator.mod.data.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
@@ -56,7 +57,7 @@ public class NaeusSwordItem extends SwordItemBase {
                         if (!_entity.getWorld().isClient)
                             _entity.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 300, 1));
                     entityIterator.setOnFireFor(10);
-                    SoundUtil.playSound(world, _center.x, _center.y, _center.z, Identifier.of(RainimatorMod.MOD_ID, "naeus_sword_1"), 1.0F, 1.0F);
+                    SoundUtil.playSound(world, _center.x, _center.y, _center.z, RainimatorSounds.NAEUS_SWORD_1.get(), 1.0F, 1.0F);
                     if (entity instanceof PlayerEntity)
                         entity.getItemCooldownManager().set(ar.getValue().getItem(), 600);
                 }

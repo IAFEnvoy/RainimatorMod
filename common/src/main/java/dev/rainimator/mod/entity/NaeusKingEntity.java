@@ -11,6 +11,7 @@ import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorEffects;
 import dev.rainimator.mod.registry.RainimatorItems;
 import dev.rainimator.mod.registry.RainimatorParticles;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -102,7 +103,7 @@ public class NaeusKingEntity extends MonsterEntityBase {
                 this.clearStatusEffects();
             else {
                 if (Math.random() < 0.5D) {
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "fire_soul"), 1.0F, 1.0F);
+                    SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.FIRE_SOUL.get(), 1.0F, 1.0F);
                     if (this.getWorld() instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.SOUL_FIRE_FLAME, x, y, z, 100, 1.0D, 2.0D, 1.0D, 2.0E-4D);
                     if (!this.getWorld().isClient()) {
@@ -195,23 +196,9 @@ public class NaeusKingEntity extends MonsterEntityBase {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_living"), 1, 1);
+        SoundUtil.playSound(this.getWorld(), x, y, z, RainimatorSounds.NAEUS_LIVING.get(), 1, 1);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles(RainimatorParticles.RED_FLOWER.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.01D);
-        if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            Runnable callback = () -> {
-                if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "naeus_boss_music"), 1, 1);
-            };
-            Timeout.create(0, callback);
-            Timeout.create(4300, callback);
-            Timeout.create(8600, callback);
-            Timeout.create(12900, callback);
-            Timeout.create(17200, callback);
-            Timeout.create(21500, callback);
-            Timeout.create(25800, callback);
-        }
-
         return retval;
     }
 
@@ -225,8 +212,6 @@ public class NaeusKingEntity extends MonsterEntityBase {
             this.clearStatusEffects();
             this.requestTeleport(x, (y + 3), z);
         }
-        if (!this.isAlive())
-            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "naeus_boss_music"));
     }
 
     @Override

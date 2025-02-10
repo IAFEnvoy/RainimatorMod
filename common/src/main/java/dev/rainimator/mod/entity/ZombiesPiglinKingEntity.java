@@ -6,6 +6,7 @@ import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.Timeout;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorItems;
+import dev.rainimator.mod.registry.RainimatorSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -24,6 +25,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
@@ -102,22 +104,9 @@ public class ZombiesPiglinKingEntity extends MonsterEntityBase {
         double y = this.getY();
         double z = this.getZ();
         if (world instanceof World _level)
-            SoundUtil.playSound(_level, x, y, z, Identifier.tryParse("entity.wither.ambient"), 1.0F, 1.0F);
+            SoundUtil.playSound(_level, x, y, z, SoundEvents.ENTITY_WITHER_AMBIENT, 1.0F, 1.0F);
         if (world instanceof ServerWorld _level)
             _level.spawnParticles(ParticleTypes.SOUL, x, y, z, 200, 1.0D, 2.0D, 1.0D, 0.02D);
-        if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            Runnable callback = () -> {
-                if (this.isAlive())
-                    SoundUtil.playSound(this.getWorld(), x, y, z, Identifier.of(RainimatorMod.MOD_ID, "piglin_king_boss_music"), 1, 1);
-            };
-            Timeout.create(0, callback);
-            Timeout.create(3480, callback);
-            Timeout.create(6960, callback);
-            Timeout.create(10440, callback);
-            Timeout.create(13920, callback);
-            Timeout.create(17400, callback);
-            Timeout.create(20880, callback);
-        }
         return retval;
     }
 
@@ -126,8 +115,6 @@ public class ZombiesPiglinKingEntity extends MonsterEntityBase {
         super.baseTick();
         if (!this.getWorld().isClient())
             this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 0));
-        if (!((Entity) this).isAlive())
-            SoundUtil.stopSound(this.getWorld(), Identifier.of(RainimatorMod.MOD_ID, "piglin_king_boss_music"));
     }
 
     @Override

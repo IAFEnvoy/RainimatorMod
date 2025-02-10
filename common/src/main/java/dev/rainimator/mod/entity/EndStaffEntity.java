@@ -13,6 +13,7 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
@@ -45,7 +46,7 @@ public class EndStaffEntity extends PersistentProjectileEntity implements Flying
         staff.setPunch(knockback);
         staff.setOnFireFor(100);
         world.spawnEntity(staff);
-        SoundUtil.playPlayerSound(world, entity.getX(), entity.getY(), entity.getZ(), Identifier.tryParse("entity.arrow.shoot"), 1.0F, 1.0F / (random.nextFloat() * 0.5F + 1.0F) + power / 2.0F);
+        SoundUtil.playPlayerSound(world, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ENTITY_ARROW_SHOOT, 1.0F, 1.0F / (random.nextFloat() * 0.5F + 1.0F) + power / 2.0F);
         return staff;
     }
 
