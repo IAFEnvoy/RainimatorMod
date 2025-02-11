@@ -20,7 +20,7 @@ public class RainimatorItemGroups {
     ));
     public static final RegistrySupplier<ItemGroup> MOBS = register("mobs", () -> CreativeTabRegistry.create(
             Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_mobs"),
-            () -> new ItemStack(RainimatorItems.RAIN_SPAWN_EGG.get())
+            () -> new ItemStack(RainimatorItems.CERIS_SPAWN_EGG.get())
     ));
     public static final RegistrySupplier<ItemGroup> ITEM = register("item", () -> CreativeTabRegistry.create(
             Text.translatable("itemGroup." + RainimatorMod.MOD_ID + ".rainimator_item"),

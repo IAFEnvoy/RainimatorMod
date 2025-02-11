@@ -2,7 +2,7 @@ package dev.rainimator.mod.fabric;
 
 import com.afoxxvi.asteorbar.overlay.FabricGuiRegistry;
 import dev.rainimator.mod.RainimatorModClient;
-import dev.rainimator.mod.fabric.compat.asteorbar.ManaHud;
+import dev.rainimator.mod.compat.asteorbar.ManaHud;
 import dev.rainimator.mod.fabric.compat.trinkets.TrinketsRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;

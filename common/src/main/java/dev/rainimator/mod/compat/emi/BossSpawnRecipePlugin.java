@@ -1,6 +1,5 @@
-package dev.rainimator.mod.forge.compat.emi;
+package dev.rainimator.mod.compat.emi;
 
-import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipe;
@@ -12,18 +11,17 @@ import dev.emi.emi.api.widget.WidgetHolder;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.registry.RainimatorBlocks;
 import dev.rainimator.mod.registry.RainimatorItems;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 
-@OnlyIn(Dist.CLIENT)
-@EmiEntrypoint
+@Environment(EnvType.CLIENT)
 public class BossSpawnRecipePlugin implements EmiPlugin {
     private static final Identifier BOSS_SPAWN = Identifier.of(RainimatorMod.MOD_ID, "boss_spawn_recipe");
     private static final EmiTexture TEXTURE = new EmiTexture(Identifier.of(RainimatorMod.MOD_ID, "textures/gui/gui_boss_spawn_recipe.png"), 0, 0, 140, 44);
@@ -35,7 +33,6 @@ public class BossSpawnRecipePlugin implements EmiPlugin {
             new BossSpawnRecipe("klaus", Items.TOTEM_OF_UNDYING, RainimatorItems.KLAUS_SPAWN_EGG.get()),
             new BossSpawnRecipe("gigabone", Blocks.WITHER_SKELETON_SKULL, RainimatorItems.GIGABONE_SPAWN_EGG.get()),
             new BossSpawnRecipe("namtar", RainimatorItems.SOUL_PEOPLE.get(), RainimatorItems.NAMTAR_SPAWN_EGG.get()),
-            new BossSpawnRecipe("big_undead_skeleton", RainimatorItems.WITHER_BONE.get(), RainimatorItems.BIG_UNDEAD_SKELETON_SPAWN_EGG.get()),
             new BossSpawnRecipe("piglin_commander", Items.GOLDEN_SWORD, RainimatorItems.PIGLIN_COMMANDER_SPAWN_EGG.get()),
             new BossSpawnRecipe("zombie_piglin_king", Items.GOLD_INGOT, RainimatorItems.ZOMBIES_PIGLIN_KING_SPAWN_EGG.get()),
             new BossSpawnRecipe("glutton", Blocks.GOLD_BLOCK, RainimatorItems.GLUTTON_SPAWN_EGG.get()),

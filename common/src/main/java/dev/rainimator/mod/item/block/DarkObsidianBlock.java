@@ -66,7 +66,6 @@ public class DarkObsidianBlock extends Block {
             EntityUtil.summon(RainimatorEntities.SKELETON_SNOW.get(), world, x + RandomHelper.nextInt(1, 3), y, z);
             EntityUtil.summon(RainimatorEntities.WITHER_SHIELD.get(), world, x - RandomHelper.nextInt(1, 3), y, z);
         });
-        consumers.put(RainimatorItems.WITHER_BONE.get(), (entity, world, x, y, z) -> EntityUtil.summon(RainimatorEntities.BIG_UNDEAD_SKELETON.get(), world, x, y, z));
         consumers.put(Items.GOLDEN_SWORD, (entity, world, x, y, z) -> EntityUtil.summon(RainimatorEntities.PIGLIN_COMMANDER.get(), world, x, y, z));
         consumers.put(Items.GOLD_INGOT, (entity, world, x, y, z) -> {
             EntityUtil.summon(RainimatorEntities.ZOMBIE_PIGLIN_KING.get(), world, x, y, z);

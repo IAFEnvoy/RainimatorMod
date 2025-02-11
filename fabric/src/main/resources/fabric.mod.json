@@ -33,7 +33,7 @@
       "dev.rainimator.mod.fabric.component.ModComponentEntry"
     ],
     "emi": [
-      "dev.rainimator.mod.fabric.compat.emi.BossSpawnRecipePlugin"
+      "dev.rainimator.mod.compat.emi.BossSpawnRecipePlugin"
     ]
   },
   "custom": {

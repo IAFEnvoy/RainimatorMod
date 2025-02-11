@@ -56,7 +56,6 @@ public class RainimatorRenderers {
         EntityRendererRegistry.register(RainimatorEntities.MUTATED, MutatedEntity.TEXTURE::createRenderer);
         EntityRendererRegistry.register(RainimatorEntities.NAMTAR, NamtarEntity.TEXTURE::createRenderer);
         EntityRendererRegistry.register(RainimatorEntities.AGETHA, AgethaEntity.TEXTURE::createRenderer);
-        EntityRendererRegistry.register(RainimatorEntities.BIG_UNDEAD_SKELETON, BigUndeadSkeletonEntity.TEXTURE::createRenderer);
         EntityRendererRegistry.register(RainimatorEntities.ARCHER, ArcherEntity.TEXTURE::createRenderer);
         EntityRendererRegistry.register(RainimatorEntities.GIGABONE, GigaBoneEntity.TEXTURE::createRenderer);
         EntityRendererRegistry.register(RainimatorEntities.KLAUS, KlausEntity.TEXTURE::createRenderer);
@@ -66,6 +65,7 @@ public class RainimatorRenderers {
         EntityRendererRegistry.register(RainimatorEntities.SCORCH, ScorchEntity.TEXTURE::createRenderer);
         EntityRendererRegistry.register(RainimatorEntities.STELLA, StellaEntity.TEXTURE::createRenderer);
         EntityRendererRegistry.register(RainimatorEntities.STELLA_DEMON, StellaDemonEntity.TEXTURE::createRenderer);
+        EntityRendererRegistry.register(RainimatorEntities.SORA,SoraEntity.TEXTURE::createRenderer);
     }
 
     public static void registerLayerDefinitions() {
@@ -133,7 +133,6 @@ public class RainimatorRenderers {
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.MUTATED, MutatedEntity.TEXTURE.getTexture(), RainimatorSkulls.MUTATED_HEAD.get(), RainimatorSkulls.MUTATED_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.NAMTAR, NamtarEntity.TEXTURE.getTexture(), RainimatorSkulls.NAMTAR_HEAD.get(), RainimatorSkulls.NAMTAR_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.AGETHA, AgethaEntity.TEXTURE.getTexture(), RainimatorSkulls.AGETHA_HEAD.get(), RainimatorSkulls.AGETHA_WALL_HEAD.get());
-        SkullRenderRegistry.register(RainimatorSkulls.SkullType.BIG_BLACK_SKELETON, BigUndeadSkeletonEntity.TEXTURE.getTexture(), RainimatorSkulls.BIG_BLACK_SKELETON_HEAD.get(), RainimatorSkulls.BIG_BLACK_SKELETON_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.ARCHER, ArcherEntity.TEXTURE.getTexture(), RainimatorSkulls.ARCHER_HEAD.get(), RainimatorSkulls.ARCHER_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.DARYLL, DaryllEntity.TEXTURE.getTexture(), RainimatorSkulls.DARYLL_HEAD.get(), RainimatorSkulls.DARYLL_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.NULL_LIKE, NullLikeEntity.TEXTURE.getTexture(), RainimatorSkulls.NULL_LIKE_HEAD.get(), RainimatorSkulls.NULL_LIKE_WALL_HEAD.get());
@@ -147,5 +146,6 @@ public class RainimatorRenderers {
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.SCORCH, ScorchEntity.TEXTURE.getTexture(), RainimatorSkulls.SCORCH_HEAD.get(), RainimatorSkulls.SCORCH_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.STELLA, StellaEntity.TEXTURE.getTexture(), RainimatorSkulls.STELLA_HEAD.get(), RainimatorSkulls.STELLA_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.STELLA_DEMON, StellaDemonEntity.TEXTURE.getTexture(), RainimatorSkulls.STELLA_DEMON_HEAD.get(), RainimatorSkulls.STELLA_DEMON_WALL_HEAD.get());
+        SkullRenderRegistry.register(RainimatorSkulls.SkullType.SORA, SoraEntity.TEXTURE.getTexture(), RainimatorSkulls.SORA_HEAD.get(), RainimatorSkulls.SORA_WALL_HEAD.get());
     }
 }

@@ -35,7 +35,6 @@ dependencies {
     modImplementation "curse.maven:asteorbar-959237:5212120"
 
     // EMI
-    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
     modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
 }
 

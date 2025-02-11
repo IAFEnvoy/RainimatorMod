@@ -1,4 +1,4 @@
-package dev.rainimator.mod.fabric.compat.asteorbar;
+package dev.rainimator.mod.compat.asteorbar;
 
 import com.afoxxvi.asteorbar.overlay.parts.SimpleBarOverlay;
 import dev.rainimator.mod.data.component.ManaData;

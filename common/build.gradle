@@ -6,6 +6,14 @@ dependencies {
     modApi "dev.architectury:architectury:${rootProject.architectury_version}"
     // Neptune cross-platform library
     modImplementation "maven.modrinth:neptune:o7GnNs4S"
+
+    // Optional dependencies
+    // Asteor Bar
+    modImplementation "curse.maven:asteorbar-959237:5212120"
+
+    // EMI
+    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
+    modLocalRuntime "dev.emi:emi-fabric:${emi_version}"
 }
 
 architectury {

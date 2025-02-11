@@ -64,7 +64,6 @@ public class RainimatorEntities {
     public static final RegistrySupplier<EntityType<MutatedEntity>> MUTATED = build("mutated", MutatedEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<NamtarEntity>> NAMTAR = build("namtar", NamtarEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<AgethaEntity>> AGETHA = build("agetha", AgethaEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
-    public static final RegistrySupplier<EntityType<BigUndeadSkeletonEntity>> BIG_UNDEAD_SKELETON = build("big_undead_skeleton", BigUndeadSkeletonEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<ArcherEntity>> ARCHER = build("archer", ArcherEntity::new, SpawnGroup.UNDERGROUND_WATER_CREATURE, 64, 3, false, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<GigaBoneEntity>> GIGABONE = build("gigabone", GigaBoneEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<KlausEntity>> KLAUS = build("klaus", KlausEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
@@ -74,6 +73,7 @@ public class RainimatorEntities {
     public static final RegistrySupplier<EntityType<ScorchEntity>> SCORCH = build("scorch", ScorchEntity::new, SpawnGroup.MONSTER, 64, 3, true, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<StellaEntity>> STELLA = build("stella", StellaEntity::new, SpawnGroup.MONSTER, 64, 3, false, 0.6F, 1.8F);
     public static final RegistrySupplier<EntityType<StellaDemonEntity>> STELLA_DEMON = build("stella_demon", StellaDemonEntity::new, SpawnGroup.MONSTER, 64, 3, false, 0.6F, 1.8F);
+    public static final RegistrySupplier<EntityType<SoraEntity>> SORA = build("sora", SoraEntity::new, SpawnGroup.MONSTER, 64, 3, false, 0.6f, 1.8f);
 
     private static <T extends Entity> RegistrySupplier<EntityType<T>> build(String name, EntityType.EntityFactory<T> constructor, SpawnGroup category, int trackingRange, int updateInterval, boolean fireImmune, float sizeX, float sizeY) {
         return register(name, () -> {
@@ -115,7 +115,6 @@ public class RainimatorEntities {
         EntityAttributeRegistry.register(MUTATED, MutatedEntity::createAttributes);
         EntityAttributeRegistry.register(NAMTAR, NamtarEntity::createAttributes);
         EntityAttributeRegistry.register(AGETHA, AgethaEntity::createAttributes);
-        EntityAttributeRegistry.register(BIG_UNDEAD_SKELETON, BigUndeadSkeletonEntity::createAttributes);
         EntityAttributeRegistry.register(ARCHER, ArcherEntity::createAttributes);
         EntityAttributeRegistry.register(DARYLL, DaryllEntity::createAttributes);
         EntityAttributeRegistry.register(NULL_LIKE, NullLikeEntity::createAttributes);
@@ -129,6 +128,7 @@ public class RainimatorEntities {
         EntityAttributeRegistry.register(SCORCH, ScorchEntity::createAttributes);
         EntityAttributeRegistry.register(STELLA, StellaEntity::createAttributes);
         EntityAttributeRegistry.register(STELLA_DEMON, StellaDemonEntity::createAttributes);
+        EntityAttributeRegistry.register(SORA, SoraEntity::createAttributes);
     }
 
     public static void addSpawner() {
