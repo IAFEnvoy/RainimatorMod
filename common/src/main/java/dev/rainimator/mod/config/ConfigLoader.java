@@ -1,6 +1,7 @@
-package dev.rainimator.mod.data.config;
+package dev.rainimator.mod.config;
 
 import com.google.gson.Gson;
+import dev.rainimator.mod.RainimatorMod;
 import org.apache.commons.io.FileUtils;
 
 import java.io.*;
@@ -15,11 +16,11 @@ public class ConfigLoader {
             InputStreamReader reader = new InputStreamReader(stream);
             return GSON.fromJson(reader, clazz);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            RainimatorMod.LOGGER.error("Failed to read config {}:", path, e);
             try {
                 FileUtils.write(new File(path), GSON.toJson(defaultValue), StandardCharsets.UTF_8);
             } catch (IOException ex) {
-                ex.printStackTrace();
+                RainimatorMod.LOGGER.error("Failed to write config {}:", path, ex);
             }
             return defaultValue;
         }

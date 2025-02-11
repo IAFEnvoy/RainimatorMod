@@ -1,6 +1,6 @@
 package dev.rainimator.mod.forge.component;
 
-import dev.rainimator.mod.data.component.ManaData;
+import dev.rainimator.mod.data.ManaData;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 import net.minecraftforge.common.util.INBTSerializable;

@@ -2,7 +2,7 @@ package dev.rainimator.mod.item.armor;
 
 import com.iafenvoy.neptune.object.item.ArmorMaterialUtil;
 import com.iafenvoy.neptune.object.item.ArmorWithTickItem;
-import dev.rainimator.mod.data.config.ServerConfig;
+import dev.rainimator.mod.config.ServerConfig;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
 import net.minecraft.entity.EquipmentSlot;

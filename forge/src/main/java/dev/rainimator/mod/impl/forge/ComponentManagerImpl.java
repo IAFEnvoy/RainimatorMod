@@ -1,6 +1,6 @@
 package dev.rainimator.mod.impl.forge;
 
-import dev.rainimator.mod.data.component.ManaData;
+import dev.rainimator.mod.data.ManaData;
 import dev.rainimator.mod.forge.component.ManaDataProvider;
 import dev.rainimator.mod.forge.component.ManaDataStorage;
 import net.minecraft.entity.LivingEntity;

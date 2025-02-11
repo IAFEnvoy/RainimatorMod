@@ -2,8 +2,8 @@ package dev.rainimator.mod.impl.fabric;
 
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.Trinket;
-import dev.rainimator.mod.data.component.ManaData;
-import dev.rainimator.mod.data.config.ServerConfig;
+import dev.rainimator.mod.data.ManaData;
+import dev.rainimator.mod.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.impl.WingsOfSalvationItem;
 import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;

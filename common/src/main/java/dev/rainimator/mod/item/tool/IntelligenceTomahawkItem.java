@@ -1,8 +1,8 @@
 package dev.rainimator.mod.item.tool;
 
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
-import dev.rainimator.mod.data.component.ManaData;
-import dev.rainimator.mod.data.config.ServerConfig;
+import dev.rainimator.mod.data.ManaData;
+import dev.rainimator.mod.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;

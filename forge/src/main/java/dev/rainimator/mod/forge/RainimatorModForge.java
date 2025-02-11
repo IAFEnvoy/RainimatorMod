@@ -5,7 +5,7 @@ import dev.architectury.platform.Platform;
 import dev.architectury.platform.forge.EventBuses;
 import dev.rainimator.mod.RainimatorMod;
 import dev.rainimator.mod.RainimatorModClient;
-import dev.rainimator.mod.data.component.ManaData;
+import dev.rainimator.mod.data.ManaData;
 import dev.rainimator.mod.forge.compat.asteorbar.ManaHud;
 import dev.rainimator.mod.forge.compat.curios.CuriosRegistry;
 import dev.rainimator.mod.forge.component.ManaDataProvider;

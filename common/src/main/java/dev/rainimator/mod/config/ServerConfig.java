@@ -1,4 +1,4 @@
-package dev.rainimator.mod.data.config;
+package dev.rainimator.mod.config;
 
 public class ServerConfig {
     private static ServerConfig INSTANCE = null;

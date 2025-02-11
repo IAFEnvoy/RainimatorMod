@@ -1,6 +1,6 @@
-package dev.rainimator.mod.data.component;
+package dev.rainimator.mod.data;
 
-import dev.rainimator.mod.data.config.ServerConfig;
+import dev.rainimator.mod.config.ServerConfig;
 import dev.rainimator.mod.registry.RainimatorEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;

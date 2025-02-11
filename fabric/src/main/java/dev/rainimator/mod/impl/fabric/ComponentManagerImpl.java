@@ -1,6 +1,6 @@
 package dev.rainimator.mod.impl.fabric;
 
-import dev.rainimator.mod.data.component.ManaData;
+import dev.rainimator.mod.data.ManaData;
 import dev.rainimator.mod.fabric.component.ManaComponent;
 import net.minecraft.entity.LivingEntity;
 import org.jetbrains.annotations.Nullable;

@@ -7,8 +7,8 @@ import com.iafenvoy.neptune.object.item.SwordItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
-import dev.rainimator.mod.data.component.ManaData;
-import dev.rainimator.mod.data.config.ServerConfig;
+import dev.rainimator.mod.data.ManaData;
+import dev.rainimator.mod.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import dev.rainimator.mod.registry.RainimatorItems;
@@ -25,7 +25,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -37,7 +36,6 @@ import net.minecraft.world.World;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class ZecanirnTheBladeItem extends SwordItemBase {
     public ZecanirnTheBladeItem() {

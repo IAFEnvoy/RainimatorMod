@@ -2,8 +2,8 @@ package dev.rainimator.mod.item;
 
 import com.iafenvoy.neptune.object.item.FoilItemBase;
 import com.iafenvoy.neptune.util.RandomHelper;
-import dev.rainimator.mod.data.component.ManaData;
-import dev.rainimator.mod.data.config.ServerConfig;
+import dev.rainimator.mod.data.ManaData;
+import dev.rainimator.mod.config.ServerConfig;
 import dev.rainimator.mod.impl.ComponentManager;
 import dev.rainimator.mod.registry.RainimatorItemGroups;
 import net.minecraft.entity.player.PlayerEntity;
