@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "010",
+    "1 1"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:sugilite"
+    },
+    "1": {
+      "item": "rainimator:super_sugilite"
+    }
+  },
+  "result": {
+    "item": "rainimator:sugilite_helmet",
+    "count": 1
+  }
+}

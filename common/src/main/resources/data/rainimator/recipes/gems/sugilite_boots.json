@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 0",
+    "1 1"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_sugilite"
+    },
+    "1": {
+      "item": "rainimator:sugilite"
+    }
+  },
+  "result": {
+    "item": "rainimator:sugilite_boots",
+    "count": 1
+  }
+}

@@ -24,16 +24,16 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.rainimator.mod.fabric.RainimatorModFabric"
+      "com.iafenvoy.rainimator.fabric.RainimatorModFabric"
     ],
     "client": [
-      "dev.rainimator.mod.fabric.RainimatorModFabricClient"
+      "com.iafenvoy.rainimator.fabric.RainimatorModFabricClient"
     ],
     "cardinal-components-entity": [
-      "dev.rainimator.mod.fabric.component.ModComponentEntry"
+      "com.iafenvoy.rainimator.fabric.component.ModComponentEntry"
     ],
     "emi": [
-      "dev.rainimator.mod.compat.emi.BossSpawnRecipePlugin"
+      "com.iafenvoy.rainimator.compat.emi.BossSpawnRecipePlugin"
     ]
   },
   "custom": {

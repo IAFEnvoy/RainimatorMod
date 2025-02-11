@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0 0",
+    "101",
+    "010"
+  ],
+  "key": {
+    "0": {
+      "item": "rainimator:super_topaz"
+    },
+    "1": {
+      "item": "rainimator:topaz"
+    }
+  },
+  "result": {
+    "item": "rainimator:topaz_chestplate",
+    "count": 1
+  }
+}
