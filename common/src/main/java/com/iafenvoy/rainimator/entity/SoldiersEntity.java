@@ -91,7 +91,7 @@ public class SoldiersEntity extends MonsterEntityBase implements RangedAttackMob
 
     @Override
     public void attack(LivingEntity target, float pullProgress) {
-        SoldiersEntityProjectile projectile = new SoldiersEntityProjectile(RainimatorEntities.SOLDIERS_PROJECTILE.get(), this, this.getWorld());
+        SoldiersProjectileEntity projectile = new SoldiersProjectileEntity(RainimatorEntities.SOLDIERS_PROJECTILE.get(), this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();

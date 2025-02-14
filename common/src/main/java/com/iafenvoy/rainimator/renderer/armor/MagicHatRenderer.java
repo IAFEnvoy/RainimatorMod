@@ -1,7 +1,7 @@
 package com.iafenvoy.rainimator.renderer.armor;
 
 import com.iafenvoy.neptune.render.armor.IArmorRendererBase;
-import com.iafenvoy.rainimator.renderer.model.ModelMagic;
+import com.iafenvoy.rainimator.renderer.model.MagicHatModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -21,7 +21,7 @@ public class MagicHatRenderer implements IArmorRendererBase<LivingEntity> {
     @Override
     public BipedEntityModel<LivingEntity> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, BipedEntityModel<LivingEntity> bipedEntityModel) {
         BipedEntityModel<LivingEntity> armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(), Map.of(
-                "head", new ModelMagic<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(ModelMagic.LAYER_LOCATION)).Head,
+                "head", new MagicHatModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(MagicHatModel.LAYER_LOCATION)).head,
                 "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                 "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                 "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),

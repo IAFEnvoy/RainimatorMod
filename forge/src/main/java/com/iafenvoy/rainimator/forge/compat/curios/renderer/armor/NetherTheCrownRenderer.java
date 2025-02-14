@@ -1,7 +1,7 @@
 package com.iafenvoy.rainimator.forge.compat.curios.renderer.armor;
 
 import com.iafenvoy.neptune.render.armor.IArmorRenderHelper;
-import com.iafenvoy.rainimator.renderer.model.ModelNetherCrown;
+import com.iafenvoy.rainimator.renderer.model.NetherTheCrownModel;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -23,7 +23,7 @@ import java.util.Map;
 @OnlyIn(Dist.CLIENT)
 public class NetherTheCrownRenderer implements ICurioRenderer {
     private BipedEntityModel<LivingEntity> getArmorModel(LivingEntity living) {
-        BipedEntityModel<LivingEntity> armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(), Map.of("head", (new ModelNetherCrown<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(ModelNetherCrown.LAYER_LOCATION))).Head, "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body", new ModelPart(
+        BipedEntityModel<LivingEntity> armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(), Map.of("head", (new NetherTheCrownModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(NetherTheCrownModel.LAYER_LOCATION))).head, "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body", new ModelPart(
                 Collections.emptyList(), Collections.emptyMap()), "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm", new ModelPart(
                 Collections.emptyList(), Collections.emptyMap()), "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_leg", new ModelPart(
                 Collections.emptyList(), Collections.emptyMap()))));

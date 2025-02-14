@@ -5,10 +5,12 @@ import com.iafenvoy.neptune.object.item.ArmorWithTickItem;
 import com.iafenvoy.rainimator.config.ServerConfig;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import com.iafenvoy.rainimator.registry.RainimatorItems;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
@@ -21,8 +23,6 @@ public class ChiefOfThePigPeopleArmorItem extends ArmorWithTickItem {
 
     @Override
     public void onArmorTick(World world, PlayerEntity entity) {
-        if (entity == null)
-            return;
         if (!entity.getWorld().isClient && ServerConfig.getInstance().enableArmorEffect &&
                 entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.CHIEF_OF_THE_PIG_PEOPLE_HELMET.get() &&
                 entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == RainimatorItems.CHIEF_OF_THE_PIG_PEOPLE_CHESTPLATE.get() &&

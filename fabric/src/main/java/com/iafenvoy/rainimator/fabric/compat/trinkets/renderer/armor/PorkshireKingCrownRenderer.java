@@ -2,7 +2,7 @@ package com.iafenvoy.rainimator.fabric.compat.trinkets.renderer.armor;
 
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.client.TrinketRenderer;
-import com.iafenvoy.rainimator.renderer.model.ModelPorkshireKingCrown;
+import com.iafenvoy.rainimator.renderer.model.PorkshireKingCrownModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
@@ -23,7 +23,7 @@ import java.util.Map;
 public class PorkshireKingCrownRenderer implements TrinketRenderer {
     private BipedEntityModel<LivingEntity> getArmorModel(LivingEntity living) {
         BipedEntityModel<LivingEntity> armorModel = new BipedEntityModel<>(
-                new ModelPart(Collections.emptyList(), Map.of("head", (new ModelPorkshireKingCrown<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(ModelPorkshireKingCrown.LAYER_LOCATION))).Head, "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body", new ModelPart(
+                new ModelPart(Collections.emptyList(), Map.of("head", (new PorkshireKingCrownModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(PorkshireKingCrownModel.LAYER_LOCATION))).head, "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body", new ModelPart(
                         Collections.emptyList(), Collections.emptyMap()), "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm", new ModelPart(
                         Collections.emptyList(), Collections.emptyMap()), "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_leg", new ModelPart(
                         Collections.emptyList(), Collections.emptyMap()))));

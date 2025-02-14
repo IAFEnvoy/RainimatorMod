@@ -4,65 +4,17 @@ import net.minecraft.client.model.*;
 import net.minecraft.entity.LivingEntity;
 
 public class LeatherWingsModel<T extends LivingEntity> extends WingEntityModel<T> {
-    private final ModelPart leftWing01;
-    private final ModelPart leftWing02;
     private final ModelPart leftWing03;
-    private final ModelPart leftWing04;
-    private final ModelPart leftWing04Leather;
-    private final ModelPart leftWingStrut01;
-    private final ModelPart leftWingStrut01Leather;
-    private final ModelPart leftWingStrut02;
-    private final ModelPart leftWingStrut02Leather;
-    private final ModelPart leftWingStrut03;
-    private final ModelPart leftWingStrut03Leather;
-    private final ModelPart leftStrutLowest;
-    private final ModelPart leftStrutLowestLeather01;
-    private final ModelPart leftStrutLowestLeather02;
-    private final ModelPart rightWing01;
-    private final ModelPart rightWing02;
     private final ModelPart rightWing03;
-    private final ModelPart rightWing04;
-    private final ModelPart rightWing04Leather;
-    private final ModelPart rightWingStrut01;
-    private final ModelPart rightWingStrut01Leather;
-    private final ModelPart rightWingStrut02;
-    private final ModelPart rightWingStrut02Leather;
-    private final ModelPart rightWingStrut03;
-    private final ModelPart rightWingStrut03Leather;
-    private final ModelPart rightStrutLowest;
-    private final ModelPart rightStrutLowestLeather01;
-    private final ModelPart rightStrutLowestLeather02;
 
     public LeatherWingsModel(ModelPart root) {
         super(root);
-        this.leftWing01 = root.getChild("leftWing").getChild("leftWing01");
-        this.rightWing01 = root.getChild("rightWing").getChild("rightWing01");
-        this.rightWing02 = this.rightWing01.getChild("rightWing02");
-        this.rightStrutLowest = this.rightWing02.getChild("rightStrutLowest");
-        this.rightStrutLowestLeather02 = this.rightStrutLowest.getChild("rightStrutLowestLeather02");
-        this.rightStrutLowestLeather01 = this.rightStrutLowest.getChild("rightStrutLowestLeather01");
-        this.rightWing03 = this.rightWing02.getChild("rightWing03");
-        this.rightWingStrut03 = this.rightWing03.getChild("rightWingStrut03");
-        this.rightWingStrut03Leather = this.rightWingStrut03.getChild("rightWingStrut03Leather");
-        this.rightWingStrut02 = this.rightWing03.getChild("rightWingStrut02");
-        this.rightWingStrut02Leather = this.rightWingStrut02.getChild("rightWingStrut02Leather");
-        this.rightWingStrut01 = this.rightWing03.getChild("rightWingStrut01");
-        this.rightWingStrut01Leather = this.rightWingStrut01.getChild("rightWingStrut01Leather");
-        this.rightWing04 = this.rightWing03.getChild("rightWing04");
-        this.rightWing04Leather = this.rightWing04.getChild("rightWing04Leather");
-        this.leftWing02 = this.leftWing01.getChild("leftWing02");
-        this.leftStrutLowest = this.leftWing02.getChild("leftStrutLowest");
-        this.leftStrutLowestLeather01 = this.leftStrutLowest.getChild("leftStrutLowestLeather01");
-        this.leftStrutLowestLeather02 = this.leftStrutLowest.getChild("leftStrutLowestLeather02");
-        this.leftWing03 = this.leftWing02.getChild("leftWing03");
-        this.leftWingStrut03 = this.leftWing03.getChild("leftWingStrut03");
-        this.leftWingStrut03Leather = this.leftWingStrut03.getChild("leftWingStrut03Leather");
-        this.leftWingStrut02 = this.leftWing03.getChild("leftWingStrut02");
-        this.leftWingStrut02Leather = this.leftWingStrut02.getChild("leftWingStrut02Leather");
-        this.leftWingStrut01 = this.leftWing03.getChild("leftWingStrut01");
-        this.leftWingStrut01Leather = this.leftWingStrut01.getChild("leftWingStrut01Leather");
-        this.leftWing04 = this.leftWing03.getChild("leftWing04");
-        this.leftWing04Leather = this.leftWing04.getChild("leftWing04Leather");
+        ModelPart leftWing01 = root.getChild("leftWing").getChild("leftWing01");
+        ModelPart leftWing02 = leftWing01.getChild("leftWing02");
+        this.leftWing03 = leftWing02.getChild("leftWing03");
+        ModelPart rightWing01 = root.getChild("rightWing").getChild("rightWing01");
+        ModelPart rightWing02 = rightWing01.getChild("rightWing02");
+        this.rightWing03 = rightWing02.getChild("rightWing03");
     }
 
     public static TexturedModelData getTexturedModelData() {

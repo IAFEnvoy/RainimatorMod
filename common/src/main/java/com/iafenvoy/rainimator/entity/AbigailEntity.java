@@ -99,7 +99,7 @@ public class AbigailEntity extends MonsterEntityBase implements RangedAttackMob 
 
     @Override
     public void attack(LivingEntity target, float flval) {
-        AbigailEntityProjectile projectile = new AbigailEntityProjectile(RainimatorEntities.ABIGAIL_PROJECTILE.get(), this, this.getWorld());
+        AbigailProjectileEntity projectile = new AbigailProjectileEntity(RainimatorEntities.ABIGAIL_PROJECTILE.get(), this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();

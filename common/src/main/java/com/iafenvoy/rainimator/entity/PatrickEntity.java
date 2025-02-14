@@ -131,7 +131,7 @@ public class PatrickEntity extends MonsterEntityBase implements RangedAttackMob 
 
     @Override
     public void attack(LivingEntity target, float flval) {
-        PatrickEntityProjectile entityarrow = new PatrickEntityProjectile(RainimatorEntities.PATRICK_PROJECTILE.get(), this, this.getWorld());
+        PatrickProjectileEntity entityarrow = new PatrickProjectileEntity(RainimatorEntities.PATRICK_PROJECTILE.get(), this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();

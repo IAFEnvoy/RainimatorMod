@@ -2,7 +2,7 @@ package com.iafenvoy.rainimator.fabric.compat.trinkets.renderer.armor;
 
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.client.TrinketRenderer;
-import com.iafenvoy.rainimator.renderer.model.ModelNetherKing2;
+import com.iafenvoy.rainimator.renderer.model.PiglinKingCrownModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
@@ -22,7 +22,7 @@ import java.util.Map;
 @Environment(EnvType.CLIENT)
 public class PiglinKingCrownRenderer implements TrinketRenderer {
     private BipedEntityModel<LivingEntity> getArmorModel(LivingEntity living) {
-        BipedEntityModel<LivingEntity> armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(), Map.of("head", (new ModelNetherKing2<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(ModelNetherKing2.LAYER_LOCATION))).Head, "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body", new ModelPart(
+        BipedEntityModel<LivingEntity> armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(), Map.of("head", (new PiglinKingCrownModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(PiglinKingCrownModel.LAYER_LOCATION))).head, "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body", new ModelPart(
                 Collections.emptyList(), Collections.emptyMap()), "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm", new ModelPart(
                 Collections.emptyList(), Collections.emptyMap()), "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_leg", new ModelPart(
                 Collections.emptyList(), Collections.emptyMap()))));

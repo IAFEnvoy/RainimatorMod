@@ -32,7 +32,6 @@ public class BlueDiamondShieldItem extends ShieldItem {
         return UseAction.BLOCK;
     }
 
-
     @Override
     public TypedActionResult<ItemStack> use(World p_77659_1_, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemtack = playerIn.getStackInHand(handIn);

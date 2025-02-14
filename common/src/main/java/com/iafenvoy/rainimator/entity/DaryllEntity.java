@@ -82,7 +82,7 @@ public class DaryllEntity extends MonsterEntityBase implements RangedAttackMob {
 
     @Override
     public void attack(LivingEntity target, float flval) {
-        DaryllEntityProjectile entityarrow = new DaryllEntityProjectile(RainimatorEntities.DARYLL_PROJECTILE.get(), this, this.getWorld());
+        DaryllProjectileEntity entityarrow = new DaryllProjectileEntity(RainimatorEntities.DARYLL_PROJECTILE.get(), this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();

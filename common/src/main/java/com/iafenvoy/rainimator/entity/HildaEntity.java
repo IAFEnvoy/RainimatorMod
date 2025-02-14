@@ -82,7 +82,7 @@ public class HildaEntity extends MonsterEntityBase implements RangedAttackMob {
 
     @Override
     public void attack(LivingEntity target, float pullProgress) {
-        HildaEntityProjectile projectile = new HildaEntityProjectile(RainimatorEntities.HILDA_PROJECTILE.get(), this, this.getWorld());
+        HildaProjectileEntity projectile = new HildaProjectileEntity(RainimatorEntities.HILDA_PROJECTILE.get(), this, this.getWorld());
         double d0 = target.getY() + target.getStandingEyeHeight() - 1.1D;
         double d1 = target.getX() - this.getX();
         double d3 = target.getZ() - this.getZ();

@@ -5,7 +5,6 @@ import com.iafenvoy.neptune.object.item.FoilItemBase;
 import com.iafenvoy.neptune.util.Timeout;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import com.iafenvoy.rainimator.registry.RainimatorParticles;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -91,12 +90,11 @@ public class MagicEnderPearlItem extends FoilItemBase {
 
             Timeout.create(200, () -> {
                 entity.requestTeleport(x, y, z);
-                if ((Entity) entity instanceof ServerPlayerEntity _serverPlayer)
+                if (entity instanceof ServerPlayerEntity _serverPlayer)
                     _serverPlayer.networkHandler.requestTeleport(x, y, z, entity.getYaw(), entity.getPitch());
                 SoundUtil.playSound(world, x, y, z, SoundEvents.ENTITY_ENDERMAN_TELEPORT, 1.0F, 1.0F);
-                if (world instanceof ServerWorld) {
-                    ((ServerWorld) world).spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.02D);
-                }
+                if (world instanceof ServerWorld serverWorld)
+                    serverWorld.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), x, y, z, 50, 0.5D, 1.0D, 0.5D, 0.02D);
             });
         }
         return ar;

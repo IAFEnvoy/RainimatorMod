@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "rainimator:sugilite_block",
+          "weight": 1,
+          "quality": 1
+        }
+      ]
+    }
+  ],
+  "random_sequence": "rainimator:sugilite_block"
+}

@@ -1,7 +1,7 @@
 package com.iafenvoy.rainimator.renderer.armor;
 
 import com.iafenvoy.neptune.render.armor.IArmorRendererBase;
-import com.iafenvoy.rainimator.renderer.model.ModelNetherCrown;
+import com.iafenvoy.rainimator.renderer.model.NetherTheCrownModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -21,7 +21,7 @@ public class NetherTheCrownRenderer implements IArmorRendererBase<LivingEntity> 
     @Override
     public BipedEntityModel<LivingEntity> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, BipedEntityModel<LivingEntity> bipedEntityModel) {
         BipedEntityModel<LivingEntity> armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(), Map.of(
-                "head", new ModelNetherCrown<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(ModelNetherCrown.LAYER_LOCATION)).Head,
+                "head", new NetherTheCrownModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(NetherTheCrownModel.LAYER_LOCATION)).head,
                 "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                 "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                 "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
