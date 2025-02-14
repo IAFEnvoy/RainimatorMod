@@ -58,7 +58,7 @@ public class SoraEntity extends MonsterEntityBase {
             }
         });
         this.goalSelector.add(20, new WanderAroundGoal(this, 1.0));
-        this.targetSelector.add(21, new RevengeGoal(this, new Class[0]));
+        this.targetSelector.add(21, new RevengeGoal(this));
         this.goalSelector.add(22, new LongDoorInteractGoal(this, true));
         this.goalSelector.add(23, new LongDoorInteractGoal(this, false));
         this.goalSelector.add(24, new LookAroundGoal(this));

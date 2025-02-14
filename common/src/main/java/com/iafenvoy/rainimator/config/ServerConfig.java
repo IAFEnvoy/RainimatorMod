@@ -1,7 +1,7 @@
 package com.iafenvoy.rainimator.config;
 
 public class ServerConfig {
-    private static ServerConfig INSTANCE = null;
+    private static final ServerConfig INSTANCE = ConfigLoader.load(ServerConfig.class, "./config/rainimator/main.json", new ServerConfig());
 
     public double baseMaxMana = 100;
     public double baseRestoreSpeed = 3;
@@ -27,8 +27,6 @@ public class ServerConfig {
     public double wings_of_salvation_boost = 25;
 
     public static ServerConfig getInstance() {
-        if (INSTANCE == null)
-            INSTANCE = ConfigLoader.load(ServerConfig.class, "./config/rainimator/main.json", new ServerConfig());
         return INSTANCE;
     }
 }

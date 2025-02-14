@@ -10,6 +10,7 @@ import net.minecraft.item.ElytraItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Rarity;
+import net.minecraft.world.World;
 import org.apache.commons.lang3.NotImplementedException;
 
 public class WingsOfSalvationItem extends ElytraItem {
@@ -17,10 +18,6 @@ public class WingsOfSalvationItem extends ElytraItem {
 
     public WingsOfSalvationItem() {
         super(new Settings().rarity(Rarity.EPIC).maxCount(1).arch$tab(RainimatorItemGroups.MAIN));
-    }
-
-    protected static void noEnoughEnergy(PlayerEntity player) {
-        player.getAbilities().flying = false;
     }
 
     @ExpectPlatform
@@ -38,7 +35,8 @@ public class WingsOfSalvationItem extends ElytraItem {
 
     protected void speedUp(PlayerEntity player) {
         this.lastBoostTick = 20;
-        FireworkRocketEntity entity = new FireworkRocketEntity(player.getWorld(), new ItemStack(Items.AIR), player);
-        player.getWorld().spawnEntity(entity);
+        World world = player.getWorld();
+        FireworkRocketEntity entity = new FireworkRocketEntity(world, new ItemStack(Items.AIR), player);
+        world.spawnEntity(entity);
     }
 }

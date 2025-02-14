@@ -3,5 +3,13 @@
   "textures": {
     "0": "rainimator:item/snow_shield",
     "particle": "rainimator:item/snow_shield"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "rainimator:item/snow_shield_blocking"
+    }
+  ]
 }

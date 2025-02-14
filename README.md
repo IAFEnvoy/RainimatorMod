@@ -29,13 +29,18 @@ See summon recipes with `EMI`.
 
 <div align=center><img src="https://raw.githubusercontent.com/IAFEnvoy/RainimatorMod/refs/heads/master/img/2.webp" style="width:400px;text-align:center;" alt=""></img></div>
 
-## Dependencies
+## Mods Relations
 
-`Neptune`(**Required**): My cross-platform library.
+### Dependencies
 
-`EMI`(**Optional**): Boss summon recipes view.
+- `Neptune`: My cross-platform library.
 
-`Asteor Bar`(**Optional**): A better GUI for status bars.
+### Recommended to install
+
+These mods are not mandatory to install, but they are recommended to gain better game experience.
+
+- `EMI`: Boss summon recipes view.
+- `Asteor Bar`: A better GUI for status bars.
 
 ## Contribute
 

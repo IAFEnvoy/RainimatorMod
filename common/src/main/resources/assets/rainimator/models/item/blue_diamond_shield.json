@@ -3,5 +3,13 @@
   "textures": {
     "0": "rainimator:item/blue_diamond_shield",
     "particle": "rainimator:item/blue_diamond_shield"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "rainimator:item/blue_diamond_shield_blocking"
+    }
+  ]
 }

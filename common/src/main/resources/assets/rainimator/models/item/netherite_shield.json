@@ -3,5 +3,13 @@
   "textures": {
     "0": "rainimator:item/netherite_shield",
     "particle": "rainimator:item/netherite_shield"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "rainimator:item/netherite_shield_blocking"
+    }
+  ]
 }

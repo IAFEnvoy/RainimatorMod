@@ -1,0 +1,26 @@
+{
+  "parent": "rainimator:item/netherite_shield",
+  "gui-light": "front",
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [-39.54, 0.5, 61.25],
+      "translation": [3.5, 0, -0.5],
+      "scale": [0.59, 0.57, 0.57]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [-41.96, 0.46, -124.5],
+      "translation": [1.25, 1.25, -2],
+      "scale": [0.59, 0.57, 0.57]
+    },
+    "firstperson_righthand": {
+      "rotation": [90, 0, -90],
+      "translation": [-4.5, -3.5, -2.75],
+      "scale": [0.76, 0.77, 0.78]
+    },
+    "firstperson_lefthand": {
+      "rotation": [90, 0, -90],
+      "translation": [-4.5, -3.5, -2.75],
+      "scale": [0.76, 0.77, 0.78]
+    }
+  }
+}

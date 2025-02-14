@@ -10,9 +10,12 @@ import com.iafenvoy.rainimator.renderer.model.*;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.particle.ParticleProviderRegistry;
+import dev.architectury.registry.item.ItemPropertiesRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class RainimatorRenderers {
@@ -103,7 +106,7 @@ public class RainimatorRenderers {
         ParticleProviderRegistry.register(RainimatorParticles.YELLOW_STARS, YellowStarsParticle::provider);
     }
 
-    public static void registerSkull() {
+    public static void registerSkulls() {
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.HEROBRINE_1, HerobrineEntity.TEXTURE.getTexture(Stage.First), RainimatorSkulls.HEROBRINE_1_HEAD.get(), RainimatorSkulls.HEROBRINE_1_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.HEROBRINE_2, HerobrineEntity.TEXTURE.getTexture(Stage.Second), RainimatorSkulls.HEROBRINE_2_HEAD.get(), RainimatorSkulls.HEROBRINE_2_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.CERIS, CerisEntity.TEXTURE.getTexture(), RainimatorSkulls.CERIS_HEAD.get(), RainimatorSkulls.CERIS_WALL_HEAD.get());
@@ -147,5 +150,15 @@ public class RainimatorRenderers {
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.STELLA, StellaEntity.TEXTURE.getTexture(), RainimatorSkulls.STELLA_HEAD.get(), RainimatorSkulls.STELLA_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.STELLA_DEMON, StellaDemonEntity.TEXTURE.getTexture(), RainimatorSkulls.STELLA_DEMON_HEAD.get(), RainimatorSkulls.STELLA_DEMON_WALL_HEAD.get());
         SkullRenderRegistry.register(RainimatorSkulls.SkullType.SORA, SoraEntity.TEXTURE.getTexture(), RainimatorSkulls.SORA_HEAD.get(), RainimatorSkulls.SORA_WALL_HEAD.get());
+    }
+
+    public static void registerModelPredicates() {
+        registerBlocking(RainimatorItems.SNOW_SHIELD.get());
+        registerBlocking(RainimatorItems.BLUE_DIAMOND_SHIELD.get());
+        registerBlocking(RainimatorItems.NETHERITE_SHIELD.get());
+    }
+
+    private static void registerBlocking(ItemConvertible item) {
+        ItemPropertiesRegistry.register(item, new Identifier("blocking"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F);
     }
 }

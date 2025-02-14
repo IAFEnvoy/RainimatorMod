@@ -1,0 +1,25 @@
+{
+  "parent": "rainimator:custom/snow_shield",
+  "textures": {
+    "0": "rainimator:item/snow_shield",
+    "particle": "rainimator:item/snow_shield"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [52.17, -30.2, 16.04],
+      "translation": [2.25, -0.5, 0],
+      "scale": [0.84, 0.84, 0.84]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [52.17, -30.2, 16.04],
+      "translation": [2.25, -0.5, 0],
+      "scale": [0.84, 0.84, 0.84]
+    },
+    "firstperson_righthand": {
+      "translation": [-3.5, -2.25, 0]
+    },
+    "firstperson_lefthand": {
+      "translation": [-3.5, -2.25, 0]
+    }
+  }
+}
