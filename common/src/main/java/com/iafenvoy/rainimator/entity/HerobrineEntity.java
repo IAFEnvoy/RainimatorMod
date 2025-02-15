@@ -4,6 +4,7 @@ import com.iafenvoy.neptune.object.EntityUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.VecUtil;
 import com.iafenvoy.neptune.object.entity.StagedMonsterEntityBase;
+import com.iafenvoy.neptune.render.BossBarRenderHelper;
 import com.iafenvoy.neptune.render.Stage;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
@@ -53,6 +54,10 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.RED, BossBar.Style.PROGRESS);
     private boolean hasSpawnBlackBone = false;
 
+    static {
+        BossBarRenderHelper.addBossBarType(HerobrineEntity.class, new Identifier(RainimatorMod.MOD_ID, "textures/bossbar/herobrine.png"), true);
+    }
+
     public HerobrineEntity(EntityType<HerobrineEntity> type, World level) {
         this(type, level, Stage.First);
     }
@@ -71,6 +76,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
                 this.equipStack(EquipmentSlot.OFFHAND, new ItemStack(RainimatorItems.BLUE_DIAMOND_SWORD.get()));
             }
         }
+        BossBarRenderHelper.addBossBar(this.getClass(), this.bossInfo.getUuid());
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
@@ -343,5 +349,11 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
     @Override
     public SoundEvent getDeathSound() {
         return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
+    }
+
+    @Override
+    public void onRemoved() {
+        super.onRemoved();
+        BossBarRenderHelper.removeBossBar(this.getClass(), this.bossInfo.getUuid());
     }
 }

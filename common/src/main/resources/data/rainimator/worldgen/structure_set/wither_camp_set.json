@@ -1,7 +1,7 @@
 {
   "structures": [
     {
-      "structure": "rainimator:piglin_team",
+      "structure": "rainimator:wither_camp",
       "weight": 1
     }
   ],
@@ -9,6 +9,6 @@
     "type": "minecraft:random_spread",
     "spacing": 48,
     "separation": 32,
-    "salt": 57368262
+    "salt": 3651762
   }
 }
