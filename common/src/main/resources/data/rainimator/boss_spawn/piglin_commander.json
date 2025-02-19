@@ -1,0 +1,8 @@
+{
+  "item": "minecraft:golden_sword",
+  "entities": [
+    {
+      "type": "rainimator:piglin_commander"
+    }
+  ]
+}

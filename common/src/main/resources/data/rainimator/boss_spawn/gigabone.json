@@ -1,0 +1,8 @@
+{
+  "item": "minecraft:wither_skeleton_skull",
+  "entities": [
+    {
+      "type": "rainimator:gigabone"
+    }
+  ]
+}

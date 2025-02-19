@@ -1,0 +1,8 @@
+{
+  "item": "rainimator:netherite_wither_bone",
+  "entities": [
+    {
+      "type": "rainimator:blackbone"
+    }
+  ]
+}

@@ -10,9 +10,11 @@ import com.iafenvoy.rainimator.renderer.model.*;
 import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry;
 import dev.architectury.registry.client.particle.ParticleProviderRegistry;
+import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import dev.architectury.registry.item.ItemPropertiesRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.util.Identifier;
@@ -159,5 +161,9 @@ public class RainimatorRenderers {
 
     private static void registerBlocking(ItemConvertible item) {
         ItemPropertiesRegistry.register(item, new Identifier("blocking"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F);
+    }
+
+    public static void registerRenderLayers() {
+        RenderTypeRegistry.register(RenderLayer.getCutout(), RainimatorBlocks.DARK_OBSIDIAN_BLOCK.get());
     }
 }

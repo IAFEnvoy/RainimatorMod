@@ -1,0 +1,29 @@
+{
+  "item": "rainimator:light_heart",
+  "entities": [
+    {
+      "type": "rainimator:herobrine"
+    },
+    {
+      "type": "rainimator:elite_zombie",
+      "z": {
+        "min": -3,
+        "max": -1
+      }
+    },
+    {
+      "type": "rainimator:dark_zombie",
+      "z": {
+        "min": 1,
+        "max": 3
+      }
+    },
+    {
+      "type": "rainimator:azalea",
+      "x": {
+        "min": 1,
+        "max": 3
+      }
+    }
+  ]
+}

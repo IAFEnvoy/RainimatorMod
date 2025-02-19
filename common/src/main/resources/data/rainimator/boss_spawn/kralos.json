@@ -1,0 +1,8 @@
+{
+  "item": "minecraft:wither_rose",
+  "entities": [
+    {
+      "type": "rainimator:kralos"
+    }
+  ]
+}

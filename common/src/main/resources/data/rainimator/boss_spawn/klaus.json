@@ -1,0 +1,36 @@
+{
+  "item": "minecraft:totem_of_undying",
+  "entities": [
+    {
+      "type": "rainimator:klaus"
+    },
+    {
+      "type": "minecraft:pillager",
+      "x": {
+        "min": -3,
+        "max": -1
+      }
+    },
+    {
+      "type": "minecraft:pillager",
+      "x": {
+        "min": 1,
+        "max": 3
+      }
+    },
+    {
+      "type": "minecraft:pillager",
+      "z": {
+        "min": -3,
+        "max": -1
+      }
+    },
+    {
+      "type": "minecraft:pillager",
+      "z": {
+        "min": 1,
+        "max": 3
+      }
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 package com.iafenvoy.rainimator.compat.emi;
 
 import com.iafenvoy.rainimator.RainimatorMod;
+import com.iafenvoy.rainimator.recipe.BossSpawnRecipeManager;
 import com.iafenvoy.rainimator.registry.RainimatorBlocks;
-import com.iafenvoy.rainimator.registry.RainimatorItems;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiRecipe;
@@ -13,13 +13,13 @@ import dev.emi.emi.api.stack.EmiStack;
 import dev.emi.emi.api.widget.WidgetHolder;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
+import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class BossSpawnRecipePlugin implements EmiPlugin {
@@ -27,33 +27,16 @@ public class BossSpawnRecipePlugin implements EmiPlugin {
     private static final EmiTexture TEXTURE = new EmiTexture(Identifier.of(RainimatorMod.MOD_ID, "textures/gui/gui_boss_spawn_recipe.png"), 0, 0, 140, 44);
     private static final EmiStack WORKSTATION = EmiStack.of(RainimatorBlocks.DARK_OBSIDIAN_BLOCK.get());
     private static final EmiRecipeCategory BOSS_SPAWN_CATEGORY = new EmiRecipeCategory(BOSS_SPAWN, WORKSTATION, TEXTURE);
-    private static final List<BossSpawnRecipe> RECIPES = List.of(
-            new BossSpawnRecipe("herobrine", RainimatorItems.LIGHT_HEART.get(), RainimatorItems.HEROBRINE_SPAWN_EGG.get()),
-            new BossSpawnRecipe("kralos", Blocks.WITHER_ROSE, RainimatorItems.KRALOS_SPAWN_EGG.get()),
-            new BossSpawnRecipe("klaus", Items.TOTEM_OF_UNDYING, RainimatorItems.KLAUS_SPAWN_EGG.get()),
-            new BossSpawnRecipe("gigabone", Blocks.WITHER_SKELETON_SKULL, RainimatorItems.GIGABONE_SPAWN_EGG.get()),
-            new BossSpawnRecipe("namtar", RainimatorItems.SOUL_PEOPLE.get(), RainimatorItems.NAMTAR_SPAWN_EGG.get()),
-            new BossSpawnRecipe("piglin_commander", Items.GOLDEN_SWORD, RainimatorItems.PIGLIN_COMMANDER_SPAWN_EGG.get()),
-            new BossSpawnRecipe("zombie_piglin_king", Items.GOLD_INGOT, RainimatorItems.ZOMBIES_PIGLIN_KING_SPAWN_EGG.get()),
-            new BossSpawnRecipe("glutton", Blocks.GOLD_BLOCK, RainimatorItems.GLUTTON_SPAWN_EGG.get()),
-            new BossSpawnRecipe("null_like", RainimatorItems.BAO_ZHU.get(), RainimatorItems.NULL_LIKE_SPAWN_EGG.get()),
-            new BossSpawnRecipe("naeus", RainimatorItems.WARRIOR_HEART.get(), RainimatorItems.NAEUS_SPAWN_EGG.get()),
-            new BossSpawnRecipe("ciara", RainimatorItems.ICE_HEART.get(), RainimatorItems.CIARA_SPAWN_EGG.get()),
-            new BossSpawnRecipe("ceris", RainimatorItems.ENDER_HEART.get(), RainimatorItems.CERIS_SPAWN_EGG.get()),
-            new BossSpawnRecipe("patrick", RainimatorItems.MAGIC_STAR.get(), RainimatorItems.PATRICK_SPAWN_EGG.get()),
-            new BossSpawnRecipe("blackbone", RainimatorItems.NETHERITE_WITHER_BONE.get(), RainimatorItems.BLACKBONE_SPAWN_EGG.get()),
-            new BossSpawnRecipe("abigail", RainimatorItems.UNDER_FLOWER.get(), RainimatorItems.ABIGAIL_SPAWN_EGG.get())
-    );
 
     @Override
     public void register(EmiRegistry registry) {
         registry.addCategory(BOSS_SPAWN_CATEGORY);
         registry.addWorkstation(BOSS_SPAWN_CATEGORY, WORKSTATION);
-        for (BossSpawnRecipe recipe : RECIPES)
-            registry.addRecipe(recipe);
+        for (Map.Entry<Identifier, BossSpawnRecipeManager.Single> entry : BossSpawnRecipeManager.getAll())
+            registry.addRecipe(new BossSpawnRecipe(entry.getKey(), entry.getValue().getItems(), entry.getValue().getFirstSpawnEgg()));
     }
 
-    private record BossSpawnRecipe(String id, ItemConvertible input, ItemConvertible output) implements EmiRecipe {
+    private record BossSpawnRecipe(Identifier id, List<Item> input, ItemConvertible output) implements EmiRecipe {
         @Override
         public EmiRecipeCategory getCategory() {
             return BOSS_SPAWN_CATEGORY;
@@ -61,12 +44,12 @@ public class BossSpawnRecipePlugin implements EmiPlugin {
 
         @Override
         public Identifier getId() {
-            return Identifier.of(RainimatorMod.MOD_ID, this.id);
+            return this.id;
         }
 
         @Override
         public List<EmiIngredient> getInputs() {
-            return List.of(EmiIngredient.of(Ingredient.ofItems(this.input)));
+            return List.of(EmiIngredient.of(Ingredient.ofItems(this.input.toArray(ItemConvertible[]::new))));
         }
 
         @Override
