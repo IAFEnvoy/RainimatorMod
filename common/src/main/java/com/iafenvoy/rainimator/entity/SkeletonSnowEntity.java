@@ -15,9 +15,8 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
 public class SkeletonSnowEntity extends MonsterEntityBase {
@@ -57,12 +56,12 @@ public class SkeletonSnowEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
+        return SoundEvents.ENTITY_GENERIC_HURT;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
+        return SoundEvents.ENTITY_GENERIC_DEATH;
     }
 
     @Override

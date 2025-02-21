@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -56,11 +57,11 @@ public class BrotsEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.zombified_piglin.hurt"));
+        return SoundEvents.ENTITY_ZOMBIFIED_PIGLIN_HURT;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.zombified_piglin.death"));
+        return SoundEvents.ENTITY_ZOMBIFIED_PIGLIN_DEATH;
     }
 }

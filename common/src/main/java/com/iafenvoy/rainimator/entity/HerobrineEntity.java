@@ -343,12 +343,12 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
+        return SoundEvents.ENTITY_GENERIC_HURT;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
+        return SoundEvents.ENTITY_GENERIC_DEATH;
     }
 
     @Override

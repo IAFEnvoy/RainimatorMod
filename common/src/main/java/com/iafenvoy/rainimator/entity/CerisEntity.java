@@ -24,7 +24,6 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -159,12 +158,12 @@ public class CerisEntity extends EntityWithBossBar {
 
     @Override
     public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
+        return SoundEvents.ENTITY_GENERIC_HURT;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
+        return SoundEvents.ENTITY_GENERIC_DEATH;
     }
 
     @Override

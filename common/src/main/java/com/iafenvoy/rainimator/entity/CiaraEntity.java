@@ -18,10 +18,9 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -94,12 +93,12 @@ public class CiaraEntity extends MonsterEntityBase implements RangedAttackMob {
 
     @Override
     public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.hurt"));
+        return SoundEvents.ENTITY_GENERIC_HURT;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.generic.death"));
+        return SoundEvents.ENTITY_GENERIC_DEATH;
     }
 
     @Override
