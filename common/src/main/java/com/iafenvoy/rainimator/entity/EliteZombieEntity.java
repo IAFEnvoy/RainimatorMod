@@ -16,10 +16,8 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class EliteZombieEntity extends MonsterEntityBase {
@@ -35,15 +33,14 @@ public class EliteZombieEntity extends MonsterEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 0.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 30.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 0.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 3.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
     }
 
     @Override
@@ -51,6 +48,7 @@ public class EliteZombieEntity extends MonsterEntityBase {
         super.initGoals();
         this.goalSelector.add(2, new AvoidSunlightGoal(this));
         this.goalSelector.add(3, new MeleeAttackGoal(this, 1.2D, true) {
+            @Override
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());
             }
@@ -63,7 +61,7 @@ public class EliteZombieEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.zombie.hurt"));
+        return SoundEvents.ENTITY_ZOMBIE_HURT;
     }
 
     @Override

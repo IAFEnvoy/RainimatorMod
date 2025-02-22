@@ -73,6 +73,7 @@ public class WingsOfSalvationItemImpl extends WingsOfSalvationItem implements IC
         if (this.lastBoostTick < 0) this.lastBoostTick = 0;
     }
 
+    @Override
     public void keyPress(PlayerEntity player, ItemStack stack) {
         if (player.isFallFlying()) {
             ManaData data = ComponentManager.getManaData(player);
@@ -81,6 +82,7 @@ public class WingsOfSalvationItemImpl extends WingsOfSalvationItem implements IC
         }
     }
 
+    @Override
     protected void speedUp(PlayerEntity player) {
         this.lastBoostTick = 20;
         FireworkRocketEntity entity = new FireworkRocketEntity(player.getWorld(), new ItemStack(Items.AIR), player);

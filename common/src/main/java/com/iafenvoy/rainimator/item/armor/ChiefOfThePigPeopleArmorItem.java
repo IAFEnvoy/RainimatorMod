@@ -5,20 +5,17 @@ import com.iafenvoy.neptune.object.item.ArmorWithTickItem;
 import com.iafenvoy.rainimator.config.ServerConfig;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import com.iafenvoy.rainimator.registry.RainimatorItems;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
 public class ChiefOfThePigPeopleArmorItem extends ArmorWithTickItem {
     public ChiefOfThePigPeopleArmorItem(Type slot) {
-        super(ArmorMaterialUtil.of("chief_of_the_pig_people_armors", new int[]{13, 15, 16, 11}, 25, new int[]{5, 10, 12, 5}, 10, Registries.SOUND_EVENT.get(Identifier.tryParse("item.armor.equip_diamond")), 3.0F, 0F, () -> Items.NETHERITE_INGOT), slot, new Settings().arch$tab(RainimatorItemGroups.MAIN));
+        super(ArmorMaterialUtil.of("chief_of_the_pig_people_armors", new int[]{13, 15, 16, 11}, 25, new int[]{5, 10, 12, 5}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.0F, 0F, () -> Items.NETHERITE_INGOT), slot, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

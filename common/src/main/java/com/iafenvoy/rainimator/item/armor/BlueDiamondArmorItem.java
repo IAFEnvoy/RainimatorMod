@@ -9,13 +9,12 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
 public class BlueDiamondArmorItem extends ArmorWithTickItem {
     public BlueDiamondArmorItem(Type slot) {
-        super(ArmorMaterialUtil.of("blue_diamond_armors", new int[]{13, 15, 16, 11}, 70, new int[]{9, 13, 18, 10}, 40, Registries.SOUND_EVENT.get(Identifier.tryParse("item.armor.equip_diamond")), 5.0F, 0.3F, RainimatorItems.BLUE_DIAMOND::get), slot, new Settings().fireproof().arch$tab(RainimatorItemGroups.ITEM));
+        super(ArmorMaterialUtil.of("blue_diamond_armors", new int[]{13, 15, 16, 11}, 70, new int[]{9, 13, 18, 10}, 40, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 5.0F, 0.3F, RainimatorItems.BLUE_DIAMOND::get), slot, new Settings().fireproof().arch$tab(RainimatorItemGroups.ITEM));
     }
 
     @Override

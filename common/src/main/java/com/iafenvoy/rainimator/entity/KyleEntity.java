@@ -14,9 +14,8 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
 public class KyleEntity extends MonsterEntityBase {
@@ -36,6 +35,7 @@ public class KyleEntity extends MonsterEntityBase {
         super.initGoals();
         this.getNavigation().getNodeMaker().setCanOpenDoors(true);
         this.goalSelector.add(1, new MeleeAttackGoal(this, 1.2, false) {
+            @Override
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return this.mob.getWidth() * this.mob.getWidth() + entity.getWidth();
             }
@@ -61,12 +61,12 @@ public class KyleEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return SoundEvents.ENTITY_GENERIC_HURT;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return SoundEvents.ENTITY_GENERIC_DEATH;
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {

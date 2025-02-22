@@ -52,6 +52,7 @@ public class FlowerWriteParticle extends SpriteBillboardParticle {
             this.spriteSet = spriteSet;
         }
 
+        @Override
         public Particle createParticle(DefaultParticleType typeIn, ClientWorld worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             return new FlowerWriteParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
         }

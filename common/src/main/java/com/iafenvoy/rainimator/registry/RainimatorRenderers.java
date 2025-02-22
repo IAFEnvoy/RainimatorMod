@@ -160,7 +160,7 @@ public class RainimatorRenderers {
     }
 
     private static void registerBlocking(ItemConvertible item) {
-        ItemPropertiesRegistry.register(item, new Identifier("blocking"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F);
+        ItemPropertiesRegistry.register(item, Identifier.of(Identifier.DEFAULT_NAMESPACE, "blocking"), (stack, world, entity, seed) -> entity != null && entity.isUsingItem() && entity.getActiveItem() == stack ? 1.0F : 0.0F);
     }
 
     public static void registerRenderLayers() {

@@ -81,7 +81,6 @@ public class EndStaffEntity extends PersistentProjectileEntity implements Flying
     @Override
     public void tick() {
         super.tick();
-        if (this.inGround)
-            this.discard();
+        if (this.inGround) this.discard();
     }
 }

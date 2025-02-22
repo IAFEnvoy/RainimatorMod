@@ -19,11 +19,10 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -70,6 +69,7 @@ public class GluttonEntity extends StagedMonsterEntityBase {
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
+            @Override
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());
             }
@@ -87,22 +87,23 @@ public class GluttonEntity extends StagedMonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.zombified_piglin.hurt"));
+        return SoundEvents.ENTITY_ZOMBIFIED_PIGLIN_HURT;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(Identifier.tryParse("entity.zombified_piglin.death"));
+        return SoundEvents.ENTITY_ZOMBIFIED_PIGLIN_DEATH;
     }
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.isOf(DamageTypes.FALL)) return true;
-        if (damageSource.isOf(DamageTypes.CACTUS)) return true;
-        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT)) return true;
-        if (damageSource.isOf(DamageTypes.FALLING_ANVIL)) return true;
-        if (damageSource.isOf(DamageTypes.WITHER)) return true;
-        if (damageSource.isOf(DamageTypes.WITHER_SKULL)) return false;
+        if (damageSource.isOf(DamageTypes.FALL) ||
+                damageSource.isOf(DamageTypes.CACTUS) ||
+                damageSource.isOf(DamageTypes.LIGHTNING_BOLT) ||
+                damageSource.isOf(DamageTypes.FALLING_ANVIL) ||
+                damageSource.isOf(DamageTypes.WITHER) ||
+                damageSource.isOf(DamageTypes.WITHER_SKULL))
+            return true;
         return super.isInvulnerableTo(damageSource);
     }
 

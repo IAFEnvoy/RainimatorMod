@@ -9,13 +9,12 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
 public class PatrickArmorItem extends ArmorWithTickItem {
     public PatrickArmorItem(Type slot) {
-        super(ArmorMaterialUtil.of("patrick_armor", new int[]{13, 15, 16, 11}, 25, new int[]{3, 8, 12, 5}, 20, Registries.SOUND_EVENT.get(Identifier.tryParse("item.armor.equip_diamond")), 3.0F, 0.0F, RainimatorItems.SUPER_SAPPHIRE::get), slot, new Settings().arch$tab(RainimatorItemGroups.MAIN));
+        super(ArmorMaterialUtil.of("patrick_armor", new int[]{13, 15, 16, 11}, 25, new int[]{3, 8, 12, 5}, 20, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.0F, 0.0F, RainimatorItems.SUPER_SAPPHIRE::get), slot, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

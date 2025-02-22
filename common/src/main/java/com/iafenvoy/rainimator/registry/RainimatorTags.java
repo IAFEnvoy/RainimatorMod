@@ -13,6 +13,6 @@ public class RainimatorTags {
     public static final TagKey<Biome> END_SPAWN_BIOMES = biome("end_spawn_biomes");
 
     private static TagKey<Biome> biome(String id) {
-        return TagKey.of(RegistryKeys.BIOME, new Identifier(RainimatorMod.MOD_ID, id));
+        return TagKey.of(RegistryKeys.BIOME, Identifier.of(RainimatorMod.MOD_ID, id));
     }
 }

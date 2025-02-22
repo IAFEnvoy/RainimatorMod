@@ -22,11 +22,10 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -51,6 +50,7 @@ public class StellaEntity extends MonsterEntityBase {
         super.initGoals();
         this.getNavigation().getNodeMaker().setCanOpenDoors(true);
         this.goalSelector.add(1, new MeleeAttackGoal(this, 1.2, false) {
+            @Override
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return this.mob.getWidth() * this.mob.getWidth() + entity.getWidth();
             }
@@ -75,12 +75,12 @@ public class StellaEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return SoundEvents.ENTITY_GENERIC_HURT;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return SoundEvents.ENTITY_GENERIC_DEATH;
     }
 
     @Override
@@ -181,14 +181,13 @@ public class StellaEntity extends MonsterEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 40.0);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 40.0);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 3.0);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0)
+                .add(EntityAttributes.GENERIC_ARMOR, 40.0)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 40.0)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 3.0);
     }
 }

@@ -10,10 +10,12 @@ public class MagicProtectionEnchantment extends Enchantment {
         super(Rarity.RARE, EnchantmentTarget.ARMOR, EquipmentSlot.values());
     }
 
+    @Override
     public int getMaxLevel() {
         return 4;
     }
 
+    @Override
     public int getProtectionAmount(int level, DamageSource source) {
         return level * 2;
     }

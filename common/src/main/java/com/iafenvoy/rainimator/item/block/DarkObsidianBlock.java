@@ -89,8 +89,8 @@ public class DarkObsidianBlock extends Block {
                 serverWorld.spawnParticles(ParticleTypes.FLAME, x - 2, y, z + 2, 150, 0, 6, 0, 0.0002);
             }
             SoundUtil.playSound(world, x, y, z, SoundEvents.BLOCK_PORTAL_TRAVEL, 1, 1);
-            if (!world.isClient && world.getServer() != null)
-                world.getServer().getPlayerManager().broadcast(Text.translatable("block.rainimator.dark_obsidian_block.running"), false);
+            if (!world.isClient)
+                entity.sendMessage(Text.translatable("block.rainimator.dark_obsidian_block.running"), false);
             entity.getMainHandStack().decrement(1);
             entity.getInventory().markDirty();
             if (world instanceof ServerWorld serverWorld)

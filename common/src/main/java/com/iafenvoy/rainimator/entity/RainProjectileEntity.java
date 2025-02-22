@@ -1,7 +1,5 @@
 package com.iafenvoy.rainimator.entity;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.FlyingItemEntity;
 import net.minecraft.entity.LivingEntity;
@@ -29,12 +27,10 @@ public class RainProjectileEntity extends PersistentProjectileEntity implements 
     @Override
     public void tick() {
         super.tick();
-        if (this.inGround)
-            this.remove(RemovalReason.DISCARDED);
+        if (this.inGround) this.remove(RemovalReason.DISCARDED);
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
     public ItemStack getStack() {
         return new ItemStack(Items.ENDER_PEARL);
     }

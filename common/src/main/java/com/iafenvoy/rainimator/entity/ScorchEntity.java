@@ -14,9 +14,8 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,6 +35,7 @@ public class ScorchEntity extends MonsterEntityBase {
         super.initGoals();
         this.getNavigation().getNodeMaker().setCanOpenDoors(true);
         this.goalSelector.add(1, new MeleeAttackGoal(this, 1.2, false) {
+            @Override
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return this.mob.getWidth() * this.mob.getWidth() + entity.getWidth();
             }
@@ -59,17 +59,17 @@ public class ScorchEntity extends MonsterEntityBase {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.blaze.ambient"));
+        return SoundEvents.ENTITY_BLAZE_AMBIENT;
     }
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.blaze.hurt"));
+        return SoundEvents.ENTITY_BLAZE_HURT;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.blaze.death"));
+        return SoundEvents.ENTITY_BLAZE_DEATH;
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {

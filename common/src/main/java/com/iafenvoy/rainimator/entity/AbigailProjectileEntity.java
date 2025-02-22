@@ -29,8 +29,7 @@ public class AbigailProjectileEntity extends PersistentProjectileEntity implemen
     @Override
     public void tick() {
         super.tick();
-        if (this.inGround)
-            this.remove(RemovalReason.DISCARDED);
+        if (this.inGround) this.remove(RemovalReason.DISCARDED);
     }
 
     @Override

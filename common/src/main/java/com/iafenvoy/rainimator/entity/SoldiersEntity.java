@@ -48,6 +48,7 @@ public class SoldiersEntity extends MonsterEntityBase implements RangedAttackMob
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, false) {
+            @Override
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());
             }
@@ -59,6 +60,7 @@ public class SoldiersEntity extends MonsterEntityBase implements RangedAttackMob
         this.goalSelector.add(7, new LookAroundGoal(this));
         this.goalSelector.add(8, new SwimGoal(this));
         this.goalSelector.add(1, new ProjectileAttackGoal(this, 1.25D, 20, 10.0F) {
+            @Override
             public boolean shouldContinue() {
                 return this.canStart();
             }

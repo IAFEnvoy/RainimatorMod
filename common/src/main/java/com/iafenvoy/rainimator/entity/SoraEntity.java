@@ -17,10 +17,9 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.thrown.PotionEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
 public class SoraEntity extends MonsterEntityBase {
@@ -77,32 +76,27 @@ public class SoraEntity extends MonsterEntityBase {
 
     @Override
     public SoundEvent getHurtSound(DamageSource ds) {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.hurt"));
+        return SoundEvents.ENTITY_GENERIC_HURT;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return Registries.SOUND_EVENT.get(new Identifier("entity.generic.death"));
+        return SoundEvents.ENTITY_GENERIC_DEATH;
     }
 
+    @Override
     public boolean damage(DamageSource source, float amount) {
         if (this.random.nextInt(3) == 0)
             this.requestTeleport(this.getX() + RandomHelper.nextDouble(-10, 10), this.getY(), this.getZ() + RandomHelper.nextDouble(-10, 10));
-        if (source.getAttacker() instanceof ArrowEntity)
-            return false;
-        if (source.getAttacker() instanceof PotionEntity || source.getAttacker() instanceof AreaEffectCloudEntity)
-            return false;
-        if (source.isOf(DamageTypes.CACTUS))
-            return false;
-        if (source.isOf(DamageTypes.DROWN))
-            return false;
-        if (source.isOf(DamageTypes.TRIDENT))
-            return false;
-        if (source.isOf(DamageTypes.DRAGON_BREATH))
-            return false;
-        if (source.isOf(DamageTypes.WITHER))
-            return false;
-        if (source.isOf(DamageTypes.WITHER_SKULL))
+        if (source.getAttacker() instanceof ArrowEntity ||
+                source.getAttacker() instanceof PotionEntity ||
+                source.getAttacker() instanceof AreaEffectCloudEntity ||
+                source.isOf(DamageTypes.CACTUS) ||
+                source.isOf(DamageTypes.DROWN) ||
+                source.isOf(DamageTypes.TRIDENT) ||
+                source.isOf(DamageTypes.DRAGON_BREATH) ||
+                source.isOf(DamageTypes.WITHER) ||
+                source.isOf(DamageTypes.WITHER_SKULL))
             return false;
         return super.damage(source, amount);
     }
@@ -123,13 +117,12 @@ public class SoraEntity extends MonsterEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 20.0);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 2.0);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 25.0)
+                .add(EntityAttributes.GENERIC_ARMOR, 20.0)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 5.0)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 2.0);
     }
 }

@@ -30,7 +30,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -55,7 +54,7 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
     private boolean hasSpawnBlackBone = false;
 
     static {
-        BossBarRenderHelper.addBossBarType(HerobrineEntity.class, new Identifier(RainimatorMod.MOD_ID, "textures/bossbar/herobrine.png"), true);
+        BossBarRenderHelper.addBossBarType(HerobrineEntity.class, Identifier.of(RainimatorMod.MOD_ID, "textures/bossbar/herobrine.png"), true);
     }
 
     public HerobrineEntity(EntityType<HerobrineEntity> type, World level) {
@@ -80,21 +79,21 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 200.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 25.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 10.0D);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
-        return builder;
+        return MobEntity.createMobAttributes()
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 200.0D)
+                .add(EntityAttributes.GENERIC_ARMOR, 25.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0D)
+                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0D)
+                .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 10.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0D);
     }
 
     @Override
     protected void initGoals() {
         super.initGoals();
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.2D, true) {
+            @Override
             protected double getSquaredMaxAttackDistance(LivingEntity entity) {
                 return (this.mob.getWidth() * this.mob.getWidth() + entity.getWidth());
             }
@@ -164,17 +163,12 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
 
     @Override
     public boolean isInvulnerableTo(DamageSource damageSource) {
-        if (damageSource.isOf(DamageTypes.FALL))
-            return true;
-        if (damageSource.isOf(DamageTypes.DROWN))
-            return true;
-        if (damageSource.isOf(DamageTypes.LIGHTNING_BOLT))
-            return true;
-        if (damageSource.isOf(DamageTypes.EXPLOSION))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER))
-            return true;
-        if (damageSource.isOf(DamageTypes.WITHER_SKULL))
+        if (damageSource.isOf(DamageTypes.FALL) ||
+                damageSource.isOf(DamageTypes.DROWN) ||
+                damageSource.isOf(DamageTypes.LIGHTNING_BOLT) ||
+                damageSource.isOf(DamageTypes.EXPLOSION) ||
+                damageSource.isOf(DamageTypes.WITHER) ||
+                damageSource.isOf(DamageTypes.WITHER_SKULL))
             return true;
         return super.isInvulnerableTo(damageSource);
     }
@@ -334,11 +328,6 @@ public class HerobrineEntity extends StagedMonsterEntityBase {
     public void mobTick() {
         super.mobTick();
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-    }
-
-    @Override
-    public SoundEvent getAmbientSound() {
-        return Registries.SOUND_EVENT.get(Identifier.of(RainimatorMod.MOD_ID, "him"));
     }
 
     @Override
