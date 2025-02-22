@@ -1,5 +1,6 @@
 package com.iafenvoy.rainimator.forge.component;
 
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.Direction;
 import net.minecraftforge.common.capabilities.Capability;
@@ -15,6 +16,11 @@ public class ManaDataProvider implements ICapabilitySerializable<NbtCompound> {
     });
     private ManaDataStorage storage;
     private final LazyOptional<ManaDataStorage> storageLazyOptional = LazyOptional.of(this::getOrCreateStorage);
+    private final LivingEntity living;
+
+    public ManaDataProvider(LivingEntity living) {
+        this.living = living;
+    }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction arg) {
@@ -33,7 +39,7 @@ public class ManaDataProvider implements ICapabilitySerializable<NbtCompound> {
 
     private ManaDataStorage getOrCreateStorage() {
         if (this.storage == null)
-            this.storage = new ManaDataStorage();
+            this.storage = new ManaDataStorage(this.living);
         return this.storage;
     }
 }
