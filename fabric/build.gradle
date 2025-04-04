@@ -28,7 +28,7 @@ dependencies {
     modImplementation "maven.modrinth:jupiter:nhqjUZZy"
 
     // Neptune cross-platform library
-    modImplementation "maven.modrinth:neptune:o7GnNs4S"
+    modImplementation "maven.modrinth:neptune:3GvkR1pD"
 
     // Optional dependencies
     // Asteor Bar

@@ -33,7 +33,7 @@ dependencies {
     modImplementation "top.theillusivec4.curios:curios-forge:${curios_version}"
 
     // Neptune cross-platform library
-    modImplementation "maven.modrinth:neptune:SmVvHcBI"
+    modImplementation "maven.modrinth:neptune:YbiNRBz8"
 
     // Optional dependencies
     // Asteor Bar

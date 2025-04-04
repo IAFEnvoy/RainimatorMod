@@ -5,7 +5,7 @@ import com.iafenvoy.neptune.object.item.FoilSwordItemBase;
 import com.iafenvoy.neptune.object.item.ItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.rainimator.RainimatorMod;
-import com.iafenvoy.rainimator.impl.NetherTheCrownItem;
+import com.iafenvoy.rainimator.item.armor.NetherTheCrownItem;
 import com.iafenvoy.rainimator.impl.WingsOfSalvationItem;
 import com.iafenvoy.rainimator.item.*;
 import com.iafenvoy.rainimator.item.armor.*;
@@ -145,7 +145,7 @@ public class RainimatorItems {
     public static final RegistrySupplier<Item> SOLDIERS_ARMOR_BOOTS = register("soldiers_armor_boots", () -> new SoldiersArmorItem(ArmorItem.Type.BOOTS));
     public static final RegistrySupplier<Item> RAIN_CHESTPLATE = register("rain_chestplate", () -> new RainArmorItem(ArmorItem.Type.CHESTPLATE));
     public static final RegistrySupplier<Item> MAGIC_HAT = register("magic_hat", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
-    public static final RegistrySupplier<Item> NETHER_THE_CROWN = register("nether_the_crown", NetherTheCrownItem::create);
+    public static final RegistrySupplier<Item> NETHER_THE_CROWN = register("nether_the_crown", () -> new NetherTheCrownItem());
     public static final RegistrySupplier<Item> GLUTTON_HELMET = register("glutton_helmet", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
     public static final RegistrySupplier<Item> PIGLIN_KING_CROWN = register("piglin_king_crown", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));
     public static final RegistrySupplier<Item> KING_NORMAL_CROWN = register("king_normal_crown", () -> new DecoratingArmorItem(ArmorItem.Type.HELMET, new Item.Settings().arch$tab(RainimatorItemGroups.MAIN)));

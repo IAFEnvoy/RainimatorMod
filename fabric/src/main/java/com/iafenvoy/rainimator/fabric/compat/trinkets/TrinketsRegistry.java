@@ -3,8 +3,6 @@ package com.iafenvoy.rainimator.fabric.compat.trinkets;
 import com.iafenvoy.rainimator.fabric.compat.trinkets.renderer.WingsOfSalvationRenderer;
 import com.iafenvoy.rainimator.fabric.compat.trinkets.renderer.armor.*;
 import com.iafenvoy.rainimator.registry.RainimatorItems;
-import dev.emi.trinkets.api.Trinket;
-import dev.emi.trinkets.api.TrinketsApi;
 import dev.emi.trinkets.api.client.TrinketRendererRegistry;
 
 public class TrinketsRegistry {
@@ -17,9 +15,5 @@ public class TrinketsRegistry {
         TrinketRendererRegistry.registerRenderer(RainimatorItems.NETHER_THE_CROWN.get(), new NetherTheCrownRenderer());
         TrinketRendererRegistry.registerRenderer(RainimatorItems.PIGLIN_KING_CROWN.get(), new PiglinKingCrownRenderer());
         TrinketRendererRegistry.registerRenderer(RainimatorItems.PORKSHIRE_KING_CROWN.get(), new PorkshireKingCrownRenderer());
-    }
-
-    public static void registerCommon() {
-        TrinketsApi.registerTrinket(RainimatorItems.WINGS_OF_SALVATION.get(), (Trinket) RainimatorItems.WINGS_OF_SALVATION.get());
     }
 }
