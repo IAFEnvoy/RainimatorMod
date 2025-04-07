@@ -7,8 +7,8 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 
-public class StunnedMobEffect extends StatusEffect {
-    public StunnedMobEffect() {
+public class StunnedEffect extends StatusEffect {
+    public StunnedEffect() {
         super(StatusEffectCategory.HARMFUL, -13210);
     }
 

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "  2",
+    " 45",
+    "6 8"
+  ],
+  "key": {
+    "2": {
+      "item": "rainimator:black_iron"
+    },
+    "4": {
+      "item": "minecraft:stick"
+    },
+    "5": {
+      "item": "rainimator:super_topaz"
+    },
+    "6": {
+      "item": "minecraft:crimson_stem"
+    },
+    "8": {
+      "item": "rainimator:topaz"
+    }
+  },
+  "result": {
+    "item": "rainimator:dead_scythe",
+    "count": 1
+  }
+}

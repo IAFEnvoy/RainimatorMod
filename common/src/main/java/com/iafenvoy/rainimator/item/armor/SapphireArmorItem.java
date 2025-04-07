@@ -20,10 +20,10 @@ public class SapphireArmorItem extends ArmorWithTickItem {
     @Override
     public void onArmorTick(World world, PlayerEntity entity) {
         if (!entity.getWorld().isClient && ServerConfig.getInstance().enableArmorEffect &&
-                entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.SAPPHIRE_HELMET.get() &&
-                entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == RainimatorItems.SAPPHIRE_CHESTPLATE.get() &&
-                entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == RainimatorItems.SAPPHIRE_LEGGINGS.get() &&
-                entity.getEquippedStack(EquipmentSlot.FEET).getItem() == RainimatorItems.SAPPHIRE_BOOTS.get()) {
+                entity.getEquippedStack(EquipmentSlot.HEAD).isOf(RainimatorItems.SAPPHIRE_HELMET.get()) &&
+                entity.getEquippedStack(EquipmentSlot.CHEST).isOf(RainimatorItems.SAPPHIRE_CHESTPLATE.get()) &&
+                entity.getEquippedStack(EquipmentSlot.LEGS).isOf(RainimatorItems.SAPPHIRE_LEGGINGS.get()) &&
+                entity.getEquippedStack(EquipmentSlot.FEET).isOf(RainimatorItems.SAPPHIRE_BOOTS.get())) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 300, 0));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.WATER_BREATHING, 80, 0));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 1));

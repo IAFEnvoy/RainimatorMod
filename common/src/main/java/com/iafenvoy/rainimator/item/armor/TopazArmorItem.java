@@ -20,10 +20,10 @@ public class TopazArmorItem extends ArmorWithTickItem {
     @Override
     public void onArmorTick(World world, PlayerEntity entity) {
         if (!entity.getWorld().isClient && ServerConfig.getInstance().enableArmorEffect &&
-                entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.TOPAZ_HELMET.get() &&
-                entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == RainimatorItems.TOPAZ_CHESTPLATE.get() &&
-                entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == RainimatorItems.TOPAZ_LEGGINGS.get() &&
-                entity.getEquippedStack(EquipmentSlot.FEET).getItem() == RainimatorItems.TOPAZ_BOOTS.get()) {
+                entity.getEquippedStack(EquipmentSlot.HEAD).isOf(RainimatorItems.TOPAZ_HELMET.get()) &&
+                entity.getEquippedStack(EquipmentSlot.CHEST).isOf(RainimatorItems.TOPAZ_CHESTPLATE.get()) &&
+                entity.getEquippedStack(EquipmentSlot.LEGS).isOf(RainimatorItems.TOPAZ_LEGGINGS.get()) &&
+                entity.getEquippedStack(EquipmentSlot.FEET).isOf(RainimatorItems.TOPAZ_BOOTS.get())) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 80, 0));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 1));
         }

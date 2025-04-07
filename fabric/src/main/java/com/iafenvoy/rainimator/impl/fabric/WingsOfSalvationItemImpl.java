@@ -1,7 +1,6 @@
 package com.iafenvoy.rainimator.impl.fabric;
 
 import com.iafenvoy.rainimator.impl.WingsOfSalvationItem;
-import dev.emi.trinkets.api.Trinket;
 import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;

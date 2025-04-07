@@ -1,24 +1,24 @@
 package com.iafenvoy.rainimator.effect;
 
-import com.iafenvoy.neptune.object.DamageUtil;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.mob.MobEntity;
 
-public class SoulDeathMobEffect extends StatusEffect {
-    public SoulDeathMobEffect() {
-        super(StatusEffectCategory.HARMFUL, -16764058);
+public class WatchersProvidenceEffect extends StatusEffect {
+    public WatchersProvidenceEffect() {
+        super(StatusEffectCategory.BENEFICIAL, -57884);
     }
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        entity.damage(DamageUtil.build(entity, DamageTypes.GENERIC), 1.0F);
+        if (entity instanceof MobEntity mob)
+            mob.getNavigation().stop();
         if (!entity.getWorld().isClient) {
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 4));
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 60, 1));
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 1, 2));
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.CONDUIT_POWER, 1, 1));
         }
     }
 
@@ -26,4 +26,5 @@ public class SoulDeathMobEffect extends StatusEffect {
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
     }
+
 }
