@@ -10,20 +10,20 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.world.ServerWorld;
 
-public class IcePeopleMobEffect extends StatusEffect {
-    public IcePeopleMobEffect() {
-        super(StatusEffectCategory.HARMFUL, -10027009);
+public class ShadowErosionEffect extends StatusEffect {
+    public ShadowErosionEffect() {
+        super(StatusEffectCategory.HARMFUL, -6723841);
     }
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        entity.setFrozenTicks(180);
-        if (entity.getWorld() instanceof ServerWorld _level) {
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 500, 7));
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 500, 0));
-            _level.spawnParticles(RainimatorParticles.SNOW.get(), entity.getX(), entity.getY(), entity.getZ(), 100, 0.0D, 20.0D, 0.0D, 0.001D);
+        if (Math.random() < 0.2D) {
+            entity.damage(DamageUtil.build(entity, DamageTypes.MAGIC), 3.0F);
+            if (entity.getWorld() instanceof ServerWorld _level) {
+                entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 100, 0));
+                _level.spawnParticles(RainimatorParticles.PURPLE_LIGHT.get(), entity.getX(), entity.getY(), entity.getZ(), 100, 0.0D, 10.0D, 0.0D, 0.001D);
+            }
         }
-        entity.damage(DamageUtil.build(entity, DamageTypes.FREEZE), 1.0F);
     }
 
     @Override
@@ -31,4 +31,3 @@ public class IcePeopleMobEffect extends StatusEffect {
         return true;
     }
 }
-

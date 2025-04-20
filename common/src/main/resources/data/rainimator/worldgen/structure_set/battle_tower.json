@@ -1,14 +1,14 @@
 {
   "structures": [
     {
-      "structure": "rainimator:piglin_team",
+      "structure": "rainimator:battle_tower",
       "weight": 1
     }
   ],
   "placement": {
     "type": "minecraft:random_spread",
-    "spacing": 96,
-    "separation": 64,
-    "salt": 57368262
+    "spacing": 48,
+    "separation": 32,
+    "salt": 87668186
   }
 }

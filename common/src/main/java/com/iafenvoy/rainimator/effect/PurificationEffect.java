@@ -10,7 +10,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PurificationMobEffect extends StatusEffect {
+public class PurificationEffect extends StatusEffect {
     private static final MemorizeSupplier<List<StatusEffect>> effects = new MemorizeSupplier<>(() -> {
         List<StatusEffect> list = new ArrayList<>();
         list.add(RainimatorEffects.FEAR_DARK.get());
@@ -32,7 +32,7 @@ public class PurificationMobEffect extends StatusEffect {
         return list;
     });
 
-    public PurificationMobEffect() {
+    public PurificationEffect() {
         super(StatusEffectCategory.BENEFICIAL, -10027009);
     }
 

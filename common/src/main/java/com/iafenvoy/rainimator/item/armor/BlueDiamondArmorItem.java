@@ -20,10 +20,10 @@ public class BlueDiamondArmorItem extends ArmorWithTickItem {
     @Override
     public void onArmorTick(World world, PlayerEntity entity) {
         if (!entity.getWorld().isClient && ServerConfig.getInstance().enableArmorEffect &&
-                entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.BLUE_DIAMOND_HELMET.get() &&
-                entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == RainimatorItems.BLUE_DIAMOND_CHESTPLATE.get() &&
-                entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == RainimatorItems.BLUE_DIAMOND_LEGGINGS.get() &&
-                entity.getEquippedStack(EquipmentSlot.FEET).getItem() == RainimatorItems.BLUE_DIAMOND_BOOTS.get()) {
+                entity.getEquippedStack(EquipmentSlot.HEAD).isOf(RainimatorItems.BLUE_DIAMOND_HELMET.get()) &&
+                entity.getEquippedStack(EquipmentSlot.CHEST).isOf(RainimatorItems.BLUE_DIAMOND_CHESTPLATE.get()) &&
+                entity.getEquippedStack(EquipmentSlot.LEGS).isOf(RainimatorItems.BLUE_DIAMOND_LEGGINGS.get()) &&
+                entity.getEquippedStack(EquipmentSlot.FEET).isOf(RainimatorItems.BLUE_DIAMOND_BOOTS.get())) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 80, 1));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 2));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.LUCK, 80, 0));

@@ -20,10 +20,10 @@ public class RubyArmorItem extends ArmorWithTickItem {
     @Override
     public void onArmorTick(World world, PlayerEntity entity) {
         if (!entity.getWorld().isClient && ServerConfig.getInstance().enableArmorEffect &&
-                entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.RUBY_HELMET.get() &&
-                entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == RainimatorItems.RUBY_CHESTPLATE.get() &&
-                entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == RainimatorItems.RUBY_LEGGINGS.get() &&
-                entity.getEquippedStack(EquipmentSlot.FEET).getItem() == RainimatorItems.RUBY_BOOTS.get()) {
+                entity.getEquippedStack(EquipmentSlot.HEAD).isOf(RainimatorItems.RUBY_HELMET.get()) &&
+                entity.getEquippedStack(EquipmentSlot.CHEST).isOf(RainimatorItems.RUBY_CHESTPLATE.get()) &&
+                entity.getEquippedStack(EquipmentSlot.LEGS).isOf(RainimatorItems.RUBY_LEGGINGS.get()) &&
+                entity.getEquippedStack(EquipmentSlot.FEET).isOf(RainimatorItems.RUBY_BOOTS.get())) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 80, 1));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 1));
         }

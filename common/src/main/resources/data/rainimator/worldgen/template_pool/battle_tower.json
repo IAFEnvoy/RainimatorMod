@@ -5,7 +5,7 @@
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "rainimator:speed",
+        "location": "rainimator:battle_tower",
         "projection": "rigid",
         "processors": "minecraft:empty"
       }

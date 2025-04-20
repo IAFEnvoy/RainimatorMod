@@ -1,14 +1,14 @@
 {
   "structures": [
     {
-      "structure": "rainimator:skill",
+      "structure": "rainimator:outpost",
       "weight": 1
     }
   ],
   "placement": {
     "type": "minecraft:random_spread",
-    "spacing": 48,
-    "separation": 32,
-    "salt": 87668186
+    "spacing": 96,
+    "separation": 64,
+    "salt": 84148148
   }
 }

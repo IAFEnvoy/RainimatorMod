@@ -1,14 +1,14 @@
 {
   "structures": [
     {
-      "structure": "rainimator:speed",
+      "structure": "rainimator:undead_town",
       "weight": 1
     }
   ],
   "placement": {
     "type": "minecraft:random_spread",
-    "spacing": 48,
-    "separation": 32,
-    "salt": 84148148
+    "spacing": 96,
+    "separation": 64,
+    "salt": 3123619
   }
 }

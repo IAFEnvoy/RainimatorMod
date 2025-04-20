@@ -20,10 +20,10 @@ public class SoldiersArmorItem extends ArmorWithTickItem {
     @Override
     public void onArmorTick(World world, PlayerEntity entity) {
         if (!entity.getWorld().isClient && ServerConfig.getInstance().enableArmorEffect &&
-                entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == RainimatorItems.SOLDIERS_ARMOR_HELMET.get() &&
-                entity.getEquippedStack(EquipmentSlot.CHEST).getItem() == RainimatorItems.SOLDIERS_ARMOR_CHESTPLATE.get() &&
-                entity.getEquippedStack(EquipmentSlot.LEGS).getItem() == RainimatorItems.SOLDIERS_ARMOR_LEGGINGS.get() &&
-                entity.getEquippedStack(EquipmentSlot.FEET).getItem() == RainimatorItems.SOLDIERS_ARMOR_BOOTS.get())
+                entity.getEquippedStack(EquipmentSlot.HEAD).isOf(RainimatorItems.SOLDIERS_ARMOR_HELMET.get()) &&
+                entity.getEquippedStack(EquipmentSlot.CHEST).isOf(RainimatorItems.SOLDIERS_ARMOR_CHESTPLATE.get()) &&
+                entity.getEquippedStack(EquipmentSlot.LEGS).isOf(RainimatorItems.SOLDIERS_ARMOR_LEGGINGS.get()) &&
+                entity.getEquippedStack(EquipmentSlot.FEET).isOf(RainimatorItems.SOLDIERS_ARMOR_BOOTS.get()))
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 80, 0));
     }
 }

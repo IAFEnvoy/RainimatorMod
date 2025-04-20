@@ -17,8 +17,8 @@ public class TetanusEnchantment extends Enchantment {
     public void onTargetDamaged(LivingEntity user, Entity target, int level) {
         super.onTargetDamaged(user, target, level);
         if (target instanceof LivingEntity living) {
-            living.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20 * 3));
-            living.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * 3));
+            living.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 5 * 20, 0));
+            living.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 5 * 20, 0));
         }
     }
 }
