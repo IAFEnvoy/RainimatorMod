@@ -1,4 +1,4 @@
-package com.iafenvoy.rainimator.item.enchantment;
+package com.iafenvoy.rainimator.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;

@@ -44,7 +44,6 @@ public class RainimatorModForge {
     public static void onInit(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             RainimatorMod.process();
-            CuriosRegistry.registerCommon();
             BrewingRecipeRegistry.addRecipe(Ingredient.ofStacks(PotionUtil.setPotion(Items.POTION.getDefaultStack(), Potions.AWKWARD)),
                     Ingredient.ofItems(RainimatorItems.BLUE_DIAMOND.get()),
                     PotionUtil.setPotion(Items.POTION.getDefaultStack(), RainimatorPotions.PURIFICATION_POTION.get()));
