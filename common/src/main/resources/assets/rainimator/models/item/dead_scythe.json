@@ -1,0 +1,7 @@
+{
+  "parent": "rainimator:custom/dead_scythe",
+  "textures": {
+    "0": "rainimator:item/dead_scythe",
+    "particle": "rainimator:item/dead_scythe"
+  }
+}

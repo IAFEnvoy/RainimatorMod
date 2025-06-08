@@ -29,11 +29,9 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 
-    // Curios
     modImplementation "top.theillusivec4.curios:curios-forge:${curios_version}"
 
-    // Neptune cross-platform library
-    modImplementation "maven.modrinth:neptune:YbiNRBz8"
+    modImplementation "maven.modrinth:neptune:PMI2Uy5B"
 
     // Optional dependencies
     // Asteor Bar

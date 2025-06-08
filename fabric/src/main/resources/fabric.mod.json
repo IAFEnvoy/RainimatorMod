@@ -29,7 +29,7 @@
     "client": [
       "com.iafenvoy.rainimator.fabric.RainimatorModFabricClient"
     ],
-    "cardinal-components-entity": [
+    "cardinal-components": [
       "com.iafenvoy.rainimator.fabric.component.ModComponentEntry"
     ],
     "emi": [
@@ -38,8 +38,7 @@
   },
   "custom": {
     "cardinal-components": [
-      "rainimator:mana",
-      "rainimator:fraction"
+      "rainimator:mana"
     ]
   },
   "mixins": [
