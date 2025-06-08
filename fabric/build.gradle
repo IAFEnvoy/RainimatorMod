@@ -30,7 +30,7 @@ dependencies {
 
     // Optional dependencies
     // Asteor Bar
-    modImplementation "curse.maven:asteorbar-959237:5212120"
+    modImplementation "curse.maven:asteorbar-959237:6335970"
 
     // EMI
     modLocalRuntime "dev.emi:emi-fabric:${emi_version}"

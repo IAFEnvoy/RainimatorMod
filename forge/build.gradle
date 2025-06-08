@@ -35,7 +35,7 @@ dependencies {
 
     // Optional dependencies
     // Asteor Bar
-    modImplementation "curse.maven:asteorbar-959237:5373051"
+    modImplementation "curse.maven:asteorbar-959237:6335990"
 
     // EMI
     modImplementation "dev.emi:emi-forge:${emi_version}"
