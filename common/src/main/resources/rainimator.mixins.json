@@ -4,8 +4,7 @@
   "package": "com.iafenvoy.rainimator.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "LivingEntityMixin",
-    "MobEntityAccessor"
+    "LivingEntityMixin"
   ],
   "client": [
     "InGameHudMixin",

@@ -26,7 +26,8 @@ dependencies {
 
     modImplementation "dev.emi:trinkets:${trinkets_version}"
 
-    modImplementation "maven.modrinth:neptune:aA3ZdJrZ"
+    // Neptune cross-platform library
+    modImplementation "maven.modrinth:neptune:weLtxaHp"
 
     // Optional dependencies
     // Asteor Bar
