@@ -44,7 +44,6 @@ public class RainimatorItems {
     public static final RegistrySupplier<Item> BLACK_IRON = register("black_iron", () -> new FoilItemBase(p -> p.fireproof().rarity(Rarity.RARE).arch$tab(RainimatorItemGroups.ITEM)));
     public static final RegistrySupplier<Item> OBSIDIAN_NUGGET = register("obsidian_nugget", () -> new ItemBase(p -> p.arch$tab(RainimatorItemGroups.ITEM)));
     public static final RegistrySupplier<Item> ARCANE_INGOT = register("arcane_ingot", () -> new FoilItemBase(p -> p.rarity(Rarity.RARE).arch$tab(RainimatorItemGroups.ITEM)));
-    public static final RegistrySupplier<Item> WITHER_TOKEN = register("wither_token", () -> new FoilItemBase(p -> p.maxCount(1).rarity(Rarity.EPIC).arch$tab(RainimatorItemGroups.ITEM)));
     //tool
     public static final RegistrySupplier<Item> RED_GOLD_DAGGER = register("red_gold_dagger", RedGoldDaggerItem::new);
     public static final RegistrySupplier<Item> BLACKBONE_THE_BLADE = register("blackbone_the_blade", BlackBoneTheBladeItem::new);
@@ -132,6 +131,8 @@ public class RainimatorItems {
     public static final RegistrySupplier<Item> NETHERITE_NUCLEAR_REACTOR = register("netherite_nuclear_reactor", NetherNuclearReactorItem::new);
     public static final RegistrySupplier<Item> NIGHTMARES = register("nightmares", NightmaresItem::new);
     public static final RegistrySupplier<Item> DIVINE_CORE = register("divine_core", DivineCoreItem::new);
+    public static final RegistrySupplier<Item> WITHER_TOKEN = register("wither_token", () -> new FoilItemBase(p -> p.maxCount(1).rarity(Rarity.EPIC).arch$tab(RainimatorItemGroups.ITEM)));
+
     public static final RegistrySupplier<Item> PATRICK_HELMET = register("patrick_helmet", () -> new PatrickArmorItem(ArmorItem.Type.HELMET));
     public static final RegistrySupplier<Item> PATRICK_CHESTPLATE = register("patrick_chestplate", () -> new PatrickArmorItem(ArmorItem.Type.CHESTPLATE));
     public static final RegistrySupplier<Item> PATRICK_LEGGINGS = register("patrick_leggings", () -> new PatrickArmorItem(ArmorItem.Type.LEGGINGS));
