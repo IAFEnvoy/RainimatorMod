@@ -5,7 +5,7 @@ dependencies {
     // Remove the next line if you don't want to depend on the API
     modApi "dev.architectury:architectury:${rootProject.architectury_version}"
     // Neptune cross-platform library
-    modImplementation "maven.modrinth:neptune:weLtxaHp"
+    modImplementation "maven.modrinth:neptune:igs8jrE1"
 
     // Optional dependencies
     // Asteor Bar
