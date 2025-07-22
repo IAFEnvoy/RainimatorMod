@@ -1,6 +1,5 @@
 package com.iafenvoy.rainimator.registry;
 
-import com.iafenvoy.neptune.util.function.MemorizeSupplier;
 import com.iafenvoy.rainimator.RainimatorMod;
 import com.iafenvoy.rainimator.item.block.DarkObsidianBlock;
 import dev.architectury.registry.registries.DeferredRegister;
@@ -32,8 +31,8 @@ public class RainimatorBlocks {
     public static final RegistrySupplier<Block> MYSTIC_ORE = register("mystic_ore", () -> new Block(AbstractBlock.Settings.create().requiresTool().strength(4)));
 
     private static <T extends Block> RegistrySupplier<T> register(String name, Supplier<T> block) {
-        final Supplier<T> newBlock = new MemorizeSupplier<>(block);
-        RainimatorItems.REGISTRY.register(name, () -> new BlockItem(newBlock.get(), new Item.Settings().arch$tab(RainimatorItemGroups.ITEM)));
-        return REGISTRY.register(name, newBlock);
+        RegistrySupplier<T> r = REGISTRY.register(name, block);
+        RainimatorItems.REGISTRY.register(name, () -> new BlockItem(r.get(), new Item.Settings().arch$tab(RainimatorItemGroups.ITEM)));
+        return r;
     }
 }

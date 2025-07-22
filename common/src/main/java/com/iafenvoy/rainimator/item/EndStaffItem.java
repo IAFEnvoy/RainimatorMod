@@ -2,7 +2,6 @@ package com.iafenvoy.rainimator.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.iafenvoy.neptune.object.item.ItemBase;
 import com.iafenvoy.rainimator.entity.EndStaffEntity;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import com.iafenvoy.rainimator.registry.RainimatorItems;
@@ -13,6 +12,7 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -24,9 +24,9 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class EndStaffItem extends ItemBase {
+public class EndStaffItem extends Item {
     public EndStaffItem() {
-        super(p -> p.maxDamage(10000).arch$tab(RainimatorItemGroups.MAIN));
+        super(new Settings().maxDamage(10000).arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

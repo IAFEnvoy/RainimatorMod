@@ -1,7 +1,6 @@
 package com.iafenvoy.rainimator.item.sword;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.SwordItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.rainimator.config.ServerConfig;
 import com.iafenvoy.rainimator.data.ManaData;
@@ -13,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.SwordItem;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
@@ -22,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class EnderBigSwordItem extends SwordItemBase {
+public class EnderBigSwordItem extends SwordItem {
     public EnderBigSwordItem() {
         super(ToolMaterialUtil.of(2000, 4.0F, 9.0F, 1, 15, RainimatorItems.SUPER_SAPPHIRE::get, () -> Items.ENDER_EYE), 3, -2.2F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }

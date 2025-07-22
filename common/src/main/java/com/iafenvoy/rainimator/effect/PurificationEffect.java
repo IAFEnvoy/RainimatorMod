@@ -1,6 +1,6 @@
 package com.iafenvoy.rainimator.effect;
 
-import com.iafenvoy.neptune.util.function.MemorizeSupplier;
+import com.google.common.base.Suppliers;
 import com.iafenvoy.rainimator.registry.RainimatorEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -9,9 +9,10 @@ import net.minecraft.entity.effect.StatusEffects;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class PurificationEffect extends StatusEffect {
-    private static final MemorizeSupplier<List<StatusEffect>> effects = new MemorizeSupplier<>(() -> {
+    private static final Supplier<List<StatusEffect>> effects = Suppliers.memoize(() -> {
         List<StatusEffect> list = new ArrayList<>();
         list.add(RainimatorEffects.FEAR_DARK.get());
         list.add(RainimatorEffects.SOUL_DEATH.get());

@@ -3,7 +3,8 @@ package com.iafenvoy.rainimator.item.sword;
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.object.ParticleUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.FoilSwordItemBase;
+import com.iafenvoy.neptune.object.item.ISwingable;
+import com.iafenvoy.neptune.object.item.ThrowableWeaponItem;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
@@ -13,6 +14,8 @@ import com.iafenvoy.rainimator.impl.ComponentManager;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import com.iafenvoy.rainimator.registry.RainimatorItems;
 import com.iafenvoy.rainimator.registry.RainimatorSounds;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
@@ -25,9 +28,9 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class BlackBoneTheBladeItem extends FoilSwordItemBase {
+public class BlackBoneTheBladeItem extends ThrowableWeaponItem implements ISwingable {
     public BlackBoneTheBladeItem() {
-        super(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 10, RainimatorItems.RUBY::get), 3, -2.4F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
+        super(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 10, RainimatorItems.RUBY::get), 3, -2.4F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN), new ThrowSettings());
     }
 
     @Override
@@ -83,9 +86,14 @@ public class BlackBoneTheBladeItem extends FoilSwordItemBase {
 
     @Override
     public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
-        boolean retval = super.onSwingHand(itemtack, world, x, y, z);
+        boolean retval = this.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, ParticleTypes.LAVA, x, y, z, 4, 0, 50);
         return retval;
+    }
+
+    @Environment(EnvType.CLIENT)
+    public boolean hasGlint(ItemStack itemtack) {
+        return true;
     }
 }

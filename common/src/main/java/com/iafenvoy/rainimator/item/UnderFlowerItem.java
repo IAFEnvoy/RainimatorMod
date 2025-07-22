@@ -1,7 +1,6 @@
 package com.iafenvoy.rainimator.item;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.FoilItemBase;
 import com.iafenvoy.rainimator.config.ServerConfig;
 import com.iafenvoy.rainimator.data.ManaData;
 import com.iafenvoy.rainimator.impl.ComponentManager;
@@ -10,15 +9,17 @@ import com.iafenvoy.rainimator.registry.RainimatorSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class UnderFlowerItem extends FoilItemBase {
+public class UnderFlowerItem extends Item {
     public UnderFlowerItem() {
-        super(p -> p.maxCount(1).rarity(Rarity.UNCOMMON).arch$tab(RainimatorItemGroups.ITEM));
+        super(new Settings().maxCount(1).rarity(Rarity.UNCOMMON).arch$tab(RainimatorItemGroups.ITEM));
     }
 
     @Override
@@ -41,5 +42,10 @@ public class UnderFlowerItem extends FoilItemBase {
             entity.getItemCooldownManager().set(context.getStack().getItem(), 400);
         }
         return ActionResult.SUCCESS;
+    }
+
+    @Override
+    public boolean hasGlint(ItemStack itemtack) {
+        return true;
     }
 }

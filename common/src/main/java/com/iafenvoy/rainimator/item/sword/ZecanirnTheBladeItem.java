@@ -3,7 +3,7 @@ package com.iafenvoy.rainimator.item.sword;
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.object.ParticleUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ISwingable;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
@@ -23,6 +23,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -37,7 +38,7 @@ import net.minecraft.world.World;
 import java.util.Comparator;
 import java.util.List;
 
-public class ZecanirnTheBladeItem extends SwordItemBase {
+public class ZecanirnTheBladeItem extends SwordItem implements ISwingable {
     public ZecanirnTheBladeItem() {
         super(ToolMaterialUtil.of(1500, 4.0F, 11.0F, 0, 20, RainimatorItems.SUPER_SAPPHIRE::get, RainimatorItems.SUPER_RUBY::get), 3, -2.2F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }
@@ -139,9 +140,8 @@ public class ZecanirnTheBladeItem extends SwordItemBase {
 
     @Override
     public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
-        boolean ret_val = super.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, RainimatorParticles.PURPLE_LIGHT.get(), x, y, z, 4, 0, 50);
-        return ret_val;
+        return false;
     }
 }

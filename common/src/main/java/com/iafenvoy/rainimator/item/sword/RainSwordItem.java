@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.object.ParticleUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ISwingable;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.Timeout;
 import com.iafenvoy.rainimator.config.ServerConfig;
@@ -23,6 +23,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -36,7 +37,7 @@ import org.apache.commons.lang3.tuple.Triple;
 import java.util.Comparator;
 import java.util.List;
 
-public class RainSwordItem extends SwordItemBase {
+public class RainSwordItem extends SwordItem implements ISwingable {
     private static final List<Triple<Integer, Integer, Integer>> places = Lists.newArrayList(
             Triple.of(0, 0, 0),
             Triple.of(1, 0, 0),
@@ -106,10 +107,8 @@ public class RainSwordItem extends SwordItemBase {
 
     @Override
     public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
-        boolean ret_val = super.onSwingHand(itemtack, world, x, y, z);
-        if (Math.random() < 0.2D)
-            ParticleUtil.spawnCircleParticles(world, ParticleTypes.ENCHANT, x, y, z, 3, 0, 50);
-        return ret_val;
+        if (Math.random() < 0.2D) ParticleUtil.spawnCircleParticles(world, ParticleTypes.ENCHANT, x, y, z, 3, 0, 50);
+        return false;
     }
 
 

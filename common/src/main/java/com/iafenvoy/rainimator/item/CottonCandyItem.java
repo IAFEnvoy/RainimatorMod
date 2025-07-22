@@ -1,19 +1,19 @@
 package com.iafenvoy.rainimator.item;
 
-import com.iafenvoy.neptune.object.item.ItemBase;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
-public class CottonCandyItem extends ItemBase {
+public class CottonCandyItem extends Item {
     public CottonCandyItem() {
-        super(p -> p.food((new FoodComponent.Builder()).hunger(3).saturationModifier(0.1F).alwaysEdible().build()).arch$tab(RainimatorItemGroups.MAIN));
+        super(new Settings().food((new FoodComponent.Builder()).hunger(3).saturationModifier(0.1F).alwaysEdible().build()).arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

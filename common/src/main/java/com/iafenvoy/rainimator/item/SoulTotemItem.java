@@ -1,7 +1,6 @@
 package com.iafenvoy.rainimator.item;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.FoilItemBase;
 import com.iafenvoy.neptune.util.Timeout;
 import com.iafenvoy.rainimator.config.ServerConfig;
 import com.iafenvoy.rainimator.data.ManaData;
@@ -16,6 +15,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -31,9 +31,9 @@ import net.minecraft.world.WorldAccess;
 import java.util.Comparator;
 import java.util.List;
 
-public class SoulTotemItem extends FoilItemBase {
+public class SoulTotemItem extends Item {
     public SoulTotemItem() {
-        super(p -> p.maxCount(1).rarity(Rarity.UNCOMMON).arch$tab(RainimatorItemGroups.ITEM));
+        super(new Settings().maxCount(1).rarity(Rarity.UNCOMMON).arch$tab(RainimatorItemGroups.ITEM));
     }
 
     @Override
@@ -102,5 +102,10 @@ public class SoulTotemItem extends FoilItemBase {
                         world.spawnEntity(new ExperienceOrbEntity(world, entity.getX(), entity.getY(), entity.getZ(), 1));
             }
         }
+    }
+
+    @Override
+    public boolean hasGlint(ItemStack stack) {
+        return true;
     }
 }

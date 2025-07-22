@@ -1,6 +1,5 @@
 package com.iafenvoy.rainimator.item.sword;
 
-import com.iafenvoy.neptune.object.item.SwordItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import com.iafenvoy.rainimator.registry.RainimatorItems;
@@ -8,8 +7,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 
-public class HerobrineTomahawkItem extends SwordItemBase {
+public class HerobrineTomahawkItem extends SwordItem {
     public HerobrineTomahawkItem() {
         super(ToolMaterialUtil.of(2500, 12.0F, 11.0F, 0, 20, RainimatorItems.SUPER_RUBY::get, RainimatorItems.SUPER_SAPPHIRE::get), 3, -2.2F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }

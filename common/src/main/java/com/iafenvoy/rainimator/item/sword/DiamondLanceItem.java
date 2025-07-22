@@ -1,6 +1,5 @@
 package com.iafenvoy.rainimator.item.sword;
 
-import com.iafenvoy.neptune.object.item.SwordItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import com.iafenvoy.rainimator.registry.RainimatorItems;
@@ -9,11 +8,12 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-public class DiamondLanceItem extends SwordItemBase {
+public class DiamondLanceItem extends SwordItem {
     public DiamondLanceItem() {
         super(ToolMaterialUtil.of(2000, 4.0F, 7.0F, 0, 3, RainimatorItems.BLUE_DIAMOND::get), 3, -2.0F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }

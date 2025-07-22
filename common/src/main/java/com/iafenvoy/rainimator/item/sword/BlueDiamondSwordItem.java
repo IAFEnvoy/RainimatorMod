@@ -2,7 +2,7 @@ package com.iafenvoy.rainimator.item.sword;
 
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.object.*;
-import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ISwingable;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
@@ -21,6 +21,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -36,7 +37,7 @@ import net.minecraft.world.WorldAccess;
 import java.util.Comparator;
 import java.util.List;
 
-public class BlueDiamondSwordItem extends SwordItemBase {
+public class BlueDiamondSwordItem extends SwordItem implements ISwingable {
     public BlueDiamondSwordItem() {
         super(ToolMaterialUtil.of(3000, 4.0F, 15.0F, 0, 30, RainimatorItems.BLUE_DIAMOND::get), 3, -2.0F, new Settings().fireproof().arch$tab(RainimatorItemGroups.ITEM));
     }
@@ -197,9 +198,8 @@ public class BlueDiamondSwordItem extends SwordItemBase {
 
     @Override
     public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
-        boolean retval = super.onSwingHand(itemtack, world, x, y, z);
         if (Math.random() < 0.2D)
             ParticleUtil.spawnCircleParticles(world, ParticleTypes.SOUL_FIRE_FLAME, x, y, z, 2, 0, 50);
-        return retval;
+        return false;
     }
 }

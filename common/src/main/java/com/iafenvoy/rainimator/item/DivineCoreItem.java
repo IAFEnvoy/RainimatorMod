@@ -1,12 +1,14 @@
 package com.iafenvoy.rainimator.item;
 
-import com.iafenvoy.neptune.object.item.FoilItemBase;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.rainimator.config.ServerConfig;
 import com.iafenvoy.rainimator.data.ManaData;
 import com.iafenvoy.rainimator.impl.ComponentManager;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rarity;
@@ -14,9 +16,9 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
-public class DivineCoreItem extends FoilItemBase {
+public class DivineCoreItem extends Item {
     public DivineCoreItem() {
-        super(p -> p.maxDamage(100).rarity(Rarity.UNCOMMON).arch$tab(RainimatorItemGroups.ITEM));
+        super(new Settings().maxDamage(100).rarity(Rarity.UNCOMMON).arch$tab(RainimatorItemGroups.ITEM));
     }
 
     @Override
@@ -54,5 +56,9 @@ public class DivineCoreItem extends FoilItemBase {
             }
         }
         return ar;
+    }
+
+    public boolean hasGlint(ItemStack stack) {
+        return true;
     }
 }

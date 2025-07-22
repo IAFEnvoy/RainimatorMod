@@ -1,17 +1,17 @@
 package com.iafenvoy.rainimator.item;
 
-import com.iafenvoy.neptune.object.item.ItemBase;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class NightmaresItem extends ItemBase {
+public class NightmaresItem extends Item {
     public NightmaresItem() {
-        super(p -> p.maxDamage(32).fireproof().arch$tab(RainimatorItemGroups.ITEM));
+        super(new Settings().maxDamage(32).fireproof().arch$tab(RainimatorItemGroups.ITEM));
     }
 
     @Override

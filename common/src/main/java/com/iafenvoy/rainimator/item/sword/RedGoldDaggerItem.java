@@ -1,6 +1,5 @@
 package com.iafenvoy.rainimator.item.sword;
 
-import com.iafenvoy.neptune.object.item.SwordItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
@@ -8,8 +7,9 @@ import com.iafenvoy.rainimator.registry.RainimatorItems;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 
-public class RedGoldDaggerItem extends SwordItemBase {
+public class RedGoldDaggerItem extends SwordItem {
     public RedGoldDaggerItem() {
         super(ToolMaterialUtil.of(1000, 4.0F, 6.0F, 0, 3, RainimatorItems.RUBY::get), 3, -2.0F, new Settings().arch$tab(RainimatorItemGroups.MAIN));
     }

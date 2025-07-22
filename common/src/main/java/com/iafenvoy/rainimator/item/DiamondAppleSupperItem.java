@@ -1,18 +1,20 @@
 package com.iafenvoy.rainimator.item;
 
-import com.iafenvoy.neptune.object.item.FoilItemBase;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Rarity;
 import net.minecraft.world.World;
 
-public class DiamondAppleSupperItem extends FoilItemBase {
+public class DiamondAppleSupperItem extends Item {
     public DiamondAppleSupperItem() {
-        super(p -> p.maxCount(16).rarity(Rarity.EPIC).food((new FoodComponent.Builder()).hunger(5).saturationModifier(5.0F).alwaysEdible().build()).arch$tab(RainimatorItemGroups.ITEM));
+        super(new Settings().maxCount(16).rarity(Rarity.EPIC).food((new FoodComponent.Builder()).hunger(5).saturationModifier(5.0F).alwaysEdible().build()).arch$tab(RainimatorItemGroups.ITEM));
     }
 
     @Override
@@ -25,5 +27,9 @@ public class DiamondAppleSupperItem extends FoilItemBase {
                 entity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 600, 4));
             }
         return retval;
+    }
+
+    public boolean hasGlint(ItemStack stack) {
+        return true;
     }
 }

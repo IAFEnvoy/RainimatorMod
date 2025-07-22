@@ -2,7 +2,6 @@ package com.iafenvoy.rainimator.item.sword;
 
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.SwordItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.rainimator.config.ServerConfig;
 import com.iafenvoy.rainimator.data.ManaData;
@@ -16,6 +15,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import java.util.Comparator;
 import java.util.List;
 
-public class NaeusSwordItem extends SwordItemBase {
+public class NaeusSwordItem extends SwordItem {
     public NaeusSwordItem() {
         super(ToolMaterialUtil.of(4000, 4.0F, 9.0F, 0, 10), 3, -2.0F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }

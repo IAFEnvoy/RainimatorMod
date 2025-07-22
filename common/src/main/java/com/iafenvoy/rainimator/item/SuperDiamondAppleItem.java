@@ -1,17 +1,17 @@
 package com.iafenvoy.rainimator.item;
 
-import com.iafenvoy.neptune.object.item.ItemBase;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class SuperDiamondAppleItem extends ItemBase {
+public class SuperDiamondAppleItem extends Item {
     public SuperDiamondAppleItem() {
-        super(p -> p.food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).alwaysEdible().build()).arch$tab(RainimatorItemGroups.ITEM));
+        super(new Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).alwaysEdible().build()).arch$tab(RainimatorItemGroups.ITEM));
     }
 
     @Override

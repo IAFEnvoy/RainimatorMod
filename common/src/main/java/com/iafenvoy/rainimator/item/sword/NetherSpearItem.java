@@ -2,7 +2,7 @@ package com.iafenvoy.rainimator.item.sword;
 
 import com.iafenvoy.neptune.object.ParticleUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ISwingable;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
@@ -21,6 +21,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
@@ -30,7 +31,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class NetherSpearItem extends SwordItemBase {
+public class NetherSpearItem extends SwordItem implements ISwingable {
     public NetherSpearItem() {
         super(ToolMaterialUtil.of(3000, 0.0F, 11.0F, 0, 25), 3, -2.2F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }
@@ -101,10 +102,8 @@ public class NetherSpearItem extends SwordItemBase {
 
     @Override
     public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
-        boolean retval = super.onSwingHand(itemtack, world, x, y, z);
-        if (Math.random() < 0.2D)
-            ParticleUtil.spawnCircleParticles(world, ParticleTypes.FLAME, x, y, z, 4, 0, 50);
-        return retval;
+        if (Math.random() < 0.2D) ParticleUtil.spawnCircleParticles(world, ParticleTypes.FLAME, x, y, z, 4, 0, 50);
+        return false;
     }
 
     @Override

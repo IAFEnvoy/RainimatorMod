@@ -16,11 +16,8 @@ public class AbigailSpearItem extends ThrowableWeaponItem {
 
     @Override
     public boolean postHit(ItemStack itemtack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean ret_val = super.postHit(itemtack, entity, sourceentity);
-        if (entity instanceof MobEntity _entity)
-            _entity.setTarget(sourceentity);
-        if (Math.random() < 0.5D)
-            sourceentity.setHealth(sourceentity.getHealth() + RandomHelper.nextInt(1, 3));
-        return ret_val;
+        if (entity instanceof MobEntity mob) mob.setTarget(sourceentity);
+        if (Math.random() < 0.5D) sourceentity.setHealth(sourceentity.getHealth() + RandomHelper.nextInt(1, 3));
+        return super.postHit(itemtack, entity, sourceentity);
     }
 }

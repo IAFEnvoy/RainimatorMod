@@ -2,7 +2,6 @@ package com.iafenvoy.rainimator.item.sword;
 
 import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.SwordItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
@@ -11,9 +10,10 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.sound.SoundEvents;
 
-public class EnderCurvedSwordItem extends SwordItemBase {
+public class EnderCurvedSwordItem extends SwordItem {
     public EnderCurvedSwordItem() {
         super(ToolMaterialUtil.of(2000, 0.0F, 6.0F, 0, 25), 3, -2.0F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }

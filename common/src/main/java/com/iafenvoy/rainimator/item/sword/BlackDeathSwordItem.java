@@ -2,7 +2,7 @@ package com.iafenvoy.rainimator.item.sword;
 
 import com.iafenvoy.neptune.object.ParticleUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ISwingable;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import com.iafenvoy.rainimator.registry.RainimatorParticles;
@@ -12,11 +12,12 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 
-public class BlackDeathSwordItem extends SwordItemBase {
+public class BlackDeathSwordItem extends SwordItem implements ISwingable {
     public BlackDeathSwordItem() {
         super(ToolMaterialUtil.of(1000, 0.0F, 9.0F, 0, 30), 3, -1.7F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }
@@ -50,9 +51,7 @@ public class BlackDeathSwordItem extends SwordItemBase {
 
     @Override
     public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
-        boolean retval = super.onSwingHand(itemtack, world, x, y, z);
-        if (Math.random() < 0.2D)
-            ParticleUtil.spawnCircleParticles(world, ParticleTypes.SOUL, x, y, z, 3, 0, 50);
-        return retval;
+        if (Math.random() < 0.2D) ParticleUtil.spawnCircleParticles(world, ParticleTypes.SOUL, x, y, z, 3, 0, 50);
+        return false;
     }
 }

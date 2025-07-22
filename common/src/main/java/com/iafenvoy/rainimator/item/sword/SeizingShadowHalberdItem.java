@@ -2,7 +2,7 @@ package com.iafenvoy.rainimator.item.sword;
 
 import com.iafenvoy.neptune.object.ParticleUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ISwingable;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.Timeout;
 import com.iafenvoy.rainimator.config.ServerConfig;
@@ -21,6 +21,7 @@ import net.minecraft.entity.projectile.DragonFireballEntity;
 import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.SwordItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -38,7 +39,7 @@ import net.minecraft.world.WorldAccess;
 import java.util.Comparator;
 import java.util.List;
 
-public class SeizingShadowHalberdItem extends SwordItemBase {
+public class SeizingShadowHalberdItem extends SwordItem implements ISwingable {
     public SeizingShadowHalberdItem() {
         super(ToolMaterialUtil.of(2000, 0.0F, 13.0F, 0, 20), 3, -2.2F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }
@@ -174,9 +175,7 @@ public class SeizingShadowHalberdItem extends SwordItemBase {
 
     @Override
     public boolean onSwingHand(ItemStack itemtack, World world, double x, double y, double z) {
-        boolean retval = super.onSwingHand(itemtack, world, x, y, z);
-        if (Math.random() < 0.2D)
-            ParticleUtil.spawnCircleParticles(world, ParticleTypes.END_ROD, x, y, z, 4, 0, 50);
-        return retval;
+        if (Math.random() < 0.2D) ParticleUtil.spawnCircleParticles(world, ParticleTypes.END_ROD, x, y, z, 4, 0, 50);
+        return false;
     }
 }

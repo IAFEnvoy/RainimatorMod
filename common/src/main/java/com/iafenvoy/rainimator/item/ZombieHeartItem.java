@@ -1,17 +1,17 @@
 package com.iafenvoy.rainimator.item;
 
-import com.iafenvoy.neptune.object.item.ItemBase;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ZombieHeartItem extends ItemBase {
+public class ZombieHeartItem extends Item {
     public ZombieHeartItem() {
-        super(p -> p.food((new FoodComponent.Builder()).hunger(10).saturationModifier(1.0F).alwaysEdible().meat().build()).arch$tab(RainimatorItemGroups.ITEM));
+        super(new Settings().food((new FoodComponent.Builder()).hunger(10).saturationModifier(1.0F).alwaysEdible().meat().build()).arch$tab(RainimatorItemGroups.ITEM));
     }
 
     @Override

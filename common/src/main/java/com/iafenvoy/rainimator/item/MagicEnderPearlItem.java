@@ -1,7 +1,6 @@
 package com.iafenvoy.rainimator.item;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.FoilItemBase;
 import com.iafenvoy.neptune.util.Timeout;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import com.iafenvoy.rainimator.registry.RainimatorParticles;
@@ -9,6 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -18,9 +18,9 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class MagicEnderPearlItem extends FoilItemBase {
+public class MagicEnderPearlItem extends Item {
     public MagicEnderPearlItem() {
-        super(p -> p.maxDamage(40).fireproof().rarity(Rarity.RARE).arch$tab(RainimatorItemGroups.ITEM));
+        super(new Settings().maxDamage(40).fireproof().rarity(Rarity.RARE).arch$tab(RainimatorItemGroups.ITEM));
     }
 
     @Override
@@ -98,5 +98,10 @@ public class MagicEnderPearlItem extends FoilItemBase {
             });
         }
         return ar;
+    }
+
+    @Override
+    public boolean hasGlint(ItemStack itemtack) {
+        return true;
     }
 }

@@ -1,7 +1,6 @@
 package com.iafenvoy.rainimator.item;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.ItemBase;
 import com.iafenvoy.rainimator.registry.RainimatorBlocks;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import com.iafenvoy.rainimator.registry.RainimatorItems;
@@ -10,10 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.UseAction;
@@ -23,11 +19,11 @@ import org.apache.commons.lang3.tuple.Triple;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MysteriousGiftBoxItem extends ItemBase {
+public class MysteriousGiftBoxItem extends Item {
     private static final List<Triple<ItemConvertible, Integer, String>> LOOT_TABLES = new ArrayList<>();
 
     public MysteriousGiftBoxItem() {
-        super(p -> p.maxCount(16).rarity(Rarity.EPIC).food((new FoodComponent.Builder()).hunger(0).saturationModifier(0.0F).alwaysEdible().build()).arch$tab(RainimatorItemGroups.ITEM));
+        super(new Settings().maxCount(16).rarity(Rarity.EPIC).food((new FoodComponent.Builder()).hunger(0).saturationModifier(0.0F).alwaysEdible().build()).arch$tab(RainimatorItemGroups.ITEM));
     }
 
     private static synchronized void initLootTable() {

@@ -2,7 +2,6 @@ package com.iafenvoy.rainimator.item;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.iafenvoy.neptune.object.item.ItemBase;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EquipmentSlot;
@@ -10,13 +9,14 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlackGunItem extends ItemBase {
+public class BlackGunItem extends Item {
     public BlackGunItem() {
-        super(p -> p.maxDamage(800).arch$tab(RainimatorItemGroups.MAIN));
+        super(new Settings().maxDamage(800).arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

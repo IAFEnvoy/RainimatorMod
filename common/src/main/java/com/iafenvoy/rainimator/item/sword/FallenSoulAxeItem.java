@@ -1,7 +1,6 @@
 package com.iafenvoy.rainimator.item.sword;
 
 import com.iafenvoy.neptune.object.SoundUtil;
-import com.iafenvoy.neptune.object.item.FoilSwordItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.Timeout;
 import com.iafenvoy.rainimator.config.ServerConfig;
@@ -15,6 +14,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 import java.util.Comparator;
 import java.util.List;
 
-public class FallenSoulAxeItem extends FoilSwordItemBase {
+public class FallenSoulAxeItem extends SwordItem {
     public FallenSoulAxeItem() {
         super(ToolMaterialUtil.of(1000, 0.0F, 6.0F, 0, 10), 3, -2.3F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }
@@ -88,5 +88,10 @@ public class FallenSoulAxeItem extends FoilSwordItemBase {
             }
         }
         return ar;
+    }
+
+    @Override
+    public boolean hasGlint(ItemStack stack) {
+        return true;
     }
 }
