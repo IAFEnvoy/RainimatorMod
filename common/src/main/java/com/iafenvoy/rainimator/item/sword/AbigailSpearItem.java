@@ -1,6 +1,5 @@
 package com.iafenvoy.rainimator.item.sword;
 
-import com.iafenvoy.neptune.object.item.ThrowableWeaponItem;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.rainimator.registry.RainimatorItemGroups;
@@ -8,10 +7,11 @@ import com.iafenvoy.rainimator.registry.RainimatorItems;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 
-public class AbigailSpearItem extends ThrowableWeaponItem {
+public class AbigailSpearItem extends SwordItem {
     public AbigailSpearItem() {
-        super(ToolMaterialUtil.of(2000, 4.0F, 8.0F, 1, 20, RainimatorItems.SUPER_RUBY::get), 3, -2.0F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN), new ThrowSettings());
+        super(ToolMaterialUtil.of(2000, 4.0F, 8.0F, 1, 20, RainimatorItems.SUPER_RUBY::get), 3, -2.0F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override

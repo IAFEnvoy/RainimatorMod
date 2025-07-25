@@ -4,7 +4,6 @@ import com.iafenvoy.neptune.object.DamageUtil;
 import com.iafenvoy.neptune.object.ParticleUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.item.ISwingable;
-import com.iafenvoy.neptune.object.item.ThrowableWeaponItem;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.RandomHelper;
 import com.iafenvoy.neptune.util.Timeout;
@@ -21,6 +20,7 @@ import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SwordItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
@@ -28,9 +28,9 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
-public class BlackBoneTheBladeItem extends ThrowableWeaponItem implements ISwingable {
+public class BlackBoneTheBladeItem extends SwordItem implements ISwingable {
     public BlackBoneTheBladeItem() {
-        super(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 10, RainimatorItems.RUBY::get), 3, -2.4F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN), new ThrowSettings());
+        super(ToolMaterialUtil.of(1500, 0.0F, 7.0F, 0, 10, RainimatorItems.RUBY::get), 3, -2.4F, new Settings().fireproof().arch$tab(RainimatorItemGroups.MAIN));
     }
 
     @Override
