@@ -39,8 +39,9 @@ See summon recipes with `EMI`.
 
 These mods are not mandatory to install, but they are recommended to gain better game experience.
 
-- `EMI`: Boss summon recipes view.
 - `Asteor Bar`: A better GUI for status bars.
+- `EMI`: Boss summon recipes view.
+- `Throwable`: Make some weapon throwable.
 
 ## Contribute
 
